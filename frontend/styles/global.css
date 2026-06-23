@@ -1,0 +1,677 @@
+
+/*hero section*/
+.hero-section
+{
+    min-height: 100vh;
+    background: url("../assets/images/home-hero.png") center/cover no-repeat;
+    position: relative;
+    padding: 25px;
+    border: solid 2px black;
+    background-size: cover;        /* Fills the box, crops edges if needed */
+     border-radius: 10px 10px  10px 10px ;    
+}
+
+#nav-bar
+{
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding:  2%;
+    box-sizing: border-box;
+    padding-top: 0px;
+    margin-top: 1px;
+
+}
+.nav-list
+{
+    display: flex;
+    gap: 20px;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+/* BUTTON */
+.Log-In-btn,.Get-Started-btn 
+{
+    background: #ff5a1f;
+    color: white;
+    border: none;
+    border-radius: 9px;
+    padding: 14px 24px;
+    font-family: "Sora", sans-serif;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.nav-list 
+{
+    display: flex;
+    gap: 3rem;
+    list-style: none;
+    margin: 0;
+    padding: 14px 30px;
+    border-radius: 14px;
+    color: white;
+    font-family: "Sora", sans-serif;
+}
+
+
+/* =========================
+   HERO 
+========================= */
+.hero-content
+{
+    display: block;
+    align-items:flex-end;
+
+    margin-top: 10%;
+    width: 50%;
+}
+
+/* =========================
+   HERO HEADING
+========================= */
+.head-hero
+{
+    text-wrap: wrap;
+}
+
+.sub-hero
+{
+    width: 40%;
+}
+/* =========================
+   HERO BUTTONS
+========================= */
+.Generate-House-Plan-btn,
+.c-how-it-Works-btn
+{
+    background: #ff5a1f;
+    color: white;
+    border: none;
+    border-radius: 9px;
+    padding: 14px 24px;
+    font-family: "Sora", sans-serif;
+    font-weight: 400;
+    cursor: pointer;
+margin-right: 20px;
+}
+/*Problem*/
+
+
+/*services*/
+/* =========================
+   SERVICES SECTION
+========================= */
+
+.services
+{
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+
+    padding: 80px 5%;
+    box-sizing: border-box;border: 2px solid black;
+}
+
+/* =========================
+   SECTION HEADING
+========================= */
+
+#serv-heading
+{
+    width: 100%;
+    text-align: center;
+    margin-bottom: 40px;
+
+}
+
+#serv-sub-heading
+{
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+/* =========================
+   SERVICE CARDS
+========================= */
+
+.service-card-01,
+.service-card-02,
+.service-card-03,
+.service-card-04,
+.service-card-05,
+.service-card-text,
+.service-card-06 {
+    width: 240px;
+    min-height: 350px;
+
+    border: 2px solid black;
+    border-radius: 12px;
+
+    padding: 20px;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* =========================
+   CARD TOP
+========================= */
+
+#top-of-card
+{
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#serv-icon
+{
+    width: 40px;
+    height: 40px;
+
+    border: 2px solid black;
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+#serv-number
+{
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+/* =========================
+   CARD CONTENT
+========================= */
+
+#service-all-text
+{
+    width: 100%;
+}
+
+#serv-heading-card
+{
+    margin-bottom: 15px;
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+#serv-details
+{
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* Features Section */
+.Features {
+    width: 100%;
+    padding: 80px 40px;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+
+    background: #f8fafc;
+}
+
+.Features-heading,
+.Features-sub-heading {
+    width: 100%;
+    text-align: center;
+}
+
+.Features-heading {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.Features-sub-heading {
+    color: #666;
+    margin-bottom: 40px;
+}
+
+
+/* Large Cards */
+.Features-01,
+.Features-04 
+{
+    width: 870px;
+    min-height: 350px;
+
+    display: flex;
+    align-items: center;
+    gap: 30px;
+
+    padding: 30px;
+
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 2px;
+}
+
+
+/* Small Cards */
+.Features-02,
+.Features-03 {
+    width: 400px;
+    min-height: 350px;
+
+    padding: 30px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 2px;
+
+    box-shadow:
+        0 10px 25px rgba(0,0,0,.05);
+}
+
+
+/* Hover Effect */
+
+
+
+/* Text Areas */
+#text,
+#text-1-2 {
+    width: 60%;
+    border: none;
+    height: auto;
+
+    padding: 0;    border: 1px solid #000000;
+}
+
+#text h2,
+#text-1-2 h2 {
+    font-size: 1.8rem;
+    margin-bottom: 12px;
+}
+
+#text p:first-of-type,
+#text-1-2 p:first-of-type {
+    font-weight: 600;
+    color: #2563eb;
+    margin-bottom: 16px;
+}
+
+#text p:last-of-type,
+#text-1-2 p:last-of-type {
+    color: #666;
+    line-height: 1.8;
+}
+
+
+/* Images */
+#feature-01-pic,
+.Features-02 img,
+.Features-03 img {
+    width: 35%;
+    height: 240px;
+
+    object-fit: cover;
+
+    border-radius: 18px;
+}
+
+/*how-it-works*/
+.how-it-works 
+{
+    width: 100%;
+    min-height: 100vh;
+    padding: 80px 5%;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+    border: 2px solid black;
+}
+.process
+{
+    display:flex;
+    justify-content:center;
+    gap:16px;
+    margin-top:50px;
+}
+
+.process-card
+{
+    width:280px;
+    height:350px;
+
+    border:2px solid #000;
+    position:relative;
+
+    overflow:hidden; /* THIS CREATES THE CUT EFFECT */
+}
+
+.process-icon{
+    display:flex;
+    justify-content:flex-end;
+    padding:15px;
+}
+
+.process-icon img{
+    width:80px;
+}
+
+.process-card p{
+    padding:0 20px;
+    font-size:1.1rem;
+}
+
+.process-card h1{
+    position:absolute;
+
+    left:50%;
+    bottom:-75px;
+
+    transform:translateX(-50%);
+
+    font-size:11rem;
+    line-height:1;
+    margin:0;
+    font-weight:700;
+}
+/* Pricing */
+.Pricing {
+    width: 100%;
+    min-height: 100vh;
+    padding: 80px 5%;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Heading */
+#price-heading {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+/* Cards Container */
+.pricing-cards {
+    width: 100%;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Individual Card */
+.Price-01 {
+    width: 260px;
+    min-height: 420px;
+
+    padding: 18px;
+    box-sizing: border-box;
+
+    border: 2px solid black;
+    border-radius: 12px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Card Title */
+.Price-01 h2 {
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+/* Price */
+.Price-01 span {
+    font-size: 1.7rem;
+    font-weight: bold;
+}
+
+/* Button */
+#upgrade-btn {
+    width: 100%;
+    height: 40px;
+
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* Features List */
+.features-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Feature Row */
+.features-list p {
+    margin: 0;
+}
+
+/* Icon */
+.icon {
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+
+/*FAQ*/
+.FAQ
+{
+    width: 100vw;
+     height: 100vh; 
+     border: solid 2px black;
+     display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap:5px;
+    flex-wrap: wrap;
+}
+
+.accordion {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  text-align: left;
+  border: none;
+  outline: none;
+  transition: 0.4s;
+  border-radius: 5px;
+
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active, .accordion:hover {
+  background-color: #ccc;
+}
+
+/* Style the accordion panel. Note: hidden by default */
+.panel {
+  padding: 0 18px;
+  background-color: white;
+  display: none;
+  overflow: hidden;
+}
+.FAQ-heading
+{
+    width: 100%;
+
+    padding-left: 20px; 
+    margin-top: 0%;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+
+}
+.FAQ-content
+{
+    width: 48%;
+
+    height:350px;
+    margin-top: 0%;
+    margin-left: 70px; height:400px;
+}
+
+.FAQ-icon
+{
+    float: right;
+    font-size: 1.5rem;
+}
+.FAQ-picture
+{
+    width: 48%;
+
+    height: 50%;
+    margin-top: 0%;
+    width:380px;
+    height:400px;
+    margin-right:90px;
+    background: url("../assets/images/home-hero.png") center/cover no-repeat;
+}
+
+.FAQ-heading>h1,
+.FAQ-heading>p
+{
+    width: 100%;
+    display: flex;
+    justify-content: center;   
+    margin: 0% ;
+}
+
+
+/*CTA*/
+.CTA
+{
+    width: 100vw;
+     height: 100vh; 
+     border: solid 2px black;
+}
+/*Footer*/
+.Footer{
+    width:100%;
+    min-height:70vh;
+    padding:60px;
+    position:relative;
+    overflow:hidden;
+    border: solid 2px black;
+    border-radius:   10px 10px 0px 0px;
+}
+
+.footer-top
+{
+    display:grid;
+    grid-template-columns: 2fr 1fr;
+    gap:120px;
+    position:relative;
+    z-index:2;
+}
+
+.footer-left
+{
+    display:flex;
+    flex-direction:column;
+}
+
+#footer-logo
+{
+    font-size:4rem;
+    margin:0;
+    line-height:0.9; 
+}
+
+#span-build
+{
+    font-size:2rem;
+}
+
+.footer-bottom-content
+{
+    margin-top:40px;
+
+    display:grid;
+    grid-template-columns: 1fr 220px;
+    gap:70px;
+    align-items:start;
+}
+
+.footer-text-col p
+{
+    line-height:1.8;
+    margin-bottom:25px;
+    max-width:500px;
+}
+
+#footer-btn
+{
+    width:180px;
+    height:45px;
+    border-radius:10px;
+}
+
+.footer-list-items
+{
+    padding:0;
+    margin:0; 
+    
+}
+
+.footer-list-items li
+{
+    list-style:none;
+    margin-bottom:18px; 
+}
+
+#kago-built-footer
+{
+    position:absolute;
+    left:50%;
+    bottom:0;
+
+    transform:translateX(-50%);
+
+    font-family:'Satoshi',sans-serif;
+    font-size:14rem;
+    font-weight:700;
+    line-height:1;
+
+    white-space:nowrap;
+    opacity:.04;
+
+    pointer-events:none;
+    user-select:none;
+
+    margin:0;bottom:-0.15em;  
+}
