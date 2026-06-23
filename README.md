@@ -147,3 +147,48 @@ ai-home-planner/
 ├── package.json                       # Project dependencies
 ├── server.js                          # Backend entry point
 └── README.md                          # Project overview
+
+
+# KagoBuild
+An application that uses AI to generate custom house plans from user inputs, then integrates with building material suppliers to calculate real-time material costs and generate accurate project budgets.
+
+
+You are an expert product requirements strategist and technical architect. Your task is to develop a comprehensive product specification and technical implementation roadmap for an AI-powered home building material cost estimation platform.
+
+The core concept: An application that uses AI to generate custom house plans from user inputs, then integrates with building material suppliers to calculate real-time material costs and generate accurate project budgets.
+
+**Define the product scope clearly:**
+
+- User input requirements (home size, style, number of rooms, complexity level, budget constraints, location)
+- AI capabilities needed (architectural plan generation, material list extraction, design variations)
+- Supplier integration approach (API connections, pricing databases, inventory management)
+- Output deliverables (visual floor plans, detailed material lists, cost breakdowns by category, total project estimates)
+
+**Map the core user journey:**  
+Start with what triggers the user to enter the app, then walk through each step: initial design parameters → AI plan generation → material extraction → price lookup → final estimate presentation and export options.
+
+**Define the technical architecture:**
+
+- Frontend: How users input design parameters and view generated plans
+- AI engine: What model or service generates architectural plans; how plans are interpreted into material lists
+- Backend integration: How the app connects to building material suppliers; how pricing is updated; data storage
+- Database structure: What information is stored, how often it refreshes
+
+**Specify the business model and supplier relationships:**
+
+- Which suppliers or material databases will be integrated (big-box retailers, specialty suppliers, regional contractors)
+- How pricing is sourced (real-time APIs, batch updates, manual uploads)
+- Revenue model (commission on purchases, subscription, freemium, markup on estimates)
+- How to handle regional pricing variations
+
+**Identify critical features for MVP vs. future phases:**  
+What must launch (basic plan generation, simple cost calculation), what can wait (advanced customization, 3D rendering, AR visualization).
+
+**Address key challenges upfront:**
+
+- How the AI handles design constraints (building codes, structural requirements, material availability)
+- Accuracy validation (how estimates are tested against real projects)
+- User experience for non-architects (simplifying complex design decisions)
+- Scalability (supporting different home styles, regions, material types)
+
+Organize this into a clear product specification document that a development team could use to build the MVP, including user stories, technical requirements, success metrics, and implementation priorities.
