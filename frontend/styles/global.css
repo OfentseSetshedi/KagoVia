@@ -41,8 +41,8 @@
     border: none;
     border-radius: 9px;
     padding: 14px 24px;
-    font-family: "Sora", sans-serif;
-    font-weight: 400;
+    font-family:'GeneralSans',sans-serif;
+    font-weight:600;
     cursor: pointer;
 }
 
@@ -94,8 +94,8 @@
     border: none;
     border-radius: 9px;
     padding: 14px 24px;
-    font-family: "Sora", sans-serif;
-    font-weight: 400;
+    font-family:'GeneralSans',sans-serif;
+    font-weight:600;
     cursor: pointer;
 margin-right: 20px;
 }
@@ -582,12 +582,15 @@ margin-right: 20px;
 /*Footer*/
 .Footer{
     width:100%;
-    min-height:70vh;
     padding:60px;
     position:relative;
     overflow:hidden;
     border: solid 2px black;
     border-radius:   10px 10px 0px 0px;
+
+    min-height: 100vh;
+padding-top: calc(var(--nav-height) + 2rem);
+padding-bottom: 2rem;
 }
 
 .footer-top
