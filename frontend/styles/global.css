@@ -1,5 +1,7 @@
+/* =========================
+   hero SECTION
+========================= */
 
-/*hero section*/
 .hero-section
 {
     min-height: 100vh;
@@ -77,18 +79,29 @@
 .head-hero
 {
     text-wrap: wrap;
-    border: 2px solid black;
     width: 50%;
     margin-top: 400px;
     padding: 0px;
     height: 100%;
 
+
+    font-family:'GeneralSans',sans-serif;
+    font-size:72px;
+    font-weight:600;
+    line-height:0.95;
+    letter-spacing:-4px;
+    color:white;
+
+
 }
 
 .sub-hero 
 {
-    font-size: 20px;
-    line-height: 1.3;
+    font-family:'GeneralSans',sans-serif;
+    font-size:22px;
+    font-weight:400;
+    line-height:1.7;
+    letter-spacing:0;
 }
   
 /* =========================
@@ -101,10 +114,9 @@
 
     border: none;
     border-radius: 9px;
-    padding: 14px 24px;
-    border: 2px solid black;
+    padding:  14px 24px 14px 24px;
     height: 50px;
-    margin-top: 500px;
+    margin-top: 540px;
     margin-right: 40px;
 
 
@@ -124,10 +136,12 @@
 
 
 }
-/*Problem*/
+
+/* =========================
+   Problem SECTION
+========================= */
 
 
-/*services*/
 /* =========================
    SERVICES SECTION
 ========================= */
@@ -135,15 +149,8 @@
 .services
 {
     width: 100%;
-    min-height: 100vh;
-
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 25px;
-
-    padding: 80px 5%;
-    box-sizing: border-box;border: 2px solid black;
+    padding: 30px 5%;
+    box-sizing: border-box;
 }
 
 /* =========================
@@ -152,36 +159,58 @@
 
 #serv-heading
 {
-    width: 100%;
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 25px;
 
+    font-size: 2rem;
+    line-height: 1.2;
+}
+
+#services-serv
+{
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
 }
 
 #serv-sub-heading
 {
-    font-size: 1rem;
+    display: block;
+
+    max-width: 650px;
+
+    margin: 10px auto 0;
+
+    font-size: 0.95rem;
     font-weight: 400;
+    line-height: 1.5;
 }
 
 /* =========================
-   SERVICE CARDS
+   MAIN LAYOUT
 ========================= */
 
-.service-card-01,
-.service-card-02,
-.service-card-03,
-.service-card-04,
-.service-card-05,
-.service-card-text,
-.service-card-06 {
-    width: 240px;
-    min-height: 350px;
+.services-grid
+{
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+}
+
+/* =========================
+   LEFT CARD
+========================= */
+
+.service-left-cards
+{
+    flex: 0 0 28%;
+
+    height: 390px; /* Adjust this value */
 
     border: 2px solid black;
     border-radius: 12px;
 
-    padding: 20px;
+    padding: 16px;
     box-sizing: border-box;
 
     display: flex;
@@ -189,20 +218,98 @@
     justify-content: space-between;
 }
 
+.service-left-cards h2
+{
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+}
+
+.service-left-cards p
+{
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* =========================
+   BUTTON
+========================= */
+
+.Explore-Solutions-btn
+{
+    width: fit-content;
+
+    padding: 10px 18px;
+
+    border: none;
+    border-radius: 8px;
+
+    font-size: 0.9rem;
+    font-weight: 600;
+
+    cursor: pointer;
+    
+}
+
+/* =========================
+   RIGHT SIDE
+========================= */
+
+.service-right-cards
+{
+    flex: 1;
+
+    display: flex;
+    gap: 15px;
+}
+
+.service-card-01
+{
+    flex: 1;
+}
+
+.right-column
+{
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* =========================
+   CARDS
+========================= */
+
+.service-card-01,
+.service-card-02,
+.service-card-03
+{
+    border: 2px solid black;
+    border-radius: 12px;
+
+    padding: 16px;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+
+    min-height: auto;
+}
+
 /* =========================
    CARD TOP
 ========================= */
 
-#top-of-card
+.top-of-card
 {
-    width: 100%;
-
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    margin-bottom: 12px;
 }
 
-#serv-icon
+.serv-icon
 {
     width: 40px;
     height: 40px;
@@ -213,39 +320,44 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    
 }
 
-#serv-number
+.serv-icon img
 {
-    font-size: 1.5rem;
-    font-weight: bold;
+    width: 20px;
+    height: 20px;
+}
+
+.serv-number
+{
+    font-size: 1.1rem;
+    font-weight: 700;
 }
 
 /* =========================
    CARD CONTENT
 ========================= */
 
-#service-all-text
+.serv-heading-card
 {
-    width: 100%;
+    font-size: 1rem;
+    margin-bottom: 8px;
 }
 
-#serv-heading-card
+.service-all-text p
 {
-    margin-bottom: 15px;
-    font-size: 1.4rem;
-    font-weight: 600;
-}
-
-#serv-details
-{
-    line-height: 1.7;
+    font-size: 0.88rem;
+    line-height: 1.45;
     margin: 0;
 }
 
-/* Features Section */
-.Features {
+
+/* =========================
+  Features Section
+========================= */
+
+.Features 
+{
     width: 100%;
     padding: 80px 40px;
     box-sizing: border-box;
@@ -254,9 +366,18 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
+    border: 2px solid black;
 
-    background: #f8fafc;
+
 }
+/*  
+background-color: black;
+    .Features p,h1,h2,h3,h4,h5,h6
+{
+    color: white;
+}
+*/
+
 
 .Features-heading,
 .Features-sub-heading {
@@ -279,54 +400,24 @@
 .Features-01,
 .Features-04 
 {
-    width: 870px;
-    min-height: 350px;
-
-    display: flex;
-    align-items: center;
-    gap: 30px;
-
-    padding: 30px;
-
-    background: #fff;
-    border: 1px solid #e5e7eb;
-    border-radius: 2px;
+   
 }
 
 
 /* Small Cards */
 .Features-02,
-.Features-03 {
-    width: 400px;
-    min-height: 350px;
-
-    padding: 30px;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-
-    background: #fff;
-    border: 1px solid #e5e7eb;
-    border-radius: 2px;
-
-    box-shadow:
-        0 10px 25px rgba(0,0,0,.05);
+.Features-03 
+{
+    
 }
-
-
-/* Hover Effect */
 
 
 
 /* Text Areas */
 #text,
-#text-1-2 {
-    width: 60%;
-    border: none;
-    height: auto;
-
-    padding: 0;    border: 1px solid #000000;
+#text-1-2 
+{
+   padding: 0;    border: 1px solid #000000;
 }
 
 #text h2,
@@ -361,7 +452,12 @@
     border-radius: 18px;
 }
 
-/*how-it-works*/
+
+
+/* =========================
+  how it works Section
+========================= */
+
 .how-it-works 
 {
     width: 100%;
