@@ -6,8 +6,11 @@
     <title>Kago Build</title>
     <link rel="stylesheet" href="../styles/global.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Instrument+Serif:ital,wght@0,400;1,400&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
-    <link  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet"
-/>
+    <link  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet"/>
+     <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    
 </head>
 <body>
     <!--hero section-->
@@ -100,8 +103,7 @@
     <!--solution-->
     <section class="solution" id="solution"></section>
 
-
-
+    <!--services-->
     <section class="services" id="services">
 
         <!-- SECTION HEADING -->
@@ -232,17 +234,20 @@
 
     </section>
 
-
-
-
     <!--Features-->
     <section class="Features" id="features">
-        <h1 class="Features-heading">Our Features</h1>
+        
+
+        <div class="features-grid">
+            
+            <div class="Features-grid-heding">
+                <h1 class="Features-heading">Our Features</h1>
         <p class="Features-sub-heading">
             AI-powered tools for planning, designing, and budgeting your dream home.
         </p>
+            </div >
 
-        <div class="Features-01">
+            <div class="Features-01">
             <div id="text">
                 <h2>AI-Powered House Design</h2>
                 <p>Generate complete house plans in minutes.</p>
@@ -255,75 +260,71 @@
                     move from idea to plan faster than traditional design processes.
                 </p>
             </div>
-
+ <!--
             <img id="feature-01-pic"
                 src="../assets/images/home-hero.png"
                 alt=""
                 width="170px"
                 height="150px">
-        </div>
-
-        <div class="Features-02">
-            <div id="text-1-2">
-                <h2>Automatic Material Takeoff</h2>
-                <p>Know exactly what materials your project requires.</p>
-
-                <p>
-                    Once your floor plan is generated, KagoBuild analyzes the
-                    structure and calculates the quantities of materials needed
-                    for construction. From roofing and flooring to walls,
-                    windows, and doors, every major component is included in
-                    a detailed material schedule to improve planning accuracy.
-                </p>
+        -->
             </div>
 
-            <img src="../assets/images/home-hero.png"
-                alt=""
-                width="170px"
-                height="150px">
-        </div>
+            <div class="Features-02">
+                <div id="text-1-2">
+                    <h2>Automatic Material Takeoff</h2>
+                    <p>Know exactly what materials your project requires.</p>
 
-        <div class="Features-03">
-            <div id="text-1-2">
-                <h2>Real-Time Cost Estimation</h2>
-                <p>Build with confidence using accurate budgets.</p>
+                    <p>
+                        Once your floor plan is generated, KagoBuild analyzes the
+                        structure and calculates the quantities of materials needed
+                        for construction. From roofing and flooring to walls,
+                        windows, and doors, every major component is included in
+                        a detailed material schedule to improve planning accuracy.
+                    </p>
+                </div>
 
-                <p>
-                    Access current material pricing from trusted suppliers and
-                    instantly estimate the total cost of your project. KagoBuild
-                    combines your design requirements with supplier pricing data
-                    to provide realistic construction budgets before building begins.
-                </p>
+                <img src="../assets/images/home-hero.png"
+                    alt=""
+                    width="170px"
+                    height="150px">
             </div>
 
-            <img src="../assets/images/home-hero.png"
-                alt=""
-                width="170px"
-                height="150px">
-        </div>
+            <div class="Features-03">
+                <div id="text-1-2">
+                    <h2>Real-Time Cost Estimation</h2>
+                    <p>Build with confidence using accurate budgets.</p>
 
-        <div class="Features-04">
-            <div id="text">
-                <h2>Smart Budget Forecasting</h2>
-                <p>Understand the full financial picture of your build.</p>
+                    <p>
+                        Access current material pricing from trusted suppliers and
+                        instantly estimate the total cost of your project. KagoBuild
+                        combines your design requirements with supplier pricing data
+                        to provide realistic construction budgets before building begins.
+                    </p>
+                </div>
 
-                <p>
-                    Beyond material costs, KagoBuild helps forecast project
-                    expenses by combining construction requirements, estimated
-                    labor costs, and additional building expenses into a single
-                    budget overview. This helps homeowners make informed decisions
-                    and avoid costly surprises during construction.
-                </p>
+                <img src="../assets/images/home-hero.png"
+                    alt=""
+                    width="170px"
+                    height="150px">
             </div>
 
-            <img id="feature-01-pic"
-                src="../assets/images/home-hero.png"
-                alt=""
-                width="170px"
-                height="150px">
+            <div class="Features-04">
+                <div id="text">
+                    <h2>Smart Budget Forecasting</h2>
+                    <p>Understand the full financial picture of your build.</p>
+
+                    <p>
+                        Beyond material costs, KagoBuild helps forecast project
+                        expenses by combining construction requirements, estimated
+                        labor costs, and additional building expenses into a single
+                        budget overview. This helps homeowners make informed decisions
+                        and avoid costly surprises during construction.
+                    </p>
+                </div>
+            </div>
         </div>
+
     </section>
-
 
     <!--how it works-->
     <section class="how-it-works" id="how-it-works">
@@ -373,77 +374,88 @@
         </div>
     </section>
 
-
     <!--Pricing-->
-    <section class="Pricing" id="pricing">
-        <h1 id="price-heading">
-            Try Go with a special offer
-        </h1>
+<section class="Pricing" id="pricing">
 
-        <div class="pricing-cards">
+    <h1 class="price-heading">Try Go with a special offer</h1>
 
-            <div class="Price-01">
-                <h2>Free</h2>
-                <p>R<span>0</span> ZAR / month</p>
+    <div class="pricing-cards">
 
-                <button id="upgrade-btn">Upgrade</button>
+        <!-- FREE -->
+        <div class="price-card">
+            <h2><i class="fa-solid fa-box-open"></i> Free</h2>
 
-                <p>Unlock the full experience</p>
+            <p class="price">R<span>0</span> ZAR / month</p>
 
-                <div class="features-list">
-                    <p><span class="icon">✓</span> Core model</p>
-                    <p><span class="icon">✓</span> More messages and uploads</p>
-                    <p><span class="icon">✓</span> Limited image creation</p>
-                    <p><span class="icon">✓</span> Limited memory</p>
-                    <p><span class="icon">✓</span> Expanded voice mode</p>
-                </div>
+            <button class="btn-primary">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                Upgrade
+            </button>
 
-                <p>Unlimited subject to abuse guardrails.</p>
-                <p>Learn about limits and promos on both tiers.</p>
+            <p class="subtitle">Unlock the full experience</p>
+
+            <div class="features-list">
+                <p><i class="fa-solid fa-robot"></i> Core model</p>
+                <p><i class="fa-solid fa-comment-dots"></i> More messages and uploads</p>
+                <p><i class="fa-solid fa-image"></i> Limited image creation</p>
+                <p><i class="fa-solid fa-brain"></i> Limited memory</p>
+                <p><i class="fa-solid fa-microphone"></i> Expanded voice mode</p>
             </div>
 
-            <div class="Price-01">
-                <h2>Pro</h2>
-                <p>R<span>399</span> ZAR / month</p>
-
-                <button id="upgrade-btn">Upgrade</button>
-
-                <p>Everything in Free plus:</p>
-
-                <div class="features-list">
-                    <p><span class="icon">✓</span> Unlimited messages</p>
-                    <p><span class="icon">✓</span> Advanced AI models</p>
-                    <p><span class="icon">✓</span> Unlimited image creation</p>
-                    <p><span class="icon">✓</span> Extended memory</p>
-                    <p><span class="icon">✓</span> Priority support</p>
-                </div>
-
-                <p>Best for professionals.</p>
-                <p>Cancel anytime.</p>
-            </div>
-
-            <div class="Price-01">
-                <h2>Business</h2>
-                <p>R<span>999</span> ZAR / month</p>
-
-                <button id="upgrade-btn">Contact Sales</button>
-
-                <p>Built for teams.</p>
-
-                <div class="features-list">
-                    <p><span class="icon">✓</span> Team workspace</p>
-                    <p><span class="icon">✓</span> Shared memory</p>
-                    <p><span class="icon">✓</span> Admin controls</p>
-                    <p><span class="icon">✓</span> Premium support</p>
-                    <p><span class="icon">✓</span> Advanced security</p>
-                </div>
-
-                <p>Scale with confidence.</p>
-                <p>Custom enterprise solutions.</p>
-            </div>
-
+            <p class="note">Unlimited subject to abuse guardrails.</p>
         </div>
-    </section>
+
+        <!-- PRO -->
+        <div class="price-card featured">
+            <h2><i class="fa-solid fa-crown"></i> Pro</h2>
+
+            <p class="price">R<span>399</span> ZAR / month</p>
+
+            <button class="btn-primary">
+                <i class="fa-solid fa-bolt"></i>
+                Upgrade
+            </button>
+
+            <p class="subtitle">Everything in Free plus:</p>
+
+            <div class="features-list">
+                <p><i class="fa-solid fa-infinity"></i> Unlimited messages</p>
+                <p><i class="fa-solid fa-brain"></i> Advanced AI models</p>
+                <p><i class="fa-solid fa-image"></i> Unlimited image creation</p>
+                <p><i class="fa-solid fa-memory"></i> Extended memory</p>
+                <p><i class="fa-solid fa-headset"></i> Priority support</p>
+            </div>
+
+            <p class="note">Best for professionals. Cancel anytime.</p>
+        </div>
+
+        <!-- BUSINESS -->
+        <div class="price-card">
+            <h2><i class="fa-solid fa-briefcase"></i> Business</h2>
+
+            <p class="price">R<span>999</span> ZAR / month</p>
+
+            <button class="btn-secondary">
+                <i class="fa-solid fa-envelope"></i>
+                Contact Sales
+            </button>
+
+            <p class="subtitle">Built for teams.</p>
+
+            <div class="features-list">
+                <p><i class="fa-solid fa-users"></i> Team workspace</p>
+                <p><i class="fa-solid fa-layer-group"></i> Shared memory</p>
+                <p><i class="fa-solid fa-user-shield"></i> Admin controls</p>
+                <p><i class="fa-solid fa-headset"></i> Premium support</p>
+                <p><i class="fa-solid fa-lock"></i> Advanced security</p>
+            </div>
+
+            <p class="note">Scale with confidence. Custom enterprise solutions.</p>
+        </div>
+
+    </div>
+
+</section>
 
 
     <!--FAQ-->

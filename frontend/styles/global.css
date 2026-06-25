@@ -356,101 +356,119 @@
   Features Section
 ========================= */
 
-.Features 
-{
-    width: 100%;
-    padding: 80px 40px;
-    box-sizing: border-box;
-
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
+.Features {
     border: 2px solid black;
-
-
-}
-/*  
-background-color: black;
-    .Features p,h1,h2,h3,h4,h5,h6
-{
-    color: white;
-}
-*/
-
-
-.Features-heading,
-.Features-sub-heading {
-    width: 100%;
-    text-align: center;
-}
-
-.Features-heading {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
-}
-
-.Features-sub-heading {
-    color: #666;
-    margin-bottom: 40px;
+    padding: 60px 20px;
 }
 
 
-/* Large Cards */
 .Features-01,
-.Features-04 
-{
-   
-}
-
-
-/* Small Cards */
 .Features-02,
-.Features-03 
+.Features-03,
+.Features-04,
+.Features-grid-heading,
+.Features-grid-btn
 {
-    
-}
+    border: 2px solid black;
+}   
 
-
-
-/* Text Areas */
-#text,
-#text-1-2 
+/* =========================
+  Features Grid
+========================= */
+.features-grid 
 {
-   padding: 0;    border: 1px solid #000000;
+     display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+
+    grid-template-areas:
+        "heading feature1 feature2"
+        "feature3 feature1 feature2"
+        "feature3 feature4 feature2"
+        ".        .        button";
+
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
 }
 
-#text h2,
-#text-1-2 h2 {
-    font-size: 1.8rem;
-    margin-bottom: 12px;
+/* =========================
+   Grid Areas
+========================= */
+
+.Features-grid-heading {
+    grid-area: heading;
 }
 
-#text p:first-of-type,
-#text-1-2 p:first-of-type {
-    font-weight: 600;
-    color: #2563eb;
-    margin-bottom: 16px;
+.Features-01 {
+    grid-area: feature1;
 }
 
-#text p:last-of-type,
-#text-1-2 p:last-of-type {
-    color: #666;
-    line-height: 1.8;
+.Features-02 {
+    grid-area: feature2;
 }
 
+.Features-03 {
+    grid-area: feature3;
+}
+
+.Features-04 {
+    grid-area: feature4;
+}
+
+.Features-grid-btn {
+    grid-area: button;
+}
+
+/* =========================
+   Card Styling
+========================= */
+
+.Features-grid-heading,
+.Features-01,
+.Features-02,
+.Features-03,
+.Features-04 {
+    border: 2px solid black;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+/* Heading */
+
+.Features-grid-heading h1 {
+    margin-bottom: 15px;
+}
 
 /* Images */
-#feature-01-pic,
-.Features-02 img,
-.Features-03 img {
-    width: 35%;
-    height: 240px;
 
-    object-fit: cover;
-
-    border-radius: 18px;
+.Features-02 img 
+{
+    width: 100%;
+    height: auto;
+    margin-top: 20px;
+    border-radius: 12px;
 }
+
+/* Button */
+
+.Features-grid-btn button {
+    width: 100%;
+    padding: 16px;
+
+    border: 2px solid black;
+    border-radius: 50px;
+
+    background: white;
+    cursor: pointer;
+
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+
+
+
 
 
 
@@ -517,90 +535,119 @@ background-color: black;
     margin:0;
     font-weight:700;
 }
-/* Pricing */
-.Pricing {
-    width: 100%;
-    min-height: 100vh;
-    padding: 80px 5%;
-    box-sizing: border-box;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
 
-/* Heading */
-#price-heading {
-    font-size: 2.5rem;
-    text-align: center;
-    margin-bottom: 60px;
-}
 
-/* Cards Container */
-.pricing-cards {
-    width: 100%;
 
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-}
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #fff;
+        }
 
-/* Individual Card */
-.Price-01 {
-    width: 260px;
-    min-height: 420px;
+        /* Section */
+        .Pricing {
+            padding: 80px 20px;
+            text-align: center;
+        }
 
-    padding: 18px;
-    box-sizing: border-box;
+        .price-heading {
+            font-size: 2.2rem;
+            margin-bottom: 50px;
+            font-weight: 700;
+        }
 
-    border: 2px solid black;
-    border-radius: 12px;
+        /* Grid */
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
 
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
+        /* Card */
+        .price-card {
+            border: 1px solid #ddd;
+            border-radius: 16px;
+            padding: 30px 25px;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            transition: 0.3s ease;
+        }
 
-/* Card Title */
-.Price-01 h2 {
-    font-size: 1.5rem;
-    margin: 0;
-}
+        .price-card:hover {
+            transform: translateY(-5px);
+            border-color: #999;
+        }
 
-/* Price */
-.Price-01 span {
-    font-size: 1.7rem;
-    font-weight: bold;
-}
+        .price-card.featured {
+            border: 2px solid #000;
+            transform: scale(1.03);
+        }
 
-/* Button */
-#upgrade-btn {
-    width: 100%;
-    height: 40px;
+        /* Text */
+        .price {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
 
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-}
+        .price span {
+            font-size: 2rem;
+        }
 
-/* Features List */
-.features-list {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
+        .subtitle {
+            color: #555;
+            font-size: 0.95rem;
+        }
 
-/* Feature Row */
-.features-list p {
-    margin: 0;
-}
+        .note {
+            font-size: 0.85rem;
+            color: #777;
+            line-height: 1.4;
+        }
 
-/* Icon */
-.icon {
-    margin-right: 10px;
-    font-weight: bold;
-}
+        /* Features */
+        .features-list p {
+            margin: 6px 0;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .features-list i {
+            width: 18px;
+            color: #000;
+        }
+
+        /* Buttons */
+        .btn-primary,
+        .btn-secondary {
+            padding: 12px 16px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            border: 1px solid #000;
+            background: #fff;
+            transition: 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-primary:hover,
+        .btn-secondary:hover {
+            background: #000;
+            color: #fff;
+        }
+
+
+
 
 
 /*FAQ*/
