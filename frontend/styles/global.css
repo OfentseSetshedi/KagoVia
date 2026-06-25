@@ -64,11 +64,11 @@
 ========================= */
 .hero-content
 {
-    display: block;
-    align-items:flex-end;
-
-    margin-top: 10%;
-    width: 50%;
+    display: flex;
+    align-content: flex-end;
+    justify-content: flex-end;
+    width: 100%;
+    gap: 300px;
 }
 
 /* =========================
@@ -77,27 +77,52 @@
 .head-hero
 {
     text-wrap: wrap;
+    border: 2px solid black;
+    width: 50%;
+    margin-top: 400px;
+    padding: 0px;
+    height: 100%;
+
 }
 
-.sub-hero
+.sub-hero 
 {
-    width: 40%;
+    font-size: 20px;
+    line-height: 1.3;
 }
+  
 /* =========================
    HERO BUTTONS
 ========================= */
-.Generate-House-Plan-btn,
-.c-how-it-Works-btn
+.Generate-House-Plan-btn
 {
     background: #ff5a1f;
     color: white;
+
     border: none;
     border-radius: 9px;
     padding: 14px 24px;
+    border: 2px solid black;
+    height: 50px;
+    margin-top: 500px;
+    margin-right: 40px;
+
+
+
+
+
     font-family:'GeneralSans',sans-serif;
     font-weight:600;
     cursor: pointer;
-margin-right: 20px;
+
+
+
+
+    display: flex;
+    justify-content: center;
+ 
+
+
 }
 /*Problem*/
 
