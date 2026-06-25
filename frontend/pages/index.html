@@ -9,6 +9,10 @@
     <link  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet"/>
      <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Anton&display=swap" rel="stylesheet">
+
 
     
 </head>
@@ -30,7 +34,7 @@
                         Log In 
                     </button>
                     <button class="Get-Started-btn">
-                        Get Started <span id="code-icon"></span>
+                        sign in <span id="code-icon"></span>
                     </button>
                 </div>
         </nav>  
@@ -90,9 +94,87 @@
                 </style>
             </h1>
             
-            <button class="Generate-House-Plan-btn">
-                Generate My House Plan →
-            </button>        
+       
+
+            <button class="split-button">
+                <span class="btn-label">Get Started</span>
+                <span class="btn-icon" aria-label="Go">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="7" y1="17" x2="17" y2="7"/>
+                        <polyline points="7 7 17 7 17 17"/>
+                    </svg>
+                </span>
+            </button>
+
+              <style>
+/* NAV BUTTON (reference size) */
+.Get-Started-btn {
+    height: 52px;
+    padding: 0 24px;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 10px;
+}
+
+/* HERO SPLIT BUTTON */
+.split-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    border: none;
+    cursor: pointer;
+    background: transparent;
+    margin-top: 450px;
+}
+
+/* LABEL = SAME SIZE AS NAV BUTTON */
+.btn-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 52px;              /* MATCH NAV HEIGHT */
+    padding: 0 26px;           /* slightly larger width */
+    
+    background: #ff5a1f;
+    color: #fff;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    border-radius: 10px;
+    white-space: nowrap;
+}
+
+/* ICON (DO NOT CHANGE SIZE) */
+.btn-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 52px;   /* MATCH HEIGHT ONLY */
+    width: 52px;    /* keep square */
+    
+    background: #ff5a1f;
+    border-radius: 10px;
+}
+
+.btn-icon svg {
+    width: 16px;
+    height: 16px;
+    color: #fff;
+}
+
+/* optional hover */
+.split-button:hover {
+    filter: brightness(1.1);
+}
+
+.split-button:active {
+    transform: scale(0.97);
+}
+            </style>
+
         </div>
 
     </section>
@@ -375,87 +457,87 @@
     </section>
 
     <!--Pricing-->
-<section class="Pricing" id="pricing">
+    <section class="Pricing" id="pricing">
 
-    <h1 class="price-heading">Try Go with a special offer</h1>
+        <h1 class="price-heading">Try Go with a special offer</h1>
 
-    <div class="pricing-cards">
+        <div class="pricing-cards">
 
-        <!-- FREE -->
-        <div class="price-card">
-            <h2><i class="fa-solid fa-box-open"></i> Free</h2>
+            <!-- FREE -->
+            <div class="price-card">
+                <h2><i class="fa-solid fa-box-open"></i> Free</h2>
 
-            <p class="price">R<span>0</span> ZAR / month</p>
+                <p class="price">R<span>0</span> ZAR / month</p>
 
-            <button class="btn-primary">
-                <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                Upgrade
-            </button>
+                <button class="btn-primary">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    Upgrade
+                </button>
 
-            <p class="subtitle">Unlock the full experience</p>
+                <p class="subtitle">Unlock the full experience</p>
 
-            <div class="features-list">
-                <p><i class="fa-solid fa-robot"></i> Core model</p>
-                <p><i class="fa-solid fa-comment-dots"></i> More messages and uploads</p>
-                <p><i class="fa-solid fa-image"></i> Limited image creation</p>
-                <p><i class="fa-solid fa-brain"></i> Limited memory</p>
-                <p><i class="fa-solid fa-microphone"></i> Expanded voice mode</p>
+                <div class="features-list">
+                    <p><i class="fa-solid fa-robot"></i> Core model</p>
+                    <p><i class="fa-solid fa-comment-dots"></i> More messages and uploads</p>
+                    <p><i class="fa-solid fa-image"></i> Limited image creation</p>
+                    <p><i class="fa-solid fa-brain"></i> Limited memory</p>
+                    <p><i class="fa-solid fa-microphone"></i> Expanded voice mode</p>
+                </div>
+
+                <p class="note">Unlimited subject to abuse guardrails.</p>
             </div>
 
-            <p class="note">Unlimited subject to abuse guardrails.</p>
-        </div>
+            <!-- PRO -->
+            <div class="price-card featured">
+                <h2><i class="fa-solid fa-crown"></i> Pro</h2>
 
-        <!-- PRO -->
-        <div class="price-card featured">
-            <h2><i class="fa-solid fa-crown"></i> Pro</h2>
+                <p class="price">R<span>399</span> ZAR / month</p>
 
-            <p class="price">R<span>399</span> ZAR / month</p>
+                <button class="btn-primary">
+                    <i class="fa-solid fa-bolt"></i>
+                    Upgrade
+                </button>
 
-            <button class="btn-primary">
-                <i class="fa-solid fa-bolt"></i>
-                Upgrade
-            </button>
+                <p class="subtitle">Everything in Free plus:</p>
 
-            <p class="subtitle">Everything in Free plus:</p>
+                <div class="features-list">
+                    <p><i class="fa-solid fa-infinity"></i> Unlimited messages</p>
+                    <p><i class="fa-solid fa-brain"></i> Advanced AI models</p>
+                    <p><i class="fa-solid fa-image"></i> Unlimited image creation</p>
+                    <p><i class="fa-solid fa-memory"></i> Extended memory</p>
+                    <p><i class="fa-solid fa-headset"></i> Priority support</p>
+                </div>
 
-            <div class="features-list">
-                <p><i class="fa-solid fa-infinity"></i> Unlimited messages</p>
-                <p><i class="fa-solid fa-brain"></i> Advanced AI models</p>
-                <p><i class="fa-solid fa-image"></i> Unlimited image creation</p>
-                <p><i class="fa-solid fa-memory"></i> Extended memory</p>
-                <p><i class="fa-solid fa-headset"></i> Priority support</p>
+                <p class="note">Best for professionals. Cancel anytime.</p>
             </div>
 
-            <p class="note">Best for professionals. Cancel anytime.</p>
-        </div>
+            <!-- BUSINESS -->
+            <div class="price-card">
+                <h2><i class="fa-solid fa-briefcase"></i> Business</h2>
 
-        <!-- BUSINESS -->
-        <div class="price-card">
-            <h2><i class="fa-solid fa-briefcase"></i> Business</h2>
+                <p class="price">R<span>999</span> ZAR / month</p>
 
-            <p class="price">R<span>999</span> ZAR / month</p>
+                <button class="btn-secondary">
+                    <i class="fa-solid fa-envelope"></i>
+                    Contact Sales
+                </button>
 
-            <button class="btn-secondary">
-                <i class="fa-solid fa-envelope"></i>
-                Contact Sales
-            </button>
+                <p class="subtitle">Built for teams.</p>
 
-            <p class="subtitle">Built for teams.</p>
+                <div class="features-list">
+                    <p><i class="fa-solid fa-users"></i> Team workspace</p>
+                    <p><i class="fa-solid fa-layer-group"></i> Shared memory</p>
+                    <p><i class="fa-solid fa-user-shield"></i> Admin controls</p>
+                    <p><i class="fa-solid fa-headset"></i> Premium support</p>
+                    <p><i class="fa-solid fa-lock"></i> Advanced security</p>
+                </div>
 
-            <div class="features-list">
-                <p><i class="fa-solid fa-users"></i> Team workspace</p>
-                <p><i class="fa-solid fa-layer-group"></i> Shared memory</p>
-                <p><i class="fa-solid fa-user-shield"></i> Admin controls</p>
-                <p><i class="fa-solid fa-headset"></i> Premium support</p>
-                <p><i class="fa-solid fa-lock"></i> Advanced security</p>
+                <p class="note">Scale with confidence. Custom enterprise solutions.</p>
             </div>
 
-            <p class="note">Scale with confidence. Custom enterprise solutions.</p>
         </div>
 
-    </div>
-
-</section>
+    </section>
 
 
     <!--FAQ-->
@@ -496,52 +578,56 @@
         </div>
         <script>
             var acc = document.getElementsByClassName("accordion");
-            var i;
 
-            for (i = 0; i < acc.length; i++) {
-            acc[i].addEventListener("click", function() {
-                /* Toggle between adding and removing the "active" class,
-                to highlight the button that controls the panel */
-                this.classList.toggle("active");
+for (let i = 0; i < acc.length; i++) {
 
-                /* Toggle between hiding and showing the active panel */
-                var panel = this.nextElementSibling;
-                if (panel.style.display === "block") {
-                panel.style.display = "none";
-                } else {
-                panel.style.display = "block";
-                }
-            });
+    acc[i].addEventListener("click", function(){
+
+        for(let j = 0; j < acc.length; j++){
+
+            if(acc[j] !== this){
+
+                acc[j].classList.remove("active");
+                acc[j].nextElementSibling.style.display = "none";
+
             }
+
+        }
+
+        this.classList.toggle("active");
+
+        var panel = this.nextElementSibling;
+
+        if(panel.style.display === "block"){
+            panel.style.display = "none";
+        }else{
+            panel.style.display = "block";
+        }
+
+    });
+
+}
         </script>
         </div>
         
     </section>
 
-    <!--CTA-->
     <section class="CTA" id="cta">
-        <h1 id="cta-heading">
-            Everything you need to grow, in one platform.
-        </h1>
-        <p id="cta-sub-heading">
-            Join thousands of businesses that use our platform to simplify their workflow and scale faster.
-        </p>
 
-        <div id="cta-offers">
-            <div id="cta-offer">
-                <div id="cta-icon"></div>
-                <div id="cta-text">
-                    <h4>Secure & Reliable</h4>
-                    <p>Enterprise-grade security you can count on.</p>
-                </div>
+        <div class="cta-mini">
+
+            <h3>Ready to build your project?</h3>
+
+            <p>Start designing smarter with KagoBuild in minutes.</p>
+
+            <div class="cta-actions">
+                <button class="cta-primary">Get Started</button>
+                <button class="cta-secondary">Book Demo</button>
             </div>
-        </div>
-        <div class="cta-btn">
-            <button id="cta-btn">Start Your Free Trial →</button>
-            <button id="cta-btn">Book a Demo</button>
-        </div>
-        <p>✓ No credit card required | ✓ 14-day free trial | ✓ Cancel anytime</p>
 
+            <small>No credit card required</small>
+
+        </div>
 
     </section>
 
@@ -549,42 +635,33 @@
     <!--Footer-->
     <section class="Footer" id="footer">
         <div class="footer-top">
-            <div class="footer-left">
-                <h1 id="footer-logo">
-                    Kago <span id="span-build">build</span>
-                </h1>
+        <div class="footer-left">
+            <h1 id="footer-logo">
+            Kago <span id="span-build">build</span>
+            </h1>
 
-                <div class="footer-bottom-content">
-                    <div class="footer-text-col">
-                        <p>
-                            Let's build something great together —
-                            whether you have a project in mind or just
-                            want to connect, we'd love to hear from you.
-                        </p>
-
-                        <button id="footer-btn">
-                            Get a Quote
-                        </button>
-                    </div>
-
-                    <ul class="footer-list-items">
-                        <li>Home</li>
-                        <li>Services</li>
-                        <li>Processes</li>
-                        <li>About Us</li>
-                        <li>Contact</li>
-                    </ul>
-
-                </div>
-
+            <div class="footer-bottom-content">
+            <div class="footer-text-col">
+                <p>
+                Let's build something great together —
+                whether you have a project in mind or just
+                want to connect, we'd love to hear from you.
+                </p>
+                <button id="footer-btn">Get a Quote</button>
             </div>
 
+            <ul class="footer-list-items">
+                <li>Home</li>
+                <li>Services</li>
+                <li>Processes</li>
+                <li>About Us</li>
+                <li>Contact</li>
+            </ul>
+            </div>
+        </div>
         </div>
 
-        <h1 id="kago-built-footer">
-            KAGO BUILD
-        </h1>
-
+        <h1 id="kago-built-footer">KAGO BUILD</h1>
     </section>
     <!----><!---->
 </body>
