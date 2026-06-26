@@ -1,0 +1,344 @@
+first right container
+
+<div class="right-container-sign-up">
+                <form action="" method="" class="form-sign-up">
+
+                    <div class="form-group">    
+                        <h1>Get Started</h1>
+                        <p>Welcome to KagoBuild — Let's get started</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Full name:</label>
+                        <input type="text" placeholder="Full name">
+                    </div>
+                    <div class="form-group">
+                        <label for="Email">Email :</label>
+                        <input type="email" name="" id="" placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                        <label for="Password">Password</label>
+                        <input type="password" name="" id="" placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Confirm password</label>
+                        <input type="password" name="" id="" placeholder="Confirm password">
+                    </div>
+                    
+                    <button>Create new account</button>
+                    
+                    <div class="form-group">
+                        <p>Already have account? <span>Login</span></p>
+                    </div>
+                    <div class="form-group"> 
+                        <p id="tp"><span id="Terms-Of-Use">Terms Of Use</span> |<span id=" Privacy-Policy"> Privacy Policy</span></p>
+                    </div>
+
+                </form>
+                <style>
+                    .right-container-sign-up
+                    {
+                        margin: auto;
+                    }
+
+
+                    .form-sign-up .form-group
+                    {
+                        display: block;
+                        width: 100%;
+                        margin-bottom: 20px;
+
+                    }
+                    .form-group
+                    {
+                        display: block;    width: 100%;
+                    }
+                    .form-group h1
+                    {
+                        margin-bottom: 10px;
+                    }
+
+                    input
+                    {
+                        width: 100%;
+                        border-radius: 4px;
+                        height: 30px;
+                    }
+                    button
+                    {
+                        width: 100%;
+                        border-radius: 4px;
+                        height: 30px;
+                    }
+                    .form-group>#tp
+                    {
+                        display: flex;
+                        justify-self: center;
+                    }
+
+                    .form-group p
+                    {
+                        font-size: 1em;
+                    }
+                </style>
+            </div>
+			
+			
+			
+second right container
+
+<div class="right-container-sign-in">
+                <form action="" method="">
+
+                    <div class="form-login-group">
+                        <h1> Welcome Back!</h1>
+                        <p>Log in to start creating stunning videos with ease.</p>
+                    </div>
+                    
+                    <div class="form-login-group">
+                        <label for="">Email address:</label>
+                        <input type="email" name="" id="" placeholder="Email">
+                    </div>
+
+                    <div class="form-login-group">
+                        <label for="">Password</label>
+                        <input type="password" name="" id="" placeholder="Password">
+                    </div>
+
+                    <div class="form-login-grou">
+                        <input type="checkbox" name="Remember Me" id="">
+                        <span>Remember Me?</span>
+                    </div>
+                    
+                    <button class="login-btn">login</button>
+
+                        <span>Or continue with:</span>
+
+                    <button class="Continue-with-Google-btn">Continue with Google</button>
+
+                    <div class="form-login-group">
+                        <p>Don't have an account? <span>Sign up here</span></p>
+                    </div>                    
+                </form>
+                <style>
+                    .right-container-sign-in
+                    {
+                        border: #000 solid 2px;
+                        margin: auto;
+                    }
+                    .form-login-group
+                    {
+                        margin-bottom: 20px;
+                    }
+
+                    .form-login-group input
+                    {
+                        width: 100%;
+                    }
+                    .form-login-group label
+                    {
+                        width: 100%;
+                    }
+                    .form-login-group h1
+                    {
+                        margin-bottom: 20px;
+                    }
+
+                    .login-btn
+                    {
+                        width: 100%;margin-bottom: 20px;
+                    }
+
+                    .Continue-with-Google-btn
+                    {
+                        width: 100%;margin-bottom: 20px;
+                    }
+
+                    .form-login-group input
+                    {
+                        border-radius: 2px;
+                        height: 60x;
+                    }
+                </style>
+            </div>
+
+
+<!--forgot-password-->
+            <div class="right-container-forgot-password">
+                
+                <!--Forgot-password-->
+                <form action="" method="">
+
+                    <div class="form-Forgot-group">
+                        <h1> Forgot password </h1>
+                        <p>Enter the email or number associated with your account, and we will email you a verification code to reset your password </p>
+                    </div>
+                    
+                    <div class="form-Forgot-group">
+                        <label for="">Email </label>
+                        <input type="email" name="" id="" placeholder="Email / Phone number">
+                    </div>
+                    
+                    <button class="Continue-btn">Continue</button>
+
+                </form>
+                <style>
+                    .right-container-forgot-password
+                    {
+                        border: #000 solid 2px;
+                        margin: auto;
+                        display: block;
+                    }
+
+                    .form-Forgot-group input
+                    {
+                        width: 100%;
+                    }
+
+                    .form-Forgot-group
+                    {
+                        margin: 20px;
+                    }
+
+                    .Continue-btn
+                    {
+                        width: 440px;
+                        margin-left:24px ;
+                        height: 40px;
+                        border-radius: 6px;
+                    }
+                </style>
+            </div>
+
+<!--Enter verification code -->
+            <div class="right-verification-container">
+                <form action="" method="">
+
+                    <div class="form-verification-group">
+                        <h1>Enter verification code </h1>
+                        <p>The verification code has been sent to email <span>j*****k@gmail.com </span></p>
+                    </div>              
+
+                    <div class="form-verification-group">
+                        <div class="code">
+                            <input type="text" maxlength="1">
+                            <input type="text" maxlength="1">
+                            <input type="text" maxlength="1">
+                            <input type="text" maxlength="1">
+                            <input type="text" maxlength="1">
+
+                        </div>
+                    </div>
+                    
+                    <div class="form-verification-group">
+                        <p>Resend after <span>40</span> seconds</p>
+                    </div>
+                    
+
+                </form>
+                <style>
+                    .right-verification-container
+                    {
+                        border: #000 solid 2px;
+                        margin: auto;
+                    }
+
+                    .code input
+                    {
+                        border: #000 solid 2px;
+                        box-sizing: border-box;
+                        width: 60px;
+                        height: 60px;
+                        display: flex;
+                        text-align: center;
+                        font-size: 24px;
+                    }
+
+                    .code
+                    {
+                        display: flex;
+                        justify-content: space-between;
+                        gap: 9px;
+                        margin: 20px;
+                    }
+                    .form-verification-group
+                    {
+                        display: flex;
+                        justify-content: center;
+                        margin-top: 20px;
+                        flex-wrap: wrap;
+                    }
+
+                    .form-verification-group p
+                    {
+                    overflow-wrap: break-word;
+                    width: 75%;
+                    }
+                </style>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
+            
+				
+				
+				
+				
+				
+                
+
+				
+				
+				
+				
+				
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+               

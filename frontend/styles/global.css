@@ -1096,85 +1096,77 @@ body
 .left-container-sign-page,.right-container-sign-page
 {
     border: #000 2px solid;
-    width: 50%;
+    width: 60%;
 }
 
 
 /* =========================
-   sign-in-up
+   sign-in/up
 ========================= */
 #sign-in-up
 {
      min-height: 100vh;
      display: flex;
+     padding: 0px;
 }
 
-
+/* =========================
+   left container
+========================= */
 .left-container
 {
-    width: 50%;
+    width:60%;
     border: #000 solid 2px;
+    background-image: url("../assets/images/home-hero.png")
 }
-
+/* =========================
+   right container
+========================= */
 .right-container
 {
-    width: 50%;
+    width: 40%;
     border: #000 solid 2px;
-}
-
-
-.right-container-sign-up 
-{
- 
-    
-}
-
-#form-sign-up
-{
-    display: block;
-    align-content: center;
+    display: flex;
     justify-content: center;
-    flex-wrap: wrap;
-    border: #000 2px solid;
 }
 
-/* Form */
-.login-form{
-    width: 350px;
-    margin: 0 auto;
+.Set-password
+{
+    border: #000 solid 2px;
+    margin: auto;
 }
 
-/* Each field */
-.form-group{
-    margin-bottom: 18px;
+.form-verification-group
+{
+    display: flex;
+    flex-wrap: wrap;    
+    margin: 20px;
+
 }
 
-/* Labels */
-.form-group label{
-    display: block;
-    margin-bottom: 6px;
-    font-weight: 600;
+.form-verification-group input
+{
+    width: 100%;  
 }
 
-/* Inputs */
-.form-group input{
-    display: block;
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    box-sizing: border-box;
+
+.Continue-Set-password-btn
+{
+    width: 90%;  
+    margin-left: 20px;
+
 }
 
-/* Button */
-button{
-    display: block;
-    width: 100%;
-    padding: 12px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-}
+
+
+
+
+
+
+
+
+
+
 
 
 
