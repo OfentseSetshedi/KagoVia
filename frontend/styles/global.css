@@ -64,7 +64,8 @@
 /* =========================
    HERO 
 ========================= */
-.hero-content {
+.hero-content 
+{
     display: flex;
     align-items: center;      /* vertical alignment fix */
     justify-content: space-between;
@@ -359,7 +360,8 @@
   Features Section
 ========================= */
 
-.Features {
+.Features 
+{
     border: 2px solid black;
     padding: 60px 20px;
 }
@@ -399,27 +401,33 @@
    Grid Areas
 ========================= */
 
-.Features-grid-heading {
+.Features-grid-heading 
+{
     grid-area: heading;
 }
 
-.Features-01 {
+.Features-01 
+{
     grid-area: feature1;
 }
 
-.Features-02 {
+.Features-02 
+{
     grid-area: feature2;
 }
 
-.Features-03 {
+.Features-03 
+{
     grid-area: feature3;
 }
 
-.Features-04 {
+.Features-04 
+{
     grid-area: feature4;
 }
 
-.Features-grid-btn {
+.Features-grid-btn 
+{
     grid-area: button;
 }
 
@@ -431,7 +439,8 @@
 .Features-01,
 .Features-02,
 .Features-03,
-.Features-04 {
+.Features-04 
+{
     border: 2px solid black;
     border-radius: 20px;
     padding: 20px;
@@ -439,7 +448,8 @@
 
 /* Heading */
 
-.Features-grid-heading h1 {
+.Features-grid-heading h1 
+{
     margin-bottom: 15px;
 }
 
@@ -510,22 +520,26 @@
     overflow:hidden; /* THIS CREATES THE CUT EFFECT */
 }
 
-.process-icon{
+.process-icon
+{
     display:flex;
     justify-content:flex-end;
     padding:15px;
 }
 
-.process-icon img{
+.process-icon img
+{
     width:80px;
 }
 
-.process-card p{
+.process-card p
+{
     padding:0 20px;
     font-size:1.1rem;
 }
 
-.process-card h1{
+.process-card h1
+{
     position:absolute;
 
     left:50%;
@@ -540,38 +554,41 @@
 }
 
 
+body 
+{
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #fff;
+    }
 
+/* Section */
+.Pricing 
+{
+        padding: 80px 20px;
+        text-align: center;
+}
 
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background: #fff;
-        }
+.price-heading 
+{
+        font-size: 2.2rem;
+        margin-bottom: 50px;
+        font-weight: 700;
+}
 
-        /* Section */
-        .Pricing {
-            padding: 80px 20px;
-            text-align: center;
-        }
+/* Grid */
+.pricing-cards 
+{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
 
-        .price-heading {
-            font-size: 2.2rem;
-            margin-bottom: 50px;
-            font-weight: 700;
-        }
-
-        /* Grid */
-        .pricing-cards {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        /* Card */
-        .price-card {
+/* Card */
+.price-card 
+{
             border: 1px solid #ddd;
             border-radius: 16px;
             padding: 30px 25px;
@@ -580,17 +597,19 @@
             flex-direction: column;
             gap: 14px;
             transition: 0.3s ease;
-        }
+}
 
-        .price-card:hover {
+.price-card:hover 
+{
             transform: translateY(-5px);
             border-color: #999;
-        }
+}
 
-        .price-card.featured {
-            border: 2px solid #000;
-            transform: scale(1.03);
-        }
+.price-card.featured 
+{
+    border: 2px solid #000;
+    transform: scale(1.03);
+}
 
         /* Text */
         .price {
@@ -627,9 +646,10 @@
             color: #000;
         }
 
-        /* Buttons */
-        .btn-primary,
-        .btn-secondary {
+/* Buttons */
+.btn-primary,
+.btn-secondary 
+{
             padding: 12px 16px;
             border-radius: 30px;
             font-weight: 600;
@@ -641,20 +661,22 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
-        }
+}
 
-        .btn-primary:hover,
-        .btn-secondary:hover {
+.btn-primary:hover,
+.btn-secondary:hover 
+{
             background: #000;
             color: #fff;
-        }
+}
 
 
 /* =========================
    FAQ SECTION
 ========================= */
 
-.FAQ{
+.FAQ
+{
     width:100vw;
     min-height:100vh;
     height:auto;
@@ -675,27 +697,32 @@
    Heading
 ========================= */
 
-.FAQ-heading{
+.FAQ-heading
+{
     width:100%;
     padding:20px 0;
     margin-bottom:10px;
     text-align:center;
 }
 
-.FAQ-heading h1{
+.FAQ-heading h1
+{
     font-size:2.5rem;
     margin-bottom:10px;
     color:#1f2937;
 }
 
-.FAQ-heading p{
+.FAQ-heading p
+{
     color:#6b7280;
-    font-size:1rem;}
+    font-size:1rem;
+}
 
 /* =========================
    LEFT SIDE
 ========================= */
-.FAQ-content{
+.FAQ-content
+{
     width:48%;
     height:500px;
     overflow-y:auto;
@@ -706,7 +733,8 @@
 /* =========================
    Accordion Buttons
 ========================= */
-.accordion{
+.accordion
+{
     width:100%;
     padding:18px 22px;
     margin-bottom:12px;
@@ -729,13 +757,15 @@
     box-shadow:0 4px 12px rgba(0,0,0,.06);
 }
 
-.accordion:hover{
+.accordion:hover
+{
     background:#2563eb;
     color:white;
     transform:translateY(-2px);
 }
 
-.accordion.active{
+.accordion.active
+{
     background:#2563eb;
     color:white;
 }
@@ -744,18 +774,19 @@
    Plus Icon
 ========================= */
 
-.FAQ-icon{
+.FAQ-icon
+{
     font-size:1.4rem;
     transition:.3s;
 }
 
-.accordion.active .FAQ-icon{
+.accordion.active .FAQ-icon
+{
     transform:rotate(45deg);
 }
 /* =========================
    Panel
 ========================= */
-
 .panel
 {
     display:none;
@@ -769,7 +800,8 @@
     padding:0 20px;
 }
 
-.panel p{
+.panel p
+{
     padding:18px 0;
     line-height:1.7;
     color:#6b7280;
@@ -795,14 +827,11 @@
 
 
 
-
-
-
-
 /* =========================
    CTA
 ========================= */
-.CTA{
+.CTA
+{
     width:100%;
     padding:40px 20px;
 
@@ -814,27 +843,31 @@
 }
 
 /* Small centered block */
-.cta-mini{
+.cta-mini
+{
     text-align:center;
     max-width:500px;
 }
 
 /* Heading */
-.cta-mini h3{
+.cta-mini h3
+{
     font-size:1.6rem;
     color:#0f172a;
     margin-bottom:8px;
 }
 
 /* Text */
-.cta-mini p{
+.cta-mini p
+{
     font-size:0.95rem;
     color:#64748b;
     margin-bottom:20px;
 }
 
 /* Buttons */
-.cta-actions{
+.cta-actions
+{
     display:flex;
     justify-content:center;
     gap:12px;
@@ -842,7 +875,8 @@
 }
 
 /* Primary button */
-.cta-primary{
+.cta-primary
+{
     padding:10px 18px;
     border:none;
     border-radius:20px;
@@ -853,7 +887,8 @@
 }
 
 /* Secondary button */
-.cta-secondary{
+.cta-secondary
+{
     padding:10px 18px;
     border:1px solid #2563eb;
     border-radius:20px;
@@ -864,7 +899,8 @@
 }
 
 /* Footer note */
-.cta-mini small{
+.cta-mini small
+{
     font-size:0.75rem;
     color:#94a3b8;
 }
@@ -890,7 +926,8 @@
    FOOTER ONLY
 ========================= */
 
-.Footer {
+.Footer 
+{
   width: 100%;
   max-width: 1280px;
   margin: 80px auto 0;
@@ -907,25 +944,29 @@
    TOP / LEFT AREA
 ========================= */
 
-.Footer .footer-top {
+.Footer .footer-top 
+{
   padding-bottom: 40px;
 }
 
-.Footer .footer-left {
+.Footer .footer-left 
+{
   display: flex;
   flex-direction: column;
   gap: 50px;
 }
 
 /* Logo */
-.Footer #footer-logo {
+.Footer #footer-logo 
+{
   font-size: 28px;
   font-weight: 600;
   letter-spacing: -0.5px;
   color: #fff;
 }
 
-.Footer #span-build {
+.Footer #span-build 
+{
   font-weight: 300;
   color: #9b9ba1;
   font-style: italic;
@@ -935,7 +976,8 @@
    GRID CONTENT
 ========================= */
 
-.Footer .footer-bottom-content {
+.Footer .footer-bottom-content 
+{
   display: grid;
   grid-template-columns: 1.4fr 1fr;
   gap: 80px;
@@ -945,14 +987,16 @@
 }
 
 /* Text column */
-.Footer .footer-text-col {
+.Footer .footer-text-col 
+{
   max-width: 460px;
   display: flex;
   flex-direction: column;
   gap: 28px;
 }
 
-.Footer .footer-text-col p {
+.Footer .footer-text-col p 
+{
   font-size: 16px;
   line-height: 1.7;
   color: #b9b9c0;
@@ -963,7 +1007,8 @@
    BUTTON (FIXED HOVER)
 ========================= */
 
-.Footer #footer-btn {
+.Footer #footer-btn 
+{
   align-self: flex-start;
 
   padding: 12px 26px;
@@ -981,7 +1026,8 @@
   transition: all 0.25s ease;
 }
 
-.Footer #footer-btn:hover {
+.Footer #footer-btn:hover 
+{
   background: #fff;
   color: #0b0b0d;
   border-color: #fff;
@@ -991,14 +1037,16 @@
    NAV LIST
 ========================= */
 
-.Footer .footer-list-items {
+.Footer .footer-list-items 
+{
   list-style: none;
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-.Footer .footer-list-items li {
+.Footer .footer-list-items li 
+{
   font-size: 15px;
   color: #cfcfd4;
   cursor: pointer;
@@ -1006,7 +1054,8 @@
   font-weight: 400;
 }
 
-.Footer .footer-list-items li:hover {
+.Footer .footer-list-items li:hover 
+{
   color: #fff;
 }
 
@@ -1014,7 +1063,8 @@
    BIG BRAND TEXT
 ========================= */
 
-.Footer #kago-built-footer {
+.Footer #kago-built-footer 
+{
   white-space: nowrap;
 
   font-family: 'Anton', sans-serif;
@@ -1066,8 +1116,6 @@
     border: #000 solid 2px;
 }
 
-
-
 .right-container
 {
     width: 50%;
@@ -1075,19 +1123,58 @@
 }
 
 
-
 .right-container-sign-up 
 {
-    width: 100%;
-    height: 540px;
-    border: #000 solid 2px;
-    display: grid;
-    grid: template columns 1fr ;
+ 
     
 }
 
+#form-sign-up
+{
+    display: block;
+    align-content: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    border: #000 2px solid;
+}
 
+/* Form */
+.login-form{
+    width: 350px;
+    margin: 0 auto;
+}
 
+/* Each field */
+.form-group{
+    margin-bottom: 18px;
+}
+
+/* Labels */
+.form-group label{
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+/* Inputs */
+.form-group input{
+    display: block;
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+/* Button */
+button{
+    display: block;
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
 
 
 
