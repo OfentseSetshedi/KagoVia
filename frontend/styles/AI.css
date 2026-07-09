@@ -1,0 +1,279 @@
+#ai
+{
+
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding:12px;
+}
+/*
+========================================================== 
+ai- chat container
+========================================================== 
+*/
+.ai-chat
+{
+    border: solid black 2px;
+    flex:2.5 1 15px ;
+    height: 100%;
+    border-radius: 5px;
+}
+.ask
+{
+    border: solid black 2px;
+    flex:1 1 15px ;
+    min-height: 70px ;
+    margin: 12px;
+    border-radius: 10px;
+    display: flex;
+    align-self: flex-end;
+}
+
+footer
+{
+    border: 1px solid rgb(32, 5, 116);
+    justify-self: center;
+    align-self: flex-end;
+}
+
+.ai-Preview
+{
+    border: solid rgb(0, 134, 141) 2px;
+    flex:1 1 15px ;
+    height: 100%;
+    border-radius: 5px;
+flex-direction: column;
+
+}
+/*
+========================================================== 
+Live-Preview
+========================================================== 
+*/
+
+
+
+.Live-Preview>header
+{
+    display: flex;
+    justify-content: space-between;
+
+}
+.Live-Preview
+{
+    border: 2px solid rgb(110, 3, 103);
+    flex:1;
+    height: auto;
+    margin-bottom: 5px;
+    padding: 6px;
+    
+}
+
+.Preview-area
+{
+    border: 2px solid rgb(251, 51, 51);
+    flex:1;
+    height: 100px;
+    width: 100%;margin: 6px;
+    justify-self: center;
+}
+/*
+========================================================== 
+Project-Summary-container
+========================================================== 
+*/
+.Project-Summary-container
+{
+    border: 2px solid rgb(34, 0, 121);
+    flex:1;
+    height: 100px;
+    width: 100px;margin-bottom: 5px;
+}
+/*
+========================================================== 
+Cost-Breakdown
+========================================================== 
+*/
+.Cost-Breakdown
+{
+    border: 2px solid rgb(7, 140, 56);
+    flex:1;
+    height: 100px;
+    width: 100px;margin-bottom: 5px;
+}
+/*
+========================================================== 
+ai-Suggestions
+========================================================== 
+*/
+.ai-Suggestions
+{
+    border: 2px solid rgb(151, 56, 1);
+    flex:1;
+    height: 100px;
+    width: 100px;margin-bottom: 5px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

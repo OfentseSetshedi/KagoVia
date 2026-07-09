@@ -1,0 +1,359 @@
+/*  ======================================================================================
+    Projects container
+    ======================================================================================*/
+
+.Projects-filter-btn
+{
+    border: 1px solid rgb(230, 9, 9);
+    width: 100%;
+    height: 30px;
+    display: flex;
+    justify-content: space-between;
+    padding: 12px;
+    margin: 0%;
+}
+
+/* ======================================================================================
+    Projects header buttons
+    ======================================================================================*/
+.Projects-filter-btn button
+{
+    width: auto;
+    height: 30px;
+    border-radius: 4px;
+}
+/* ======================================================================================
+    Projects table
+    ======================================================================================*/
+table
+{
+    border: 3px rgb(3, 129, 103);
+    width: 100%; 
+    border-collapse:collapse;
+     /* Only top and bottom borders */
+        border-top:2px solid #000;
+        border-bottom:2px solid #000;
+table-layout:fixed;
+}
+th,td
+{
+    padding:15px 20px;
+        text-align:left;
+
+        /* No vertical borders */
+        border-left:none;
+        border-right:none;
+
+        /* Horizontal borders only */
+        border-bottom:1px solid #ef2a03;
+        border:1px solid #000000;
+}
+th:nth-child(1),
+td:nth-child(1){
+    width:32%;
+}
+
+th:nth-child(2),
+td:nth-child(2){
+    width:12%;
+}
+
+th:nth-child(3),
+td:nth-child(3){
+    width:12%;
+}
+
+th:nth-child(4),
+td:nth-child(4){
+    width:20%;
+}
+
+th:nth-child(5),
+td:nth-child(5){
+    width:24%;
+}th,
+td{
+    padding:22px;
+    text-align:left;
+    vertical-align:middle;
+    border-bottom:1px solid #ef2a03;
+}td:first-child{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}.last-column{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+    /*  ======================================================================================
+    Projects details
+    ======================================================================================
+*/
+.Projects-details
+{
+    border: 1px solid black;
+    width: 100%;
+}
+
+
+.Projects-current-list
+{
+    border: 1px solid black;
+    width: 100%;
+}
+.item
+{
+     border: 1px solid black;
+     width: 40%;
+     height: 100px;
+     display: flex;
+     flex-wrap: wrap;
+}
+.next-btn-icon
+{
+    width: 30px;
+    height: 30px;
+}
+
+.item >.status
+{
+    width: 50px;
+    height: 25px;
+    border-radius: 16px;
+}
+
+.options-buttons
+{
+    display: flex;
+    justify-self: flex-end;    
+    border: 1px solid black;
+    justify-content: space-between;
+    align-self: flex-start;
+    top: auto;
+}
+
+.project-nav
+{
+    display: inline;
+    padding: 12px;
+}
+
+#project-contents
+{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 12px;
+}
+
+/* First row */
+.Project-Summary,
+.Project-Overview,
+.Recent-Activity,
+.Budget-Overview
+{
+    flex: 1 1 220px;
+    height: 200px;
+    border: 1px solid black;
+    border-radius: 3px;
+}
+
+/* Second row */
+.Design-Preview
+{
+    flex: 3 1 500px;
+    height: 200px;
+    border: 2px solid red;border-radius: 3px;
+}
+
+.Project-checklist
+{
+    flex: 1 1 220px;
+    height: 200px;
+    border: 1px solid black;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

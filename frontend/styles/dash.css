@@ -1,0 +1,1697 @@
+/* =======================================
+   CHANGED: Added html/body reset
+   WHY: Without this, the body has default margin and no height
+   constraint, so if ANY descendant overflows, the whole document
+   grows and the browser scrolls the entire page (sidebar + header
+   included). Locking html/body to 100% height with overflow:hidden
+   ensures the page itself never scrolls -- only the container we
+   explicitly allow to scroll (.main-card) will.
+
+   OLD: (no html/body rule existed)
+   NEW:
+   html, body {
+       height: 100%;
+       margin: 0;
+       overflow: hidden;
+   }
+=========================================*/
+html, body
+{
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+}
+
+.dashboard
+{
+     height:100vh;
+    display:grid;
+    grid-template-columns:auto 6px 1fr;
+    overflow:hidden;
+     /* CHANGED: added overflow: hidden
+        WHY: grid items default to min-height/min-width: auto, which
+        lets them grow past their track size when content overflows.
+        That growth pushes .dashboard taller than 100vh, and since
+        nothing was clipping it, the browser scrolled the whole grid
+        (sidebar + header + content) together. overflow: hidden here
+        clips the grid to the viewport so only children that opt in
+        to scrolling (.main-card) actually scroll. */
+     overflow: hidden;
+}
+
+/*=======================================
+dashboard-navbar sidebar
+=========================================*/
+
+.dashboard-navbar
+{
+    width:240px;
+    min-width:70px;
+ 
+    transition:width .25s ease;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    
+    
+    
+ /* CHANGED: position: inherit -> removed, replaced with height/overflow rules
+    WHY: "position: inherit" did nothing useful here (it just inherited
+    "static" from the parent grid item), so the sidebar had no real
+    positioning strategy keeping it locked in place -- it simply moved
+    whenever the page scrolled. Since the sidebar lives in a 100vh grid
+    row, giving it an explicit height and overflow:hidden keeps it
+    pinned to the full viewport height and prevents its own content
+    from ever scrolling.
+
+    OLD: position: inherit;
+    NEW:
+    height: 100vh;
+    overflow: hidden; */
+ height: 100vh;
+ overflow: hidden;
+ background-color: rgb(10, 10, 123);
+}
+
+.dashboard-navbar button
+{
+      min-width:130px;
+    height: 25px;
+    display: flex;
+    border: 5px;
+    align-items: center;
+    border-radius:3px ;
+    background-color: rgb(10, 10, 123);
+    color: white;
+    gap: 5px;
+    
+}
+
+/*=======================================
+dashboard-navbar sidebar dragable effect
+=========================================*/
+.sidebar-resizer{
+    width:6px;
+    background:#d6d6d6;
+    cursor:ew-resize;
+}
+
+.sidebar-resizer:hover{
+    background:#2f80ed;
+}
+
+.dashboard-navbar.collapsed button{
+
+    justify-content:center;
+
+}
+
+.dashboard-navbar.collapsed button svg{
+
+    margin:0;
+}
+
+.dashboard-navbar.collapsed button{
+
+    font-size:0;
+}
+
+.dashboard-navbar.collapsed #logo{
+
+    font-size:0;
+}
+
+.dashboard-navbar.collapsed #logo img{
+
+    margin:auto;
+    display:block;
+}
+
+
+
+
+
+
+
+
+/*=======================================
+dashboard button animation
+=========================================*/
+.dashboard-navbar button:hover
+{
+   color: brown;
+   background-color: rgb(0, 0, 0);
+}
+
+.dashboard-navbar button:e
+{
+   background-color: brown;
+   color: white;
+}
+
+.dashboard-navbar{
+    width:240px;
+    transition:width .25s ease;
+}
+
+.dashboard-navbar.collapsed{
+    width:70px;
+}
+
+/*=
+======================================
+dashboard button layout
+=========================================*/
+.upper-sidebar
+{
+
+     display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+
+.lower-sidebar
+{
+  
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1px;
+    align-items: flex-end;
+    width: 260px;
+    height: 60px;
+}
+#logo
+{
+   height: 50px; 
+}
+#Premium-plan
+{
+    display: flex;
+    align-self: flex-end;
+}
+/*=======================================
+dashboard main content
+=========================================*/
+.dashboard-overview
+{
+
+ /* CHANGED: added flex column layout + height/overflow
+    WHY: This element is the grid cell that holds BOTH the header and
+    the scrollable content. It previously had no height or overflow
+    rule, so it just grew to fit its children (header + main-card),
+    which is what dragged the header along whenever the inner content
+    overflowed. Turning it into a column flexbox that is exactly
+    100vh tall and clips overflow means: the header (flex-shrink: 0)
+    stays put, and only the flex child we mark as scrollable
+    (.main-card) can scroll.
+
+    OLD: (no display/height/overflow rules)
+    NEW:
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden; */
+ display: flex;
+ flex-direction: column;
+ height: 100vh;
+ overflow: hidden;
+}
+
+/*==========================================================
+                DASHBOARD HEADER
+==========================================================*/
+
+.dashboard-header{
+
+    /* Places left and right side on one row */
+    display:flex;
+
+    /* Pushes left to the start and right to the end */
+    justify-content:space-between;
+
+    /* Vertically aligns everything */
+    align-items:center;
+
+    padding:12px 12px 2px 12px;
+
+    background:white;
+
+    border-bottom:1px solid #e6e9ef;
+}
+
+
+/*==========================================================
+                    LEFT SIDE
+==========================================================*/
+
+.header-left h2{
+
+    font-size:16px;
+
+    font-weight:600;
+
+    color:#222;
+}
+
+
+/*==========================================================
+                    RIGHT SIDE
+==========================================================*/
+
+.header-right{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+}
+
+
+
+/*==========================================================
+                    SEARCH CONTAINER
+==========================================================*/
+
+.search-container{
+
+    display:flex;
+
+    align-items:center;
+
+    width:300px;
+
+    height:35px;
+
+    background:#fff;
+
+    border:1px solid #ddd;
+
+    border-radius:8px;
+
+    padding:0 15px;
+}
+
+
+/* Search Icon */
+
+.search-icon{
+
+    color:#777;
+
+    margin-right:10px;
+}
+
+
+/* Search Input */
+
+.search-container input{
+
+    width:100%;
+
+    border:none;
+
+    outline:none;
+
+    font-size:15px;
+
+    background:transparent;
+}
+
+
+/*==========================================================
+                    NOTIFICATION BUTTON
+==========================================================*/
+
+.notification-btn{
+
+    position:relative;
+
+    height:35px;
+
+    height:45px;
+
+    border:none;
+
+    background:white;
+
+    cursor:pointer;
+
+    font-size:22px;
+}
+
+
+/* Small blue circle */
+
+.notification-count{
+
+    position:absolute;
+
+    top:4px;
+
+    right:2px;
+
+    width:18px;
+
+    height:18px;
+
+    border-radius:50%;
+
+    background:#1f6bff;
+
+    color:white;
+
+    font-size:11px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+}
+
+
+
+/*==========================================================
+                    PROFILE SECTION
+==========================================================*/
+
+.profile-section{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    cursor:pointer;
+}
+
+
+/* Profile Image */
+
+.profile-section img{
+
+    width:35px;
+
+    height:35px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+}
+
+
+
+/*==========================================================
+                USER DETAILS
+==========================================================*/
+
+.user-details{
+
+    display:flex;
+
+    flex-direction:column;
+}
+
+
+/* User Name */
+
+.user-details h4{
+
+    font-size:15px;
+
+    margin:0;
+
+    color:#222;
+}
+
+
+/* User Role */
+
+.user-details p{
+
+    margin:0;
+
+    font-size:13px;
+
+    color:gray;
+}
+
+
+/*==========================================================
+                DROPDOWN ARROW
+==========================================================*/
+
+.dropdown-arrow{
+
+    font-size:12px;
+
+    color:#666;
+}
+
+ /*=======================================
+Dashboard overview of every Projects
+=========================================*/
+.main-card
+{
+    
+     width:100%;
+    max-width:none;
+    /* CHANGED: height: 500px -> flex: 1; min-height: 0;
+       WHY: This is the actual scrollable content region. A fixed
+       500px height meant it didn't reliably fill the remaining space
+       under the header, and (combined with the missing overflow
+       containment above) the page scrolled instead of this element.
+       flex: 1 lets it fill all remaining vertical space inside the
+       now-fixed-height .dashboard-overview column, and min-height: 0
+       is required so a flex child is actually allowed to shrink and
+       scroll internally instead of forcing its parent to grow.
+       overflow-y: scroll (kept from original) is what makes THIS
+       element -- and only this element -- the one that scrolls.
+
+       OLD:
+       height: 500px;
+       NEW:
+       flex: 1;
+       min-height: 0; */
+    flex: 1;
+    min-height: 0;
+    border-top: 1px solid rgb(123, 122, 139);
+   
+    display: flex;
+    flex-wrap: wrap;
+    overflow:scroll;
+}
+
+.Ongoing-Projects{
+
+    display:flex;
+    align-items:center;
+    gap:16px;
+    width:100%;
+
+    justify-content: space-between;
+    padding: 14px 12px 6px 12px;
+}
+
+.projects-slider{
+
+    flex:1;
+
+    overflow:hidden;
+}
+
+.projects-track{
+
+    display:flex;
+
+    gap:16px;
+
+    transition:.35s;
+}
+
+.Ongoing-Projects-cards
+{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    width:100%;
+    margin-left: 12px;
+    margin-bottom:12px;margin-right: 12px;
+}
+
+.Ongoing-Projects-cards::-webkit-scrollbar{
+    display:none;
+}
+/*
+========================================
+Ongoing Projects Card
+========================================
+*/
+.Ongoing-Proj-card
+{
+
+ display:flex;
+
+    flex-direction:column;
+
+
+    min-width:220px;
+    max-width:300px;
+
+    height:180px;
+
+    background:#fff;
+
+    border:1px solid #e6e9ef;
+    border-radius:12px;
+
+    box-sizing:border-box;
+     overflow:hidden;
+    
+     flex:0 0 calc((100% - 48px) / 4);
+
+}
+
+
+.card-top{
+
+
+    
+
+    display:flex;
+align-items:flex-start;
+    gap:12px;
+
+    padding:12px;
+}
+
+.project-info{
+
+    flex:1;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:6px;
+}
+
+.project-info h4{
+
+    margin:0;
+
+    font-size:14px;
+
+    line-height:1.3;
+
+    font-weight:600;
+
+    color:#1d2945;
+}
+
+.project-info p{
+
+    margin:4px 0;
+
+    font-size:12px;
+
+    color:#6b7280;
+}
+
+.project-status{
+
+    align-self:flex-start;
+
+    padding:4px 10px;
+
+    border-radius:20px;
+
+    background:#eaf8ef;
+
+    color:#22a652;
+
+    font-size:11px;
+
+    font-weight:600;
+}
+
+
+
+.proj-pic
+{
+    width:95px;
+    height:75px;
+
+    flex-shrink:0;
+
+    border-radius:8px;
+    border:1px solid #d9dee7;
+}
+
+.progress-card
+{
+   
+
+    height: 30px;
+    margin-top:auto;
+
+    margin-top:auto;
+    padding:0 12px 12px;
+
+
+    width:calc(100% - 24px);
+    margin:0 auto 12px;
+
+
+    display:grid;
+    grid-template-columns:1fr auto;
+    row-gap:8px;
+
+}
+
+.progress-card progress 
+{
+
+    height: 4px;
+    appearance: none;
+    -webkit-appearance: none;
+    border: none;
+
+
+    grid-column:1/3;
+
+    width:100%;
+
+}
+
+/* Background */
+.progress-card progress::-webkit-progress-bar 
+{
+    background: #e5e7eb;
+    border-radius: 999px;
+}
+
+/* Filled part */
+.progress-card progress::-webkit-progress-value 
+{
+    background: #22c55e;
+    border-radius: 999px;
+}
+
+/* Firefox */
+.progress-card progress::-moz-progress-bar 
+{
+    background: #22c55e;
+    border-radius: 999px;
+}
+
+
+.progress-card span:first-child 
+{
+    flex: 1;
+}
+
+.progress-card progress 
+{
+    width: 100%;
+}
+
+
+.scroll-arrow{
+
+    width:45px;
+     height:48px;
+
+
+    flex-shrink:0;
+
+    border:none;
+    border-radius:50%;
+
+    background:#fff;
+
+    box-shadow:0 2px 8px rgba(0,0,0,.15);
+
+    cursor:pointer;
+
+    font-size:18px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+   
+}
+
+
+
+/*=======================================
+    PROJECTS COST CONTAINER
+=======================================*/
+
+.Projects-Cost{
+    width:100%;
+    min-height:240px;
+
+    display:flex;
+
+    background:#fff;
+
+    border:1px solid #e6e9ef;
+    border-radius:14px;
+    margin-left: 12px;    margin-right: 12px;
+    overflow:hidden;
+
+    box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
+
+/*=======================================
+    ALL THREE PANELS
+=======================================*/
+
+.Cost-Estimator,
+.Break-of-material,
+.Overall-Forecast{
+
+    padding:16px;
+
+    display:flex;
+    flex-direction:column;
+}
+
+.Cost-Estimator{
+    flex:1;
+    border-right:1px solid #e6e9ef;
+
+}
+
+.Break-of-material{
+    flex:1.45;
+    border-right:1px solid #e6e9ef;
+}
+
+.Overall-Forecast{
+    flex:1;
+}
+
+/*=======================================
+    HEADINGS
+=======================================*/
+
+.Cost-Estimator h4,
+.Break-material-heading h4,
+.Overall-Forecast h4{
+
+    margin:0;
+
+    font-size:16px;
+    font-weight:600;
+
+    color:#18233c;
+}
+
+.Cost-Estimator h6{
+
+    margin-top:18px;
+    margin-bottom:4px;
+    font-size:13px;
+
+    color:#5d6778;
+    font-weight:500;
+}
+
+.price
+{
+    margin:0;
+
+    font-size:50px;
+    line-height:1.2;
+    font-weight:700;
+
+    color:#162544;
+    width: 100%;
+
+}
+
+.budget-info
+{
+    margin-top:6px;
+    gap:12px;
+    font-size:13px;
+
+    display:flex;
+
+    align-items:center;
+
+
+    color:#5d6778;
+}
+
+.budget-info strong{
+
+    color:#1d2b4f;
+}
+
+/*=======================================
+    BUTTONS
+=======================================*/
+
+.Cost-Estimator-buttons{
+
+    margin-top:auto;
+}
+
+#current-Estimate{
+
+    height:50px;
+    padding:12px 16px;
+    gap:12px;
+
+    width:100%;
+    display:flex;
+    align-items:center;
+
+    background:#fff4f4;
+
+    border:1px solid #e6e9ef;
+
+    border-radius:10px;
+
+    color:#d63a3a;
+}
+
+#current-Estimate strong{
+
+   font-size:18px;
+
+}
+
+#current-Estimate span{
+
+     font-size:14px;
+}
+
+#edit-Estimate{
+
+    margin-top:25px;
+
+    width:100%;
+
+    border:none;
+    background:none;
+
+    border-top:1px solid #d9e2ef;
+
+    padding-top:20px;
+
+    text-align:left;
+
+    color:#2d6df5;
+
+    font-weight:600;
+
+    cursor:pointer;
+}
+
+/*=======================================
+    BREAKDOWN PANEL
+=======================================*/
+
+.Break-material-heading{
+
+    margin-bottom:22px;
+}
+
+.Break-material-main{
+
+    flex:1;
+
+    display:flex;
+
+    align-items:center;
+
+      gap:18px;
+}
+
+/*=======================================
+    DONUT GRAPH
+=======================================*/
+
+.graph{
+
+     width:130px;
+    height:130px;
+
+    flex-shrink:0;
+
+    border-radius:50%;
+
+    background:
+    conic-gradient(
+        #2F80ED 0% 28%,
+        #4AA3FF 28% 50%,
+        #6FCF97 50% 63%,
+        #9B51E0 63% 72%,
+        #BB6BD9 72% 88%,
+        #F2994A 88% 94%,
+        #F2C94C 94% 100%
+    );
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+}
+
+.graph-center{
+
+     width:72px;
+    height:72px;
+
+    border-radius:50%;
+
+    background:#fff;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    text-align:center;
+}
+
+.graph-center span{
+
+    font-size:13px;
+
+    color:#666;
+}
+
+.graph-center strong{
+
+    font-size:14px;
+
+    color:#18233c;
+}
+
+/*=======================================
+    LEGEND
+=======================================*/
+
+.material-list-sum{
+
+    flex:1;
+
+    display:flex;
+    flex-direction:column;
+
+    justify-content:center;
+
+    gap:8px;
+}
+
+.material-item{
+
+    display:grid;
+
+    grid-template-columns:12px
+    1fr
+    auto
+    auto;
+
+    gap:14px;
+
+    align-items:center;
+
+     font-size:12px;
+}
+
+.material-item strong
+{
+    font-size:14px;
+}
+
+.material-item small
+{
+    color:#777;
+}
+
+/*=======================================
+    DOTS
+=======================================*/
+
+.dot{
+
+    width:10px;
+    height:10px;
+
+    border-radius:50%;
+}
+
+.blue{background:#2F80ED;}
+.light-blue{background:#4AA3FF;}
+.green{background:#6FCF97;}
+.purple{background:#9B51E0;}
+.pink{background:#BB6BD9;}
+.orange{background:#F2994A;}
+.yellow{background:#F2C94C;}
+
+/*=======================================
+    BUTTON
+=======================================*/
+
+.View-full-breakdown-btn{
+
+    margin-top:22px;
+
+    align-self:center;
+
+    border:none;
+
+    background:none;
+
+    color:#2d6df5;
+
+    font-weight:600;
+
+    cursor:pointer;
+}
+
+/*=======================================
+    FORECAST
+=======================================*/
+
+.forecast-details
+{
+    margin-top:18px;
+    border:1px solid #e6e9ef;
+    border-radius:12px;
+     padding:14px;
+    gap:12px;
+    display:flex;
+    flex-direction:column;
+
+}
+
+.forecast-title
+{
+    font-size:15px;
+    color:#5d6778;
+    font-weight:600;
+}
+
+.forecast-amount
+{
+    margin:10px 0 0;
+   font-size:24px;
+    color:#d83d3d;
+    border-bottom:1px solid #e6e9ef;
+    width:100%;
+    margin-bottom: 0px 0px 0px 0px;
+}
+
+.forecast-amount span
+{
+    font-size:18px;
+    margin-left:8px;
+}
+
+.Forecasted-list h5
+{
+    margin:0 0 18px;
+   font-size:16px;
+    color:#18233c;
+}
+
+.Forecasted-item
+{
+    display:grid;
+    grid-template-columns:14px 1fr auto;
+    gap:14px;
+    align-items:center;
+    padding:6px 0;
+    font-size:12px;
+}
+
+/*=======================================
+    DRIVER ICONS
+=======================================*/
+
+.driver-icon
+{
+    width:10px;
+    height:10px;
+    border-radius:50%;
+}
+
+.red{background:#EB5757;}
+.purple{background:#9B51E0;}
+.blue{background:#2F80ED;}
+.gray{background:#828282;}
+
+.view-details
+{
+    margin-top:18px;
+    align-self:center;
+    border:none;
+    background:none;
+    color:#2d6df5;
+    font-weight:600;
+    cursor:pointer;
+}
+
+/*=======================================
+    RESPONSIVE
+=======================================*/
+
+@media(max-width:1100px)
+{
+
+    .Projects-Cost
+    {
+        flex-direction:column;
+    }
+
+    .Cost-Estimator,
+    .Break-of-material
+    {
+        border-right:none;
+        border-bottom:1px solid #e6e9ef;
+    }
+
+    .Break-material-main
+    {
+        flex-direction:column;
+        text-align:center;
+    }
+
+    .material-list-sum
+    {
+        width:100%;
+    }
+}
+/*=======================================
+    Design-Overview/progress
+=========================================*/
+.Design-Overview
+{
+    display: flex;
+    width: 100%;
+    height: 300px;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+     padding: 10px;gap: 10px;
+}
+
+/* ===========================
+   Main Container
+=========================== */
+
+.Project-2d-3d{
+    width:63%;
+    height:100%;
+
+    display:flex;
+    flex-direction:column;
+
+    border:1px solid #e6e9ef;
+    border-radius:6px;
+    overflow:hidden;
+}
+
+/* ===========================
+   Navigation
+=========================== */
+
+#p2d-3d-nav{
+    height:45px;
+
+    display:flex;
+    align-items:center;
+    gap:25px;
+
+    padding:0 15px;
+
+    border-bottom:1px solid #e6e9ef;
+}
+
+#p2d-3d-nav div{
+    cursor:pointer;
+    font-weight:600;
+}
+
+/* ===========================
+   Middle Section
+=========================== */
+
+.viewer-container{
+    flex:1;
+
+    display:flex;
+
+    overflow:hidden;
+}
+
+/* ===========================
+   Floors Panel
+=========================== */
+
+.floors{
+    width:25%;
+
+    border-right:1px solid #e6e9ef;
+
+    overflow-y:auto;
+}
+
+/* ===========================
+   Main Viewer
+=========================== */
+
+.main-view
+{
+    flex:1;
+
+    position:relative;
+
+    background:#f5f5f5;
+}
+
+/* ===========================
+   Zoom Buttons
+=========================== */
+
+.main-zoom-btns
+{
+    position:absolute;
+
+    top:15px;
+    right:15px;
+
+    display:flex;
+    gap:10px;
+}
+
+.main-zoom-btns button
+{
+    padding:8px 12px;
+
+    border:none;
+    border-radius:6px;
+
+    cursor:pointer;
+}
+
+/* ===========================
+   Footer
+=========================== */
+
+.design-footer
+{
+    height:45px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:0 15px;
+
+    border-top:1px solid #e6e9ef;
+}
+
+.footer-info
+{
+    font-size:14px;
+}
+
+/* ===========================
+   Switch Button
+=========================== */
+
+.switch-view
+{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+
+    width:170px;
+    height:34px;
+
+    border:none;
+    border-radius:6px;
+
+    cursor:pointer;
+}
+/* ===========================
+   Switch Button
+=========================== */
+
+
+
+/* ==========================================
+   Project Progress Container
+========================================== */
+
+.Proj-progress
+{
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+
+    width: 100%;
+    background: #fff;
+
+    border: 1px solid #e6e9ef;
+    border-radius: 6px;
+
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+/* ==========================================
+   Header
+========================================== */
+
+.Proj-progress-header
+{
+    width: 100%;
+    height:28px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #e6e9ef;
+    padding:0 8px;
+    font-size:14px;
+    font-weight:600;
+    color:#22304d;
+
+    margin-bottom:4px;
+}
+
+.Proj-progress-header h2
+{
+    margin: 0;
+    font-size: 18px;
+    color: #22304d;
+    font-weight: 600;
+}
+
+/* ==========================================
+   Timeline Items
+========================================== */
+
+.progress-item
+{
+    display:flex;
+    position:relative;
+    margin:8px 0;
+}
+
+/* ==========================================
+   Icons
+========================================== */
+
+.progress-icon
+{
+     width:18px;
+    height:18px;
+
+    font-size:9px;
+
+
+    border-radius: 50%;
+
+    background: #29b765;
+    color: #fff;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+    font-weight: bold;
+
+    flex-shrink: 0;
+}
+
+.progress-icon.gray
+{
+    background: #fff;
+    border: 2px solid #d8dce4;
+    color: #7d8798;
+}
+
+.progress-item.active .progress-icon
+{
+    background: #2563eb;
+}
+
+/* ==========================================
+   Connecting Line
+========================================== */
+
+.progress-line
+{
+    left:8px;
+    top:18px;
+
+    width:2px;
+    height:26px;
+
+
+    position: absolute;
+
+    background: #2bbd6b;
+}
+
+.progress-line.blue{
+    background: #2563eb;
+}
+
+.progress-line.gray{
+    background: #d8dce4;
+}
+
+.progress-item:last-child .progress-line{
+    display: none;
+}
+
+/* ==========================================
+   Content
+========================================== */
+
+.progress-content{
+    flex: 1;
+    margin-left: 8px;
+}
+
+.progress-top{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 6px;
+}
+
+.progress-content h3{
+    margin: 0;
+   font-size:11px;
+    line-height:1.2;
+    color: #22304d;
+    font-weight: 600;
+}
+
+.progress-content p{
+    margin-top: 2px;
+    font-size: 9px;
+    color: #7a8699;
+    line-height:1.2;
+}
+
+/* ==========================================
+   Status
+========================================== */
+
+.status{
+     font-size:9px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.status.completed{
+    color: #23b35b;
+}
+
+.status.active{
+    color: #2563eb;
+}
+
+.status.pending{
+    color: #8d95a5;
+}
+
+/* ==========================================
+   
+========================================== */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

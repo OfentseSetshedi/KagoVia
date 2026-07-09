@@ -35,8 +35,9 @@
     padding: 14px 30px;
     border-radius: 14px;
     color: white;
-    font-family: "Sora", sans-serif;
+    font-family: "Sora", sans-serif;text-decoration: none;
 }
+
 
 .Log-In-btn,
 .Get-Started-btn{
