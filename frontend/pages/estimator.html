@@ -383,6 +383,28 @@
                     </div>
 
                     <div class="cost breakdown">
+                        <div class="material-breakdown">
+
+                            <div class="material-header">
+                                <h5>Material Breakdown <span>ⓘ</span></h5>
+                            </div>
+
+                            <div class="material-content">
+
+                                <div class="material-left">
+                                    <p>Total Materials Cost</p>
+                                    <h2>R1,250,000</h2>
+                                </div>
+
+                                <div class="material-right">
+                                    <h4>↓ R40,000</h4>
+                                    <p>vs last estimate</p>
+                                </div>
+
+                            </div>
+
+                        </div>
+
                         <table>
                             <tbody>
                                 <!--============1=============-->
@@ -457,7 +479,120 @@
                     </div>
 
 
-                    <div class="cost health"></div>
+                    <div class="cost health">
+                        <div class="budget-health-widget">
+
+                            <h2 class="title">Budget Health</h2>
+
+                            <div class="gauge">
+                                <svg width="120" height="70" viewBox="0 0 240 140">
+                                    <g transform="rotate(180 120 120)">
+                                        <!-- Gray Arc -->
+                                        <circle
+                                            cx="120"
+                                            cy="120"
+                                            r="107"
+                                            fill="none"
+                                            stroke="#e5e7eb"
+                                            stroke-width="26"
+                                            stroke-linecap="round"
+                                            stroke-dasharray="336.15 672.3"/>
+
+                                        <!-- Yellow -->
+                                        <circle
+                                            cx="120"
+                                            cy="120"
+                                            r="107"
+                                            fill="none"
+                                            stroke="#f5c518"
+                                            stroke-width="26"
+                                            stroke-linecap="round"
+                                            stroke-dasharray="309.26 672.3"/>
+
+                                        <!-- Green -->
+                                        <circle
+                                            cx="120"
+                                            cy="120"
+                                            r="107"
+                                            fill="none"
+                                            stroke="#22a447"
+                                            stroke-width="26"
+                                            stroke-linecap="round"
+                                            stroke-dasharray="268.92 672.3"/>
+                                    </g>
+
+                                    <line
+                                        x1="120"
+                                        y1="120"
+                                        x2="200.9"
+                                        y2="63.4"
+                                        stroke="#1f2937"
+                                        stroke-width="4"
+                                        stroke-linecap="round"/>
+
+                                    <circle
+                                        cx="120"
+                                        cy="120"
+                                        r="8"
+                                        fill="#1f2937"/>
+                                </svg>
+                            </div>
+
+                            <div class="status">
+                                <div class="label">Excellent</div>
+                                <p class="sub">You're well within budget!</p>
+                            </div>
+                            <style>
+                            .budget-health-widget{
+                                width:180px;
+                                background:#fff;
+                                border-radius:12px;
+                                padding:12px;
+                                box-shadow:0 1px 3px rgba(0,0,0,0.06);
+                                font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+                                box-sizing:border-box;
+                            }
+
+                            .budget-health-widget *,
+                            .budget-health-widget *::before,
+                            .budget-health-widget *::after{
+                                box-sizing:border-box;
+                            }
+
+                            .budget-health-widget .title{
+                                font-size:12px;
+                                font-weight:600;
+                                color:#0f172a;
+                                margin:0 0 8px;
+                            }
+
+                            .budget-health-widget .gauge{
+                                display:flex;
+                                justify-content:center;
+                            }
+
+                            .budget-health-widget .status{
+                                text-align:center;
+                                margin-top:8px;
+                            }
+
+                            .budget-health-widget .label{
+                                font-size:18px;
+                                font-weight:700;
+                                color:#22a447;
+                            }
+
+                            .budget-health-widget .sub{
+                                margin-top:4px;
+                                font-size:11px;
+                                color:#64748b;
+                            }
+                            </style>
+
+                        </div>
+                    </div>
+
+
                     <div class="cost Notes"></div>
                     <div class="cost Disclaimer"></div>
                 </div>
