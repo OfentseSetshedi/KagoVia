@@ -19,7 +19,11 @@
     padding: 1px 12px 6px 12px;
     border: #18233c 2px solid;
 }
-
+/* 
+========================================================
+Cost cards
+========================================================
+*/
 .Cost-cards
 {
     height: 100%;
@@ -27,23 +31,90 @@
     border: 2px solid black;
 
     display: grid;
-    grid-template-columns: 1.4fr 1.2fr 1fr;
+    grid-template-columns: 2fr 1.5fr 1fr;
     grid-template-rows: 3fr 1fr;
     gap: 12px;
     padding: 12px;
 }
-/* all three columns*/
 
+/* 
+========================================================
+ all three columns
+========================================================
+*/
 .cost
 {
         border: #18233c 2px solid;
 }
 
+/* 
+========================================================
+cost Amount
+========================================================
+*/
+
+
 
 /* 
+========================================================
+cost breakdown
+========================================================
+*/
+.material-breakdown{
+    width:100%;
+    background:#fff;
+    border:1px solid #e5e7eb;
+    border-radius:12px;
+}
 
+.material-header{
+    padding:20px 24px;
+    border-bottom:1px solid #e5e7eb;
+}
+
+.material-header h5{
+    margin:0;
+    font-size:20px;
+    font-weight:600;
+    color:#18233c;
+}
+
+.material-content{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    padding:24px;
+}
+
+.material-left p{
+    margin:0;
+    color:#6b7280;
+}
+
+.material-left h2{
+    margin-top:10px;
+    font-size:42px;
+    color:#18233c;
+}
+
+.material-right{
+    text-align:right;
+}
+
+.material-right h4{
+    margin:0;
+    color:#22c55e;
+}
+
+.material-right p{
+    margin-top:8px;
+    color:#6b7280;
+}
+
+/* 
+========================================================
 cost health
-
+========================================================
 */
 .Cost-cards:nth-child(3)
 {
@@ -56,7 +127,11 @@ td
     border: 2px solid black;
 }
 
-
+/* 
+========================================================
+cost health
+========================================================
+*/
 
 
 
