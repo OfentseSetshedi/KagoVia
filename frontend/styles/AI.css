@@ -15,36 +15,126 @@ ai- chat container
 */
 .ai-chat
 {
-    border: solid black 2px;
-    flex:2.5 1 15px ;
-    height: 100%;
-    border-radius: 5px;
-}
-.ask
-{
-    border: solid black 2px;
-    flex:1 1 15px ;
-    min-height: 70px ;
-    margin: 12px;
-    border-radius: 10px;
-    display: flex;
-    align-self: flex-end;
+
+    display:flex;
+
+    flex-direction:column;
+
+    flex:2.5;
+
+    min-width:0;
+
+    border:1px solid #ddd;
+
+    border-radius:10px;
+
+    background:white;
+
 }
 
-footer
-{
-    border: 1px solid rgb(32, 5, 116);
-    justify-self: center;
-    align-self: flex-end;
+.chat-body{
+
+    flex:1;
+
+    overflow-y:auto;
+
+    padding:20px;
+
+}
+.ask{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin:15px;
+
+    padding:12px;
+
+    border:1px solid #ddd;
+
+    border-radius:14px;
+
 }
 
+.ask textarea{
+
+    flex:1;
+
+    border:none;
+
+    outline:none;
+
+    resize:none;
+
+    background:transparent;
+
+    font-size:15px;
+
+}
+
+.ask button{
+
+    width:40px;
+
+    height:40px;
+
+    border:none;
+
+    border-radius:50%;
+
+    cursor:pointer;
+
+}
+
+
+
+.ai-chat footer{
+
+    text-align:center;
+
+    padding:10px;
+
+    font-size:12px;
+
+    color:#888;
+
+}
+
+
+#ai{
+
+    display:flex;
+
+    gap:20px;
+
+    width:100%;
+
+    height:calc(100vh - 120px);
+
+}
+
+
+/*
+========================================================== 
+ai-Preview
+========================================================== 
+*/
 .ai-Preview
 {
-    border: solid rgb(0, 134, 141) 2px;
-    flex:1 1 15px ;
-    height: 100%;
-    border-radius: 5px;
-flex-direction: column;
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+    flex:1;
+
+    min-width:340px;
+
+    overflow-y:auto;
 
 }
 /*
@@ -52,68 +142,244 @@ flex-direction: column;
 Live-Preview
 ========================================================== 
 */
+.ai-Preview>*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
 
-
-
-.Live-Preview>header
+body
 {
-    display: flex;
-    justify-content: space-between;
+    background:#f5f7fb;
+    padding:20px;
 
 }
-.Live-Preview
+
+/*=========================================================
+AI Preview
+=========================================================*/
+
+.ai-Preview
 {
-    border: 2px solid rgb(110, 3, 103);
-    flex:1;
-    height: auto;
-    margin-bottom: 5px;
-    padding: 6px;
-    
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+
+    width:100%;
+    max-width:450px;
+
 }
+
+/*=========================================================
+Shared Card Style
+=========================================================*/
+
+.card
+{
+    background:white;
+
+    border-radius:12px;
+
+    padding:18px;
+
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
+
+}
+
+/*=========================================================
+Card Header
+=========================================================*/
+
+.card-header
+{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    margin-bottom:15px;
+
+}
+
+.card-header h3
+{
+    font-size:18px;
+
+}
+
+.card-header button
+{
+    border:1px solid #ddd;
+    background:white;
+    padding:8px 14px;
+    border-radius:8px;
+    cursor:pointer;
+
+}
+
+/*=========================================================
+Live Preview
+=========================================================*/
 
 .Preview-area
 {
-    border: 2px solid rgb(251, 51, 51);
-    flex:1;
-    height: 100px;
-    width: 100%;margin: 6px;
-    justify-self: center;
+    width:100%;
+
+    aspect-ratio:16/9;
+
+    border-radius:10px;
+
+    background:#e9eef5;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    color:#888;
+
+    overflow:hidden;
+
 }
-/*
-========================================================== 
-Project-Summary-container
-========================================================== 
-*/
-.Project-Summary-container
+
+.Preview-area img
 {
-    border: 2px solid rgb(34, 0, 121);
-    flex:1;
-    height: 100px;
-    width: 100px;margin-bottom: 5px;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+
 }
-/*
-========================================================== 
-Cost-Breakdown
-========================================================== 
-*/
-.Cost-Breakdown
+
+/*=========================================================
+Project Summary
+=========================================================*/
+
+.summary-grid
 {
-    border: 2px solid rgb(7, 140, 56);
-    flex:1;
-    height: 100px;
-    width: 100px;margin-bottom: 5px;
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:15px;
+
 }
-/*
-========================================================== 
-ai-Suggestions
-========================================================== 
-*/
-.ai-Suggestions
+
+.summary-item
 {
-    border: 2px solid rgb(151, 56, 1);
+    border:1px solid #ececec;
+
+    border-radius:10px;
+
+    padding:15px;
+
+}
+
+.summary-item h4
+{
+    color:#777;
+
+    font-size:13px;
+
+    margin-bottom:8px;
+
+}
+
+.summary-item p
+{
+    font-size:18px;
+
+    font-weight:bold;
+
+}
+
+/*=========================================================
+Cost Breakdown
+=========================================================*/
+
+.breakdown
+{
+    display:flex;
+
+    gap:20px;
+
+    align-items:center;
+
+}
+
+.chart
+{
+    width:150px;
+    height:150px;
+
+    border-radius:50%;
+
+    background:
+    conic-gradient(
+    #4169e1 0% 32%,
+    #00b894 32% 50%,
+    orange 50% 70%,
+    hotpink 70% 91%,
+    violet 91% 100%
+    );
+
+    position:relative;
+
+}
+
+.chart::after
+{
+    content:"";
+
+    position:absolute;
+
+    width:80px;
+    height:80px;
+
+    background:white;
+
+    border-radius:50%;
+
+    top:50%;
+    left:50%;
+
+    transform:translate(-50%,-50%);
+
+}
+
+.legend
+{
     flex:1;
-    height: 100px;
-    width: 100px;margin-bottom: 5px;
+}
+
+.legend p
+{
+    display:flex;
+
+    justify-content:space-between;
+
+    margin-bottom:12px;
+
+    font-size:14px;
+}
+
+/*=========================================================
+Suggestions
+=========================================================*/
+
+.suggestion
+{
+    border:1px solid #ececec;
+
+    border-radius:10px;
+
+    padding:14px;
+
+    margin-bottom:12px;
+
+}
+
+.suggestion:last-child
+{
+    margin-bottom:0;
 }
 
 

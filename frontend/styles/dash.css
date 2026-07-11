@@ -496,6 +496,7 @@ Dashboard overview of every Projects
 
     justify-content: space-between;
     padding: 14px 12px 6px 12px;
+    border: #18233c 2px solid;
 }
 
 .projects-slider{

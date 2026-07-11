@@ -311,7 +311,23 @@
                     <button class="Back-2-Projects">← Back to Projects</button>
                     <div class="Projects-filters">
                         <button class="Filter-by-Status-btn" >+ New Chat</button>
-                        <button class="Filter-by-Style-btn" >  ↻ </button>
+                        <button class="Filter-by-Style-btn" > 
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                width="15"
+                                height="15"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round">
+
+                                <path d="M3 12a9 9 0 1 0 3-6.7"/>
+                                <path d="M3 3v5h5"/>
+                                <path d="M12 7v5l3 3"/>
+
+                            </svg> 
+                        </button>
                         <button class="Filter-by-Style-btn" >🔔</button>
                     </div>
 
@@ -323,27 +339,162 @@
                 ========================================================== 
                 -->
                 <section id="ai">
+                        <!-- LEFT SIDE -->
                     <aside class="ai-chat">
-                        <section class="ask"></section>
-                        <footer>AI Natives can make mistakes. Please verify important information.</footer>
+
+                        <!-- Messages -->
+                        <section class="chat-body">
+
+                            <!-- Chat messages go here -->
+
+                        </section>
+
+                        <!-- Input -->
+                        <section class="ask">
+
+                            <button class="attach-btn">📎</button>
+
+                            <textarea
+                                placeholder="Ask me anything..."
+                                rows="1"></textarea>
+
+                            <button class="voice-btn">🎤</button>
+
+                            <button class="send-btn">➜</button>
+
+                        </section>
+
+                        <footer>
+                            Please verify important information.
+                        </footer>
+
                     </aside>
-
-
                     <aside class="ai-Preview">
-                        <div class="Live-Preview">
-                            <header>
-                                <button>Live Preview</button>
-                                <button>3D View ▼</button>
-                            </header>
-                            <div class="Preview-area">
 
-                            </div>
-                        </div>
+    <!-- Live Preview -->
 
+    <section class="card">
 
-                        <div class="Project-Summary-container"></div>
-                        <div class="Cost-Breakdown"></div>
-                        <div class="ai-Suggestions"></div>
+        <div class="card-header">
+
+            <h3>🏠 Live Preview</h3>
+
+            <button>3D View ▼</button>
+
+        </div>
+
+        <div class="Preview-area">
+
+            IMAGE PREVIEW
+
+            <!--
+            <img src="house.jpg">
+            -->
+
+        </div>
+
+    </section>
+
+    <!-- Project Summary -->
+
+    <section class="card">
+
+        <div class="card-header">
+
+            <h3>Project Summary</h3>
+
+            <a href="#">View Details</a>
+
+        </div>
+
+        <div class="summary-grid">
+
+            <div class="summary-item">
+                <h4>Total Cost</h4>
+                <p>R2,400,000</p>
+            </div>
+
+            <div class="summary-item">
+                <h4>Build Time</h4>
+                <p>8 Months</p>
+            </div>
+
+            <div class="summary-item">
+                <h4>Area</h4>
+                <p>240m²</p>
+            </div>
+
+            <div class="summary-item">
+                <h4>Rooms</h4>
+                <p>4 Beds</p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Cost Breakdown -->
+
+    <section class="card">
+
+        <div class="card-header">
+
+            <h3>Cost Breakdown</h3>
+
+        </div>
+
+        <div class="breakdown">
+
+            <div class="chart"></div>
+
+            <div class="legend">
+
+                <p><span>Foundation</span><span>18%</span></p>
+
+                <p><span>Structure</span><span>32%</span></p>
+
+                <p><span>Roof</span><span>20%</span></p>
+
+                <p><span>Finishes</span><span>21%</span></p>
+
+                <p><span>Other</span><span>9%</span></p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- AI Suggestions -->
+
+    <section class="card">
+
+        <div class="card-header">
+
+            <h3>AI Suggestions</h3>
+
+            <a href="#">View All</a>
+
+        </div>
+
+        <div class="suggestion">
+            Use concrete hollow blocks to save up to R120,000.
+        </div>
+
+        <div class="suggestion">
+            Consider light steel roof structure to reduce cost.
+        </div>
+
+        <div class="suggestion">
+            Optimize window sizes for better energy efficiency.
+        </div>
+
+        <div class="suggestion">
+            Alternative roof tiles can reduce costs by R30,000.
+        </div>
+
+    </section>
+
                     </aside>
                 </section>
    
