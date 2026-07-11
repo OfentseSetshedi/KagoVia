@@ -1,20 +1,4 @@
-/* =======================================
-   CHANGED: Added html/body reset
-   WHY: Without this, the body has default margin and no height
-   constraint, so if ANY descendant overflows, the whole document
-   grows and the browser scrolls the entire page (sidebar + header
-   included). Locking html/body to 100% height with overflow:hidden
-   ensures the page itself never scrolls -- only the container we
-   explicitly allow to scroll (.main-card) will.
 
-   OLD: (no html/body rule existed)
-   NEW:
-   html, body {
-       height: 100%;
-       margin: 0;
-       overflow: hidden;
-   }
-=========================================*/
 html, body
 {
     height: 100%;
@@ -28,14 +12,7 @@ html, body
     display:grid;
     grid-template-columns:auto 6px 1fr;
     overflow:hidden;
-     /* CHANGED: added overflow: hidden
-        WHY: grid items default to min-height/min-width: auto, which
-        lets them grow past their track size when content overflows.
-        That growth pushes .dashboard taller than 100vh, and since
-        nothing was clipping it, the browser scrolled the whole grid
-        (sidebar + header + content) together. overflow: hidden here
-        clips the grid to the viewport so only children that opt in
-        to scrolling (.main-card) actually scroll. */
+     
      overflow: hidden;
 }
 
@@ -197,27 +174,10 @@ dashboard main content
 =========================================*/
 .dashboard-overview
 {
-
- /* CHANGED: added flex column layout + height/overflow
-    WHY: This element is the grid cell that holds BOTH the header and
-    the scrollable content. It previously had no height or overflow
-    rule, so it just grew to fit its children (header + main-card),
-    which is what dragged the header along whenever the inner content
-    overflowed. Turning it into a column flexbox that is exactly
-    100vh tall and clips overflow means: the header (flex-shrink: 0)
-    stays put, and only the flex child we mark as scrollable
-    (.main-card) can scroll.
-
-    OLD: (no display/height/overflow rules)
-    NEW:
     display: flex;
     flex-direction: column;
     height: 100vh;
-    overflow: hidden; */
- display: flex;
- flex-direction: column;
- height: 100vh;
- overflow: hidden;
+    overflow: hidden;
 }
 
 /*==========================================================
