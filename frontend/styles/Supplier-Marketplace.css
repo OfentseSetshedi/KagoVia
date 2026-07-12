@@ -1,0 +1,430 @@
+/*
+================================================================================================
+
+================================================================================================
+*/
+.Supplier-header
+{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    width:100%;
+    height: 42px;
+
+    justify-content: space-between;
+    padding: 1px 12px 6px 12px;
+
+}
+
+
+/*
+================================================================================================
+Supplier main container
+================================================================================================
+*/
+.Supplier-container
+{
+    height: auto;
+    width: 100%;
+    border: 2px solid rgb(0, 0, 0);
+
+    display: grid;
+    grid-template-columns:1.5fr 2fr  ;
+    gap: 12px;
+    padding: 12px;
+}
+/*
+================================================================================================
+Supplier inner containers
+================================================================================================
+*/
+.Supplier-list
+{
+     border: 2px solid black;
+     display: grid;
+     grid-template-rows: auto 1fr auto;
+}
+
+.Supplier-count p
+{
+    border: #18233c 2px solid;
+    margin: 0px; 
+     padding: 0px  0px  0px 12px ;
+}
+
+.suppliers
+{
+    border: #18233c 2px solid;
+    display: grid;
+    grid-template-rows: repeat(4,1fr);
+    grid-template-columns: repeat(2,1fr);
+    gap: 8px;
+}
+
+#supplier
+{
+     border: #18233c 2px solid;
+     display: grid;
+     grid-template-rows:64px 1fr 32px;
+     grid-template-rows: auto 8px auto auto auto auto 12px 48px;
+     align-items: center;
+     padding: 16px;
+     gap: 0;
+}
+
+#supplier div
+{
+     border: #18233c 2px solid;
+}
+
+
+.Load-Suppliers
+{
+     width: 100%;
+}
+
+
+
+
+
+
+/*
+================================================================================================
+Supplier details
+================================================================================================
+*/
+.details
+{
+     border: 2px solid black;
+     display: grid;
+     grid-template-rows: 140px 130px 55px 270px 240px; 
+     gap: 8px;
+}
+/*
+================================================================================================
+Supplier banner
+================================================================================================
+*/
+.banner
+{
+    
+     border-top-left-radius: 7px;
+     border-top-right-radius: 7px;
+     
+}
+
+
+.banner img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+/*
+================================================================================================
+Supplier-info
+================================================================================================
+*/
+.Supplier-info
+{
+     border: 2px solid rgb(255, 255, 255);
+     display: grid;
+     grid-template-columns: 1fr  3fr  1fr ;
+     gap: 8px;
+     align-items: stretch;
+}
+/*
+==========Supplier-logo==================
+*/
+.Supplier-logo
+{
+     border: 1px solid rgb(125, 2, 41);
+     border-radius: 4px;
+}
+.Supplier-logo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+/*
+==========Supplier-names==================
+*/
+.Supplier-names
+{
+      
+}
+
+.Supplier-main-names
+{
+     flex: 1;
+     font-size: 13px;
+     font-weight: bold;
+     display: inline-flex;
+    
+     width: 100%;
+     padding: 0px;
+}
+
+.Supplier-main-names button
+{
+     font-size: 13px;
+     border-radius: 12px;
+     height: 26px;
+}
+
+
+.Supplier-main-names-rating-product
+{
+     flex: 1;
+     font-size: 13px;
+     height: 26px;
+     
+     align-content: center;
+}
+.Supplier-main-details
+{
+     flex: 1;
+     font-size: 13px;
+     height: 26px;
+     
+     align-content: center;
+}
+
+
+
+/*
+==========Supplier-follow-contact container==================
+*/
+.Supplier-follow-contact
+{
+     
+     align-content: center;
+     justify-content: center;
+     gap: 9px;
+  
+}
+
+.Supplier-follow-contact button
+{
+     border: 1px solid rgb(2, 1, 1);
+     align-content: center;
+     justify-content: center;
+     gap: 9px;
+  
+}
+/*
+================================================================================================
+Supplier Supplier-tabs
+================================================================================================
+*/
+.Supplier-tabs
+{
+     border: 2px solid rgb(3, 167, 69);
+     display: flex;
+     justify-content: center;
+     gap: 10px;
+}
+
+
+/*
+================================================================================================
+Supplier Featured-Products
+================================================================================================
+*/
+.Featured-Products
+{
+     border: 2px solid rgb(0, 189, 192);
+}
+
+/*
+==========Supplier-follow-contact container==================
+*/
+.Featured-Products-header
+{
+     display: flex;
+     justify-content: space-between;
+     border: 1px solid rgb(0, 0, 0);
+}
+.all-Featured-Products
+{
+     border: 4px solid rgb(0, 0, 0);
+     display: grid;
+     grid-template-columns: repeat(4,1fr);
+     height: 150px;
+     gap: 8px;
+
+}
+
+.Product
+{
+    border: 2px solid rgb(0, 0, 0); 
+}
+
+
+
+
+
+
+
+
+
+
+
+/*
+================================================================================================
+Supplier promo-infor
+================================================================================================
+*/
+.promo-info
+{
+     border: 2px solid rgb(153, 1, 143);
+     display: grid;
+     grid-template-columns: repeat(3,1fr);
+     gap:16px ;
+}
+.promotion,.delivery,.contact-into
+{
+     border: 2px solid rgb(0, 0, 0);
+     border-radius:6px ;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

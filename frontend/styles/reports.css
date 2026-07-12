@@ -1,0 +1,187 @@
+
+  
+            /* ==============================================================================================
+            REPORTS TABLE
+            Compact version
+            No scrolling
+            About 6 rows visible
+            ============================================================================================== */
+
+            .main-card-for-reports{
+                width:100%;
+                height:100%;
+                display:flex;
+                flex-direction:column;
+            }
+
+            .reports-table{
+                width:100%;
+                background:#fff;
+                border:1px solid #E5E7EB;
+                border-radius:10px;
+                overflow:hidden;
+            }
+
+            .All-Reports-table-container{
+                width:100%;
+                border-radius:10px;
+                overflow:hidden;
+            }
+
+            .reports-table table{
+                width:100%;
+                border-collapse:collapse;
+                table-layout:fixed;
+            }
+
+            /* ==============================================================================================
+            HEADER
+            ============================================================================================== */
+
+            .reports-table thead{
+                background:#fff;
+            }
+
+            .reports-table thead tr{
+                display:table;
+                width:100%;
+                table-layout:fixed;
+                border-bottom:2px solid #0d2d6c;
+            }
+
+            .reports-table th{
+                height:38px;
+                padding:0 8px;
+                font-size:12px;
+                font-weight:600;
+                color:#344054;
+                text-align:left;
+                white-space:nowrap;
+            }
+
+            /* ==============================================================================================
+            BODY
+            ============================================================================================== */
+
+            .reports-table tbody tr{
+                display:table;
+                width:100%;
+                table-layout:fixed;
+            }
+
+            .reports-table td{
+                height:38px;
+                padding:6px 8px;
+                font-size:12px;
+                color:#344054;
+                border-bottom:1px solid #F2F4F7;
+                white-space:nowrap;
+                overflow:hidden;
+                text-overflow:ellipsis;
+            }
+
+            .reports-table tbody tr:last-child td{
+                border-bottom:none;
+            }
+
+            /* ==============================================================================================
+            COLUMN WIDTHS
+            ============================================================================================== */
+
+            .reports-table th:nth-child(1),
+            .reports-table td:nth-child(1){
+                width:4%;
+            }
+
+            .reports-table th:nth-child(2),
+            .reports-table td:nth-child(2){
+                width:20%;
+            }
+
+            .reports-table th:nth-child(3),
+            .reports-table td:nth-child(3){
+                width:9%;
+            }
+
+            .reports-table th:nth-child(4),
+            .reports-table td:nth-child(4){
+                width:16%;
+            }
+
+            .reports-table th:nth-child(5),
+            .reports-table td:nth-child(5){
+                width:3%;
+            }
+
+            .reports-table th:nth-child(6),
+            .reports-table td:nth-child(6){
+                width:14%;
+            }
+
+            .reports-table th:nth-child(7),
+            .reports-table td:nth-child(7){
+                width:7%;
+            }
+
+            .reports-table th:nth-child(8),
+            .reports-table td:nth-child(8),
+            .reports-table th:nth-child(9),
+            .reports-table td:nth-child(9),
+            .reports-table th:nth-child(10),
+            .reports-table td:nth-child(10),
+            .reports-table th:nth-child(11),
+            .reports-table td:nth-child(11),
+            .reports-table th:nth-child(12),
+            .reports-table td:nth-child(12){
+                width:5%;
+            }
+
+            /* ==============================================================================================
+            BUTTONS
+            ============================================================================================== */
+
+            .All-Reports-table-container button{
+                height:22px;
+                padding:0 8px;
+                font-size:11px;
+                border:1px solid #D0D5DD;
+                border-radius:5px;
+                background:#fff;
+                cursor:pointer;
+            }
+
+            .All-Reports-table-container button:hover{
+                background:#F9FAFB;
+            }
+
+            /* ==============================================================================================
+            FOOTER
+            ============================================================================================== */
+
+            .reports-footer{
+                height:40px;
+                display:flex;
+                justify-content:space-between;
+                align-items:center;
+                padding:0 12px;
+                border-top:1px solid #E5E7EB;
+                background:#fff;
+                font-size:12px;
+                color:#667085;
+            }
+
+            .reports-footer button{
+                width:28px;
+                height:28px;
+                border:1px solid #D0D5DD;
+                border-radius:6px;
+                background:#fff;
+                cursor:pointer;
+            }
+
+            .reports-footer button:hover{
+                background:#F9FAFB;
+            }
+
+
+   
