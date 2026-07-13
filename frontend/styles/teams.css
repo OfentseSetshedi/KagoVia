@@ -1,0 +1,11 @@
+.teams-container
+{
+    height: auto;
+    width: 100%;
+    border: 2px solid rgb(0, 0, 0);
+
+    display: grid;
+    grid-template-columns:1.5fr 2fr  ;
+    gap: 12px;
+    padding: 12px;
+}

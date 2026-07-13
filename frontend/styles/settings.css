@@ -1,0 +1,210 @@
+/*================================================================================================
+settings header
+================================================================================================*/
+
+.settings-header
+{
+    display: inline-block;
+    border: 1px solid black;
+    width: 100%;
+    height: 30px;
+    padding: 12px;
+}
+
+.settings-container
+{
+    border: 1px solid black;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 12px;
+    width:  100%;
+    padding: 12px ;
+}
+
+/*============================================
+Profile Information
+==================================================*/
+
+.Profile-Information
+{
+    border: 3px solid black;
+    border-radius: 6px ;
+    padding: 12px ;
+
+
+    display: grid;
+    grid-template-rows: auto 1fr  auto ;
+}
+
+
+.Profile-photo-container
+{
+    border: 3px solid black;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+
+.Profile-photo
+{
+    border: 3px solid black;
+    display: grid;
+    grid-template-rows: auto auto;
+   
+}
+
+.Profile-photo img,
+.Change-Photo-btn
+{
+    border: 3px solid black;
+    display: block;
+    gap: 60px;
+   
+}
+
+.Change-Photo-btn
+{
+    border: 3px solid black;
+    margin-top: 60px;
+
+    /* or */
+    padding: 6px;
+    
+   
+}
+
+/*===================Profile Info=========================*/
+.Profile-Info
+{
+    
+    border: 3px solid rgb(184, 6, 6);
+    padding: 12px ;
+    gap: 12px;
+}
+
+.Profile-Info label,
+.Profile-Info input 
+{
+   display: block;
+}
+/*===================Profile button=========================*/
+.Save-Profile-Changes-btn
+{
+    margin-top: 12px;
+    width: 180px;
+    padding: 12px 24px;
+    width: fit-content;
+}
+
+/*=========================================================
+Change Password
+===============================================================*/
+
+.Change-Password
+{
+    border: 3px solid black;
+    border-radius: 6px ;
+    padding: 12px ;
+     display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+
+.Change-Password div,
+.Change-Password label,
+.Change-Password input
+{
+    display: block;
+    width: 100%;
+}
+
+.Update-Profile-Password-btn
+{
+    margin-top:60px;
+    border: 3px solid black;
+
+    margin-left: auto;
+    width: 180px;
+    /* or */
+    padding: 12px 24px;
+    width: fit-content;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
