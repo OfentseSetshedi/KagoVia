@@ -1,5 +1,5 @@
 /* =========================
-   HERO SECTION
+   HERO SECTION sizing
 ========================= */
 
 .hero-section
@@ -7,7 +7,9 @@
     position: relative;
     height: 100dvh;
     overflow: hidden;
-    background: url("../assets/images/home-hero.png") center/cover no-repeat;
+    background: url("../assets/images/background.png") center/cover no-repeat;
+
+
     border: solid 2px black;
     border-radius: 10px;margin-bottom: 80px;
 }
@@ -16,31 +18,45 @@
    NAV BAR
 ========================= */
 
-#nav-bar{
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
+#nav-bar
+{
+    position: absolute;    
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 25px;
+    padding: 12px;
+    width: 100%;
 }
+/* =========================NAV BAR========================= */
+#logo
+{
+    border: #000 solid 1px;
+}
+/* =========================NAV BAR nav list ========================= */
 
-.nav-list{
+.nav-list
+{
     display: flex;
-    gap: 3rem;
+    gap: 1.5rem;
     list-style: none;
     margin: 0;
     padding: 14px 30px;
     border-radius: 14px;
     color: white;
-    font-family: "Sora", sans-serif;text-decoration: none;
+    font-family: "Sora", sans-serif;
+    text-decoration: none;
 }
-
+.nav-list a 
+{
+    text-decoration: none;
+    color: white; /* or whatever color you want */
+}
+/* =========================NAV BAR========================= */
 
 .Log-In-btn,
-.Get-Started-btn{
+.Get-Started-btn,
+.sign-in-btn
+{
     background: #ff5a1f;
     border: none;
     color: white;
@@ -51,6 +67,7 @@
     font-weight: 600;
     cursor: pointer;
 }
+
 
 /* =========================
    HERO CONTENT
@@ -132,8 +149,10 @@
 .services
 {
     width: 100%;
-    padding: 30px 5%;
-    box-sizing: border-box; border: solid 2px black;margin-bottom: 80px;
+    padding: 30px 12px;
+    box-sizing: border-box; 
+
+    margin-bottom: 80px;
 }
 
 /* =========================
@@ -176,8 +195,12 @@
 .services-grid
 {
     display: flex;
-    gap: 15px;
+    gap: 250px;
     align-items: flex-start;
+    
+    margin-left: 12px;
+    margin-right:12px;
+    justify-content: space-between;
 }
 
 /* =========================
@@ -187,11 +210,9 @@
 .service-left-cards
 {
     flex: 0 0 28%;
+    height: 350px; /* Adjust this value */
 
-    height: 390px; /* Adjust this value */
 
-    border: 2px solid black;
-    border-radius: 12px;
 
     padding: 16px;
     box-sizing: border-box;
@@ -201,10 +222,12 @@
     justify-content: space-between;
 }
 
-.service-left-cards h2
+.service-left-cards h1
 {
-    font-size: 1.3rem;
-    margin-bottom: 10px;
+    font-size: 2.5rem;
+    padding: 0px;
+    margin-bottom: 2px;
+    
 }
 
 .service-left-cards p
@@ -239,25 +262,17 @@
 
 .service-right-cards
 {
-    flex: 1;
-
-    display: flex;
-    gap: 15px;
+    display: grid;
+    grid-template-columns:1fr  1fr;
+    grid-template-rows:1fr  1fr;
+    gap: 5px;
+    
+     height:350px ;
 }
 
-.service-card-01
-{
-    flex: 1;
-}
 
-.right-column
-{
-    flex: 1;
 
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
+
 
 /* =========================
    CARDS
@@ -265,10 +280,11 @@
 
 .service-card-01,
 .service-card-02,
-.service-card-03
+.service-card-03,
+.service-card-04
 {
-    border: 2px solid black;
-    border-radius: 12px;
+    border: 1px solid rgb(123, 122, 122);
+
 
     padding: 16px;
     box-sizing: border-box;
@@ -277,6 +293,8 @@
     flex-direction: column;
 
     min-height: auto;
+
+    padding:0px 9px 0px 9px;
 }
 
 /* =========================
@@ -296,9 +314,6 @@
 {
     width: 40px;
     height: 40px;
-
-    border: 2px solid black;
-    border-radius: 50%;
 
     display: flex;
     justify-content: center;
@@ -324,13 +339,13 @@
 .serv-heading-card
 {
     font-size: 1rem;
-    margin-bottom: 8px;
+    margin-bottom: 0px;
 }
 
 .service-all-text p
 {
-    font-size: 0.88rem;
-    line-height: 1.45;
+    font-size: 0.8rem;
+    line-height: 1.2;
     margin: 0;
 }
 
@@ -342,7 +357,8 @@
 .Features 
 {
     border: 2px solid black;
-    padding: 60px 20px;
+    padding: 60px    20px ;
+;
 }
 
 
@@ -354,6 +370,7 @@
 .Features-grid-btn
 {
     border: 2px solid black;
+    
 }   
 
 /* =========================
@@ -363,17 +380,17 @@
 {
      display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    gap: 12px;
+    column-gap: 20px;
+    padding:12px;
+    border: 2px solid black;
 
     grid-template-areas:
         "heading feature1 feature2"
         "feature3 feature1 feature2"
         "feature3 feature4 feature2"
-        ".        .        button";
-
-    width: 90%;
-    max-width: 1100px;
-    margin: 0 auto;
+        "feature3 feature4 button";
+   
 }
 
 /* =========================
@@ -408,6 +425,7 @@
 .Features-grid-btn 
 {
     grid-area: button;
+    min-height: 40px;
 }
 
 /* =========================
@@ -421,7 +439,7 @@
 .Features-04 
 {
     border: 2px solid black;
-    border-radius: 20px;
+    border-radius: 12px;
     padding: 20px;
 }
 

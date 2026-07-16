@@ -18,10 +18,11 @@
 </head>
 <body>
     <!--hero section-->
-    <section class="hero-section">
+    <section class="hero-section" id="hero-section">
         <!--nav-bar-->
         <nav id="nav-bar">
                 <div id="logo">logo</div>
+
                 <ul class="nav-list">
                     <li><a href="#hero-section"> Home</a></li>
                     <li><a href="#services">services</a></li>
@@ -29,11 +30,12 @@
                     <li><a href="#about-us">about us</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
+
                 <div class="nav-btns">
                     <button class="Log-In-btn">
                         Log In 
                     </button>
-                    <button class="Get-Started-btn">
+                    <button class="sign-in-btn">
                         sign in <span id="code-icon"></span>
                     </button>
                 </div>
@@ -107,72 +109,72 @@
             </button>
 
               <style>
-/* NAV BUTTON (reference size) */
-.Get-Started-btn {
-    height: 52px;
-    padding: 0 24px;
-    font-size: 15px;
-    font-weight: 600;
-    border-radius: 10px;
-}
+                /* NAV BUTTON (reference size) */
+                .Get-Started-btn {
+                    height: 52px;
+                    padding: 0 24px;
+                    font-size: 15px;
+                    font-weight: 600;
+                    border-radius: 10px;
+                }
 
-/* HERO SPLIT BUTTON */
-.split-button {
-    display: inline-flex;
-    align-items: center;
-    gap: 2px;
-    border: none;
-    cursor: pointer;
-    background: transparent;
-    margin-top: 450px;
-}
+                /* HERO SPLIT BUTTON */
+                .split-button {
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 2px;
+                    border: none;
+                    cursor: pointer;
+                    background: transparent;
+                    margin-top: 450px;
+                }
 
-/* LABEL = SAME SIZE AS NAV BUTTON */
-.btn-label {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+                /* LABEL = SAME SIZE AS NAV BUTTON */
+                .btn-label {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
 
-    height: 52px;              /* MATCH NAV HEIGHT */
-    padding: 0 26px;           /* slightly larger width */
-    
-    background: #ff5a1f;
-    color: #fff;
+                    height: 52px;              /* MATCH NAV HEIGHT */
+                    padding: 0 26px;           /* slightly larger width */
+                    
+                    background: #ff5a1f;
+                    color: #fff;
 
-    font-size: 15px;
-    font-weight: 600;
+                    font-size: 15px;
+                    font-weight: 600;
 
-    border-radius: 10px;
-    white-space: nowrap;
-}
+                    border-radius: 10px;
+                    white-space: nowrap;
+                }
 
-/* ICON (DO NOT CHANGE SIZE) */
-.btn-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+                /* ICON (DO NOT CHANGE SIZE) */
+                .btn-icon {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
 
-    height: 52px;   /* MATCH HEIGHT ONLY */
-    width: 52px;    /* keep square */
-    
-    background: #ff5a1f;
-    border-radius: 10px;
-}
+                    height: 52px;   /* MATCH HEIGHT ONLY */
+                    width: 52px;    /* keep square */
+                    
+                    background: #ff5a1f;
+                    border-radius: 10px;
+                }
 
-.btn-icon svg {
-    width: 16px;
-    height: 16px;
-    color: #fff;
-}
+                .btn-icon svg {
+                    width: 16px;
+                    height: 16px;
+                    color: #fff;
+                }
 
-/* optional hover */
-.split-button:hover {
-    filter: brightness(1.1);
-}
+                /* optional hover */
+                .split-button:hover {
+                    filter: brightness(1.1);
+                }
 
-.split-button:active {
-    transform: scale(0.97);
-}
+                .split-button:active {
+                    transform: scale(0.97);
+                }
             </style>
 
         </div>
@@ -204,7 +206,7 @@
             <!-- 🚩 LEFT CARD -->
             <div class="service-left-cards">
 
-                <h2>Everything You Need to Plan Your Build</h2>
+                <h1>Everything You Need to Plan Your Build</h1>
 
                 <p>
                     Generate house plans, calculate material requirements,
@@ -213,7 +215,7 @@
                 </p>
 
                 <button class="Explore-Solutions-btn">
-                    Explore Solutions →
+                    Explore Solutions
                 </button>
 
             </div>
@@ -226,11 +228,13 @@
 
                     <div class="top-of-card">
                         <div class="serv-icon">
-                            <img src="../assets/images/home-hero.png"
-                                alt=""
-                                
-                                 width="100%"
-                                height="30">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none">
+                                    <path d="M12 28L32 12L52 28" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M18 26V50H46V26" stroke="currentColor" stroke-width="2.8" stroke-linejoin="round"/>
+                                    <path d="M24 50V38H40V50" stroke="currentColor" stroke-width="2.8" stroke-linejoin="round"/>
+                                    <path d="M44 16L48 12L52 16" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+                                    <path d="M43 17L49 23" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                            </svg>
                         </div>
 
                         <div class="serv-number">01</div>
@@ -250,18 +254,19 @@
 
                 </div>
 
-                <!-- 🚩 RIGHT COLUMN -->
-                <div class="right-column">
-
-                    <!-- CARD 02 -->
-                    <div class="service-card-02">
+                <!-- CARD 02 -->
+                <div class="service-card-02">
 
                         <div class="top-of-card">
                             <div class="serv-icon">
-                                <img src="../assets/images/home-hero.png"
-                                    alt=""
-                                    width="30"
-                                    height="30">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none">
+                                    <rect x="12" y="18" width="22" height="30" rx="3" stroke="currentColor" stroke-width="2.8"/>
+                                    <path d="M16 26H30" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+                                    <path d="M16 32H30" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+                                    <path d="M16 38H24" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+                                    <path d="M42 20C45 16 52 17 54 22C56 27 52 31 48 34L44 38L40 34C36 31 32 27 34 22C36 17 43 16 46 20" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <text x="44" y="28" font-size="10" font-family="Arial" fill="currentColor">$</text>
+                                    </svg>
                             </div>
 
                             <div class="serv-number">02</div>
@@ -279,17 +284,24 @@
                             </p>
                         </div>
 
-                    </div>
+                </div>
 
-                    <!-- CARD 03 -->
-                    <div class="service-card-03">
+                <!-- CARD 04 -->
+                <div class="service-card-03">
 
                         <div class="top-of-card">
                             <div class="serv-icon">
-                                <img src="../assets/images/home-hero.png"
-                                    alt=""
-                                    width="30"
-                                    height="30">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none">
+                                    <path d="M20 10H38L48 20V52C48 54.2 46.2 56 44 56H20C17.8 56 16 54.2 16 52V14C16 11.8 17.8 10 20 10Z"
+                                            stroke="currentColor"
+                                            stroke-width="2.8"
+                                            stroke-linejoin="round"/>
+                                    <path d="M38 10V20H48" stroke="currentColor" stroke-width="2.8" stroke-linejoin="round"/>
+                                    <path d="M24 28H40" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+                                    <path d="M24 36H40" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+                                    <path d="M24 44H34" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+                                    <path d="M40 42L44 46L52 36" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
                             </div>
 
                             <div class="serv-number">03</div>
@@ -307,9 +319,57 @@
                             </p>
                         </div>
 
+                </div>
+
+                <!-- CARD 04 -->
+                 <div class="service-card-04">
+                    <div class="top-of-card">
+                        <div class="serv-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none">
+                                <rect x="12" y="18" width="22" height="30" rx="3"
+                                    stroke="currentColor" stroke-width="2.8"/>
+
+                                <path d="M16 26H30"
+                                    stroke="currentColor" stroke-width="2.4"
+                                    stroke-linecap="round"/>
+
+                                <path d="M16 32H30"
+                                    stroke="currentColor" stroke-width="2.4"
+                                    stroke-linecap="round"/>
+
+                                <path d="M16 38H24"
+                                    stroke="currentColor" stroke-width="2.4"
+                                    stroke-linecap="round"/>
+
+                                <path d="M42 20C45 16 52 17 54 22C56 27 52 31 48 34L44 38L40 34C36 31 32 27 34 22C36 17 43 16 46 20"
+                                    stroke="currentColor"
+                                    stroke-width="2.8"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"/>
+
+                                <text x="44" y="28"
+                                    font-size="10"
+                                    font-family="Arial"
+                                    fill="currentColor">$</text>
+                            </svg>
+                        </div>
+
+                        <div class="serv-number">04</div>
                     </div>
 
+                    <div class="service-all-text">
+                        <h3 class="serv-heading-card">
+                            Cost Intelligence
+                        </h3>
+
+                        <p>
+                            Automatically calculate material quantities and estimate
+                            construction costs using current market pricing.
+                        </p>
+                    </div>
                 </div>
+
+                
 
             </div>
 
@@ -325,26 +385,25 @@
             
             <div class="Features-grid-heding">
                 <h1 class="Features-heading">Our Features</h1>
-        <p class="Features-sub-heading">
-            AI-powered tools for planning, designing, and budgeting your dream home.
-        </p>
+                <p class="Features-sub-heading">
+                    AI-powered tools for planning, designing, and budgeting your dream home.
+                </p>
             </div >
 
             <div class="Features-01">
-            <div id="text">
-                <h2>AI-Powered House Design</h2>
-                <p>Generate complete house plans in minutes.</p>
+                <div id="text">
+                    <h2>AI-Powered House Design</h2>
+                    <p>Generate complete house plans in minutes.</p>
 
-                <p>
-                    Describe your dream home and let KagoBuild create a customized
-                    floor plan tailored to your requirements. Simply specify the
-                    number of rooms, building size, architectural style, location,
-                    and budget. The AI generates a practical design that helps you
-                    move from idea to plan faster than traditional design processes.
-                </p>
-            </div>
- <!--
-            <img id="feature-01-pic"
+                    <p>
+                        Describe your dream home and let KagoBuild create a customized
+                        floor plan tailored to your requirements. Simply specify the
+                        number of rooms, building size, architectural style, location,
+                        and budget. The AI generates a practical design that helps you
+                        move from idea to plan faster than traditional design processes.
+                    </p>
+                </div>
+ <!--<img id="feature-01-pic"
                 src="../assets/images/home-hero.png"
                 alt=""
                 width="170px"
@@ -405,6 +464,7 @@
                     </p>
                 </div>
             </div>
+            <button class="Features-grid-btn">hgjjg</button>
         </div>
 
     </section>
