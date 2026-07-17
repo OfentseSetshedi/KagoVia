@@ -22,7 +22,7 @@ dashboard-navbar sidebar
 
 .dashboard-navbar
 {
-    width:240px;
+    max-width:170px;
     min-width:70px;
  
     transition:width .25s ease;
@@ -30,30 +30,12 @@ dashboard-navbar sidebar
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    
-    
-    
- /* CHANGED: position: inherit -> removed, replaced with height/overflow rules
-    WHY: "position: inherit" did nothing useful here (it just inherited
-    "static" from the parent grid item), so the sidebar had no real
-    positioning strategy keeping it locked in place -- it simply moved
-    whenever the page scrolled. Since the sidebar lives in a 100vh grid
-    row, giving it an explicit height and overflow:hidden keeps it
-    pinned to the full viewport height and prevents its own content
-    from ever scrolling.
-
-    OLD: position: inherit;
-    NEW:
-    height: 100vh;
-    overflow: hidden; */
- height: 100vh;
- overflow: hidden;
- background-color: rgb(10, 10, 123);
+    overflow: hidden; background-color: rgb(10, 10, 123);
 }
 
 .dashboard-navbar button
 {
-      min-width:130px;
+    min-width:130px;
     height: 25px;
     display: flex;
     border: 5px;
@@ -68,10 +50,11 @@ dashboard-navbar sidebar
 /*=======================================
 dashboard-navbar sidebar dragable effect
 =========================================*/
-.sidebar-resizer{
+.sidebar-resizer
+{
     width:6px;
     background:#d6d6d6;
-    cursor:ew-resize;
+    cursor: ew-resize;
 }
 
 .sidebar-resizer:hover{
@@ -84,9 +67,12 @@ dashboard-navbar sidebar dragable effect
 
 }
 
-.dashboard-navbar.collapsed button svg{
-
+.dashboard-navbar.collapsed button img,
+.dashboard-navbar.collapsed button svg
+{
     margin:0;
+    width:20;
+    height:20;
 }
 
 .dashboard-navbar.collapsed button{
@@ -106,12 +92,6 @@ dashboard-navbar sidebar dragable effect
 }
 
 
-
-
-
-
-
-
 /*=======================================
 dashboard button animation
 =========================================*/
@@ -128,7 +108,7 @@ dashboard button animation
 }
 
 .dashboard-navbar{
-    width:240px;
+    width:100px;
     transition:width .25s ease;
 }
 
@@ -412,6 +392,12 @@ dashboard main content
 
     color:#666;
 }
+
+
+
+
+
+
 
  /*=======================================
 Dashboard overview of every Projects
