@@ -357,7 +357,8 @@
 .Features 
 {
     border: 2px solid black;
-    padding: 60px    20px ;
+    padding: 20px  20px;
+    height: 550px ;
 ;
 }
 
@@ -380,10 +381,10 @@
 {
      display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-    column-gap: 20px;
+    gap: 6px;
+    column-gap:10px;
     padding:12px;
-    border: 2px solid black;
+    height: 500px;
 
     grid-template-areas:
         "heading feature1 feature2"
@@ -425,7 +426,9 @@
 .Features-grid-btn 
 {
     grid-area: button;
-    min-height: 40px;
+    max-height: 50px;
+    margin-top: 10px;
+    border-radius: 5px;
 }
 
 /* =========================
@@ -439,7 +442,7 @@
 .Features-04 
 {
     border: 2px solid black;
-    border-radius: 12px;
+    border-radius: 10px;
     padding: 20px;
 }
 
@@ -675,15 +678,16 @@ body
 .FAQ
 {
     width:100%;
-    min-height:100vh;
+    min-height:100dvh;
 
     display:flex;
     flex-wrap:wrap;
     justify-content:center;margin-bottom: 80px;
     align-items:flex-start;
     gap:60px;
+    border: #000 solid 2px;
 
-    padding:60px;
+    padding:12px;
 }
 /* =========================
    Heading
@@ -693,8 +697,9 @@ body
 {
     width:100%;
     padding:20px 0;
-    margin-bottom:10px;
+    margin-bottom:0px;
     text-align:center;
+    border: #000 solid 2px;
 }
 
 .FAQ-heading h1
@@ -710,12 +715,19 @@ body
     font-size:1rem;
 }
 
+
+.Frequent-div
+{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 0px;
+}
 /* =========================
    LEFT SIDE
 ========================= */
 .FAQ-content
 {
-    width:48%;
+    width:500px;
     height:500px;
 
     overflow-y:auto;
@@ -723,6 +735,8 @@ body
     padding-right:10px;
 
     margin-left:0;
+
+    border: #000 solid 2px;
 }
 /* =========================
    Accordion Buttons
@@ -807,17 +821,20 @@ body
 
 .FAQ-picture
 {
-    width:380px;
-    height:400px;
+    width:500px;
+    height:500px;
 
     margin-right:0;
+    margin-top:0px;
 
-    border-radius:20px;
+    border-radius:5px;
     overflow:hidden;
 
     background:url("../assets/images/home-hero.png") center/cover no-repeat;
 
     box-shadow:0 10px 25px rgba(0,0,0,.15);
+    border: #000 solid 2px;
+    margin-right: 12px;
 }
 
 
