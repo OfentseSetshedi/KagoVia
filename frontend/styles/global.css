@@ -68,7 +68,18 @@
     cursor: pointer;
 }
 
-
+.Log-In-btn
+{
+    background: #edd6ce;
+    border: none;
+    color: rgb(0, 0, 0);
+    border-radius: 9px;
+    padding: 14px 24px;
+    min-width: 110px;
+    font-family: 'GeneralSans', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+}
 /* =========================
    HERO CONTENT
    Text bottom-left, button bottom-right,
@@ -370,9 +381,31 @@
 .Features-grid-heading,
 .Features-grid-btn
 {
-    border: 2px solid black;
+
     
 }   
+
+.Features-02>#text-1-2
+{
+    margin-top: 330px;
+    margin-bottom: 0px;                   
+}
+
+.Features-02>#text-1-2>h2, #text>h2 ,.Features-03>#text-1-2>h2
+{
+    font-family:'GeneralSans',sans-serif;
+    font-size:20px;         
+    color: white; 
+}
+
+.Features-02>#text-1-2>p,#text>p ,.Features-03>#text-1-2>p
+{
+    margin-top: 3px;
+    margin-bottom: 0px;
+    font-size:15px;    
+    color: white;                  
+}
+
 
 /* =========================
   Features Grid
@@ -390,7 +423,7 @@
         "heading feature1 feature2"
         "feature3 feature1 feature2"
         "feature3 feature4 feature2"
-        "feature3 feature4 button";
+        "feature3 feature4 feature2";
    
 }
 
@@ -406,30 +439,41 @@
 .Features-01 
 {
     grid-area: feature1;
+    background-image: url("/frontend/assets/images/feature-01.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center; 
 }
 
 .Features-02 
 {
     grid-area: feature2;
+    background-image: url("/frontend/assets/images/feature-02.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;  
 }
 
 .Features-03 
 {
     grid-area: feature3;
+    background-image: url("/frontend/assets/images/feature-03.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center; 
+
 }
 
 .Features-04 
 {
     grid-area: feature4;
+    background-image: url("/frontend/assets/images/feature-04.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center; 
 }
 
-.Features-grid-btn 
-{
-    grid-area: button;
-    max-height: 50px;
-    margin-top: 10px;
-    border-radius: 5px;
-}
+
 
 /* =========================
    Card Styling
@@ -441,7 +485,6 @@
 .Features-03,
 .Features-04 
 {
-    border: 2px solid black;
     border-radius: 10px;
     padding: 20px;
 }
@@ -565,8 +608,10 @@ body
 /* Section */
 .Pricing 
 {
-        padding: 80px 20px;
-        text-align: center;
+        padding: 60px 20px;
+        text-align: center; 
+        border:2px solid #000; 
+        min-height: 700px;
 }
 
 .price-heading 
@@ -589,14 +634,15 @@ body
 /* Card */
 .price-card 
 {
-            border: 1px solid #ddd;
-            border-radius: 16px;
-            padding: 30px 25px;
-            text-align: left;
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-            transition: 0.3s ease;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 30px 25px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    transition: 0.3s ease;
+    height: 500px;
 }
 
 .price-card:hover 
@@ -612,28 +658,29 @@ body
 }
 
         /* Text */
-        .price {
+.price {
             font-size: 1.2rem;
             font-weight: 600;
+        
         }
 
-        .price span {
+.price span {
             font-size: 2rem;
         }
 
-        .subtitle {
+.subtitle {
             color: #555;
             font-size: 0.95rem;
         }
 
-        .note {
+.note {
             font-size: 0.85rem;
             color: #777;
             line-height: 1.4;
         }
 
         /* Features */
-        .features-list p {
+.features-list p {
             margin: 6px 0;
             font-size: 0.95rem;
             display: flex;
@@ -641,7 +688,7 @@ body
             gap: 10px;
         }
 
-        .features-list i {
+.features-list i {
             width: 18px;
             color: #000;
         }
@@ -651,7 +698,7 @@ body
 .btn-secondary 
 {
             padding: 12px 16px;
-            border-radius: 30px;
+            border-radius: 16px;
             font-weight: 600;
             cursor: pointer;
             border: 1px solid #000;
@@ -666,8 +713,8 @@ body
 .btn-primary:hover,
 .btn-secondary:hover 
 {
-            background: #000;
-            color: #fff;
+    background: #000;
+    color: #fff;
 }
 
 
@@ -688,6 +735,7 @@ body
     border: #000 solid 2px;
 
     padding:12px;
+    margin-top: 60px;
 }
 /* =========================
    Heading
@@ -699,7 +747,7 @@ body
     padding:20px 0;
     margin-bottom:0px;
     text-align:center;
-    border: #000 solid 2px;
+
 }
 
 .FAQ-heading h1
@@ -707,36 +755,50 @@ body
     font-size:2.5rem;
     margin-bottom:10px;
     color:#1f2937;
+    text-align: left;
+    padding: 12px;
+    font-family: Baskerville, "Baskerville Old Face", Garamond, serif;
+    font-weight: normal;
 }
 
 .FAQ-heading p
 {
     color:#6b7280;
     font-size:1rem;
+    text-align: left;padding: 12px;
+    
 }
-
+ .Reach-Out
+{
+    width: 90px;
+    height: 30px;
+    display: block;
+    margin-top: 20px;
+    margin-left: 10px;
+    
+}
 
 .Frequent-div
 {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    margin-top: 0px;
+    grid-template-columns: 1fr 2fr;
+    margin-top: 0px;padding: 12px;
 }
 /* =========================
    LEFT SIDE
 ========================= */
 .FAQ-content
 {
-    width:500px;
+
     height:500px;
 
     overflow-y:auto;
 
-    padding-right:10px;
+    padding-top:20px;
 
     margin-left:0;
 
-    border: #000 solid 2px;
+    border: 1px solid #ddd;
 }
 /* =========================
    Accordion Buttons
@@ -745,11 +807,11 @@ body
 {
     width:100%;
     padding:18px 22px;
-    margin-bottom:12px;
+  
 
     background:#fff;
     border:1px solid #e5e7eb;
-    border-radius:10px;
+   
 
     font-size:1rem;
     font-weight:600;
@@ -801,7 +863,7 @@ body
     background:white;
     border:1px solid #e5e7eb;
     border-top:none;
-    border-radius:0 0 10px 10px;
+  
 
     margin-top:-10px;
     margin-bottom:12px;
@@ -821,7 +883,7 @@ body
 
 .FAQ-picture
 {
-    width:500px;
+
     height:500px;
 
     margin-right:0;
@@ -830,10 +892,10 @@ body
     border-radius:5px;
     overflow:hidden;
 
-    background:url("../assets/images/home-hero.png") center/cover no-repeat;
+   
 
     box-shadow:0 10px 25px rgba(0,0,0,.15);
-    border: #000 solid 2px;
+    border: 1px solid #ddd;
     margin-right: 12px;
 }
 
@@ -842,80 +904,7 @@ body
 /* =========================
    CTA
 ========================= */
-.CTA
-{
-    width:100%;
-    padding:40px 20px;
 
-    display:flex;margin-bottom: 80px;
-    justify-content:center;
-    align-items:center;
-
-    background:#f8fafc;
-}
-
-/* Small centered block */
-.cta-mini
-{
-    text-align:center;
-    max-width:500px;
-}
-
-/* Heading */
-.cta-mini h3
-{
-    font-size:1.6rem;
-    color:#0f172a;
-    margin-bottom:8px;
-}
-
-/* Text */
-.cta-mini p
-{
-    font-size:0.95rem;
-    color:#64748b;
-    margin-bottom:20px;
-}
-
-/* Buttons */
-.cta-actions
-{
-    display:flex;
-    justify-content:center;
-    gap:12px;
-    margin-bottom:12px;
-}
-
-/* Primary button */
-.cta-primary
-{
-    padding:10px 18px;
-    border:none;
-    border-radius:20px;
-    background:#2563eb;
-    color:white;
-    cursor:pointer;
-    font-size:0.9rem;
-}
-
-/* Secondary button */
-.cta-secondary
-{
-    padding:10px 18px;
-    border:1px solid #2563eb;
-    border-radius:20px;
-    background:transparent;
-    color:#2563eb;
-    cursor:pointer;
-    font-size:0.9rem;
-}
-
-/* Footer note */
-.cta-mini small
-{
-    font-size:0.75rem;
-    color:#94a3b8;
-}
 
 
 
