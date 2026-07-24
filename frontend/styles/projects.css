@@ -25,81 +25,168 @@
 /* ======================================================================================
     Projects table
     ======================================================================================*/
-table
+
+
+.project-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 2px solid black;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+/* ==========================
+   TABLE HEADER
+========================== */
+
+thead th {
+    background-color: rgb(236, 236, 236);
+    border-bottom: 2px solid black;
+    text-align: center;
+    padding: 12px 20px;
+    vertical-align: middle;
+}
+
+thead th:first-child {
+    border-top-left-radius: 12px;
+}
+
+thead th:last-child {
+    border-top-right-radius: 12px ;
+}
+
+/* ==========================
+   TABLE BODY
+========================== */
+
+tbody td {
+    text-align: center;
+    padding: 12px 16px;
+    vertical-align: middle;
+    border-bottom: 1px solid black;
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+/* ==========================
+   PROJECT INFO COLUMN
+========================== */
+
+tbody td:first-child {
+    display: grid;
+    grid-template-columns: 40px 60px 1fr;
+    align-items: center;
+    gap: 12px;
+    text-align: left;
+}
+
+/* ==========================
+   PROJECT ICONS
+========================== */
+
+.project-fav-icon {
+    width: 30px;
+    height: 30px;
+    border: 2px solid black;
+    border-radius: 6px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.project-picture-icon {
+    width: 50px;
+    height: 50px;
+    border: 2px solid black;
+    border-radius: 8px;
+}
+
+/* ==========================
+   PROJECT NAME
+========================== */
+
+.Project-names h2 {
+    margin: 0;
+    font-size: 16px;
+}
+
+.Project-names p {
+    margin: 4px 0 0;
+    font-size: 14px;
+    color: #666;
+}
+
+/* ==========================
+   STATUS BUTTON
+========================== */
+
+.status-btn {
+    background: #e8f5e9;
+    color: #2e7d32;
+    border: none;
+    border-radius: 12px;
+    padding: 5px 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* ==========================
+   PROGRESS BAR
+========================== */
+
+progress {
+    width: 120px;
+    height: 10px;
+}
+
+/* ==========================
+   MORE BUTTON
+========================== */
+
+.more-about-the-project {
+    background: transparent;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.status 
 {
-    border: 3px rgb(3, 129, 103);
-    width: 100%; 
-    border-collapse:collapse;
-     /* Only top and bottom borders */
-        border-top:2px solid #000;
-        border-bottom:2px solid #000;
-table-layout:fixed;
+    background: #ffebee;
+    color: #c62828;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-weight: 600;
 }
-th,td
+
+
+.status 
 {
-    padding:15px 20px;
-        text-align:left;
-
-        /* No vertical borders */
-        border-left:none;
-        border-right:none;
-
-        /* Horizontal borders only */
-        border-bottom:1px solid #ef2a03;
-        border:1px solid #000000;
-}
-th:nth-child(1),
-td:nth-child(1){
-    width:32%;
+    background: #fff3e0;
+    color: #ef6c00;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-weight: 600;
 }
 
-th:nth-child(2),
-td:nth-child(2){
-    width:12%;
-}
 
-th:nth-child(3),
-td:nth-child(3){
-    width:12%;
-}
 
-th:nth-child(4),
-td:nth-child(4){
-    width:20%;
-}
-
-th:nth-child(5),
-td:nth-child(5){
-    width:24%;
-}th,
-td{
-    padding:22px;
-    text-align:left;
-    vertical-align:middle;
-    border-bottom:1px solid #ef2a03;
-}td:first-child{
-    display:flex;
-    align-items:center;
-    gap:15px;
-}.last-column{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
     /*  ======================================================================================
     Projects details
     ======================================================================================
 */
 .Projects-details
 {
-    border: 1px solid black;
+
     width: 100%;
 }
 
 
 .Projects-current-list
 {
-    border: 1px solid black;
     width: 100%;
 }
 .item
