@@ -22,19 +22,19 @@
                 </a>
 
                 <a href="dashboard.html" class="nav-link">
-                    <button id="dashboard" >
+                    <button id="dashboard">
                         <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.6"/><rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.6"/><rect x="3" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.6"/><rect x="14" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.6"/></svg>
                         Dashboard
                     </button>
                 </a>
-                
+
                 <a href="projects.html" class="nav-link">
                     <button id="Projects">
                         <img src="../assets/icons/Projects.svg" alt="Projects" width="17" height="17">
                         Projects
                     </button>
                 </a>
-                
+
                 <a href="ai-design.html" class="nav-link">
                     <button id="AI-Design">
                         <img src="../assets/icons/Design.svg" alt="AI Design" width="17" height="17">
@@ -48,37 +48,37 @@
                         Material
                     </button>
                 </a>
-                
+
                 <a href="estimator.html" class="nav-link">
                     <button id="Cost-Estimator">
                         <img src="../assets/icons/Cost.svg" alt="Cost Estimator" width="17" height="17">
                         Cost Estimator
                     </button>
                 </a>
-                
+
                 <a href="reports.html" class="nav-link">
                     <button id="Reports">
                         <img src="../assets/icons/Reports.svg" alt="Reports" width="17" height="17">
                         Reports
                     </button>
                 </a>
-                
-                <a href="Supplier.html" class="nav-link">
+
+                <a href="Supplier.html" class="nav-link active">
                     <button id="Suppliers">
                         <img src="../assets/icons/Suppliers.svg" alt="Suppliers" width="17" height="17">
                         Suppliers
                     </button>
                 </a>
-                
+
                 <a href="teams.html" class="nav-link">
                     <button id="Teams">
                         <img src="../assets/icons/Teams.svg" alt="Teams" width="17" height="17">
                         Teams
                     </button>
                 </a>
-                
+
                 <a href="settings.html" class="nav-link">
-                    <button id="Settings"> 
+                    <button id="Settings">
                         <img src="../assets/icons/settings-icon.svg" alt="Settings" width="17" height="17">
                         Settings
                     </button>
@@ -117,6 +117,7 @@
             <header class="dashboard-header">
                 <div class="header-left">
                     <h2>Supplier Marketplace</h2>
+                    <p class="header-subtitle">Find trusted suppliers for your construction project</p>
                 </div>
 
                 <div class="header-right">
@@ -157,165 +158,351 @@
                             </a>
                         </div>
                     </div>
-                    
+
                     <style>
                         .dropdown {
-                            position:absolute;
-                            top:70px;
-                            right:24px;
-                            width:260px;
-                            background:#fff;
-                            border-radius:12px;
+                            position:absolute; top:70px; right:24px; width:260px;
+                            background:#fff; border-radius:12px;
                             box-shadow:0 12px 35px rgba(0,0,0,.12);
-                            opacity:0;
-                            visibility:hidden;
-                            transform:translateY(10px);
-                            transition:.25s;
-                            overflow:hidden;
-                            z-index:1000;
+                            opacity:0; visibility:hidden; transform:translateY(10px);
+                            transition:.25s; overflow:hidden; z-index:1000;
                         }
-
                         .dropdown::before {
-                            position: absolute;
-                            top:-8px; 
-                            right:25px;
-                            width:16px;
-                            height:16px;
-                            background:white;
-                            transform:rotate(45deg);
+                            position: absolute; top:-8px; right:25px;
+                            width:16px; height:16px; background:white; transform:rotate(45deg);
                         }
-
-                        .profile-menu {
-                            margin-right: 12px;
-                            border: #222 solid 2px;
-                        }
-
-                        .profile-menu:hover .dropdown {
-                            opacity:1;
-                            visibility:visible;
-                            transform:translateY(0);
-                        }
-
-                        .profile-menu:hover .dropdown-arrow {
-                            transform:rotate(180deg);
-                        }
-
+                        .profile-menu { margin-right: 12px; border: #222 solid 2px; }
+                        .profile-menu:hover .dropdown { opacity:1; visibility:visible; transform:translateY(0); }
+                        .profile-menu:hover .dropdown-arrow { transform:rotate(180deg); }
                         .dropdown a {
-                            display:flex;
-                            align-items:center;
-                            gap:14px;
-                            padding:18px 24px;
-                            font-size:18px;
-                            color:#222;
-                            text-decoration:none;
-                            border-bottom:1px solid #efefef;
-                            transition:.2s;
+                            display:flex; align-items:center; gap:14px;
+                            padding:18px 24px; font-size:18px; color:#222;
+                            text-decoration:none; border-bottom:1px solid #efefef; transition:.2s;
                         }
-
-                        .dropdown a:last-child {
-                            border:none;
-                        }
-
-                        .dropdown a:hover {
-                            background:#f3f7ff;
-                            color:#2458ff;
-                        }
+                        .dropdown a:last-child { border:none; }
+                        .dropdown a:hover { background:#f3f7ff; color:#2458ff; }
                     </style>
                 </div>
             </header>
 
             <div class="main-card">
-                <div class="Supplier-header">
-                    <div>
-                        <button>All Suppliers</button>
-                        <button>Builders Warehouse</button>
-                        <button>Cashbuild</button>
-                        <button>BUCO </button>
-                        <button>Local Suppliers</button>
+                <div class="supplier-page">
+
+                    <div class="supplier-filter-bar">
+                        <div class="supplier-tabs" id="supplierTabs">
+                            <button class="supp-tab active" data-supplier="all">All Suppliers</button>
+                            <button class="supp-tab" data-supplier="builders-warehouse">Builders Warehouse</button>
+                            <button class="supp-tab" data-supplier="cashbuild">Cashbuild</button>
+                            <button class="supp-tab" data-supplier="buco">BUCO</button>
+                            <button class="supp-tab" data-supplier="local">Local Suppliers</button>
+                        </div>
+                        <button class="supplier-filter-btn">Filter ▾</button>
                     </div>
-                    <div> 
-                        <button>Filter</button>
+
+                    <div class="supplier-container">
+
+                        <div class="supplier-list-col">
+
+                            <p class="supplier-count" id="supplierCount">24 suppliers found</p>
+
+                            <div class="supplier-cards" id="supplierCards">
+
+                                <div class="supplier-card active" data-supplier-id="builders-warehouse">
+                                    <div class="supp-card-top">
+                                        <span class="supp-logo" style="background:#f5c518;">
+                                            <img src="https://picsum.photos/seed/bw-logo/60/60" alt="Builders Warehouse">
+                                        </span>
+                                        <button class="supp-fav">♡</button>
+                                    </div>
+                                    <h4>Builders Warehouse <span class="supp-verified">✓</span></h4>
+                                    <div class="supp-rating">★ 4.6 <span>(128 reviews)</span></div>
+                                    <div class="supp-meta"><span>🚚 Delivery: 1 - 3 days</span></div>
+                                    <div class="supp-meta"><span>📦 Products: 15,000+</span></div>
+                                    <div class="supp-meta"><span>📍 Distance: 3.2 km</span></div>
+                                    <button class="supp-open-btn">Open Store</button>
+                                </div>
+
+                                <div class="supplier-card" data-supplier-id="cashbuild">
+                                    <div class="supp-card-top">
+                                        <span class="supp-logo" style="background:#e8eef7;">
+                                            <img src="https://picsum.photos/seed/cashbuild-logo/60/60" alt="Cashbuild">
+                                        </span>
+                                        <button class="supp-fav">♡</button>
+                                    </div>
+                                    <h4>Cashbuild</h4>
+                                    <div class="supp-rating">★ 4.4 <span>(96 reviews)</span></div>
+                                    <div class="supp-meta"><span>🚚 Delivery: 2 - 4 days</span></div>
+                                    <div class="supp-meta"><span>📦 Products: 12,000+</span></div>
+                                    <div class="supp-meta"><span>📍 Distance: 5.7 km</span></div>
+                                    <button class="supp-open-btn">Open Store</button>
+                                </div>
+
+                                <div class="supplier-card" data-supplier-id="buco">
+                                    <div class="supp-card-top">
+                                        <span class="supp-logo" style="background:#f5a524;">
+                                            <img src="https://picsum.photos/seed/buco-logo/60/60" alt="BUCO">
+                                        </span>
+                                        <button class="supp-fav">♡</button>
+                                    </div>
+                                    <h4>BUCO</h4>
+                                    <div class="supp-rating">★ 4.3 <span>(76 reviews)</span></div>
+                                    <div class="supp-meta"><span>🚚 Delivery: 2 - 5 days</span></div>
+                                    <div class="supp-meta"><span>📦 Products: 10,500+</span></div>
+                                    <div class="supp-meta"><span>📍 Distance: 6.1 km</span></div>
+                                    <button class="supp-open-btn">Open Store</button>
+                                </div>
+
+                                <div class="supplier-card" data-supplier-id="mica">
+                                    <div class="supp-card-top">
+                                        <span class="supp-logo" style="background:#2f6feb;">
+                                            <img src="https://picsum.photos/seed/mica-logo/60/60" alt="Mica Hardware">
+                                        </span>
+                                        <button class="supp-fav">♡</button>
+                                    </div>
+                                    <h4>Mica Hardware</h4>
+                                    <div class="supp-rating">★ 4.2 <span>(63 reviews)</span></div>
+                                    <div class="supp-meta"><span>🚚 Delivery: 2 - 4 days</span></div>
+                                    <div class="supp-meta"><span>📦 Products: 8,000+</span></div>
+                                    <div class="supp-meta"><span>📍 Distance: 7.4 km</span></div>
+                                    <button class="supp-open-btn">Open Store</button>
+                                </div>
+
+                                <div class="supplier-card" data-supplier-id="build-it">
+                                    <div class="supp-card-top">
+                                        <span class="supp-logo" style="background:#e5484d;">
+                                            <img src="https://picsum.photos/seed/buildit-logo/60/60" alt="Build It">
+                                        </span>
+                                        <button class="supp-fav">♡</button>
+                                    </div>
+                                    <h4>Build It</h4>
+                                    <div class="supp-rating">★ 4.1 <span>(58 reviews)</span></div>
+                                    <div class="supp-meta"><span>🚚 Delivery: 2 - 4 days</span></div>
+                                    <div class="supp-meta"><span>📦 Products: 9,000+</span></div>
+                                    <div class="supp-meta"><span>📍 Distance: 8.3 km</span></div>
+                                    <button class="supp-open-btn">Open Store</button>
+                                </div>
+
+                                <div class="supplier-card" data-supplier-id="pro-build">
+                                    <div class="supp-card-top">
+                                        <span class="supp-logo" style="background:#1e9e4d;">
+                                            <img src="https://picsum.photos/seed/probuild-logo/60/60" alt="Pro Build">
+                                        </span>
+                                        <button class="supp-fav">♡</button>
+                                    </div>
+                                    <h4>Pro Build</h4>
+                                    <div class="supp-rating">★ 4.0 <span>(49 reviews)</span></div>
+                                    <div class="supp-meta"><span>🚚 Delivery: 3 - 5 days</span></div>
+                                    <div class="supp-meta"><span>📦 Products: 7,500+</span></div>
+                                    <div class="supp-meta"><span>📍 Distance: 9.6 km</span></div>
+                                    <button class="supp-open-btn">Open Store</button>
+                                </div>
+
+                                <div class="supplier-card" data-supplier-id="chamberlains">
+                                    <div class="supp-card-top">
+                                        <span class="supp-logo" style="background:#3a4256;">
+                                            <img src="https://picsum.photos/seed/chamberlains-logo/60/60" alt="Chamberlains">
+                                        </span>
+                                        <button class="supp-fav">♡</button>
+                                    </div>
+                                    <h4>Chamberlains</h4>
+                                    <div class="supp-rating">★ 4.2 <span>(37 reviews)</span></div>
+                                    <div class="supp-meta"><span>🚚 Delivery: 3 - 6 days</span></div>
+                                    <div class="supp-meta"><span>📦 Products: 6,500+</span></div>
+                                    <div class="supp-meta"><span>📍 Distance: 10.2 km</span></div>
+                                    <button class="supp-open-btn">Open Store</button>
+                                </div>
+
+                                <div class="supplier-card" data-supplier-id="ctm">
+                                    <div class="supp-card-top">
+                                        <span class="supp-logo" style="background:#8a3ff0;">
+                                            <img src="https://picsum.photos/seed/ctm-logo/60/60" alt="CTM">
+                                        </span>
+                                        <button class="supp-fav">♡</button>
+                                    </div>
+                                    <h4>CTM</h4>
+                                    <div class="supp-rating">★ 4.3 <span>(41 reviews)</span></div>
+                                    <div class="supp-meta"><span>🚚 Delivery: 2 - 4 days</span></div>
+                                    <div class="supp-meta"><span>📦 Products: 11,000+</span></div>
+                                    <div class="supp-meta"><span>📍 Distance: 4.8 km</span></div>
+                                    <button class="supp-open-btn">Open Store</button>
+                                </div>
+
+                            </div>
+
+                            <button class="load-more-suppliers-btn">Load More Suppliers ▾</button>
+
+                        </div>
+
+                        <div class="supplier-detail-col" id="supplierDetail">
+
+                            <div class="supp-banner">
+                                <img src="https://picsum.photos/seed/bw-banner/900/220" alt="Builders Warehouse banner">
+                                <div class="supp-banner-overlay">
+                                    <span>EVERYTHING YOU NEED.</span>
+                                    <strong>ALL IN ONE PLACE.</strong>
+                                </div>
+                            </div>
+
+                            <div class="supp-detail-header">
+
+                                <div class="supp-detail-logo">
+                                    <img src="https://picsum.photos/seed/bw-logo/80/80" alt="Builders Warehouse logo">
+                                </div>
+
+                                <div class="supp-detail-titles">
+                                    <div class="supp-detail-name-row">
+                                        <h3>Builders Warehouse</h3>
+                                        <span class="supp-verified-pill">✓ Verified Supplier</span>
+                                    </div>
+                                    <p class="supp-detail-sub">★ 4.6 (128 reviews) · 15,000+ Products</p>
+                                    <p class="supp-detail-desc">South Africa's leading builder's merchant with a wide range of quality building materials and tools.</p>
+                                </div>
+
+                                <div class="supp-detail-actions">
+                                    <button class="supp-follow-btn">♡ Follow</button>
+                                    <button class="supp-contact-btn">✉ Contact</button>
+                                </div>
+
+                            </div>
+
+                            <nav class="supp-detail-tabs" id="supplierDetailTabs">
+                                <button class="supp-detail-tab active" data-panel="products">Products</button>
+                                <button class="supp-detail-tab" data-panel="reviews">Reviews</button>
+                                <button class="supp-detail-tab" data-panel="promotions">Promotions</button>
+                                <button class="supp-detail-tab" data-panel="inventory">Inventory</button>
+                                <button class="supp-detail-tab" data-panel="delivery">Delivery</button>
+                                <button class="supp-detail-tab" data-panel="contact">Contact</button>
+                            </nav>
+
+                            <div class="supp-detail-panel" id="panel-products">
+
+                                <div class="supp-featured-header">
+                                    <h5>Featured Products</h5>
+                                    <a href="materials.html">View all</a>
+                                </div>
+
+                                <div class="supp-featured-grid">
+                                    <div class="supp-product-card">
+                                        <img src="https://picsum.photos/seed/mat-cement/200/140" alt="PPC Cement 50kg">
+                                        <div class="supp-product-info">
+                                            <h6>PPC Cement 50kg</h6>
+                                            <p>R89.50</p>
+                                            <span class="supp-stock-pill">In Stock</span>
+                                            <button class="supp-add-btn">+</button>
+                                        </div>
+                                    </div>
+                                    <div class="supp-product-card">
+                                        <img src="https://picsum.photos/seed/mat-bricks/200/140" alt="Clay Bricks Per 1000">
+                                        <div class="supp-product-info">
+                                            <h6>Clay Bricks Per 1000</h6>
+                                            <p>R2,350.00</p>
+                                            <span class="supp-stock-pill">In Stock</span>
+                                            <button class="supp-add-btn">+</button>
+                                        </div>
+                                    </div>
+                                    <div class="supp-product-card">
+                                        <img src="https://picsum.photos/seed/mat-timber/200/140" alt="SABS Timber 38x114mm">
+                                        <div class="supp-product-info">
+                                            <h6>SABS Timber 38x114mm</h6>
+                                            <p>R48.90</p>
+                                            <span class="supp-stock-pill">In Stock</span>
+                                            <button class="supp-add-btn">+</button>
+                                        </div>
+                                    </div>
+                                    <div class="supp-product-card">
+                                        <img src="https://picsum.photos/seed/mat-roof/200/140" alt="Roof Sheeting IBR 0.4mm">
+                                        <div class="supp-product-info">
+                                            <h6>Roof Sheeting IBR 0.4mm</h6>
+                                            <p>R129.00</p>
+                                            <span class="supp-stock-pill">In Stock</span>
+                                            <button class="supp-add-btn">+</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="supp-lower-grid">
+
+                                    <div class="supp-lower-card">
+                                        <div class="supp-lower-header">
+                                            <h5>Current Promotions</h5>
+                                            <a href="#">View all</a>
+                                        </div>
+                                        <div class="supp-promo-row">
+                                            <span class="supp-promo-icon red">🧱</span>
+                                            <div>
+                                                <strong>Cement Special</strong>
+                                                <p>Save 10% on PPC Cement</p>
+                                                <span>Valid until 31 May 2024</span>
+                                            </div>
+                                        </div>
+                                        <div class="supp-promo-row">
+                                            <span class="supp-promo-icon orange">🔧</span>
+                                            <div>
+                                                <strong>Tool Time</strong>
+                                                <p>Up to 15% off selected tools</p>
+                                                <span>Valid until 25 May 2024</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="supp-lower-card">
+                                        <div class="supp-lower-header">
+                                            <h5>Delivery Options</h5>
+                                        </div>
+                                        <div class="supp-delivery-row">
+                                            <span class="supp-delivery-icon">🚚</span>
+                                            <div><strong>Standard Delivery</strong><span>1 - 3 days</span></div>
+                                            <span class="supp-delivery-price">From R150</span>
+                                        </div>
+                                        <div class="supp-delivery-row">
+                                            <span class="supp-delivery-icon">⚡</span>
+                                            <div><strong>Express Delivery</strong><span>Next day</span></div>
+                                            <span class="supp-delivery-price">From R250</span>
+                                        </div>
+                                        <div class="supp-delivery-row">
+                                            <span class="supp-delivery-icon">🏬</span>
+                                            <div><strong>Click & Collect</strong><span>Same day</span></div>
+                                            <span class="supp-delivery-price">Free</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="supp-lower-card">
+                                        <div class="supp-lower-header">
+                                            <h5>Contact Information</h5>
+                                        </div>
+                                        <div class="supp-contact-row"><span>📞</span> 087 741 0000</div>
+                                        <div class="supp-contact-row"><span>✉</span> <a href="mailto:online@builders.co.za">online@builders.co.za</a></div>
+                                        <div class="supp-contact-row"><span>🌐</span> <a href="#">www.builders.co.za</a></div>
+                                        <div class="supp-contact-row"><span>🕐</span> Mon – Fri: 7:00 – 17:00</div>
+                                        <div class="supp-contact-row"><span></span> Sat: 7:00 – 13:00</div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="supp-detail-panel is-hidden" id="panel-reviews">
+                                <p class="supp-empty-panel">128 reviews for Builders Warehouse would be listed here.</p>
+                            </div>
+                            <div class="supp-detail-panel is-hidden" id="panel-promotions">
+                                <p class="supp-empty-panel">All current promotions would be listed here.</p>
+                            </div>
+                            <div class="supp-detail-panel is-hidden" id="panel-inventory">
+                                <p class="supp-empty-panel">Live inventory for this supplier would be listed here.</p>
+                            </div>
+                            <div class="supp-detail-panel is-hidden" id="panel-delivery">
+                                <p class="supp-empty-panel">Full delivery zones and pricing would be listed here.</p>
+                            </div>
+                            <div class="supp-detail-panel is-hidden" id="panel-contact">
+                                <p class="supp-empty-panel">Full contact and store details would be listed here.</p>
+                            </div>
+
+                        </div>
+
                     </div>
+
                 </div>
-
-                <div class="Supplier-container">
-                    <div class="Supplier-list name">
-                        <aside class="Supplier-count">
-                            <p>24 suppliers found</p>
-                        </aside>
-                        <section class="suppliers">
-                            <div class="supplier-card">
-                                <img src="../assets/images/home-hero.png" alt="logo-image" width="30" height="30">
-                                
-                                <div class="info">
-                                    <div class="name">BUCO</div>
-                                    <div class="rating"><span class="star">★</span> 4.3 <span class="reviews">(76 reviews)</span></div>
-                                    <div class="item"><i class="icon delivery"></i> Delivery: 2 - 5 days</div>
-                                    <div class="item"><i class="icon products"></i> Products: 10,500+</div>
-                                    <div class="item"><i class="icon distance"></i> Distance: 6.1 km</div>
-                                </div>
-                                <button class="open-store">Open Store</button>
-                                <button class="favorite"><i class="icon heart"></i></button>
-                            </div>
-                        </section>
-                        <aside>
-                            <button class="Load-Suppliers">Load More Suppliers ▼</button>
-                        </aside>
-                    </div>
-                    
-                    <div class="Supplier-list details">
-                        <div class="banner">
-                            <img src="../assets/images/home-hero.png" alt="logo-image" width="30" height="30">
-                        </div>
-
-                        <div class="Supplier-info">
-                            <aside class="Supplier-logo">
-                                <img src="../assets/images/home-hero.png" alt="logo-image" width="30" height="30">
-                            </aside>
-
-                            <div class="Supplier-names">
-                                <div class="Supplier-main-names">
-                                    <h4>Builders Warehouse</h4>
-                                    <button>✓ Verified Supplier</button>
-                                </div>
-                                <div class="Supplier-main-names-rating-product">
-                                    <p>★ 4.6 (128 reviews)  15,000+ Products</p>
-                                </div>
-                                <div class="Supplier-main-details">
-                                    <p>South Africa's leading builder's merchant with a wide range of quality building materials and tools.</p>
-                                </div>
-                            </div>
-
-                            <aside class="Supplier-follow-contact">
-                                <button>♡ Follow</button>
-                                <button>✉ Contact</button>
-                            </aside>
-                        </div>
-
-                        <div class="Supplier-tabs">
-                            <button>Products</button>
-                            <button>Reviews</button>
-                            <button>Promotions</button>
-                            <button>Inventory</button>
-                            <button>Delivery</button>
-                            <button>Contact</button>
-                        </div>
-
-                        <div class="Featured-Products">
-                            <div class="Featured-Products-header">
-                                <div><h4>Featured Products</h4></div>
-                                <button>view all</button>
-                            </div>
-                            <div class="all-Featured-Products">
-                                <div class="Product"></div>
-                                <div class="Product"></div>
-                                <div class="Product"></div>
-                                <div class="Product"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> 
+            </div>
         </main>
     </section>
 
@@ -345,6 +532,46 @@
             }else{
                 sidebar.classList.remove("collapsed");
             }
+        });
+
+        // Supplier card selection -> highlight card (detail panel content stays
+        // as a static Builders Warehouse example; wiring real per-supplier data
+        // is a backend concern)
+        document.querySelectorAll(".supplier-card").forEach(card => {
+            card.addEventListener("click", (e) => {
+                if (e.target.closest(".supp-fav")) return;
+                document.querySelectorAll(".supplier-card").forEach(c => c.classList.remove("active"));
+                card.classList.add("active");
+            });
+        });
+
+        // Favourite heart toggle
+        document.querySelectorAll(".supp-fav").forEach(btn => {
+            btn.addEventListener("click", (e) => {
+                e.stopPropagation();
+                btn.textContent = btn.textContent === "♡" ? "♥" : "♡";
+                btn.classList.toggle("is-fav");
+            });
+        });
+
+        // Top filter tabs (All Suppliers / Builders Warehouse / etc.)
+        document.querySelectorAll(".supp-tab").forEach(tab => {
+            tab.addEventListener("click", () => {
+                document.querySelectorAll(".supp-tab").forEach(t => t.classList.remove("active"));
+                tab.classList.add("active");
+            });
+        });
+
+        // Detail tabs (Products / Reviews / Promotions / ...)
+        document.querySelectorAll(".supp-detail-tab").forEach(tab => {
+            tab.addEventListener("click", () => {
+                document.querySelectorAll(".supp-detail-tab").forEach(t => t.classList.remove("active"));
+                tab.classList.add("active");
+
+                document.querySelectorAll(".supp-detail-panel").forEach(panel => {
+                    panel.classList.toggle("is-hidden", panel.id !== "panel-" + tab.dataset.panel);
+                });
+            });
         });
     </script>
 </body>

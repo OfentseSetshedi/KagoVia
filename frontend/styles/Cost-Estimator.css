@@ -1,413 +1,546 @@
-.header-left
-{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 9px;
-}
+/* =========================================================
+   Cost Estimator page
+========================================================= */
 
-
-.Costs-header
-{
+.project-switcher-btn{
     display:flex;
     align-items:center;
-    gap:16px;
-    width:100%;
-    height: 42px;
+    gap:8px;
+    margin-top:4px;
 
-    justify-content: space-between;
-    padding: 1px 12px 6px 12px;
-    border: #18233c 2px solid;
-}
-/* 
-========================================================
-Cost cards
-========================================================
-*/
-.Cost-cards
-{
-    height: 100%;
-    width: 100%;
-    border: 2px solid black;
-
-    display: grid;
-    grid-template-columns: 2fr 1.5fr 1fr;
-    grid-template-rows: 3fr 1fr;
-    gap: 12px;
-    padding: 12px;
-}
-
-/* 
-========================================================
- all three columns
-========================================================
-*/
-.cost
-{
-        border: #18233c 2px solid;
-}
-
-/* 
-========================================================
-cost Amount
-========================================================
-*/
-
-
-
-/* 
-========================================================
-cost breakdown
-========================================================
-*/
-.material-breakdown{
-    width:100%;
+    border:1px solid #e6e9ef;
     background:#fff;
-    border:1px solid #e5e7eb;
-    border-radius:12px;
-}
+    border-radius:8px;
+    height:32px;
+    padding:0 10px 0 6px;
 
-.material-header{
-    padding:20px 24px;
-    border-bottom:1px solid #e5e7eb;
-}
-
-.material-header h5{
-    margin:0;
-    font-size:20px;
+    font-size:12.5px;
     font-weight:600;
+    color:#3a4256;
+    cursor:pointer;
+}
+
+.project-switcher-btn img{
+    width:22px;
+    height:22px;
+    border-radius:6px;
+    object-fit:cover;
+}
+
+.project-switcher-btn:hover{ background:#f5f7fb; }
+
+.estimator-page{
+    width:100%;
+    padding:18px 20px;
+}
+
+/* Toolbar */
+
+.estimator-toolbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:12px;
+    margin-bottom:16px;
+}
+
+.estimator-tabs{
+    display:flex;
+    gap:24px;
+    border-bottom:2px solid #eef0f5;
+}
+
+.est-tab{
+    height:38px;
+    border:none;
+    background:none;
+    border-bottom:2px solid transparent;
+    margin-bottom:-2px;
+
+    font-size:13.5px;
+    font-weight:600;
+    color:#8a93a8;
+    cursor:pointer;
+}
+
+.est-tab:hover{ color:#3a4256; }
+
+.est-tab.active{
+    color:#2f6feb;
+    border-bottom-color:#2f6feb;
+}
+
+.estimator-actions{
+    display:flex;
+    gap:10px;
+}
+
+.est-btn{
+    height:38px;
+    padding:0 16px;
+    border:1px solid #e6e9ef;
+    border-radius:8px;
+    background:#fff;
+    font-size:13px;
+    font-weight:600;
+    color:#3a4256;
+    cursor:pointer;
+    white-space:nowrap;
+}
+
+.est-btn:hover{ background:#f5f7fb; }
+
+.est-btn.primary{
+    background:#2f6feb;
+    border-color:#2f6feb;
+    color:#fff;
+}
+
+.est-btn.primary:hover{ background:#255fd1; }
+
+/* Grid */
+
+.estimator-grid{
+    display:grid;
+    grid-template-columns:1.5fr 1.3fr 1fr;
+    gap:16px;
+    align-items:start;
+}
+
+.estimator-col-left,
+.estimator-col-mid,
+.estimator-col-right{
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+}
+
+.est-card{
+    background:#fff;
+    border:1px solid #e6e9ef;
+    border-radius:12px;
+    padding:18px;
+}
+
+.est-card h5{
+    margin:0 0 4px;
+    font-size:14px;
+    font-weight:700;
     color:#18233c;
 }
 
-.material-content{
+.est-card-header{
     display:flex;
     justify-content:space-between;
     align-items:flex-start;
-    padding:24px;
+    margin-bottom:12px;
 }
 
-.material-left p{
+.est-card-header span{
+    font-size:11.5px;
+    color:#8a93a8;
+}
+
+.info-dot{
+    font-size:11px;
+    color:#c7cede;
+}
+
+/* Estimated cost + sparkline */
+
+.est-cost-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:16px;
+    margin-bottom:18px;
+    flex-wrap:wrap;
+}
+
+.est-total-cost{
     margin:0;
-    color:#6b7280;
-}
-
-.material-left h2{
-    margin-top:10px;
-    font-size:42px;
+    font-size:32px;
+    font-weight:800;
     color:#18233c;
+    display:flex;
+    align-items:center;
+    gap:8px;
 }
 
-.material-right{
+.est-arrow{
+    font-size:18px;
+    color:#c7cede;
+}
+
+.est-delta{
+    display:inline-block;
+    margin-top:6px;
+    font-size:12px;
+    font-weight:700;
+    padding:4px 10px;
+    border-radius:999px;
+}
+
+.est-delta.down{
+    color:#1e9e4d;
+    background:#e9f9ef;
+}
+
+.est-sparkline{
+    flex:1;
+    min-width:180px;
+    max-width:260px;
+}
+
+.est-sparkline svg{
+    width:100%;
+    height:60px;
+}
+
+.est-sparkline-labels{
+    display:flex;
+    justify-content:space-between;
+    font-size:9.5px;
+    color:#8a93a8;
+    margin-top:4px;
+}
+
+/* Breakdown table */
+
+.est-breakdown-table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.est-breakdown-table thead th{
+    text-align:left;
+    padding:10px 8px;
+    font-size:10.5px;
+    font-weight:700;
+    letter-spacing:.03em;
+    color:#8a93a8;
+    border-bottom:1px solid #eef0f5;
+}
+
+.est-breakdown-table thead th:not(:first-child),
+.est-breakdown-table tbody td:not(:first-child),
+.est-breakdown-table tfoot td:not(:first-child){
     text-align:right;
 }
 
-.material-right h4{
+.est-breakdown-table tbody td{
+    padding:11px 8px;
+    font-size:13px;
+    color:#3a4256;
+    border-bottom:1px solid #f2f4f8;
+}
+
+.est-row-icon{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:22px;
+    height:22px;
+    border-radius:6px;
+    background:#eaf1ff;
+    font-size:11px;
+    margin-right:8px;
+}
+
+.est-row-active td:first-child{
+    font-weight:700;
+    color:#2f6feb;
+}
+
+.est-breakdown-table tfoot td{
+    padding:13px 8px;
+    font-size:13px;
+    font-weight:800;
+    color:#18233c;
+    border-top:2px solid #e6e9ef;
+}
+
+/* Notes */
+
+.est-notes{
+    width:100%;
+    border:1px solid #e6e9ef;
+    border-radius:8px;
+    padding:10px 12px;
+    font-family:inherit;
+    font-size:13px;
+    resize:vertical;
+    outline:none;
+}
+
+.est-notes:focus{ border-color:#2f6feb; }
+
+.est-notes-meta{
+    margin:10px 0 0;
+    font-size:11px;
+    color:#8a93a8;
+}
+
+/* Material breakdown (middle col) */
+
+.est-material-total{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    margin-bottom:16px;
+}
+
+.est-material-total span{
+    font-size:12px;
+    color:#8a93a8;
+}
+
+.est-material-total h2{
+    margin:6px 0 0;
+    font-size:26px;
+    font-weight:800;
+    color:#18233c;
+}
+
+.est-material-delta{
+    text-align:right;
+}
+
+.est-material-delta strong{
+    display:block;
+    font-size:13px;
+    color:#1e9e4d;
+}
+
+.est-material-delta span{
+    font-size:10.5px;
+    color:#8a93a8;
+}
+
+.est-material-list{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.est-material-row{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.est-material-row img{
+    width:40px;
+    height:40px;
+    border-radius:8px;
+    object-fit:cover;
+    flex-shrink:0;
+}
+
+.est-material-info{
+    flex:1;
+    min-width:0;
+}
+
+.est-material-info h6{
     margin:0;
-    color:#22c55e;
+    font-size:12.5px;
+    font-weight:700;
+    color:#22304d;
 }
 
-.material-right p{
-    margin-top:8px;
-    color:#6b7280;
+.est-material-info span{
+    font-size:11.5px;
+    color:#8a93a8;
 }
 
-/* 
-========================================================
-cost health
-========================================================
-*/
-.Cost-cards:nth-child(3)
-{
-    grid-row: 1/3;
+.est-qty-stepper{
+    display:flex;
+    align-items:center;
+    gap:8px;
+
+    border:1px solid #e6e9ef;
+    border-radius:8px;
+    padding:5px 8px;
+
+    font-size:11.5px;
+    font-weight:600;
+    color:#3a4256;
+    white-space:nowrap;
 }
 
-
-td
-{
-    border: 2px solid black;
+.est-qty-stepper button{
+    border:none;
+    background:none;
+    font-size:13px;
+    font-weight:700;
+    color:#2f6feb;
+    cursor:pointer;
+    width:16px;
 }
 
-/* 
-========================================================
-cost health
-========================================================
-*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.est-material-footer{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:18px;
+    padding-top:16px;
+    border-top:1px solid #eef0f5;
+}
+
+.est-add-material-btn{
+    border:none;
+    background:none;
+    font-size:12.5px;
+    font-weight:700;
+    color:#2f6feb;
+    cursor:pointer;
+}
+
+.est-update-prices-btn{
+    height:32px;
+    padding:0 12px;
+    border:1px solid #e6e9ef;
+    border-radius:8px;
+    background:#fff;
+    font-size:12px;
+    font-weight:600;
+    color:#3a4256;
+    cursor:pointer;
+}
+
+.est-update-prices-btn:hover{ background:#f5f7fb; }
+
+.est-disclaimer{
+    display:flex;
+    gap:10px;
+    align-items:flex-start;
+
+    background:#f5f7fb;
+    border-radius:12px;
+    padding:14px;
+}
+
+.est-disclaimer span{ font-size:14px; }
+
+.est-disclaimer strong{
+    display:block;
+    font-size:12.5px;
+    color:#22304d;
+    margin-bottom:2px;
+}
+
+.est-disclaimer p{
+    margin:0;
+    font-size:11.5px;
+    color:#8a93a8;
+    line-height:1.5;
+}
+
+/* Right column: budget health / savings / risk */
+
+.est-gauge-wrap{
+    display:flex;
+    justify-content:center;
+    margin:8px 0 0;
+}
+
+.est-gauge-status{
+    text-align:center;
+    margin-top:4px;
+}
+
+.est-gauge-status strong{
+    display:block;
+    font-size:19px;
+    font-weight:800;
+    color:#22a447;
+}
+
+.est-gauge-status p{
+    margin:4px 0 0;
+    font-size:11.5px;
+    color:#8a93a8;
+}
+
+.est-stat-row span{
+    font-size:12px;
+    font-weight:600;
+    color:#8a93a8;
+}
+
+.est-stat-value{
+    margin:10px 0 4px;
+    font-size:26px;
+    font-weight:800;
+}
+
+.est-stat-value.green{ color:#1e9e4d; }
+
+.est-stat-sub{
+    margin:0;
+    font-size:11.5px;
+    color:#8a93a8;
+}
+
+.est-budget-summary{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.est-summary-row{
+    display:flex;
+    justify-content:space-between;
+    font-size:12.5px;
+}
+
+.est-summary-row span{ color:#8a93a8; }
+.est-summary-row strong{ color:#22304d; font-weight:700; }
+.est-summary-row strong.green{ color:#1e9e4d; }
+
+.est-risk-btn{
+    width:100%;
+    height:42px;
+    border:none;
+    border-radius:10px;
+    background:#2f6feb;
+    color:#fff;
+    font-size:13px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.est-risk-btn:hover{ background:#255fd1; }
+
+/* =========================================================
+   Responsive
+========================================================= */
+
+@media(max-width:1300px){
+    .estimator-grid{
+        grid-template-columns:1fr 1fr;
+    }
+    .estimator-col-right{
+        grid-column:1/3;
+        flex-direction:row;
+        flex-wrap:wrap;
+    }
+    .estimator-col-right .est-card{
+        flex:1;
+        min-width:220px;
+    }
+    .estimator-col-right .est-risk-btn{
+        flex-basis:100%;
+    }
+}
+
+@media(max-width:900px){
+    .estimator-grid{
+        grid-template-columns:1fr;
+    }
+    .estimator-col-right{
+        grid-column:auto;
+    }
+}

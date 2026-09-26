@@ -1,545 +1,671 @@
-#ai
-{
+/* =========================================================
+   AI Design studio toolbar
+========================================================= */
 
-    height: 100%;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    gap: 12px;
-    padding:12px;
-}
-/*
-========================================================== 
-ai- chat container
-========================================================== 
-*/
-.ai-chat
-{
-
+.ai-toolbar{
     display:flex;
-
-    flex-direction:column;
-
-    flex:2.5;
-
-    min-width:0;
-
-    border:1px solid #ddd;
-
-    border-radius:10px;
-
-    background:white;
-
-}
-
-.chat-body{
-
-    flex:1;
-
-    overflow-y:auto;
-
-    padding:20px;
-
-}
-.ask{
-
-    display:flex;
-
     align-items:center;
+    gap:16px;
+    padding:14px 16px;
+    border-bottom:1px solid #e6e9ef;
+    flex-wrap:wrap;
+}
 
+.Back-2-Projects{
+    height:36px;
+    padding:0 14px;
+    border:1px solid #e6e9ef;
+    border-radius:8px;
+    background:#fff;
+    font-size:13px;
+    font-weight:600;
+    color:#3a4256;
+    cursor:pointer;
+}
+
+.Back-2-Projects:hover{ background:#f5f7fb; }
+
+.ai-project-title{
+    flex:1;
+    min-width:120px;
+    font-size:17px;
+    font-weight:700;
+    color:#18233c;
+    outline:none;
+    padding:6px 10px;
+    border-radius:8px;
+}
+
+.ai-project-title:focus{ background:#f5f7fb; }
+
+.ai-toolbar-actions{
+    display:flex;
+    gap:10px;
+}
+
+.ai-tool-btn{
+    height:36px;
+    padding:0 16px;
+    border:1px solid #e6e9ef;
+    border-radius:8px;
+    background:#fff;
+    font-size:13px;
+    font-weight:600;
+    color:#3a4256;
+    cursor:pointer;
+    white-space:nowrap;
+}
+
+.ai-tool-btn:hover{ background:#f5f7fb; }
+
+.ai-tool-btn.primary{
+    background:#2f6feb;
+    border-color:#2f6feb;
+    color:#fff;
+}
+
+.ai-tool-btn.primary:hover{ background:#255fd1; }
+
+/* =========================================================
+   Studio grid (4 columns)
+========================================================= */
+
+.ai-studio{
+    display:grid;
+    grid-template-columns:250px 1fr 300px 300px;
+    gap:14px;
+    padding:14px 16px;
+    align-items:start;
+}
+
+.ai-describe-col,
+.ai-suggest-chat-col,
+.ai-preview-col{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+}
+
+/* Describe / design options */
+
+.describe-card,
+.design-options-card{
+    background:#fff;
+    border:1px solid #e6e9ef;
+    border-radius:12px;
+    padding:16px;
+}
+
+.describe-card h5,
+.design-options-card h5{
+    margin:0 0 10px;
+    font-size:14px;
+    font-weight:700;
+    color:#18233c;
+}
+
+.describe-card p{
+    margin:0 0 12px;
+    font-size:12.5px;
+    line-height:1.5;
+    color:#5d6778;
+}
+
+.describe-meta{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-bottom:14px;
+}
+
+.describe-meta span{
+    font-size:11px;
+    font-weight:600;
+    color:#3a4256;
+    background:#f5f7fb;
+    border-radius:999px;
+    padding:5px 10px;
+}
+
+.modify-brief-btn,
+.view-all-options-btn{
+    width:100%;
+    height:36px;
+    border:1px solid #e6e9ef;
+    border-radius:8px;
+    background:#fff;
+    font-size:12.5px;
+    font-weight:700;
+    color:#2f6feb;
+    cursor:pointer;
+}
+
+.modify-brief-btn:hover,
+.view-all-options-btn:hover{ background:#f5f7fb; }
+
+.design-options-list{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    margin-bottom:12px;
+}
+
+.design-option{
+    display:flex;
+    align-items:center;
     gap:10px;
 
-    margin:15px;
-
-    padding:12px;
-
-    border:1px solid #ddd;
-
-    border-radius:14px;
-
-}
-
-.ask textarea{
-
-    flex:1;
-
-    border:none;
-
-    outline:none;
-
-    resize:none;
-
-    background:transparent;
-
-    font-size:15px;
-
-}
-
-.ask button{
-
-    width:40px;
-
-    height:40px;
-
-    border:none;
-
-    border-radius:50%;
-
-    cursor:pointer;
-
-}
-
-
-
-.ai-chat footer{
-
-    text-align:center;
-
-    padding:10px;
-
-    font-size:12px;
-
-    color:#888;
-
-}
-
-
-#ai{
-
-    display:flex;
-
-    gap:20px;
-
     width:100%;
-
-    height:calc(100vh - 120px);
-
-}
-
-
-/*
-========================================================== 
-ai-Preview
-========================================================== 
-*/
-.ai-Preview
-{
-    display:flex;
-
-    flex-direction:column;
-
-    gap:18px;
-
-    flex:1;
-
-    min-width:340px;
-
-    overflow-y:auto;
-
-}
-/*
-========================================================== 
-Live-Preview
-========================================================== 
-*/
-.ai-Preview>*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial, Helvetica, sans-serif;
-}
-
-body
-{
-    background:#f5f7fb;
-    padding:20px;
-
-}
-
-/*=========================================================
-AI Preview
-=========================================================*/
-
-.ai-Preview
-{
-    display:flex;
-    flex-direction:column;
-    gap:20px;
-
-    width:100%;
-    max-width:450px;
-
-}
-
-/*=========================================================
-Shared Card Style
-=========================================================*/
-
-.card
-{
-    background:white;
-
-    border-radius:12px;
-
-    padding:18px;
-
-    box-shadow:0 2px 8px rgba(0,0,0,.08);
-
-}
-
-/*=========================================================
-Card Header
-=========================================================*/
-
-.card-header
-{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-
-    margin-bottom:15px;
-
-}
-
-.card-header h3
-{
-    font-size:18px;
-
-}
-
-.card-header button
-{
-    border:1px solid #ddd;
-    background:white;
-    padding:8px 14px;
-    border-radius:8px;
-    cursor:pointer;
-
-}
-
-/*=========================================================
-Live Preview
-=========================================================*/
-
-.Preview-area
-{
-    width:100%;
-
-    aspect-ratio:16/9;
-
+    padding:8px;
+    border:2px solid #e6e9ef;
     border-radius:10px;
+    background:#fff;
+    cursor:pointer;
+}
 
-    background:#e9eef5;
+.design-option.active{
+    border-color:#2f6feb;
+    background:#f2f7ff;
+}
 
+.option-thumb{
+    width:42px;
+    height:32px;
+    border-radius:6px;
+    background:#eef1f7 url("https://picsum.photos/seed/design-thumb/80/60") center/cover;
+    flex-shrink:0;
+}
+
+.option-label{
+    flex:1;
+    text-align:left;
+    font-size:12.5px;
+    font-weight:600;
+    color:#22304d;
+}
+
+.option-check{
+    width:18px;
+    height:18px;
+    border-radius:50%;
+    background:#2f6feb;
+    color:#fff;
+    font-size:11px;
     display:flex;
+    align-items:center;
     justify-content:center;
-    align-items:center;
+}
 
-    color:#888;
+/* =========================================================
+   Floor plan viewer
+========================================================= */
 
+.ai-floorplan-col{
+    display:flex;
+    flex-direction:column;
+
+    background:#fff;
+    border:1px solid #e6e9ef;
+    border-radius:12px;
     overflow:hidden;
-
 }
 
-.Preview-area img
-{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-
-}
-
-/*=========================================================
-Project Summary
-=========================================================*/
-
-.summary-grid
-{
-    display:grid;
-
-    grid-template-columns:repeat(2,1fr);
-
-    gap:15px;
-
-}
-
-.summary-item
-{
-    border:1px solid #ececec;
-
-    border-radius:10px;
-
-    padding:15px;
-
-}
-
-.summary-item h4
-{
-    color:#777;
-
-    font-size:13px;
-
-    margin-bottom:8px;
-
-}
-
-.summary-item p
-{
-    font-size:18px;
-
-    font-weight:bold;
-
-}
-
-/*=========================================================
-Cost Breakdown
-=========================================================*/
-
-.breakdown
-{
+.floorplan-toolbar{
     display:flex;
-
-    gap:20px;
-
-    align-items:center;
-
-}
-
-.chart
-{
-    width:150px;
-    height:150px;
-
-    border-radius:50%;
-
-    background:
-    conic-gradient(
-    #4169e1 0% 32%,
-    #00b894 32% 50%,
-    orange 50% 70%,
-    hotpink 70% 91%,
-    violet 91% 100%
-    );
-
-    position:relative;
-
-}
-
-.chart::after
-{
-    content:"";
-
-    position:absolute;
-
-    width:80px;
-    height:80px;
-
-    background:white;
-
-    border-radius:50%;
-
-    top:50%;
-    left:50%;
-
-    transform:translate(-50%,-50%);
-
-}
-
-.legend
-{
-    flex:1;
-}
-
-.legend p
-{
-    display:flex;
-
     justify-content:space-between;
+    align-items:center;
+    padding:10px 14px;
+    border-bottom:1px solid #e6e9ef;
+}
 
-    margin-bottom:12px;
+.floorplan-toggle{
+    display:flex;
+    background:#f5f7fb;
+    border-radius:8px;
+    padding:3px;
+}
 
+.fp-toggle{
+    border:none;
+    background:none;
+    padding:6px 14px;
+    border-radius:6px;
+    font-size:12.5px;
+    font-weight:700;
+    color:#5d6778;
+    cursor:pointer;
+}
+
+.fp-toggle.active{
+    background:#fff;
+    color:#2f6feb;
+    box-shadow:0 1px 3px rgba(0,0,0,.08);
+}
+
+.floorplan-zoom{
+    display:flex;
+    gap:8px;
+}
+
+.floorplan-zoom button{
+    width:30px;
+    height:30px;
+    border:1px solid #e6e9ef;
+    border-radius:7px;
+    background:#fff;
+    cursor:pointer;
+    font-size:13px;
+    color:#3a4256;
+}
+
+.floorplan-zoom button:hover{ background:#f5f7fb; }
+
+.floorplan-canvas{
+    flex:1;
+    min-height:320px;
+    background:#f7f8fb;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:12px;
+}
+
+.floorplan-canvas svg{
+    width:100%;
+    max-width:560px;
+    height:auto;
+}
+
+.floorplan-caption{
+    margin:0;
+    padding:10px 14px;
+    font-size:11.5px;
+    color:#8a93a8;
+    border-top:1px solid #e6e9ef;
+    text-align:center;
+}
+
+/* =========================================================
+   Suggestions + chat column
+========================================================= */
+
+.suggestions-card{
+    background:#fff;
+    border:1px solid #e6e9ef;
+    border-radius:12px;
+    padding:16px;
+}
+
+.card-title-row h5{
+    margin:0 0 12px;
+    font-size:14px;
+    font-weight:700;
+    color:#18233c;
+}
+
+.suggest-list{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    margin-bottom:10px;
+}
+
+.suggest-row{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    width:100%;
+    padding:10px;
+    border:1px solid #eef0f5;
+    border-radius:10px;
+    background:#fff;
+    cursor:pointer;
+    text-align:left;
+}
+
+.suggest-row:hover{ background:#f8faff; }
+
+.suggest-icon{
+    flex-shrink:0;
+    width:30px;
+    height:30px;
+    border-radius:8px;
+    background:#eaf1ff;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
     font-size:14px;
 }
 
-/*=========================================================
-Suggestions
-=========================================================*/
+.suggest-text{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+    min-width:0;
+}
 
-.suggestion
-{
-    border:1px solid #ececec;
+.suggest-text strong{
+    font-size:12.5px;
+    color:#22304d;
+}
 
+.suggest-text small{
+    font-size:11px;
+    color:#8a93a8;
+    line-height:1.4;
+}
+
+.suggest-chevron{
+    flex-shrink:0;
+    color:#c7cede;
+    font-size:16px;
+}
+
+.see-more-btn{
+    width:100%;
+    height:34px;
+    border:none;
+    background:none;
+    font-size:12.5px;
+    font-weight:700;
+    color:#2f6feb;
+    cursor:pointer;
+}
+
+/* Chat card (reuses .ai-chat, .chat-body, .ask from before, resized) */
+
+.ai-suggest-chat-col .ai-chat{
+    flex:1;
+    min-height:280px;
+
+    border:1px solid #e6e9ef;
+    border-radius:12px;
+    background:#fff;
+
+    display:flex;
+    flex-direction:column;
+    overflow:hidden;
+}
+
+.chat-title-row{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding:12px 14px;
+    border-bottom:1px solid #e6e9ef;
+}
+
+.chat-title-row h5{
+    margin:0;
+    font-size:13px;
+    font-weight:700;
+    color:#18233c;
+}
+
+.chat-bubble{
+    max-width:85%;
+    padding:9px 12px;
+    border-radius:12px;
+    font-size:12px;
+    line-height:1.4;
+    margin-bottom:8px;
+}
+
+.chat-bubble.bot{
+    background:#f5f7fb;
+    color:#3a4256;
+    border-bottom-left-radius:2px;
+}
+
+.chat-bubble.user{
+    margin-left:auto;
+    background:#2f6feb;
+    color:#fff;
+    border-bottom-right-radius:2px;
+}
+
+/* =========================================================
+   Live preview / overview / cost breakdown column
+========================================================= */
+
+.ai-preview-col .card{
+    background:#fff;
+    border:1px solid #e6e9ef;
+    border-radius:12px;
+    padding:16px;
+}
+
+.Preview-area img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
     border-radius:10px;
+}
 
+.ai-tip-box{
+    display:flex;
+    gap:10px;
+    align-items:flex-start;
+
+    background:#fff8e8;
+    border:1px solid #f6e2ad;
+    border-radius:12px;
+    padding:14px;
+}
+
+.ai-tip-box span{
+    font-size:16px;
+    flex-shrink:0;
+}
+
+.ai-tip-box p{
+    margin:0;
+    font-size:12px;
+    line-height:1.5;
+    color:#7a5c0e;
+}
+
+.ai-tip-box strong{
+    color:#5a4308;
+}
+
+/* =========================================================
+   What's Next steps
+========================================================= */
+
+.ai-next-steps{
+    margin:6px 16px 20px;
+    padding:18px;
+    background:#f5f7fb;
+    border-radius:14px;
+}
+
+.next-steps-title h5{
+    margin:0;
+    font-size:14px;
+    font-weight:700;
+    color:#18233c;
+}
+
+.next-steps-title p{
+    margin:4px 0 16px;
+    font-size:12px;
+    color:#8a93a8;
+}
+
+.next-steps-row{
+    display:flex;
+    align-items:stretch;
+    gap:10px;
+    overflow-x:auto;
+}
+
+.next-step{
+    flex:1;
+    min-width:160px;
+
+    background:#fff;
+    border:1px solid #e6e9ef;
+    border-radius:12px;
     padding:14px;
 
-    margin-bottom:12px;
-
+    display:flex;
+    flex-direction:column;
+    gap:6px;
 }
 
-.suggestion:last-child
-{
-    margin-bottom:0;
+.next-step .step-icon{
+    width:30px;
+    height:30px;
+    border-radius:8px;
+    background:#eaf1ff;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:14px;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.next-step strong{
+    font-size:12.5px;
+    color:#18233c;
+}
+
+.next-step small{
+    font-size:11px;
+    color:#8a93a8;
+    line-height:1.4;
+}
+
+.step-arrow{
+    flex-shrink:0;
+    align-self:center;
+    font-size:16px;
+    color:#c7cede;
+}
+
+/* =========================================================
+   Shared card / summary / breakdown styling
+   (kept for Live Preview, Project Overview, Cost Breakdown)
+========================================================= */
+
+.card-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:14px;
+}
+
+.card-header h3{
+    font-size:14px;
+    font-weight:700;
+    color:#18233c;
+}
+
+.card-header button{
+    border:1px solid #e6e9ef;
+    background:#fff;
+    padding:6px 12px;
+    border-radius:8px;
+    font-size:11.5px;
+    cursor:pointer;
+}
+
+.Preview-area{
+    width:100%;
+    aspect-ratio:16/9;
+    border-radius:10px;
+    background:#e9eef5;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:#888;
+    overflow:hidden;
+}
+
+.summary-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+}
+
+.summary-item{
+    border:1px solid #ececec;
+    border-radius:10px;
+    padding:12px;
+}
+
+.summary-item h4{
+    color:#8a93a8;
+    font-size:11px;
+    margin-bottom:6px;
+}
+
+.summary-item p{
+    font-size:15px;
+    font-weight:700;
+    color:#18233c;
+}
+
+.breakdown{
+    display:flex;
+    gap:16px;
+    align-items:center;
+}
+
+.chart{
+    width:100px;
+    height:100px;
+    flex-shrink:0;
+    border-radius:50%;
+    background:conic-gradient(
+        #4169e1 0% 15%,
+        #00b894 15% 40%,
+        orange 40% 60%,
+        hotpink 60% 83%,
+        violet 83% 100%
+    );
+    position:relative;
+}
+
+.chart::after{
+    content:"";
+    position:absolute;
+    width:56px;
+    height:56px;
+    background:#fff;
+    border-radius:50%;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+}
+
+.legend{ flex:1; }
+
+.legend p{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:8px;
+    font-size:12px;
+    color:#3a4256;
+}
+
+/* =========================================================
+   Responsive
+========================================================= */
+
+@media(max-width:1300px){
+    .ai-studio{
+        grid-template-columns:1fr 1fr;
+    }
+}
+
+@media(max-width:800px){
+    .ai-studio{
+        grid-template-columns:1fr;
+    }
+}

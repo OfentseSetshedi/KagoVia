@@ -962,24 +962,73 @@
 
     <script>
 
+    // ---------------------------------------------------------------
+    // Sidebar resize + collapse, with the width/collapsed state saved
+    // to localStorage so it survives a page refresh instead of
+    // snapping back to the default every time.
+    // ---------------------------------------------------------------
+
     const sidebar = document.querySelector(".dashboard-navbar");
     const resizer = document.getElementById("sidebarResizer");
+
+    const COLLAPSE_THRESHOLD = 85;
+    const COLLAPSED_WIDTH = 72;
+    const MIN_WIDTH = 70;
+    const MAX_WIDTH = 300;
+    const DEFAULT_WIDTH = 220;
+
+    function applyWidth(width, persist) {
+
+        const collapsed = width <= COLLAPSE_THRESHOLD;
+
+        if (collapsed) {
+            sidebar.style.width = COLLAPSED_WIDTH + "px";
+            sidebar.classList.add("collapsed");
+        } else {
+            sidebar.style.width = width + "px";
+            sidebar.classList.remove("collapsed");
+        }
+
+        if (persist) {
+            localStorage.setItem("kb-sidebar-width", collapsed ? COLLAPSED_WIDTH : width);
+            localStorage.setItem("kb-sidebar-collapsed", collapsed ? "1" : "0");
+        }
+    }
+
+    // Restore whatever width/collapsed state was saved last time,
+    // so refreshing the page keeps the sidebar the way it was left.
+    (function restoreSidebar() {
+
+        const savedCollapsed = localStorage.getItem("kb-sidebar-collapsed") === "1";
+        const savedWidth = parseInt(localStorage.getItem("kb-sidebar-width"), 10);
+
+        if (savedCollapsed) {
+            applyWidth(COLLAPSED_WIDTH, false);
+        } else if (!isNaN(savedWidth)) {
+            applyWidth(savedWidth, false);
+        } else {
+            applyWidth(DEFAULT_WIDTH, false);
+        }
+
+    })();
 
     let dragging = false;
 
     resizer.addEventListener("mousedown", () => {
-
         dragging = true;
-
         document.body.style.cursor = "ew-resize";
-
     });
 
     document.addEventListener("mouseup", () => {
 
-        dragging = false;
+        if (!dragging) return;
 
+        dragging = false;
         document.body.style.cursor = "default";
+
+        // Lock in and save whatever width the drag ended on.
+        const finalWidth = parseInt(sidebar.style.width, 10);
+        applyWidth(finalWidth, true);
 
     });
 
@@ -989,23 +1038,10 @@
 
         let width = e.clientX;
 
-        if(width < 70)
-            width = 70;
+        if(width < MIN_WIDTH) width = MIN_WIDTH;
+        if(width > MAX_WIDTH) width = MAX_WIDTH;
 
-        if(width > 320)
-            width = 320;
-
-        sidebar.style.width = width + "px";
-
-        if(width <= 85){
-
-            sidebar.classList.add("collapsed");
-
-        }else{
-
-            sidebar.classList.remove("collapsed");
-
-        }
+        applyWidth(width, false);
 
     });
 

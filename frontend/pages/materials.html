@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Materials</title>
     <link rel="stylesheet" href="../styles/dash.css">
+    <link rel="stylesheet" href="../styles/materials.css">
 </head>
 <body>
     <section class="dashboard">
@@ -26,14 +27,14 @@
                         Dashboard
                     </button>
                 </a>
-                
+
                 <a href="projects.html" class="nav-link">
                     <button id="Projects">
                         <img src="../assets/icons/Projects.svg" alt="Projects" width="17" height="17">
                         Projects
                     </button>
                 </a>
-                
+
                 <a href="ai-design.html" class="nav-link">
                     <button id="AI-Design">
                         <img src="../assets/icons/Design.svg" alt="AI Design" width="17" height="17">
@@ -41,43 +42,43 @@
                     </button>
                 </a>
 
-                <a href="materials.html" class="nav-link">
+                <a href="materials.html" class="nav-link active">
                     <button id="Material">
                         <img src="../assets/icons/Material.svg" alt="Materials" width="17" height="17">
                         Material
                     </button>
                 </a>
-                
+
                 <a href="estimator.html" class="nav-link">
                     <button id="Cost-Estimator">
                         <img src="../assets/icons/Cost.svg" alt="Cost Estimator" width="17" height="17">
                         Cost Estimator
                     </button>
                 </a>
-                
+
                 <a href="reports.html" class="nav-link">
                     <button id="Reports">
                         <img src="../assets/icons/Reports.svg" alt="Reports" width="17" height="17">
                         Reports
                     </button>
                 </a>
-                
+
                 <a href="Supplier.html" class="nav-link">
                     <button id="Suppliers">
                         <img src="../assets/icons/Suppliers.svg" alt="Suppliers" width="17" height="17">
                         Suppliers
                     </button>
                 </a>
-                
+
                 <a href="teams.html" class="nav-link">
                     <button id="Teams">
                         <img src="../assets/icons/Teams.svg" alt="Teams" width="17" height="17">
                         Teams
                     </button>
                 </a>
-                
+
                 <a href="settings.html" class="nav-link">
-                    <button id="Settings"> 
+                    <button id="Settings">
                         <img src="../assets/icons/settings-icon.svg" alt="Settings" width="17" height="17">
                         Settings
                     </button>
@@ -123,7 +124,7 @@
                         <span class="search-icon">
                             <img src="../assets/icons/search.svg" alt="" width="27" height="27">
                         </span>
-                        <input type="search" placeholder="Search projects...">
+                        <input type="search" placeholder="Search materials, categories, suppliers...">
                     </div>
 
                     <button class="notification-btn">
@@ -156,81 +157,325 @@
                             </a>
                         </div>
                     </div>
-                    
+
                     <style>
                         .dropdown {
-                            position:absolute;
-                            top:70px;
-                            right:24px;
-                            width:260px;
-                            background:#fff;
-                            border-radius:12px;
+                            position:absolute; top:70px; right:24px; width:260px;
+                            background:#fff; border-radius:12px;
                             box-shadow:0 12px 35px rgba(0,0,0,.12);
-                            opacity:0;
-                            visibility:hidden;
-                            transform:translateY(10px);
-                            transition:.25s;
-                            overflow:hidden;
-                            z-index:1000;
+                            opacity:0; visibility:hidden; transform:translateY(10px);
+                            transition:.25s; overflow:hidden; z-index:1000;
                         }
-
                         .dropdown::before {
-                            position: absolute;
-                            top:-8px; 
-                            right:25px;
-                            width:16px;
-                            height:16px;
-                            background:white;
-                            transform:rotate(45deg);
+                            position: absolute; top:-8px; right:25px;
+                            width:16px; height:16px; background:white; transform:rotate(45deg);
                         }
-
-                        .profile-menu {
-                            margin-right: 12px;
-                            border: #222 solid 2px;
-                        }
-
-                        .profile-menu:hover .dropdown {
-                            opacity:1;
-                            visibility:visible;
-                            transform:translateY(0);
-                        }
-
-                        .profile-menu:hover .dropdown-arrow {
-                            transform:rotate(180deg);
-                        }
-
+                        .profile-menu { margin-right: 12px; border: #222 solid 2px; }
+                        .profile-menu:hover .dropdown { opacity:1; visibility:visible; transform:translateY(0); }
+                        .profile-menu:hover .dropdown-arrow { transform:rotate(180deg); }
                         .dropdown a {
-                            display:flex;
-                            align-items:center;
-                            gap:14px;
-                            padding:18px 24px;
-                            font-size:18px;
-                            color:#222;
-                            text-decoration:none;
-                            border-bottom:1px solid #efefef;
-                            transition:.2s;
+                            display:flex; align-items:center; gap:14px;
+                            padding:18px 24px; font-size:18px; color:#222;
+                            text-decoration:none; border-bottom:1px solid #efefef; transition:.2s;
                         }
-
-                        .dropdown a:last-child {
-                            border:none;
-                        }
-
-                        .dropdown a:hover {
-                            background:#f3f7ff;
-                            color:#2458ff;
-                        }
+                        .dropdown a:last-child { border:none; }
+                        .dropdown a:hover { background:#f3f7ff; color:#2458ff; }
                     </style>
                 </div>
             </header>
 
             <div class="main-card">
-                <div class="Ongoing-Projects">
-                    <div>Materials</div>
+                <div class="materials-page">
+
+                    <div class="materials-heading">
+                        <div>
+                            <h1>Materials</h1>
+                            <p>Manage and track all construction materials.</p>
+                        </div>
+                        <button class="Add-Material-btn" id="addMaterialBtn">+ Add Material</button>
+                    </div>
+
+                    <div class="materials-stats">
+                        <div class="stat-card">
+                            <span class="stat-icon blue">📦</span>
+                            <div>
+                                <h4>Total Materials</h4>
+                                <h2>156</h2>
+                                <p>All materials in catalog</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-icon green">💰</span>
+                            <div>
+                                <h4>Total Value (Est.)</h4>
+                                <h2>R2,458,750</h2>
+                                <p>Estimated value of all materials</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-icon orange">⚠️</span>
+                            <div>
+                                <h4>Low Stock Items</h4>
+                                <h2>8</h2>
+                                <p>Materials that need reorder</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-icon red">⛔</span>
+                            <div>
+                                <h4>Out of Stock</h4>
+                                <h2>2</h2>
+                                <p>Currently unavailable</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-icon purple">🗂️</span>
+                            <div>
+                                <h4>Categories</h4>
+                                <h2>12</h2>
+                                <p>Material categories</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="materials-toolbar">
+                        <div class="materials-tabs" id="materialsTabs">
+                            <button class="mat-tab active" data-tab="all">All Materials</button>
+                            <button class="mat-tab" data-tab="low">Low Stock</button>
+                            <button class="mat-tab" data-tab="out">Out of Stock</button>
+                            <button class="mat-tab" data-tab="recent">Recently Added</button>
+                            <button class="mat-tab" data-tab="fav">Favourites</button>
+                        </div>
+                        <div class="materials-actions">
+                            <button>Filter ▾</button>
+                            <button>Category ▾</button>
+                            <button>Export ▾</button>
+                        </div>
+                    </div>
+
+                    <div class="materials-table-wrap">
+                        <table class="materials-table">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Material Name</th>
+                                    <th>Category</th>
+                                    <th>Supplier</th>
+                                    <th>Unit</th>
+                                    <th>Unit Price (Excl. VAT)</th>
+                                    <th>Stock</th>
+                                    <th>Total Value</th>
+                                    <th>Last Updated</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="materialsTableBody">
+
+                                <tr data-status="in">
+                                    <td><button class="fav-star">☆</button></td>
+                                    <td>
+                                        <div class="mat-name-cell">
+                                            <img src="https://picsum.photos/seed/mat-cement/60/60" alt="PPC Cement 50kg">
+                                            <div><h5>PPC Cement 50kg</h5><span>MAT-0001</span></div>
+                                        </div>
+                                    </td>
+                                    <td><span class="mat-category-pill cat-cement">Cement</span></td>
+                                    <td>
+                                        <div class="mat-supplier-cell"><span class="supplier-badge" style="background:#2f6feb;">B</span>Builders Warehouse</div>
+                                    </td>
+                                    <td>Bag</td>
+                                    <td>R89.50</td>
+                                    <td>
+                                        <div class="stock-cell stock-in"><span class="stock-dot"></span>450 In Stock</div>
+                                    </td>
+                                    <td>R40,275.00</td>
+                                    <td>22 May 2024<span class="stock-label">by Ariun Mehta</span></td>
+                                    <td class="mat-actions-cell"><button title="Edit">✎</button><button title="View">👁</button><button title="More">⋮</button></td>
+                                </tr>
+
+                                <tr data-status="in">
+                                    <td><button class="fav-star">☆</button></td>
+                                    <td>
+                                        <div class="mat-name-cell">
+                                            <img src="https://picsum.photos/seed/mat-bricks/60/60" alt="Clay Bricks">
+                                            <div><h5>Clay Bricks (Per 1000)</h5><span>MAT-0002</span></div>
+                                        </div>
+                                    </td>
+                                    <td><span class="mat-category-pill cat-bricks">Bricks</span></td>
+                                    <td>
+                                        <div class="mat-supplier-cell"><span class="supplier-badge" style="background:#e5484d;">C</span>Cashbuild</div>
+                                    </td>
+                                    <td>Pack</td>
+                                    <td>R2,350.00</td>
+                                    <td>
+                                        <div class="stock-cell stock-in"><span class="stock-dot"></span>120 In Stock</div>
+                                    </td>
+                                    <td>R282,000.00</td>
+                                    <td>21 May 2024<span class="stock-label">by Priya Shah</span></td>
+                                    <td class="mat-actions-cell"><button title="Edit">✎</button><button title="View">👁</button><button title="More">⋮</button></td>
+                                </tr>
+
+                                <tr data-status="low">
+                                    <td><button class="fav-star">☆</button></td>
+                                    <td>
+                                        <div class="mat-name-cell">
+                                            <img src="https://picsum.photos/seed/mat-timber/60/60" alt="SABS Timber">
+                                            <div><h5>SABS Timber 38x114mm</h5><span>MAT-0003</span></div>
+                                        </div>
+                                    </td>
+                                    <td><span class="mat-category-pill cat-timber">Timber</span></td>
+                                    <td>
+                                        <div class="mat-supplier-cell"><span class="supplier-badge" style="background:#f2994a;">M</span>Mica Hardware</div>
+                                    </td>
+                                    <td>Piece</td>
+                                    <td>R48.90</td>
+                                    <td>
+                                        <div class="stock-cell stock-low"><span class="stock-dot"></span>35 Low Stock</div>
+                                    </td>
+                                    <td>R1,711.50</td>
+                                    <td>20 May 2024<span class="stock-label">by Ariun Mehta</span></td>
+                                    <td class="mat-actions-cell"><button title="Edit">✎</button><button title="View">👁</button><button title="More">⋮</button></td>
+                                </tr>
+
+                                <tr data-status="in">
+                                    <td><button class="fav-star">☆</button></td>
+                                    <td>
+                                        <div class="mat-name-cell">
+                                            <img src="https://picsum.photos/seed/mat-roof/60/60" alt="Roof Sheeting">
+                                            <div><h5>Roof Sheeting IBR 0.4mm</h5><span>MAT-0004</span></div>
+                                        </div>
+                                    </td>
+                                    <td><span class="mat-category-pill cat-roofing">Roofing</span></td>
+                                    <td>
+                                        <div class="mat-supplier-cell"><span class="supplier-badge" style="background:#f5a524;">Bu</span>BUCO</div>
+                                    </td>
+                                    <td>Sheet</td>
+                                    <td>R129.00</td>
+                                    <td>
+                                        <div class="stock-cell stock-in"><span class="stock-dot"></span>200 In Stock</div>
+                                    </td>
+                                    <td>R25,800.00</td>
+                                    <td>20 May 2024<span class="stock-label">by John D.</span></td>
+                                    <td class="mat-actions-cell"><button title="Edit">✎</button><button title="View">👁</button><button title="More">⋮</button></td>
+                                </tr>
+
+                                <tr data-status="out">
+                                    <td><button class="fav-star">☆</button></td>
+                                    <td>
+                                        <div class="mat-name-cell">
+                                            <img src="https://picsum.photos/seed/mat-sand/60/60" alt="River Sand">
+                                            <div><h5>River Sand</h5><span>MAT-0005</span></div>
+                                        </div>
+                                    </td>
+                                    <td><span class="mat-category-pill cat-aggregates">Aggregates</span></td>
+                                    <td>
+                                        <div class="mat-supplier-cell"><span class="supplier-badge" style="background:#8a3ff0;">L</span>Local Supplier</div>
+                                    </td>
+                                    <td>m³</td>
+                                    <td>R380.00</td>
+                                    <td>
+                                        <div class="stock-cell stock-out"><span class="stock-dot"></span>0 Out of Stock</div>
+                                    </td>
+                                    <td>R0.00</td>
+                                    <td>19 May 2024<span class="stock-label">by Priya Shah</span></td>
+                                    <td class="mat-actions-cell"><button title="Edit">✎</button><button title="View">👁</button><button title="More">⋮</button></td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <footer class="materials-footer">
+                        <span>Showing 1 to 5 of 156 materials</span>
+                        <div class="mat-pagination">
+                            <button>‹</button>
+                            <button class="active">1</button>
+                            <button>2</button>
+                            <button>3</button>
+                            <button>…</button>
+                            <button>32</button>
+                            <button>›</button>
+                        </div>
+                    </footer>
+
                 </div>
-                <!-- Add your materials content here -->
-            </div> 
+            </div>
+
         </main>
     </section>
+
+    <!-- Add Material Modal -->
+    <div class="modal-overlay" id="addMaterialModal">
+        <div class="modal-box">
+            <h3>Add New Material</h3>
+
+            <div class="modal-field-row">
+                <div class="modal-field">
+                    <label>Material Name</label>
+                    <input type="text" placeholder="Enter material name">
+                </div>
+                <div class="modal-field">
+                    <label>Category</label>
+                    <select>
+                        <option>Cement</option>
+                        <option>Bricks</option>
+                        <option>Timber</option>
+                        <option>Roofing</option>
+                        <option>Aggregates</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="modal-field-row">
+                <div class="modal-field">
+                    <label>Supplier</label>
+                    <select>
+                        <option>Builders Warehouse</option>
+                        <option>Cashbuild</option>
+                        <option>Mica Hardware</option>
+                        <option>BUCO</option>
+                        <option>Local Supplier</option>
+                    </select>
+                </div>
+                <div class="modal-field">
+                    <label>Unit</label>
+                    <select>
+                        <option>Bag</option>
+                        <option>Pack</option>
+                        <option>Piece</option>
+                        <option>Sheet</option>
+                        <option>m³</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="modal-field-row">
+                <div class="modal-field">
+                    <label>Unit Price (Excl. VAT)</label>
+                    <input type="number" placeholder="0.00">
+                </div>
+                <div class="modal-field">
+                    <label>Initial Stock Quantity</label>
+                    <input type="number" placeholder="0">
+                </div>
+            </div>
+
+            <div class="modal-field">
+                <label>Reorder Level</label>
+                <input type="number" placeholder="0">
+            </div>
+
+            <div class="modal-field">
+                <label>Notes (optional)</label>
+                <textarea rows="3" placeholder="Add any additional notes..."></textarea>
+            </div>
+
+            <div class="modal-actions">
+                <button class="modal-cancel-btn" id="cancelAddMaterial">Cancel</button>
+                <button class="modal-submit-btn" id="saveAddMaterial">Save Material</button>
+            </div>
+        </div>
+    </div>
 
     <script>
         const sidebar = document.querySelector(".dashboard-navbar");
@@ -259,6 +504,41 @@
                 sidebar.classList.remove("collapsed");
             }
         });
+
+        // Tabs
+        const tabs = document.querySelectorAll(".mat-tab");
+        const rows = document.querySelectorAll("#materialsTableBody tr");
+
+        tabs.forEach(tab => {
+            tab.addEventListener("click", () => {
+                tabs.forEach(t => t.classList.remove("active"));
+                tab.classList.add("active");
+
+                const filter = tab.dataset.tab;
+                rows.forEach(row => {
+                    if (filter === "all" || filter === "recent" || filter === "fav") {
+                        row.style.display = "";
+                    } else {
+                        row.style.display = row.dataset.status === filter ? "" : "none";
+                    }
+                });
+            });
+        });
+
+        // Favourite star toggle
+        document.querySelectorAll(".fav-star").forEach(star => {
+            star.addEventListener("click", () => {
+                star.textContent = star.textContent === "☆" ? "★" : "☆";
+                star.classList.toggle("is-fav");
+            });
+        });
+
+        // Add Material modal
+        const addModal = document.getElementById("addMaterialModal");
+        document.getElementById("addMaterialBtn").addEventListener("click", () => addModal.classList.add("open"));
+        document.getElementById("cancelAddMaterial").addEventListener("click", () => addModal.classList.remove("open"));
+        document.getElementById("saveAddMaterial").addEventListener("click", () => addModal.classList.remove("open"));
+        addModal.addEventListener("click", (e) => { if (e.target === addModal) addModal.classList.remove("open"); });
     </script>
 </body>
 </html>

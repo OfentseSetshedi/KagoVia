@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications</title>
+    <link rel="stylesheet" href="../styles/dash.css">
+    <link rel="stylesheet" href="../styles/notifications.css">
+</head>
+<body>
+    <section class="dashboard">
+
+        <aside class="dashboard-navbar">
+            <div class="upper-sidebar">
+                <a href="dashboard.html">
+                    <div id="logo"><span class="sidebar-icon">
+                        <img src="../assets/images/home-hero.png" alt="logo-image" width="30" height="30">
+                    </span>logo</div>
+                </a>
+
+                <a href="dashboard.html" class="nav-link">
+                    <button id="dashboard">
+                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.6"/><rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.6"/><rect x="3" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.6"/><rect x="14" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.6"/></svg>
+                        Dashboard
+                    </button>
+                </a>
+                <a href="projects.html" class="nav-link"><button id="Projects"><img src="../assets/icons/Projects.svg" alt="Projects" width="17" height="17">Projects</button></a>
+                <a href="ai-design.html" class="nav-link"><button id="AI-Design"><img src="../assets/icons/Design.svg" alt="AI Design" width="17" height="17">AI Design</button></a>
+                <a href="materials.html" class="nav-link"><button id="Material"><img src="../assets/icons/Material.svg" alt="Materials" width="17" height="17">Material</button></a>
+                <a href="estimator.html" class="nav-link"><button id="Cost-Estimator"><img src="../assets/icons/Cost.svg" alt="Cost Estimator" width="17" height="17">Cost Estimator</button></a>
+                <a href="reports.html" class="nav-link"><button id="Reports"><img src="../assets/icons/Reports.svg" alt="Reports" width="17" height="17">Reports</button></a>
+                <a href="Supplier.html" class="nav-link"><button id="Suppliers"><img src="../assets/icons/Suppliers.svg" alt="Suppliers" width="17" height="17">Suppliers</button></a>
+                <a href="teams.html" class="nav-link"><button id="Teams"><img src="../assets/icons/Teams.svg" alt="Teams" width="17" height="17">Team</button></a>
+                <a href="settings.html" class="nav-link active"><button id="Settings"><img src="../assets/icons/settings-icon.svg" alt="Settings" width="17" height="17">Settings</button></a>
+            </div>
+
+            <div class="lower-sidebar">
+                <button id="need-help">
+                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none">
+                    <path d="M4 15V12C4 7.58172 7.58172 4 12 4C16.4183 4 20 7.58172 20 12V15" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                    <rect x="2.5" y="13.5" width="4" height="6" rx="1.8" stroke="currentColor" stroke-width="1.6"/>
+                    <rect x="17.5" y="13.5" width="4" height="6" rx="1.8" stroke="currentColor" stroke-width="1.6"/>
+                    <path d="M20 19.5V20.2C20 21.7464 18.7464 23 17.2 23H14.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                    <circle cx="13" cy="23" r="1.4" stroke="currentColor" stroke-width="1.6"/>
+                    </svg>
+                    need help
+                </button>
+                <button id="Premium-plan">
+                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none">
+                    <path d="M4 9L8 12L12 5L16 12L20 9L18.5 18H5.5L4 9Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                    <path d="M5.5 18H18.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                    <circle cx="4" cy="8" r="1.3" stroke="currentColor" stroke-width="1.4"/>
+                    <circle cx="12" cy="4" r="1.3" stroke="currentColor" stroke-width="1.4"/>
+                    <circle cx="20" cy="8" r="1.3" stroke="currentColor" stroke-width="1.4"/>
+                    </svg>
+                    Premium plan
+                </button>
+            </div>
+        </aside>
+
+        <div class="sidebar-resizer" id="sidebarResizer"></div>
+
+        <main class="dashboard-overview">
+
+            <header class="dashboard-header">
+                <div class="header-left">
+                    <h2>Notifications</h2>
+                    <p class="header-subtitle">Stay updated with important activities and alerts.</p>
+                </div>
+
+                <div class="header-right">
+                    <div class="search-container">
+                        <span class="search-icon"><img src="../assets/icons/search.svg" alt="" width="27" height="27"></span>
+                        <input type="search" placeholder="Search projects, suppliers, materials...">
+                    </div>
+
+                    <div class="notif-menu">
+                        <button class="notification-btn" id="bellBtn">
+                            <img src="../assets/icons/notification.svg" alt="" width="25" height="25">
+                            <span class="notification-count">5</span>
+                        </button>
+
+                        <div class="notif-dropdown" id="notifDropdown">
+                            <div class="notif-dropdown-header">
+                                <h4>Notifications</h4>
+                                <a href="#" id="markAllReadBell">Mark all as read</a>
+                            </div>
+
+                            <div class="notif-dropdown-item unread">
+                                <span class="notif-dd-icon blue">👥</span>
+                                <div><strong>Sarah Parker invited you to join</strong><span>Modern Family Home project</span></div>
+                                <div class="notif-dd-meta"><span>5m ago</span><span class="notif-dd-dot"></span></div>
+                            </div>
+                            <div class="notif-dropdown-item unread">
+                                <span class="notif-dd-icon green">📄</span>
+                                <div><strong>New estimate completed for</strong><span>Beach House Project</span></div>
+                                <div class="notif-dd-meta"><span>1h ago</span><span class="notif-dd-dot"></span></div>
+                            </div>
+                            <div class="notif-dropdown-item unread">
+                                <span class="notif-dd-icon orange">📦</span>
+                                <div><strong>Material price updated</strong><span>Cement (32.5N) increased by 5.2%</span></div>
+                                <div class="notif-dd-meta"><span>2h ago</span><span class="notif-dd-dot"></span></div>
+                            </div>
+                            <div class="notif-dropdown-item">
+                                <span class="notif-dd-icon purple">💬</span>
+                                <div><strong>Michael Johnson mentioned you</strong><span>@Arjun Please review the plan</span></div>
+                                <div class="notif-dd-meta"><span>3h ago</span></div>
+                            </div>
+                            <div class="notif-dropdown-item">
+                                <span class="notif-dd-icon blue">📁</span>
+                                <div><strong>Project "Office Building" status</strong><span>changed to In Progress</span></div>
+                                <div class="notif-dd-meta"><span>5h ago</span></div>
+                            </div>
+
+                            <a href="#" class="notif-dropdown-footer">View all notifications ›</a>
+                        </div>
+                    </div>
+
+                    <div class="profile-menu">
+                        <div class="profile-section">
+                            <img src="images/profile.jpg" alt="Profile Picture">
+                            <div class="user-details"><h4>Arjun Mehta</h4><p>Estimator</p></div>
+                            <span class="dropdown-arrow">▼</span>
+                        </div>
+                        <div class="dropdown">
+                            <a href="#">👤 My Profile</a>
+                            <a href="settings.html">⚙️ Settings</a>
+                            <a href="notifications.html">🔔 Notifications</a>
+                            <a href="projects.html">📁 Projects</a>
+                            <a href="index.html">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>
+                                </svg>
+                                Logout
+                            </a>
+                        </div>
+                    </div>
+
+                    <style>
+                        .dropdown { position:absolute; top:70px; right:24px; width:260px; background:#fff; border-radius:12px; box-shadow:0 12px 35px rgba(0,0,0,.12); opacity:0; visibility:hidden; transform:translateY(10px); transition:.25s; overflow:hidden; z-index:1000; }
+                        .dropdown::before { position:absolute; top:-8px; right:25px; width:16px; height:16px; background:white; transform:rotate(45deg); }
+                        .profile-menu { margin-right:12px; border:#222 solid 2px; }
+                        .profile-menu:hover .dropdown { opacity:1; visibility:visible; transform:translateY(0); }
+                        .profile-menu:hover .dropdown-arrow { transform:rotate(180deg); }
+                        .dropdown a { display:flex; align-items:center; gap:14px; padding:18px 24px; font-size:18px; color:#222; text-decoration:none; border-bottom:1px solid #efefef; transition:.2s; }
+                        .dropdown a:last-child { border:none; }
+                        .dropdown a:hover { background:#f3f7ff; color:#2458ff; }
+                    </style>
+                </div>
+            </header>
+
+            <div class="main-card">
+                <div class="notif-page">
+
+                    <div class="notif-toolbar">
+                        <div class="notif-tabs" id="notifTabs">
+                            <button class="notif-tab active" data-tab="all">All (24)</button>
+                            <button class="notif-tab" data-tab="unread">🔔 Unread (5)</button>
+                            <button class="notif-tab" data-tab="mentions">@ Mentions (2)</button>
+                            <button class="notif-tab" data-tab="alerts">⚠ Alerts (3)</button>
+                            <button class="notif-tab" data-tab="system">System (8)</button>
+                            <button class="notif-tab" data-tab="updates">Project Updates (6)</button>
+                        </div>
+                        <div class="notif-toolbar-actions">
+                            <button id="markAllReadPage">✓ Mark all as read</button>
+                            <button id="openFilter">⚲ Filter</button>
+                        </div>
+                    </div>
+
+                    <div class="notif-content-grid">
+
+                        <div class="notif-list-col">
+
+                            <div class="notif-item" data-detail="material">
+                                <span class="notif-item-icon blue">👥</span>
+                                <div class="notif-item-body">
+                                    <strong>Sarah Parker invited you to join the project "Modern Family Home"</strong>
+                                    <p>You have been added as an Estimator.</p>
+                                </div>
+                                <div class="notif-item-meta"><span>5 minutes ago</span><span class="notif-unread-dot"></span></div>
+                            </div>
+
+                            <div class="notif-item" data-detail="estimate">
+                                <span class="notif-item-icon green">📄</span>
+                                <div class="notif-item-body">
+                                    <strong>New estimate completed for "Beach House Project"</strong>
+                                    <p>The total estimated cost is R2,345,678. <a href="estimator.html">View estimate ›</a></p>
+                                </div>
+                                <div class="notif-item-meta"><span>1 hour ago</span></div>
+                            </div>
+
+                            <div class="notif-item" data-detail="material">
+                                <span class="notif-item-icon orange">📦</span>
+                                <div class="notif-item-body">
+                                    <strong>Material price updated</strong>
+                                    <p>Cement (32.5N) price increased by 5.2% from BuildMart.</p>
+                                </div>
+                                <div class="notif-item-meta"><span>2 hours ago</span><span class="notif-unread-dot"></span></div>
+                            </div>
+
+                            <div class="notif-item" data-detail="mention">
+                                <span class="notif-item-icon purple">💬</span>
+                                <div class="notif-item-body">
+                                    <strong>Michael Johnson mentioned you in a comment</strong>
+                                    <p>@Arjun Please review the updated floor plan.</p>
+                                </div>
+                                <div class="notif-item-meta"><span>3 hours ago</span><span class="notif-unread-dot"></span></div>
+                            </div>
+
+                            <div class="notif-item" data-detail="project">
+                                <span class="notif-item-icon blue">📁</span>
+                                <div class="notif-item-body">
+                                    <strong>Project "Office Building" status changed to In Progress</strong>
+                                    <p>The project has moved to the execution phase.</p>
+                                </div>
+                                <div class="notif-item-meta"><span>5 hours ago</span></div>
+                            </div>
+
+                            <div class="notif-item" data-detail="supplier">
+                                <span class="notif-item-icon green">🚚</span>
+                                <div class="notif-item-body">
+                                    <strong>New supplier "BuildIt Hardware" added</strong>
+                                    <p>You can now source materials from BuildIt Hardware.</p>
+                                </div>
+                                <div class="notif-item-meta"><span>1 day ago</span></div>
+                            </div>
+
+                            <div class="notif-item" data-detail="system">
+                                <span class="notif-item-icon gray">🔔</span>
+                                <div class="notif-item-body">
+                                    <strong>System maintenance scheduled</strong>
+                                    <p>The system will be under maintenance on 18 May 2024 from 02:00 AM to 04:00 AM.</p>
+                                </div>
+                                <div class="notif-item-meta"><span>2 days ago</span></div>
+                            </div>
+
+                            <div class="notif-item" data-detail="material">
+                                <span class="notif-item-icon orange">👤</span>
+                                <div class="notif-item-body">
+                                    <strong>Lisa Wang updated material prices for Gauteng region</strong>
+                                    <p>125 materials were updated.</p>
+                                </div>
+                                <div class="notif-item-meta"><span>2 days ago</span></div>
+                            </div>
+
+                            <div class="notif-pagination">
+                                <span>Showing 1 to 8 of 24 notifications</span>
+                                <div class="notif-pagination-btns">
+                                    <button>‹</button>
+                                    <button class="active">1</button>
+                                    <button>2</button>
+                                    <button>3</button>
+                                    <button>›</button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="notif-side-col">
+
+                            <div class="notif-side-card">
+                                <h5>Notification Summary</h5>
+                                <div class="notif-summary-grid">
+                                    <div class="notif-summary-cell">
+                                        <strong>24</strong>
+                                        <span>Total Notifications</span>
+                                        <small class="green">+12% this week</small>
+                                    </div>
+                                    <div class="notif-summary-cell">
+                                        <strong>5</strong>
+                                        <span>Unread</span>
+                                        <small class="link">View unread</small>
+                                    </div>
+                                    <div class="notif-summary-cell">
+                                        <strong class="orange-text">3</strong>
+                                        <span>Alerts</span>
+                                        <small class="orange-text">Requires attention</small>
+                                    </div>
+                                    <div class="notif-summary-cell">
+                                        <strong>2</strong>
+                                        <span>Mentions</span>
+                                        <small>You were mentioned</small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="notif-side-card">
+                                <h5>Notification Preferences</h5>
+                                <p class="settings-card-sub">Manage what notifications you receive.</p>
+
+                                <div class="notif-pref-row" id="openEmailPrefs">
+                                    <span class="notif-pref-icon">✉</span>
+                                    <div><strong>Email Notifications</strong><span>Manage email preferences</span></div>
+                                    <span class="chevron">›</span>
+                                </div>
+                                <div class="notif-pref-row">
+                                    <span class="notif-pref-icon">🔔</span>
+                                    <div><strong>In-App Notifications</strong><span>Manage in-app preferences</span></div>
+                                    <span class="chevron">›</span>
+                                </div>
+                                <div class="notif-pref-row">
+                                    <span class="notif-pref-icon">📲</span>
+                                    <div><strong>Push Notifications</strong><span>Manage push preferences</span></div>
+                                    <span class="chevron">›</span>
+                                </div>
+
+                                <a class="settings-link-row" href="#">Manage Preferences ›</a>
+                            </div>
+
+                            <button class="clear-all-btn" id="openClearAll">🗑 Clear All Notifications</button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </main>
+    </section>
+
+    <!-- View Full Notification modal -->
+    <div class="modal-overlay" id="detailModal">
+        <div class="modal-box notif-modal-box">
+            <div class="notif-modal-header">
+                <h3><span class="notif-modal-icon">📦</span> Material Price Updated</h3>
+                <button class="modal-close-x" data-close="detailModal">✕</button>
+            </div>
+
+            <div class="notif-detail-rows">
+                <div class="notif-detail-row"><span>Cement (32.5N) price has been updated.</span></div>
+                <div class="notif-detail-row"><span>Supplier</span><strong>BuildMart</strong></div>
+                <div class="notif-detail-row"><span>Old Price</span><strong>R78.50 / bag</strong></div>
+                <div class="notif-detail-row"><span>New Price</span><strong>R82.60 / bag</strong></div>
+                <div class="notif-detail-row"><span>Change</span><strong class="orange-text">+5.2%</strong></div>
+                <div class="notif-detail-row"><span>Effective Date</span><strong>15 May 2024, 10:30 AM</strong></div>
+                <div class="notif-detail-row"><span>Region</span><strong>Gauteng</strong></div>
+            </div>
+
+            <p class="notif-detail-warning">This change may affect your active estimates.</p>
+
+            <button class="modal-submit-btn full" data-close="detailModal">Got it</button>
+        </div>
+    </div>
+
+    <!-- Mark as Read/Unread options modal -->
+    <div class="modal-overlay" id="optionsModal">
+        <div class="modal-box notif-options-box">
+            <div class="notif-modal-header">
+                <h3>Notification Options</h3>
+                <button class="modal-close-x" data-close="optionsModal">✕</button>
+            </div>
+
+            <p class="notif-options-preview"><strong>Material price updated</strong><br>Cement (32.5N) price increased by 5.2%.</p>
+
+            <button class="notif-option-row"><span>✉</span><div><strong>Mark as Unread</strong><span>Keep this notification in unread list</span></div></button>
+            <button class="notif-option-row"><span>🔗</span><div><strong>Copy Link</strong><span>Copy link to this notification</span></div></button>
+            <button class="notif-option-row danger"><span>🗑</span><div><strong>Delete</strong><span>Remove this notification</span></div></button>
+        </div>
+    </div>
+
+    <!-- Filter Notifications modal -->
+    <div class="modal-overlay" id="filterModal">
+        <div class="modal-box">
+            <div class="notif-modal-header">
+                <h3>Filter Notifications</h3>
+                <button class="modal-close-x" data-close="filterModal">✕</button>
+            </div>
+
+            <div class="modal-field">
+                <label>Type</label>
+                <select><option>All Types</option><option>Mentions</option><option>Alerts</option><option>System</option><option>Project Updates</option></select>
+            </div>
+            <div class="modal-field">
+                <label>Status</label>
+                <select><option>All Status</option><option>Unread</option><option>Read</option></select>
+            </div>
+            <div class="modal-field">
+                <label>Date Range</label>
+                <input type="text" placeholder="Select date range">
+            </div>
+
+            <button class="modal-submit-btn full" data-close="filterModal">Apply Filters</button>
+            <button class="modal-text-btn full" data-close="filterModal">Clear Filters</button>
+        </div>
+    </div>
+
+    <!-- Notification Preferences modal -->
+    <div class="modal-overlay" id="prefsModal">
+        <div class="modal-box">
+            <div class="notif-modal-header">
+                <h3>Email Notifications</h3>
+                <button class="modal-close-x" data-close="prefsModal">✕</button>
+            </div>
+            <p class="settings-card-sub">Choose what email notifications to receive.</p>
+
+            <div class="toggle-row">
+                <div><strong>Project Updates</strong><span>New updates on projects</span></div>
+                <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+            </div>
+            <div class="toggle-row">
+                <div><strong>Estimate Updates</strong><span>Changes in estimates</span></div>
+                <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+            </div>
+            <div class="toggle-row">
+                <div><strong>Material Price Alerts</strong><span>Price changes and updates</span></div>
+                <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+            </div>
+            <div class="toggle-row">
+                <div><strong>Team Activities</strong><span>Invites, mentions and comments</span></div>
+                <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+            </div>
+            <div class="toggle-row">
+                <div><strong>System Alerts</strong><span>Important system notifications</span></div>
+                <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+            </div>
+
+            <div class="modal-actions">
+                <button class="modal-cancel-btn" data-close="prefsModal">Cancel</button>
+                <button class="modal-submit-btn" data-close="prefsModal">Save Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Clear All Notifications confirmation -->
+    <div class="modal-overlay" id="clearAllModal">
+        <div class="modal-box clear-all-box">
+            <div class="clear-all-icon">🗑</div>
+            <h3>Clear All Notifications?</h3>
+            <p>This will remove all notifications from your list.</p>
+            <p class="notif-detail-warning">This action cannot be undone.</p>
+
+            <div class="modal-actions center">
+                <button class="modal-cancel-btn" data-close="clearAllModal">Cancel</button>
+                <button class="modal-danger-btn" id="confirmClearAll">Clear All</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const sidebar = document.querySelector(".dashboard-navbar");
+        const resizer = document.getElementById("sidebarResizer");
+        let dragging = false;
+
+        resizer.addEventListener("mousedown", () => { dragging = true; document.body.style.cursor = "ew-resize"; });
+        document.addEventListener("mouseup", () => { dragging = false; document.body.style.cursor = "default"; });
+        document.addEventListener("mousemove",(e)=>{
+            if(!dragging) return;
+            let width = e.clientX;
+            if(width < 70) width = 70;
+            if(width > 320) width = 320;
+            sidebar.style.width = width + "px";
+            sidebar.classList.toggle("collapsed", width <= 85);
+        });
+
+        // Bell dropdown
+        const bellBtn = document.getElementById("bellBtn");
+        const notifDropdown = document.getElementById("notifDropdown");
+        bellBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            notifDropdown.classList.toggle("open");
+        });
+        document.addEventListener("click", (e) => {
+            if (!notifDropdown.contains(e.target) && e.target !== bellBtn) {
+                notifDropdown.classList.remove("open");
+            }
+        });
+
+        // Notif tabs
+        document.querySelectorAll(".notif-tab").forEach(tab => {
+            tab.addEventListener("click", () => {
+                document.querySelectorAll(".notif-tab").forEach(t => t.classList.remove("active"));
+                tab.classList.add("active");
+            });
+        });
+
+        // Mark all as read: drop the unread dots
+        function markAllRead(){
+            document.querySelectorAll(".notif-unread-dot, .notif-dd-dot").forEach(d => d.remove());
+        }
+        document.getElementById("markAllReadPage").addEventListener("click", markAllRead);
+        document.getElementById("markAllReadBell").addEventListener("click", (e) => { e.preventDefault(); markAllRead(); });
+
+        // Generic modal open/close
+        function openModal(id){ document.getElementById(id).classList.add("open"); }
+        function closeModal(id){ document.getElementById(id).classList.remove("open"); }
+
+        document.querySelectorAll(".modal-overlay").forEach(overlay => {
+            overlay.addEventListener("click", (e) => { if (e.target === overlay) overlay.classList.remove("open"); });
+        });
+        document.querySelectorAll("[data-close]").forEach(btn => {
+            btn.addEventListener("click", () => closeModal(btn.dataset.close));
+        });
+
+        // Clicking a notification opens the detail modal
+        document.querySelectorAll(".notif-item").forEach(item => {
+            item.addEventListener("click", () => openModal("detailModal"));
+        });
+
+        // Filter / preferences / clear-all triggers
+        document.getElementById("openFilter").addEventListener("click", () => openModal("filterModal"));
+        document.getElementById("openEmailPrefs").addEventListener("click", () => openModal("prefsModal"));
+        document.getElementById("openClearAll").addEventListener("click", () => openModal("clearAllModal"));
+
+        document.getElementById("confirmClearAll").addEventListener("click", () => {
+            document.querySelectorAll(".notif-item").forEach(el => el.remove());
+            closeModal("clearAllModal");
+        });
+    </script>
+</body>
+</html>

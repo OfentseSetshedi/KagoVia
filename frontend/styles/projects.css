@@ -1,446 +1,1473 @@
 /*  ======================================================================================
-    Projects container
+    Projects page layout
     ======================================================================================*/
 
-.Projects-filter-btn
+.projects-page
 {
-    border: 1px solid rgb(230, 9, 9);
-    width: 100%;
-    height: 30px;
-    display: flex;
-    justify-content: space-between;
-    padding: 12px;
-    margin: 0%;
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+    padding:18px;
+}
+
+.projects-page *{
+    box-sizing:border-box;
 }
 
 /* ======================================================================================
-    Projects header buttons
+    Filter bar
     ======================================================================================*/
-.Projects-filter-btn button
+
+.Projects-filter-bar
 {
-    width: auto;
-    height: 30px;
-    border-radius: 4px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    flex-wrap:wrap;
 }
+
+.Projects-filters
+{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.filter-dropdown
+{
+    position:relative;
+}
+
+.filter-btn
+{
+    display:flex;
+    align-items:center;
+    gap:8px;
+
+    height:38px;
+    padding:0 14px;
+
+    background:#fff;
+    border:1px solid #e0e4ee;
+    border-radius:8px;
+
+    font-size:13px;
+    font-weight:600;
+    color:#3a4256;
+
+    cursor:pointer;
+}
+
+.filter-btn:hover
+{
+    border-color:#c4cbdc;
+}
+
+.filter-btn.has-value
+{
+    color:#2f6feb;
+    border-color:#bcd2fb;
+    background:#f2f7ff;
+}
+
+.filter-menu
+{
+    position:absolute;
+    top:44px;
+    left:0;
+
+    min-width:170px;
+
+    background:#fff;
+    border-radius:10px;
+    border:1px solid #e6e9ef;
+
+    box-shadow:0 12px 30px rgba(20,25,40,.12);
+
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(6px);
+    transition:.15s;
+
+    overflow:hidden;
+    z-index:60;
+}
+
+.filter-menu.open
+{
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0);
+}
+
+.filter-menu button
+{
+    display:block;
+    width:100%;
+
+    padding:10px 14px;
+
+    border:none;
+    background:none;
+    text-align:left;
+
+    font-size:13px;
+    color:#333;
+
+    cursor:pointer;
+}
+
+.filter-menu button:hover
+{
+    background:#f3f7ff;
+    color:#2458ff;
+}
+
+.filter-menu button.selected
+{
+    font-weight:700;
+    color:#2f6feb;
+}
+
+.New-Project-btn
+{
+    display:flex;
+    align-items:center;
+    gap:8px;
+
+    height:38px;
+    padding:0 18px;
+
+    background:#2f6feb;
+    color:#fff;
+
+    border:none;
+    border-radius:8px;
+
+    font-size:13px;
+    font-weight:700;
+
+    cursor:pointer;
+}
+
+.New-Project-btn:hover
+{
+    background:#255fd1;
+}
+
 /* ======================================================================================
     Projects table
     ======================================================================================*/
 
-
-.project-table {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0;
-    border: 2px solid black;
-    border-radius: 6px;
-    overflow: hidden;
-}
-
-/* ==========================
-   TABLE HEADER
-========================== */
-
-thead th {
-    background-color: rgb(236, 236, 236);
-    border-bottom: 2px solid black;
-    text-align: center;
-    padding: 12px 20px;
-    vertical-align: middle;
-}
-
-thead th:first-child {
-    border-top-left-radius: 12px;
-}
-
-thead th:last-child {
-    border-top-right-radius: 12px ;
-}
-
-/* ==========================
-   TABLE BODY
-========================== */
-
-tbody td {
-    text-align: center;
-    padding: 12px 16px;
-    vertical-align: middle;
-    border-bottom: 1px solid black;
-}
-
-tbody tr:last-child td {
-    border-bottom: none;
-}
-/* ==========================
-   PROJECT INFO COLUMN
-========================== */
-
-tbody td:first-child {
-    display: grid;
-    grid-template-columns: 40px 60px 1fr;
-    align-items: center;
-    gap: 12px;
-    text-align: left;
-}
-
-/* ==========================
-   PROJECT ICONS
-========================== */
-
-.project-fav-icon {
-    width: 30px;
-    height: 30px;
-    border: 2px solid black;
-    border-radius: 6px;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.project-picture-icon {
-    width: 50px;
-    height: 50px;
-    border: 2px solid black;
-    border-radius: 8px;
-}
-
-/* ==========================
-   PROJECT NAME
-========================== */
-
-.Project-names h2 {
-    margin: 0;
-    font-size: 16px;
-}
-
-.Project-names p {
-    margin: 4px 0 0;
-    font-size: 14px;
-    color: #666;
-}
-
-/* ==========================
-   STATUS BUTTON
-========================== */
-
-.status-btn {
-    background: #e8f5e9;
-    color: #2e7d32;
-    border: none;
-    border-radius: 12px;
-    padding: 5px 12px;
-    font-weight: 600;
-    cursor: pointer;
-}
-
-/* ==========================
-   PROGRESS BAR
-========================== */
-
-progress {
-    width: 120px;
-    height: 10px;
-}
-
-/* ==========================
-   MORE BUTTON
-========================== */
-
-.more-about-the-project {
-    background: transparent;
-    border: none;
-    font-size: 22px;
-    cursor: pointer;
-}
-
-.status 
-{
-    background: #ffebee;
-    color: #c62828;
-    padding: 4px 10px;
-    border-radius: 12px;
-    font-weight: 600;
-}
-
-
-.status 
-{
-    background: #fff3e0;
-    color: #ef6c00;
-    padding: 4px 10px;
-    border-radius: 12px;
-    font-weight: 600;
-}
-
-
-
-    /*  ======================================================================================
-    Projects details
-    ======================================================================================
-*/
-.Projects-details
-{
-
-    width: 100%;
-}
-
-
 .Projects-current-list
 {
-    width: 100%;
-}
-.item
-{
-     border: 1px solid black;
-     width: 40%;
-     height: 100px;
-     display: flex;
-     flex-wrap: wrap;
-}
-.next-btn-icon
-{
-    width: 30px;
-    height: 30px;
+    width:100%;
+
+    background:#fff;
+    border:1px solid #e6e9ef;
+    border-radius:12px;
+
+    overflow:hidden;
 }
 
-.item >.status
+.project-table
 {
-    width: 50px;
-    height: 25px;
-    border-radius: 16px;
+    width:100%;
+    border-collapse:collapse;
 }
 
-.options-buttons
+.project-table thead th
 {
-    display: flex;
-    justify-self: flex-end;    
-    border: 1px solid black;
-    justify-content: space-between;
-    align-self: flex-start;
-    top: auto;
+    text-align:left;
+    padding:14px 18px;
+
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:.02em;
+    color:#8a93a8;
+
+    border-bottom:1px solid #eef0f5;
 }
+
+.project-table tbody tr
+{
+    cursor:pointer;
+    border-bottom:1px solid #f2f4f8;
+    transition:background .12s ease;
+}
+
+.project-table tbody tr:last-child
+{
+    border-bottom:none;
+}
+
+.project-table tbody tr:hover
+{
+    background:#f8faff;
+}
+
+.project-table tbody tr.active-row
+{
+    background:#f2f7ff;
+}
+
+.project-table td
+{
+    padding:14px 18px;
+    vertical-align:middle;
+    font-size:13px;
+    color:#3a4256;
+}
+
+.no-results-row td
+{
+    text-align:center;
+    color:#8a93a8;
+    padding:30px;
+    cursor:default;
+}
+
+/* Project name cell */
+
+.project-name-cell
+{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.fav-star
+{
+    flex-shrink:0;
+    border:none;
+    background:none;
+    font-size:18px;
+    line-height:1;
+    color:#c7cede;
+    cursor:pointer;
+    width:20px;
+}
+
+.fav-star.is-fav
+{
+    color:#f5b301;
+}
+
+.project-thumb
+{
+    flex-shrink:0;
+    width:46px;
+    height:46px;
+    border-radius:8px;
+    border:1px solid #e2e6ef;
+    background:#f7f8fb;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.project-name-text h4
+{
+    margin:0;
+    font-size:14px;
+    font-weight:700;
+    color:#1d2945;
+}
+
+.project-name-text p
+{
+    margin:3px 0 0;
+    font-size:12px;
+    color:#8a93a8;
+}
+
+/* Status pill */
+
+.status-pill
+{
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+
+    padding:5px 12px;
+    border-radius:999px;
+
+    font-size:12px;
+    font-weight:700;
+}
+
+.status-dot
+{
+    width:7px;
+    height:7px;
+    border-radius:50%;
+}
+
+.status-active{ background:#e9f9ef; color:#1e9e4d; }
+.status-active .status-dot{ background:#1e9e4d; }
+
+.status-draft{ background:#fff3de; color:#c9770c; }
+.status-draft .status-dot{ background:#c9770c; }
+
+.status-approved{ background:#eaf1ff; color:#2f6feb; }
+.status-approved .status-dot{ background:#2f6feb; }
+
+/* Progress cell */
+
+.table-progress
+{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+    min-width:120px;
+}
+
+.table-progress span
+{
+    font-size:12px;
+    font-weight:700;
+    color:#3a4256;
+}
+
+.table-progress progress
+{
+    width:100%;
+    height:6px;
+    appearance:none;
+    -webkit-appearance:none;
+    border:none;
+    border-radius:999px;
+}
+
+.table-progress progress::-webkit-progress-bar{ background:#eceff5; border-radius:999px; }
+.table-progress progress::-webkit-progress-value{ background:#2f6feb; border-radius:999px; }
+.table-progress progress::-moz-progress-bar{ background:#2f6feb; border-radius:999px; }
+
+/* Last updated cell */
+
+.last-updated-cell
+{
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+    font-size:12px;
+}
+
+.lu-date{ color:#3a4256; font-weight:600; }
+.lu-by{ color:#8a93a8; }
+
+/* Row actions (...) */
+
+.row-actions
+{
+    position:relative;
+    text-align:right;
+}
+
+.row-menu-btn
+{
+    border:none;
+    background:none;
+    font-size:18px;
+    color:#8a93a8;
+    cursor:pointer;
+    padding:4px 8px;
+}
+
+.row-menu-btn:hover
+{
+    color:#3a4256;
+}
+
+.row-menu
+{
+    position:absolute;
+    top:34px;
+    right:10px;
+
+    min-width:140px;
+
+    background:#fff;
+    border:1px solid #e6e9ef;
+    border-radius:10px;
+
+    box-shadow:0 12px 30px rgba(20,25,40,.14);
+
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(6px);
+    transition:.15s;
+
+    overflow:hidden;
+    z-index:60;
+}
+
+.row-menu.open
+{
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0);
+}
+
+.row-menu button
+{
+    display:block;
+    width:100%;
+
+    padding:10px 14px;
+
+    border:none;
+    background:none;
+    text-align:left;
+
+    font-size:13px;
+    color:#333;
+
+    cursor:pointer;
+}
+
+.row-menu button:hover
+{
+    background:#f3f7ff;
+    color:#2458ff;
+}
+
+.row-menu button.danger:hover
+{
+    background:#fdeaea;
+    color:#d63a3a;
+}
+
+    /*  ======================================================================================
+    Project details
+    ======================================================================================*/
+
+.Projects-details
+{
+    width:100%;
+
+    background:#fff;
+    border:1px solid #e6e9ef;
+    border-radius:12px;
+
+    overflow:hidden;
+}
+
+.Projects-details-header
+{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:16px;
+
+    padding:20px 22px 14px;
+}
+
+.back-btn
+{
+    flex-shrink:0;
+    width:34px;
+    height:34px;
+
+    border:1px solid #e2e6ef;
+    border-radius:8px;
+    background:#fff;
+
+    font-size:16px;
+    color:#3a4256;
+    cursor:pointer;
+
+    margin-right:6px;
+}
+
+.back-btn:hover
+{
+    background:#f5f7fb;
+}
+
+.detail-header-left
+{
+    display:flex;
+    align-items:flex-start;
+    gap:6px;
+    flex:1;
+    min-width:0;
+}
+
+.detail-title-block
+{
+    min-width:0;
+}
+
+.detail-title-row
+{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+}
+
+.detail-title-row h3
+{
+    margin:0;
+    font-size:19px;
+    font-weight:800;
+    color:#18233c;
+}
+
+.detail-title-block p
+{
+    margin:6px 0 0;
+    font-size:13px;
+    color:#8a93a8;
+}
+
+.detail-header-actions
+{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex-shrink:0;
+}
+
+.detail-btn
+{
+    display:flex;
+    align-items:center;
+    gap:6px;
+
+    height:34px;
+    padding:0 14px;
+
+    border:1px solid #e2e6ef;
+    border-radius:8px;
+    background:#fff;
+
+    font-size:13px;
+    font-weight:600;
+    color:#3a4256;
+
+    cursor:pointer;
+    white-space:nowrap;
+}
+
+.detail-btn:hover
+{
+    background:#f5f7fb;
+}
+
+.detail-btn.icon-only
+{
+    width:34px;
+    padding:0;
+    justify-content:center;
+}
+
+/* Tabs */
 
 .project-nav
 {
-    display: inline;
-    padding: 12px;
+    display:flex;
+    align-items:center;
+    gap:26px;
+
+    padding:0 22px;
+
+    border-bottom:1px solid #eef0f5;
+
+    overflow-x:auto;
+}
+
+.detail-tab
+{
+    height:44px;
+
+    border:none;
+    background:none;
+    border-bottom:2px solid transparent;
+
+    font-size:14px;
+    font-weight:600;
+    color:#8a93a8;
+
+    cursor:pointer;
+    white-space:nowrap;
+}
+
+.detail-tab:hover
+{
+    color:#3a4256;
+}
+
+.detail-tab.active
+{
+    color:#2f6feb;
+    border-bottom-color:#2f6feb;
 }
 
 #project-contents
 {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    padding: 12px;
+    padding:20px 22px 26px;
 }
 
-/* First row */
-.Project-Summary,
-.Project-Overview,
-.Recent-Activity,
-.Budget-Overview
+.detail-panel.is-hidden
 {
-    flex: 1 1 220px;
-    height: 200px;
-    border: 1px solid black;
-    border-radius: 3px;
+    display:none;
 }
 
-/* Second row */
-.Design-Preview
+/* ======================================================================================
+    Overview tab
+    ======================================================================================*/
+
+.overview-grid
 {
-    flex: 3 1 500px;
-    height: 200px;
-    border: 2px solid red;border-radius: 3px;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:16px;
 }
+
+.ov-card
+{
+    border:1px solid #eef0f5;
+    border-radius:12px;
+    padding:18px;
+
+    display:flex;
+    flex-direction:column;
+}
+
+.ov-card h5
+{
+    margin:0 0 14px;
+    font-size:14px;
+    font-weight:700;
+    color:#18233c;
+}
+
+.ov-desc
+{
+    margin:0 0 14px;
+    font-size:13px;
+    line-height:1.6;
+    color:#5d6778;
+}
+
+.ov-rows
+{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    margin-bottom:14px;
+}
+
+.ov-row
+{
+    display:flex;
+    justify-content:space-between;
+    font-size:12.5px;
+}
+
+.ov-row span{ color:#8a93a8; }
+.ov-row strong{ color:#22304d; font-weight:600; }
+
+.ov-link
+{
+    margin-top:auto;
+    font-size:13px;
+    font-weight:700;
+    color:#2f6feb;
+    text-decoration:none;
+}
+
+.ov-link:hover
+{
+    text-decoration:underline;
+}
+
+/* Progress overview donut */
+
+.ov-progress-body
+{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    flex:1;
+}
+
+.donut
+{
+    --pct:0%;
+
+    flex-shrink:0;
+    width:110px;
+    height:110px;
+    border-radius:50%;
+
+    background:conic-gradient(from -90deg, #2F80ED 0%, #9B51E0 var(--pct), #eceff5 var(--pct) 100%);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.donut-center
+{
+    width:74px;
+    height:74px;
+    border-radius:50%;
+    background:#fff;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+}
+
+.donut-center strong
+{
+    font-size:17px;
+    color:#18233c;
+}
+
+.donut-center span
+{
+    font-size:10px;
+    color:#8a93a8;
+}
+
+.ov-legend
+{
+    display:flex;
+    flex-direction:column;
+    gap:9px;
+    flex:1;
+}
+
+.ov-legend > div
+{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:12.5px;
+    color:#3a4256;
+}
+
+.ov-legend strong
+{
+    margin-left:auto;
+    font-weight:700;
+}
+
+/* Budget overview */
+
+.ov-label
+{
+    margin:0 0 4px;
+    font-size:12px;
+    color:#8a93a8;
+}
+
+.ov-total
+{
+    margin:0 0 14px;
+    font-size:26px;
+    font-weight:800;
+    color:#162544;
+}
+
+.ov-budget-split
+{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:10px;
+}
+
+.ov-budget-split div
+{
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+}
+
+.ov-budget-split span
+{
+    font-size:11px;
+    color:#8a93a8;
+}
+
+.ov-budget-split strong
+{
+    font-size:14px;
+    color:#22304d;
+}
+
+.ov-budget-split strong.spent
+{
+    color:#1e9e4d;
+}
+
+.ov-card progress
+{
+    width:100%;
+    height:8px;
+    margin-bottom:14px;
+    appearance:none;
+    -webkit-appearance:none;
+    border:none;
+    border-radius:999px;
+}
+
+.ov-card progress::-webkit-progress-bar{ background:#eceff5; border-radius:999px; }
+.ov-card progress::-webkit-progress-value{ background:#1e9e4d; border-radius:999px; }
+.ov-card progress::-moz-progress-bar{ background:#1e9e4d; border-radius:999px; }
+
+/* Recent activity */
+
+.activity-list
+{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    margin-bottom:14px;
+}
+
+.activity-item
+{
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+}
+
+.activity-dot
+{
+    flex-shrink:0;
+    width:8px;
+    height:8px;
+    margin-top:5px;
+    border-radius:50%;
+    border:2px solid #2f6feb;
+}
+
+.activity-text
+{
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+    flex:1;
+    min-width:0;
+}
+
+.activity-text strong
+{
+    font-size:12.5px;
+    color:#22304d;
+}
+
+.activity-text span
+{
+    font-size:11.5px;
+    color:#8a93a8;
+}
+
+.activity-date
+{
+    flex-shrink:0;
+    font-size:11px;
+    color:#8a93a8;
+    white-space:nowrap;
+}
+
+/* ======================================================================================
+    Design preview + checklist row
+    ======================================================================================*/
+
+.design-checklist-row
+{
+    display:flex;
+    gap:16px;
+    margin-top:18px;
+}
+
+.Project-2d-3d
+{
+    width:66%;
+
+    display:flex;
+    flex-direction:column;
+
+    border:1px solid #eef0f5;
+    border-radius:12px;
+    overflow:hidden;
+}
+
+#p2d-3d-nav
+{
+    height:48px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 16px;
+
+    border-bottom:1px solid #eef0f5;
+}
+
+#p2d-3d-nav h5
+{
+    margin:0;
+    font-size:14px;
+    font-weight:700;
+    color:#18233c;
+}
+
+.preview-tabs
+{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    height:100%;
+}
+
+.preview-tabs button
+{
+    height:100%;
+    border:none;
+    background:none;
+    border-bottom:2px solid transparent;
+
+    font-size:13px;
+    font-weight:600;
+    color:#8a93a8;
+
+    cursor:pointer;
+}
+
+.preview-tabs button:hover
+{
+    color:#2f6feb;
+}
+
+.preview-tabs button.active
+{
+    color:#2f6feb;
+    border-bottom-color:#2f6feb;
+}
+
+.preview-toolbtns
+{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.preview-toolbtns button
+{
+    width:30px;
+    height:30px;
+
+    border:1px solid #e2e6ef;
+    border-radius:7px;
+    background:#fff;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    cursor:pointer;
+    color:#3a4256;
+}
+
+.preview-toolbtns button:hover
+{
+    background:#f5f7fb;
+}
+
+.preview-panes
+{
+    display:flex;
+    height:260px;
+}
+
+.preview-pane
+{
+    position:relative;
+    overflow:hidden;
+    background:#f7f8fb;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border:2px solid transparent;
+    transition:border-color .15s ease;
+}
+
+.preview-pane.pane-2d
+{
+    width:38%;
+    border-right:1px solid #eef0f5;
+}
+
+.preview-pane.pane-3d
+{
+    flex:1;
+}
+
+.preview-pane.pane-active
+{
+    border-color:#2f6feb;
+}
+
+.preview-pane.is-fullscreen
+{
+    position:fixed;
+    inset:20px;
+    z-index:2000;
+    width:auto !important;
+    border-radius:12px;
+    box-shadow:0 20px 60px rgba(0,0,0,.3);
+}
+
+.preview-pane svg
+{
+    width:92%;
+    height:92%;
+    transition:transform .2s ease;
+}
+
+.preview-pane img
+{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:transform .2s ease;
+}
+
+/* Checklist */
 
 .Project-checklist
 {
-    flex: 1 1 220px;
-    height: 200px;
-    border: 1px solid black;
+    width:34%;
+
+    display:flex;
+    flex-direction:column;
+
+    border:1px solid #eef0f5;
+    border-radius:12px;
+    padding:18px;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.Project-checklist h5
+{
+    margin:0 0 16px;
+    font-size:14px;
+    font-weight:700;
+    color:#18233c;
+}
+
+.checklist-list
+{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    margin-bottom:14px;
+}
+
+.checklist-item
+{
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+    cursor:pointer;
+}
+
+.chk-icon
+{
+    flex-shrink:0;
+    width:18px;
+    height:18px;
+    margin-top:1px;
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:11px;
+    font-weight:700;
+    color:#fff;
+
+    border:2px solid #d8dce4;
+}
+
+.checklist-item.done .chk-icon
+{
+    background:#1e9e4d;
+    border-color:#1e9e4d;
+}
+
+.checklist-item.in-progress .chk-icon
+{
+    border-color:#2f6feb;
+    background:conic-gradient(#2f6feb 0 180deg, transparent 180deg 360deg);
+}
+
+.checklist-item.pending .chk-icon
+{
+    background:#fff;
+}
+
+.checklist-item div
+{
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+}
+
+.checklist-item strong
+{
+    font-size:13px;
+    color:#22304d;
+}
+
+.checklist-item.done strong
+{
+    color:#8a93a8;
+    text-decoration:line-through;
+}
+
+.checklist-item span
+{
+    font-size:11.5px;
+    color:#8a93a8;
+}
+
+/* ======================================================================================
+    Link-out tabs (Design / Materials / Suppliers / Reports)
+    ======================================================================================*/
+
+.linkout-card
+{
+    max-width:420px;
+
+    border:1px solid #eef0f5;
+    border-radius:12px;
+    padding:22px;
+}
+
+.linkout-card h5
+{
+    margin:0 0 8px;
+    font-size:15px;
+    font-weight:700;
+    color:#18233c;
+}
+
+.linkout-card p
+{
+    margin:0 0 16px;
+    font-size:13px;
+    line-height:1.6;
+    color:#5d6778;
+}
+
+.linkout-card a
+{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+
+    height:36px;
+    padding:0 16px;
+
+    background:#2f6feb;
+    color:#fff;
+
+    border-radius:8px;
+    text-decoration:none;
+
+    font-size:13px;
+    font-weight:700;
+}
+
+.linkout-card a:hover
+{
+    background:#255fd1;
+}
+
+/* Budget tab */
+
+.budget-tab-card
+{
+    max-width:380px;
+
+    border:1px solid #eef0f5;
+    border-radius:12px;
+    padding:22px;
+}
+
+/* Settings tab */
+
+.settings-tab-card
+{
+    max-width:420px;
+
+    border:1px solid #eef0f5;
+    border-radius:12px;
+    padding:22px;
+
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+}
+
+.settings-tab-card label
+{
+    font-size:12px;
+    font-weight:700;
+    color:#3a4256;
+    display:block;
+    margin-bottom:6px;
+}
+
+.settings-tab-card input,
+.settings-tab-card select
+{
+    width:100%;
+    height:38px;
+    padding:0 12px;
+
+    border:1px solid #e2e6ef;
+    border-radius:8px;
+
+    font-size:13px;
+    outline:none;
+}
+
+.settings-tab-card input:focus,
+.settings-tab-card select:focus
+{
+    border-color:#2f6feb;
+}
+
+.settings-actions
+{
+    display:flex;
+    gap:10px;
+    margin-top:6px;
+}
+
+.btn-primary-sm
+{
+    height:36px;
+    padding:0 18px;
+    border:none;
+    border-radius:8px;
+    background:#2f6feb;
+    color:#fff;
+    font-size:13px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.btn-primary-sm:hover{ background:#255fd1; }
+
+.btn-danger-sm
+{
+    height:36px;
+    padding:0 18px;
+    border:1px solid #f3c9c9;
+    border-radius:8px;
+    background:#fff;
+    color:#d63a3a;
+    font-size:13px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.btn-danger-sm:hover{ background:#fdeaea; }
+
+/* ======================================================================================
+    New Project modal
+    ======================================================================================*/
+
+.modal-overlay
+{
+    position:fixed;
+    inset:0;
+    background:rgba(15,20,35,.45);
+
+    display:none;
+    align-items:center;
+    justify-content:center;
+
+    z-index:3000;
+}
+
+.modal-overlay.open
+{
+    display:flex;
+}
+
+.modal-box
+{
+    width:420px;
+    max-width:92vw;
+
+    background:#fff;
+    border-radius:14px;
+    padding:24px;
+
+    box-shadow:0 30px 70px rgba(0,0,0,.25);
+}
+
+.modal-box h3
+{
+    margin:0 0 18px;
+    font-size:17px;
+    font-weight:800;
+    color:#18233c;
+}
+
+.modal-field
+{
+    margin-bottom:14px;
+}
+
+.modal-field label
+{
+    display:block;
+    font-size:12px;
+    font-weight:700;
+    color:#3a4256;
+    margin-bottom:6px;
+}
+
+.modal-field input,
+.modal-field select
+{
+    width:100%;
+    height:38px;
+    padding:0 12px;
+
+    border:1px solid #e2e6ef;
+    border-radius:8px;
+
+    font-size:13px;
+    outline:none;
+}
+
+.modal-field input:focus,
+.modal-field select:focus
+{
+    border-color:#2f6feb;
+}
+
+.modal-actions
+{
+    display:flex;
+    justify-content:flex-end;
+    gap:10px;
+    margin-top:18px;
+}
+
+.modal-actions button
+{
+    height:38px;
+    padding:0 18px;
+    border-radius:8px;
+    font-size:13px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.modal-cancel-btn
+{
+    border:1px solid #e2e6ef;
+    background:#fff;
+    color:#3a4256;
+}
+
+.modal-cancel-btn:hover{ background:#f5f7fb; }
+
+.modal-submit-btn
+{
+    border:none;
+    background:#2f6feb;
+    color:#fff;
+}
+
+.modal-submit-btn:hover{ background:#255fd1; }
+
+/* ======================================================================================
+    Toast
+    ======================================================================================*/
+
+.toast
+{
+    position:fixed;
+    bottom:26px;
+    right:26px;
+
+    background:#18233c;
+    color:#fff;
+
+    padding:12px 18px;
+    border-radius:10px;
+
+    font-size:13px;
+    font-weight:600;
+
+    box-shadow:0 12px 30px rgba(0,0,0,.25);
+
+    opacity:0;
+    transform:translateY(10px);
+    transition:.2s;
+
+    pointer-events:none;
+
+    z-index:4000;
+}
+
+.toast.show
+{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* ======================================================================================
+    RESPONSIVE
+    ======================================================================================*/
+
+@media(max-width:1200px)
+{
+    .overview-grid
+    {
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .design-checklist-row
+    {
+        flex-direction:column;
+    }
+
+    .Project-2d-3d,
+    .Project-checklist
+    {
+        width:100%;
+    }
+}
+
+@media(max-width:720px)
+{
+    .overview-grid
+    {
+        grid-template-columns:1fr;
+    }
+}
