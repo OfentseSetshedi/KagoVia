@@ -4,119 +4,226 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projects</title>
-        <link rel="stylesheet" href="../styles/dash.css">
-        <link rel="stylesheet" href="../styles/projects.css">
+    <link rel="stylesheet" href="../styles/dash.css">
+    <link rel="stylesheet" href="../styles/projects.css">
 </head>
 <body>
     <section class="dashboard">
 
-      
+        <aside class="dashboard-navbar">
+            <div class="upper-sidebar">
+                <a href="dashboard.html">
+                    <div id="logo"><span class="sidebar-icon">
+                        <img src="../assets/images/home-hero.png"
+                        alt="logo-image"
+                        width="30"
+                        height="30">
+                    </span>logo</div>
+                </a>
+
+                <a href="dashboard.html" class="nav-link">
+                    <button id="dashboard" >
+                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.6"/><rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.6"/><rect x="3" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.6"/><rect x="14" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.6"/></svg>
+                        Dashboard
+                    </button>
+                </a>
+
+                <a href="projects.html" class="nav-link">
+                    <button id="Projects">
+                        <img src="../assets/icons/Projects.svg" alt="Projects" width="17" height="17">
+                        Projects
+                    </button>
+                </a>
+
+                <a href="ai-design.html" class="nav-link">
+                    <button id="AI-Design">
+                        <img src="../assets/icons/Design.svg" alt="AI Design" width="17" height="17">
+                        AI Design
+                    </button>
+                </a>
+
+                <a href="materials.html" class="nav-link">
+                    <button id="Material">
+                        <img src="../assets/icons/Material.svg" alt="Materials" width="17" height="17">
+                        Material
+                    </button>
+                </a>
+
+                <a href="estimator.html" class="nav-link">
+                    <button id="Cost-Estimator">
+                        <img src="../assets/icons/Cost.svg" alt="Cost Estimator" width="17" height="17">
+                        Cost Estimator
+                    </button>
+                </a>
+
+                <a href="reports.html" class="nav-link">
+                    <button id="Reports">
+                        <img src="../assets/icons/Reports.svg" alt="Reports" width="17" height="17">
+                        Reports
+                    </button>
+                </a>
+
+                <a href="Supplier.html" class="nav-link">
+                    <button id="Suppliers">
+                        <img src="../assets/icons/Suppliers.svg" alt="Suppliers" width="17" height="17">
+                        Suppliers
+                    </button>
+                </a>
+
+                <a href="teams.html" class="nav-link">
+                    <button id="Teams">
+                        <img src="../assets/icons/Teams.svg" alt="Teams" width="17" height="17">
+                        Teams
+                    </button>
+                </a>
+
+                <a href="settings.html" class="nav-link">
+                    <button id="Settings"> 
+                        <img src="../assets/icons/settings-icon.svg" alt="Settings" width="17" height="17">
+                        Settings
+                    </button>
+                </a>
+            </div>
+
+            <div class="lower-sidebar">
+                <button id="need-help">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 48 48">
+                        <path d="M0 0h48v48H0z" fill="none" />
+                        <defs>
+                            <mask id="SVGKI5kpbjS">
+                                <g fill="none">
+                                    <path fill="#fff" stroke="#fff" stroke-linejoin="round" stroke-width="4" d="M24 44a19.94 19.94 0 0 0 14.142-5.858A19.94 19.94 0 0 0 44 24a19.94 19.94 0 0 0-5.858-14.142A19.94 19.94 0 0 0 24 4A19.94 19.94 0 0 0 9.858 9.858A19.94 19.94 0 0 0 4 24a19.94 19.94 0 0 0 5.858 14.142A19.94 19.94 0 0 0 24 44Z" />
+                                    <path stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M24 28.625v-4a6 6 0 1 0-6-6" />
+                                    <path fill="#000" fill-rule="evenodd" d="M24 37.625a2.5 2.5 0 1 0 0-5a2.5 2.5 0 0 0 0 5" clip-rule="evenodd" />
+                                </g>
+                            </mask>
+                        </defs>
+                        <path fill="currentColor" d="M0 0h48v48H0z" mask="url(#SVGKI5kpbjS)" />
+                    </svg>
+                    need help
+                </button>
+
+                <button id="Premium-plan">
+                    <img src="../assets/icons/Premium-icon.svg" alt="Premium" width="17" height="17">
+                    Premium plan
+                </button>
+            </div>
+        </aside>
+
+        <div class="sidebar-resizer" id="sidebarResizer"></div>
 
         <main class="dashboard-overview">
 
-            <!-- =========================================================
-                Dashboard Header
-                This is the top navigation bar of the dashboard.
-            ========================================================== -->
-
             <header class="dashboard-header">
-
-                <!-- ==========================================
-                    LEFT SIDE
-                    Dashboard Title
-                =========================================== -->
                 <div class="header-left">
                     <h2>Projects </h2>
                 </div>
 
-
-                <!-- ==========================================
-                    RIGHT SIDE
-                    Search + Notification + User Profile
-                =========================================== -->
                 <div class="header-right">
-
-                    <!-- ==========================
-                        Search Container
-                        Holds the search icon and
-                        the search input.
-                    =========================== -->
-
                     <div class="search-container">
-
-                        <!-- Search Icon -->
                         <span class="search-icon">
-                            🔍
+                            <img src="../assets/icons/search.svg" alt="" width="27" height="27">
                         </span>
-
-                        <!-- Search Input -->
-                        <input
-                            type="search"
-                            placeholder="Search projects..."
-                        >
-
+                        <input type="search" placeholder="Search projects...">
                     </div>
-
-
-                    <!-- ==========================
-                        Notification Button
-                    =========================== -->
 
                     <button class="notification-btn">
-
-                        🔔
-
-                        <!-- Notification Badge -->
-                        <span class="notification-count">
-                            5
-                        </span>
-
+                        <img src="../assets/icons/notification.svg" alt="" width="25" height="25">
+                        <span class="notification-count">5</span>
                     </button>
 
-
-
-                    <!-- ==========================
-                        User Profile Section
-                    =========================== -->
-
-                    <div class="profile-section">
-
-                        <!-- User Image -->
-                        <img
-                            src="images/profile.jpg"
-                            alt="Profile Picture"
-                        >
-
-                        <!-- User Information -->
-                        <div class="user-details">
-
-                            <h4>Moses</h4>
-
-                            <p>Estimator</p>
-
+                    <div class="profile-menu">
+                        <div class="profile-section">
+                            <img src="images/profile.jpg" alt="Profile Picture">
+                            <div class="user-details">
+                                <h4>Moses</h4>
+                                <p>Estimator</p>
+                            </div>
+                            <span class="dropdown-arrow">▼</span>
                         </div>
 
-
-                        <!-- Dropdown Arrow -->
-                        <span class="dropdown-arrow">
-
-                            ▼
-
-                        </span>
-
+                        <div class="dropdown">
+                            <a href="#">👤 My Profile</a>
+                            <a href="settings.html">⚙️ Settings</a>
+                            <a href="#">🔔 Notifications</a>
+                            <a href="projects.html">📁 Projects</a>
+                            <a href="index.html">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                                    <polyline points="16 17 21 12 16 7"/>
+                                    <line x1="21" y1="12" x2="9" y2="12"/>
+                                </svg>
+                                Logout
+                            </a>
+                        </div>
                     </div>
+                    
+                    <style>
+                        .dropdown {
+                            position:absolute;
+                            top:70px;
+                            right:24px;
+                            width:260px;
+                            background:#fff;
+                            border-radius:12px;
+                            box-shadow:0 12px 35px rgba(0,0,0,.12);
+                            opacity:0;
+                            visibility:hidden;
+                            transform:translateY(10px);
+                            transition:.25s;
+                            overflow:hidden;
+                        }
 
+                        .dropdown::before {
+                            position: absolute;
+                            top:-8px; 
+                            right:25px;
+                            width:16px;
+                            height:16px;
+                            background:white;
+                            transform:rotate(45deg);
+                        }
+
+                        .profile-menu {
+                            margin-right: 12px;
+                            border: #222 solid 2px;
+                        }
+
+                        .profile-menu:hover .dropdown {
+                            opacity:1;
+                            visibility:visible;
+                            transform:translateY(0);
+                        }
+
+                        .profile-menu:hover .dropdown-arrow {
+                            transform:rotate(180deg);
+                        }
+
+                        .dropdown a {
+                            display:flex;
+                            align-items:center;
+                            gap:14px;
+                            padding:18px 24px;
+                            font-size:18px;
+                            color:#222;
+                            text-decoration:none;
+                            border-bottom:1px solid #efefef;
+                            transition:.2s;
+                        }
+
+                        .dropdown a:last-child {
+                            border:none;
+                        }
+
+                        .dropdown a:hover {
+                            background:#f3f7ff;
+                            color:#2458ff;
+                        }
+                    </style>
                 </div>
-
             </header>
 
-            
             <div class="main-card">
-                <!--
-                ========================================================== 
-                Projects header buttons
-                ========================================================== 
-                -->
                 <div class="Projects-filter-btn">
                     <div class="Projects-filters">
                         <button class="Filter-by-Status-btn" >Filter by Status  ▼  </button>
@@ -126,14 +233,9 @@
 
                     <button class="New-Project-btn"> + New Project</button>
                 </div>
-                <!--
-                ========================================================== 
-                Projects table
-                ========================================================== 
-                -->
+
                 <div class="Projects-current-list">
                     <table class="project-table">
-
                         <thead>
                             <tr>
                                 <th>Project Name</th>                                
@@ -146,7 +248,6 @@
                         </thead>
 
                         <tbody>
-
                             <tr>
                                 <td>
                                     <div class="project-fav-icon"></div>
@@ -154,7 +255,6 @@
                                     <div class="Project-names">
                                         <h2 class="project-style"></h2>
                                         <p class="project-types">• <span>320</span>m²</p>
-                                        
                                     </div>
                                 </td>
                                 <td>
@@ -163,21 +263,19 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <p>R <span class="project-amount">5.3</span>M<span id="Amount-in-digits-sign"></span></p>
+                                    <p>R <span class="project-amount">5.3</span>M</p>
                                 </td>
                                 <td>
                                     <progress value="50" max="100">50</progress>
                                 </td>
                                 <td>
                                     <div class="last-UpdatebyWhom">
-                                            <p><span class="last-update-date"> 22 May 2024</span> by <span class="who-updated"> Arjun Mehta</span></p>
-                                            
+                                        <p><span class="last-update-date">22 May 2024</span> by <span class="who-updated">Arjun Mehta</span></p>
                                     </div>
                                 </td>
                                 <td>
                                     <button class="more-about-the-project">...</button>
                                 </td>
-
                             </tr>
 
                             <tr>
@@ -195,34 +293,30 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <p>R <span class="project-amount">5.3</span>M<span id="Amount-in-digits-sign"></span></p>
+                                    <p>R <span class="project-amount">5.3</span>M</p>
                                 </td>
                                 <td>
                                     <progress value="30" max="100">30</progress>
                                 </td>
                                 <td>
-                                        <div class="last-UpdatebyWhom">
-                                            <p><span class="last-update-date"> 22 May 2024</span> by <span class="who-updated"> Arjun Mehta</span></p>
-                                        </div>
+                                    <div class="last-UpdatebyWhom">
+                                        <p><span class="last-update-date">22 May 2024</span> by <span class="who-updated">Arjun Mehta</span></p>
+                                    </div>
                                 </td>
                                 <td>
                                     <button class="more-about-the-project">...</button>
                                 </td>
-
                             </tr>
-
                         </tbody>
                     </table>
                 </div>
-                <!--
-                ========================================================== 
-                ========================================================== 
-            -->
+
                 <div class="Projects-details">
                     <header class="Projects-detailes-header">
                         <div class="item">
                             <button class="next-btn-icon">←</button>
-                            <h4>Modern Villa </h4> <button class="status">● Active</button>
+                            <h4>Modern Villa </h4> 
+                            <button class="status">● Active</button>
                             <br>
                             <p>
                                 <span>Residential</span> •<span> 320</span> m² • Created on <span>10 May 2024</span>
@@ -230,15 +324,9 @@
                         </div>
 
                         <div class="options-buttons">
-                            <button class="share-btn">
-                                share
-                            </button>
-                            <button class="Edit-Project-btn">
-                                Edit Project
-                            </button>
-                            <button class="more">
-                                ...
-                            </button>
+                            <button class="share-btn">share</button>
+                            <button class="Edit-Project-btn">Edit Project</button>
+                            <button class="more">...</button>
                         </div>
                         <div class="project-nav">
                             <button>Overview</button>
@@ -251,59 +339,46 @@
                         </div>
                     </header>
                     <section id="project-contents">
-
-                        <div class="Project-Summary">
-
-                        </div>
-
-                        <div class="Project-Overview">
-
-                        </div>
-
-                        <div class="Recent-Activity">
-
-                        </div>
-                        <div class="Budget-Overview">
-
-                        </div>
-
-                        <!--
-                    ========================================================== 
-                    ========================================================== 
-                    --> 
-                    <div class="Design-Preview"></div>
-
-                    <div class="Project-checklist"></div>
-
+                        <div class="Project-Summary"></div>
+                        <div class="Project-Overview"></div>
+                        <div class="Recent-Activity"></div>
+                        <div class="Budget-Overview"></div>
+                        <div class="Design-Preview"></div>
+                        <div class="Project-checklist"></div>
                     </section>
-
-                    
-
-                    
-
                 </div>
             </div> 
-            
         </main>
     </section>
 
+    <script>
+        const sidebar = document.querySelector(".dashboard-navbar");
+        const resizer = document.getElementById("sidebarResizer");
+        let dragging = false;
 
+        resizer.addEventListener("mousedown", () => {
+            dragging = true;
+            document.body.style.cursor = "ew-resize";
+        });
 
+        document.addEventListener("mouseup", () => {
+            dragging = false;
+            document.body.style.cursor = "default";
+        });
 
-    
-    <section class="Projects"></section>
-    <section class="AI-Design"></section>
-    <section class="Material"></section>
-    <section class="Cost-Estimator"></section>
-    <section class="Reports"></section> 
-    <section class="Suppliers"></section>
-    <section class="Teams"></section>
-    <section class="Settings"></section>
-    <section class="need-help"></section>
-    <section class="Premium-plan"></section>
-
-
-  
+        document.addEventListener("mousemove",(e)=>{
+            if(!dragging) return;
+            let width = e.clientX;
+            if(width < 70) width = 70;
+            if(width > 320) width = 320;
+            sidebar.style.width = width + "px";
+            if(width <= 85){
+                sidebar.classList.add("collapsed");
+            }else{
+                sidebar.classList.remove("collapsed");
+            }
+        });
+    </script>
 
 </body>
 </html>

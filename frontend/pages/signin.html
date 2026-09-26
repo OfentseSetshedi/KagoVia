@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up / Sign In</title>
+    <link rel="stylesheet" href="../styles/global.css">
+
+    <!--
+        Scoped to this page only (not global.css, which is shared
+        across the whole site) — locks the viewport so this page
+        never scrolls.
+    -->
+    <style>
+        html, body{
+            height:100%;
+            overflow:hidden;
+        }
+    </style>
+</head>
+<body>
+    <section id="sign-in-up">
+
+        <!-- ============================================
+             LEFT SIDE — fixed, never reloads or changes
+        ============================================= -->
+        <div class="left-container">
+            <h1>"We've been using Untitled to kick start every new project and can't imagine working without it."</h1>
+            <h3>Amélie Laurent</h3>
+            <p>Lead Designer, Layers Web Development Agency</p>
+        </div>
+
+        <!-- ============================================
+             RIGHT SIDE — one card stage, five cards inside,
+             only one visible at a time, JS swaps + animates
+        ============================================= -->
+        <div class="right-container">
+            <div class="card-stage" id="card-stage">
+
+                <!-- SIGN UP -->
+                <div class="auth-card is-active" data-card="signup">
+                    <form action="" method="">
+                        <div class="form-group">
+                            <h1>Get Started</h1>
+                            <p>Welcome to KagoBuild — Let's get started.</p>
+                        </div>
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <input type="text" placeholder="Full name">
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" placeholder="Email">
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" placeholder="Password">
+                        </div>
+                        <div class="form-group">
+                            <label>Confirm Password</label>
+                            <input type="password" placeholder="Confirm password">
+                        </div>
+
+                        <button type="button" class="primary-btn" data-go="login">
+                            Create New Account
+                        </button>
+
+                        <div class="bottom-link">
+                            Already have an account?
+                            <span data-go="login">Login</span>
+                        </div>
+
+                        <div class="bottom-link">
+                            <span>Terms of Use</span> | <span>Privacy Policy</span>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- LOGIN -->
+                <div class="auth-card" data-card="login">
+                    <form action="" method="">
+                        <div class="form-group">
+                            <h1>Welcome Back!</h1>
+                            <p>Log in to start creating stunning house plans.</p>
+                        </div>
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" placeholder="Email">
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" placeholder="Password">
+                        </div>
+
+                        <div class="remember-row">
+                            <label>
+                                <input type="checkbox">
+                                Remember Me
+                            </label>
+                            <a href="#" data-go="forgot">Forgot Password?</a>
+                        </div>
+
+                        <button type="button" class="primary-btn" onclick="window.location.href='dashboard.html'">
+                            Login
+                        </button>
+
+                        <button type="button" class="secondary-btn">
+                            Continue with Google
+                        </button>
+
+                        <div class="bottom-link">
+                            Don't have an account?
+                            <span data-go="signup">Sign Up</span>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- FORGOT PASSWORD -->
+                <div class="auth-card" data-card="forgot">
+                    <form action="" method="">
+                        <div class="form-group">
+                            <h1>Forgot Password</h1>
+                            <p>
+                                Enter the email address associated with your account and we'll
+                                send you a verification code.
+                            </p>
+                        </div>
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" placeholder="Email">
+                        </div>
+
+                        <button type="button" class="primary-btn" data-go="verify">
+                            Continue
+                        </button>
+
+                        <div class="bottom-link">
+                            <span data-go="login">Back to Login</span>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- VERIFICATION CODE -->
+                <div class="auth-card" data-card="verify">
+                    <form action="" method="">
+                        <div class="form-group">
+                            <h1>Enter Verification Code</h1>
+                            <p>
+                                The verification code has been sent to
+                                <strong>j*****k@gmail.com</strong>
+                            </p>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="code">
+                                <input type="text" maxlength="1">
+                                <input type="text" maxlength="1">
+                                <input type="text" maxlength="1">
+                                <input type="text" maxlength="1">
+                                <input type="text" maxlength="1">
+                            </div>
+                        </div>
+
+                        <button type="button" class="primary-btn" data-go="setpassword">
+                            Continue
+                        </button>
+
+                        <div class="bottom-link">
+                            Resend after <strong>40</strong> seconds
+                        </div>
+                    </form>
+                </div>
+
+                <!-- SET PASSWORD -->
+                <div class="auth-card" data-card="setpassword">
+                    <form action="" method="">
+                        <div class="form-group">
+                            <h1>Set Password</h1>
+                            <p>
+                                Password requires a minimum of 8 characters and contains
+                                uppercase letters, numbers, and symbols.
+                            </p>
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" placeholder="Enter your password">
+                        </div>
+
+                        <button type="button" class="primary-btn" data-go="login">
+                            Continue
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+
+    <script>
+        (function () {
+            const cards = Array.from(document.querySelectorAll('.auth-card'));
+            const order = ['signup', 'login', 'forgot', 'verify', 'setpassword'];
+
+            function getCard(name) {
+                return cards.find(c => c.dataset.card === name);
+            }
+
+            function goTo(targetName) {
+                const current = cards.find(c => c.classList.contains('is-active'));
+                const target = getCard(targetName);
+                if (!target || target === current) return;
+
+                // Decide direction: moving "forward" through the flow slides
+                // the new card in from the right; moving "backward" slides
+                // it in from the left.
+                const goingBackward =
+                    current &&
+                    order.indexOf(targetName) < order.indexOf(current.dataset.card);
+
+                if (current) {
+                    current.classList.remove('is-active');
+                    current.classList.toggle('is-leaving-left', !goingBackward);
+                    current.classList.toggle('from-left', false);
+
+                    // Reset the leaving card once the transition completes,
+                    // so it's ready to animate correctly next time it's shown.
+                    current.addEventListener('transitionend', function handler() {
+                        current.classList.remove('is-leaving-left');
+                        current.removeEventListener('transitionend', handler);
+                    });
+                }
+
+                target.classList.toggle('from-left', goingBackward);
+                // Force a reflow so the starting position (from-left or default)
+                // is applied before we animate to is-active.
+                void target.offsetWidth;
+                target.classList.add('is-active');
+            }
+
+            document.querySelectorAll('[data-go]').forEach(el => {
+                el.addEventListener('click', () => goTo(el.dataset.go));
+            });
+        })();
+    </script>
+</body>
+</html>

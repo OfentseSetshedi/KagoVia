@@ -18,7 +18,7 @@
     
 </head>
 <body>
-    <!--hero section-->
+    <!--hero section (UNTOUCHED: background image, layout, positioning) -->
     <section class="hero-section" id="hero-section">
         <!--nav-bar-->
         <nav id="nav-bar">
@@ -28,17 +28,17 @@
                     <li><a href="#hero-section"> Home</a></li>
                     <li><a href="#services">services</a></li>
                     <li><a href="#how-it-works">Processes</a></li>
-                    <li><a href="#about-us">about us</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#features">about us</a></li>
+                    <li><a href="#get-quote">Contact</a></li>
                 </ul>
 
                 <div class="nav-btns">
-                    <button class="Log-In-btn">
+                    <a class="Log-In-btn" href="signin.html">
                         Log In 
-                    </button>
-                    <button class="sign-in-btn">
+                    </a>
+                    <a class="sign-in-btn" href="signin.html#signup">
                         sign in <span id="code-icon"></span>
-                    </button>
+                    </a>
                 </div>
         </nav>  
         <!--hero section text-->
@@ -99,7 +99,7 @@
             
        
 
-            <button class="split-button">
+            <a class="split-button" href="signin.html#signup">
                 <span class="btn-label">Get Started</span>
                 <span class="btn-icon" aria-label="Go">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -107,7 +107,7 @@
                         <polyline points="7 7 17 7 17 17"/>
                     </svg>
                 </span>
-            </button>
+            </a>
 
               <style>
                 /* NAV BUTTON (reference size) */
@@ -181,12 +181,6 @@
         </div>
 
     </section>
-    
-    <!--Problem-->
-    <section class="Problem" id="problem"></section>
-
-    <!--solution-->
-    <section class="solution" id="solution"></section>
 
     <!--services-->
     <section class="services" id="services">
@@ -201,291 +195,212 @@
             </span>
         </h1>
 
-        <!-- MAIN SERVICES LAYOUT -->
+        <div class="services-intro">
+            <p>
+                Generate house plans, calculate material requirements, estimate
+                project costs, and create professional reports — all in one
+                intelligent platform.
+            </p>
+            <a class="Explore-Solutions-btn" href="#pricing">Explore Solutions</a>
+        </div>
+
+        <!-- KORA-STYLE PRODUCT GRID WITH PHOTOS -->
         <div class="services-grid">
 
-            <!-- 🚩 LEFT CARD -->
-            <div class="service-left-cards">
-
-                <h1>Everything You Need to Plan Your Build</h1>
-
-                <p>
-                    Generate house plans, calculate material requirements,
-                    estimate project costs, and create professional reports—
-                    all in one intelligent platform.
-                </p>
-
-                <button class="Explore-Solutions-btn">
-                    Explore Solutions
-                </button>
-
-            </div>
-
-            <!-- 🚩 RIGHT SECTION -->
-            <div class="service-right-cards">
-
-                <!-- CARD 01 -->
-                <div class="service-card-01">
-
-                    <div class="top-of-card">
-                        <div class="serv-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none">
-                                    <path d="M12 28L32 12L52 28" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M18 26V50H46V26" stroke="currentColor" stroke-width="2.8" stroke-linejoin="round"/>
-                                    <path d="M24 50V38H40V50" stroke="currentColor" stroke-width="2.8" stroke-linejoin="round"/>
-                                    <path d="M44 16L48 12L52 16" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
-                                    <path d="M43 17L49 23" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
-                            </svg>
-                        </div>
-
-                        <div class="serv-number">01</div>
-                    </div>
-
-                    <div class="service-all-text">
-                        <h3 class="serv-heading-card">
-                            AI House Design
-                        </h3>
-
-                        <p>
-                            Generate intelligent floor plans tailored to your
-                            budget, location, style preferences, and space
-                            requirements.
-                        </p>
-                    </div>
-
+            <!-- CARD 01 -->
+            <article class="kora-card">
+                <div class="kora-card-image">
+                    <img src="https://picsum.photos/seed/kago-design/600/500" alt="AI-generated house floor plan concept">
                 </div>
-
-                <!-- CARD 02 -->
-                <div class="service-card-02">
-
-                        <div class="top-of-card">
-                            <div class="serv-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none">
-                                    <rect x="12" y="18" width="22" height="30" rx="3" stroke="currentColor" stroke-width="2.8"/>
-                                    <path d="M16 26H30" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
-                                    <path d="M16 32H30" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
-                                    <path d="M16 38H24" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
-                                    <path d="M42 20C45 16 52 17 54 22C56 27 52 31 48 34L44 38L40 34C36 31 32 27 34 22C36 17 43 16 46 20" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <text x="44" y="28" font-size="10" font-family="Arial" fill="currentColor">$</text>
-                                    </svg>
-                            </div>
-
-                            <div class="serv-number">02</div>
-                        </div>
-
-                        <div class="service-all-text">
-                            <h3 class="serv-heading-card">
-                                Material & Cost Intelligence
-                            </h3>
-
-                            <p>
-                                Automatically calculate material quantities and
-                                estimate construction costs using current market
-                                pricing.
-                            </p>
-                        </div>
-
-                </div>
-
-                <!-- CARD 04 -->
-                <div class="service-card-03">
-
-                        <div class="top-of-card">
-                            <div class="serv-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none">
-                                    <path d="M20 10H38L48 20V52C48 54.2 46.2 56 44 56H20C17.8 56 16 54.2 16 52V14C16 11.8 17.8 10 20 10Z"
-                                            stroke="currentColor"
-                                            stroke-width="2.8"
-                                            stroke-linejoin="round"/>
-                                    <path d="M38 10V20H48" stroke="currentColor" stroke-width="2.8" stroke-linejoin="round"/>
-                                    <path d="M24 28H40" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
-                                    <path d="M24 36H40" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
-                                    <path d="M24 44H34" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
-                                    <path d="M40 42L44 46L52 36" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </div>
-
-                            <div class="serv-number">03</div>
-                        </div>
-
-                        <div class="service-all-text">
-                            <h3 class="serv-heading-card">
-                                Project Documentation
-                            </h3>
-
-                            <p>
-                                Export professional reports, compare design
-                                alternatives, and prepare build-ready documents
-                                for contractors and suppliers.
-                            </p>
-                        </div>
-
-                </div>
-
-                <!-- CARD 04 -->
-                 <div class="service-card-04">
-                    <div class="top-of-card">
-                        <div class="serv-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none">
-                                <rect x="12" y="18" width="22" height="30" rx="3"
-                                    stroke="currentColor" stroke-width="2.8"/>
-
-                                <path d="M16 26H30"
-                                    stroke="currentColor" stroke-width="2.4"
-                                    stroke-linecap="round"/>
-
-                                <path d="M16 32H30"
-                                    stroke="currentColor" stroke-width="2.4"
-                                    stroke-linecap="round"/>
-
-                                <path d="M16 38H24"
-                                    stroke="currentColor" stroke-width="2.4"
-                                    stroke-linecap="round"/>
-
-                                <path d="M42 20C45 16 52 17 54 22C56 27 52 31 48 34L44 38L40 34C36 31 32 27 34 22C36 17 43 16 46 20"
-                                    stroke="currentColor"
-                                    stroke-width="2.8"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"/>
-
-                                <text x="44" y="28"
-                                    font-size="10"
-                                    font-family="Arial"
-                                    fill="currentColor">$</text>
-                            </svg>
-                        </div>
-
-                        <div class="serv-number">04</div>
+                <div class="kora-card-info">
+                    <div class="kora-card-title-row">
+                        <h3>AI House Design</h3>
+                        <span class="kora-card-tag">Design</span>
                     </div>
-
-                    <div class="service-all-text">
-                        <h3 class="serv-heading-card">
-                            Cost Intelligence
-                        </h3>
-
-                        <p>
-                            Automatically calculate material quantities and estimate
-                            construction costs using current market pricing.
-                        </p>
-                    </div>
+                    <p>
+                        Generate intelligent floor plans tailored to your
+                        budget, location, style preferences, and space
+                        requirements.
+                    </p>
                 </div>
+            </article>
 
-                
+            <!-- CARD 02 -->
+            <article class="kora-card">
+                <div class="kora-card-image">
+                    <img src="https://picsum.photos/seed/kago-cost/600/500" alt="Material cost estimation on site">
+                </div>
+                <div class="kora-card-info">
+                    <div class="kora-card-title-row">
+                        <h3>Material & Cost Intelligence</h3>
+                        <span class="kora-card-tag">Estimate</span>
+                    </div>
+                    <p>
+                        Automatically calculate material quantities and
+                        estimate construction costs using current market
+                        pricing.
+                    </p>
+                </div>
+            </article>
 
-            </div>
+            <!-- CARD 03 -->
+            <article class="kora-card">
+                <div class="kora-card-image">
+                    <img src="https://picsum.photos/seed/kago-docs/600/500" alt="Project documentation and reports">
+                </div>
+                <div class="kora-card-info">
+                    <div class="kora-card-title-row">
+                        <h3>Project Documentation</h3>
+                        <span class="kora-card-tag">Reports</span>
+                    </div>
+                    <p>
+                        Export professional reports, compare design
+                        alternatives, and prepare build-ready documents
+                        for contractors and suppliers.
+                    </p>
+                </div>
+            </article>
 
         </div>
 
     </section>
 
-    <!--Features-->
+    <!--Features (Kora "Natural care" dark-olive style) -->
     <section class="Features" id="features">
-        
 
-        <div class="features-grid">
-            
-            <div class="Features-grid-heding">
-                <h1 class="Features-heading">Our Features</h1>
+        <div class="features-inner">
+
+            <div class="features-copy">
+                <h1 class="Features-heading">Plan smarter, every step of the way.</h1>
                 <p class="Features-sub-heading">
                     AI-powered tools for planning, designing, and budgeting your dream home.
                 </p>
-            </div >
 
-            <div class="Features-01">
-                <div id="text">
-                    <h2>AI-Powered House Design</h2>
-                    <p>
-                        Create customized house plans in minutes. Describe your dream home, and KagoBuild generates a floor plan tailored to your needs, style, and budget.
-                    </p>
-                </div>
- <!--<img id="feature-01-pic"
-                src="../assets/images/home-hero.png"
-                alt=""
-                width="170px"
-                height="150px">
-        -->
-            </div>
+                <ul class="features-checklist">
+                    <li><span class="check">✓</span> AI-powered house design in minutes</li>
+                    <li><span class="check">✓</span> Automatic material takeoff</li>
+                    <li><span class="check">✓</span> Real-time cost estimation</li>
+                    <li><span class="check">✓</span> Smart budget forecasting</li>
+                </ul>
 
-            <div class="Features-02">
-                
-                <div id="text-1-2">
-                    <h2>Automatic Material Takeoff</h2>
-                    <p>
-                        Instantly calculate the materials your project requires. Receive a detailed material schedule for accurate planning and purchasing.
-                    </p>
+                <div class="features-cta-row">
+                    <a class="features-cta-btn" href="#pricing">See all features</a>
+                    <div class="features-rating">
+                        <span class="stars">★★★★★</span> 4.9/5 from 500+ builders
+                    </div>
                 </div>
             </div>
 
-            <div class="Features-03">
-                <div id="text-1-2">
-                    <h2>Real-Time Cost Estimation</h2>
-                    <p>Estimate your construction costs using current supplier pricing. Plan your budget with accurate, up-to-date cost calculations.
-                    </p>
+            <div class="features-visual">
+                <div class="features-arch features-arch-1">
+                    <img src="https://picsum.photos/seed/kago-floorplan/300/380" alt="Homeowner reviewing floor plan">
+                </div>
+                <div class="features-arch features-arch-2">
+                    <img src="https://picsum.photos/seed/kago-costreport/300/380" alt="Printed cost report on site">
                 </div>
             </div>
 
-            <div class="Features-04">
-                <div id="text">
-                    <h2>Smart Budget Forecasting</h2>
-                    <p>
-                        Get a complete project budget, including materials, labor, and other construction expenses. 
-                        Make informed decisions and avoid unexpected costs.
-                    </p>
-                </div>
-            </div>
         </div>
 
     </section>
 
-    <!--how it works-->
+    <!--Testimonials (Kora dark-olive carousel with real photos) -->
+    <section class="Testimonials" id="testimonials">
+
+        <h1 class="testimonials-heading">What builders are saying</h1>
+
+        <div class="testimonials-row" id="testimonials-row">
+
+            <article class="testimonial-card">
+                <img class="testimonial-avatar" src="https://randomuser.me/api/portraits/men/32.jpg" alt="Thabo M.">
+                <p class="testimonial-quote">
+                    KagoBuild cut our planning time in half. The cost estimate matched our final build within 4%.
+                </p>
+                <div class="testimonial-stars">★★★★★</div>
+                <div class="testimonial-name">Thabo M. <span>Property Developer</span></div>
+            </article>
+
+            <article class="testimonial-card">
+                <img class="testimonial-avatar" src="https://randomuser.me/api/portraits/women/44.jpg" alt="Naledi K.">
+                <p class="testimonial-quote">
+                    We used to spend weeks on material lists. Now it takes minutes, and suppliers quote from the report directly.
+                </p>
+                <div class="testimonial-stars">★★★★★</div>
+                <div class="testimonial-name">Naledi K. <span>Site Contractor</span></div>
+            </article>
+
+            <article class="testimonial-card">
+                <img class="testimonial-avatar" src="https://randomuser.me/api/portraits/men/67.jpg" alt="Johan V.">
+                <p class="testimonial-quote">
+                    The AI floor plans gave us a starting point our architect could refine in a single meeting.
+                </p>
+                <div class="testimonial-stars">★★★★★</div>
+                <div class="testimonial-name">Johan V. <span>First-time Homeowner</span></div>
+            </article>
+
+        </div>
+
+        <div class="testimonials-nav">
+            <button class="testi-arrow" id="testi-prev" aria-label="Previous testimonial">&#8249;</button>
+            <button class="testi-arrow" id="testi-next" aria-label="Next testimonial">&#8250;</button>
+        </div>
+
+    </section>
+
+    <!--how it works (Kora-style numbered cards, cream container for consistency) -->
     <section class="how-it-works" id="how-it-works">
         <h1>How It Works</h1>
 
         <div class="process">
 
-            <section class="process">
+            <div class="process-card">
+                <span class="process-number">01</span>
+                <div class="process-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="7" y1="17" x2="17" y2="7"/>
+                        <polyline points="7 7 17 7 17 17"/>
+                    </svg>
+                </div>
+                <p>Describe Your Project</p>
+            </div>
 
-    <div class="process-card">
-        <div class="process-icon">
-            <img src="../assets/icons/diagonal-arrow.png" alt="">
-        </div>
+            <div class="process-card">
+                <span class="process-number">02</span>
+                <div class="process-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="7" y1="17" x2="17" y2="7"/>
+                        <polyline points="7 7 17 7 17 17"/>
+                    </svg>
+                </div>
+                <p>Generate Your House Plan</p>
+            </div>
 
-        <p>Describe Your Project</p>
-        <h1>01</h1>
-    </div>
+            <div class="process-card">
+                <span class="process-number">03</span>
+                <div class="process-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="7" y1="17" x2="17" y2="7"/>
+                        <polyline points="7 7 17 7 17 17"/>
+                    </svg>
+                </div>
+                <p>Calculate Materials</p>
+            </div>
 
-    <div class="process-card">
-        <div class="process-icon">
-            <img src="../assets/icons/diagonal-arrow.png" alt="">
-        </div>
+            <div class="process-card">
+                <span class="process-number">04</span>
+                <div class="process-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="7" y1="17" x2="17" y2="7"/>
+                        <polyline points="7 7 17 7 17 17"/>
+                    </svg>
+                </div>
+                <p>Estimate Costs & Export Reports</p>
+            </div>
 
-        <p>Generate Your House Plan</p>
-        <h1>02</h1>
-    </div>
-
-    <div class="process-card">
-        <div class="process-icon">
-            <img src="../assets/icons/diagonal-arrow.png" alt="">
-        </div>
-
-        <p>Calculate Materials</p>
-        <h1>03</h1>
-    </div>
-
-    <div class="process-card">
-        <div class="process-icon">
-            <img src="../assets/icons/diagonal-arrow.png" alt="">
-        </div>
-
-        <p>Estimate Costs & Export Reports</p>
-        <h1>04</h1>
-    </div>
-
-</section>
         </div>
     </section>
 
-    <!--Pricing-->
+    <!--Pricing (Kora product-card style, cream palette) -->
     <section class="Pricing" id="pricing">
 
         <h1 class="price-heading">Try Go with a special offer</h1>
@@ -493,73 +408,71 @@
         <div class="pricing-cards">
 
             <!-- FREE -->
-            <div class="price-card">
-                <h2><i class="fa-solid fa-box-open"></i> Free</h2>
-
-                <p class="price">R<span>0</span> ZAR / month</p>
-
-                <button class="btn-primary">
-                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                    Upgrade
-                </button>
-
+            <div class="price-card plan-free">
+                <div class="price-card-icon"><i class="fa-solid fa-box-open"></i></div>
+                <h2>Free</h2>
+                <p class="price">R<span>0</span> <small>ZAR / month</small></p>
                 <p class="subtitle">Unlock the full experience</p>
 
                 <div class="features-list">
-                    <p><i class="fa-solid fa-robot"></i> Core model</p>
-                    <p><i class="fa-solid fa-comment-dots"></i> More messages and uploads</p>
-                    <p><i class="fa-solid fa-image"></i> Limited image creation</p>
-                    <p><i class="fa-solid fa-brain"></i> Limited memory</p>
-                    <p><i class="fa-solid fa-microphone"></i> Expanded voice mode</p>
+                    <p><i class="fa-solid fa-check"></i> Core model</p>
+                    <p><i class="fa-solid fa-check"></i> More messages and uploads</p>
+                    <p><i class="fa-solid fa-check"></i> Limited image creation</p>
+                    <p><i class="fa-solid fa-check"></i> Limited memory</p>
+                    <p><i class="fa-solid fa-check"></i> Expanded voice mode</p>
                 </div>
+
+                <a class="btn-primary" href="signin.html#signup">
+                    Get Started
+                    <span class="btn-dot"></span>
+                </a>
 
                 <p class="note">Unlimited subject to abuse guardrails.</p>
             </div>
 
             <!-- PRO -->
-            <div class="price-card featured">
-                <h2><i class="fa-solid fa-crown"></i> Pro</h2>
-
-                <p class="price">R<span>399</span> ZAR / month</p>
-
-                <button class="btn-primary">
-                    <i class="fa-solid fa-bolt"></i>
-                    Upgrade
-                </button>
-
-                <p class="subtitle">Everything in Free plus:</p>
+            <div class="price-card featured plan-pro">
+                <span class="plan-badge">Most Popular</span>
+                <div class="price-card-icon"><i class="fa-solid fa-crown"></i></div>
+                <h2>Pro</h2>
+                <p class="price">R<span>399</span> <small>ZAR / month</small></p>
+                <p class="subtitle">Everything in Free, plus:</p>
 
                 <div class="features-list">
-                    <p><i class="fa-solid fa-infinity"></i> Unlimited messages</p>
-                    <p><i class="fa-solid fa-brain"></i> Advanced AI models</p>
-                    <p><i class="fa-solid fa-image"></i> Unlimited image creation</p>
-                    <p><i class="fa-solid fa-memory"></i> Extended memory</p>
-                    <p><i class="fa-solid fa-headset"></i> Priority support</p>
+                    <p><i class="fa-solid fa-check"></i> Unlimited messages</p>
+                    <p><i class="fa-solid fa-check"></i> Advanced AI models</p>
+                    <p><i class="fa-solid fa-check"></i> Unlimited image creation</p>
+                    <p><i class="fa-solid fa-check"></i> Extended memory</p>
+                    <p><i class="fa-solid fa-check"></i> Priority support</p>
                 </div>
+
+                <a class="btn-primary btn-primary-filled" href="signin.html#signup">
+                    Upgrade to Pro
+                    <span class="btn-dot"></span>
+                </a>
 
                 <p class="note">Best for professionals. Cancel anytime.</p>
             </div>
 
             <!-- BUSINESS -->
-            <div class="price-card">
-                <h2><i class="fa-solid fa-briefcase"></i> Business</h2>
-
-                <p class="price">R<span>999</span> ZAR / month</p>
-
-                <button class="btn-secondary">
-                    <i class="fa-solid fa-envelope"></i>
-                    Contact Sales
-                </button>
-
+            <div class="price-card plan-business">
+                <div class="price-card-icon"><i class="fa-solid fa-briefcase"></i></div>
+                <h2>Business</h2>
+                <p class="price">R<span>999</span> <small>ZAR / month</small></p>
                 <p class="subtitle">Built for teams.</p>
 
                 <div class="features-list">
-                    <p><i class="fa-solid fa-users"></i> Team workspace</p>
-                    <p><i class="fa-solid fa-layer-group"></i> Shared memory</p>
-                    <p><i class="fa-solid fa-user-shield"></i> Admin controls</p>
-                    <p><i class="fa-solid fa-headset"></i> Premium support</p>
-                    <p><i class="fa-solid fa-lock"></i> Advanced security</p>
+                    <p><i class="fa-solid fa-check"></i> Team workspace</p>
+                    <p><i class="fa-solid fa-check"></i> Shared memory</p>
+                    <p><i class="fa-solid fa-check"></i> Admin controls</p>
+                    <p><i class="fa-solid fa-check"></i> Premium support</p>
+                    <p><i class="fa-solid fa-check"></i> Advanced security</p>
                 </div>
+
+                <a class="btn-secondary" href="#get-quote">
+                    Contact Sales
+                    <span class="btn-dot btn-dot-dark"></span>
+                </a>
 
                 <p class="note">Scale with confidence. Custom enterprise solutions.</p>
             </div>
@@ -569,17 +482,19 @@
     </section>
 
 
-    <!--FAQ-->
+    <!--FAQ (Kora split panel, cream container for consistency) -->
  
     <section class="FAQ" id="faq">
 
         <div class="Frequent-div">
-            <!-- LEFT SIDE IMAGE -->
+            <!-- LEFT SIDE PANEL -->
             <div class="FAQ-picture">
+                <img src="https://picsum.photos/seed/kago-faq/700/900" alt="Architect reviewing plans with client">
+                <span class="FAQ-picture-icon">?</span>
                 <div class="FAQ-heading">
                     <h1>Frequently Asked Questions</h1>
                     <p>Got questions? We've got answers! Browse our FAQ, or reach out anytime—we're here to help make your journey smooth sailing</p>
-                    <button class="Reach-Out">Reach Out</button>
+                    <a class="Reach-Out" href="#get-quote">Reach Out</a>
                 </div>
             </div>
 
@@ -648,6 +563,144 @@
 
     </section>
 
+    <!--Get a Quote (destination for Reach Out / Contact Sales / footer CTA) -->
+    <section class="GetQuote" id="get-quote">
+
+        <div class="quote-inner">
+
+            <div class="quote-copy">
+                <h1>Tell us about your project</h1>
+                <p>Fill this in and our team will get back to you with next steps and pricing.</p>
+            </div>
+
+            <form class="quote-form" id="quote-form" onsubmit="return false;">
+
+                <div class="quote-row">
+                    <div class="quote-field">
+                        <label for="q-name">Name</label>
+                        <input type="text" id="q-name" name="name" required>
+                    </div>
+                    <div class="quote-field">
+                        <label for="q-contact">Email or phone</label>
+                        <input type="text" id="q-contact" name="contact" required>
+                    </div>
+                </div>
+
+                <div class="quote-row">
+                    <div class="quote-field">
+                        <label for="q-product">Product or service</label>
+                        <select id="q-product" name="product">
+                            <option value="ai-design">AI House Design</option>
+                            <option value="cost-estimate">Material & Cost Estimate</option>
+                            <option value="documentation">Project Documentation</option>
+                            <option value="business-plan">Business / Team Plan</option>
+                        </select>
+                    </div>
+                    <div class="quote-field">
+                        <label for="q-quantity">Quantity or requirements</label>
+                        <input type="text" id="q-quantity" name="quantity" placeholder="e.g. 1 single-story home, 3 bedrooms">
+                    </div>
+                </div>
+
+                <div class="quote-field quote-field-full">
+                    <label for="q-details">Project details</label>
+                    <textarea id="q-details" name="details" rows="4" placeholder="Tell us about the build, location, timeline..."></textarea>
+                </div>
+
+                <div class="quote-row">
+                    <div class="quote-field">
+                        <label for="q-budget">Budget or timeframe <span>(optional)</span></label>
+                        <input type="text" id="q-budget" name="budget" placeholder="e.g. R500k, ready to start in 3 months">
+                    </div>
+                    <div class="quote-field">
+                        <label for="q-attachment">Attachment / photo <span>(optional)</span></label>
+                        <input type="file" id="q-attachment" name="attachment">
+                    </div>
+                </div>
+
+                <button type="submit" class="quote-submit-btn">
+                    Send Request
+                    <span class="btn-dot"></span>
+                </button>
+
+                <p class="quote-confirmation" id="quote-confirmation" style="display:none;">
+                    Thanks! We've received your request and will be in touch shortly.
+                </p>
+
+            </form>
+
+        </div>
+
+    </section>
+
+
+    <!--Footer (Kora dark-olive footer) -->
+    <section class="Footer" id="footer">
+        <div class="footer-top">
+            <div class="footer-left">
+                <h1 id="footer-logo">
+                Kago <span id="span-build">build</span>
+                </h1>
+            </div>
+
+            <div class="footer-newsletter">
+                <h4>Newsletter</h4>
+                <form class="newsletter-form" id="newsletter-form" onsubmit="return false;">
+                    <input type="email" id="newsletter-email" placeholder="Your email address" required>
+                    <button type="submit" aria-label="Subscribe">→</button>
+                </form>
+                <p class="newsletter-note" id="newsletter-note">By submitting this form you agree with our privacy policy.</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom-content">
+            <div class="footer-text-col">
+                <p>
+                Let's build something great together —
+                whether you have a project in mind or just
+                want to connect, we'd love to hear from you.
+                </p>
+                <a id="footer-btn" href="#get-quote">Get a Quote</a>
+            </div>
+
+            <div class="footer-columns">
+                <div class="footer-col">
+                    <h5>Company</h5>
+                    <ul class="footer-list-items">
+                        <li>Home</li>
+                        <li>About Us</li>
+                        <li>Contact</li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Resources</h5>
+                    <ul class="footer-list-items">
+                        <li>Services</li>
+                        <li>Processes</li>
+                        <li>Pricing</li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Legal</h5>
+                    <ul class="footer-list-items">
+                        <li>Privacy Policy</li>
+                        <li>Terms of Service</li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Contact</h5>
+                    <ul class="footer-list-items">
+                        <li>hello@kagobuild.co</li>
+                        <li>+27 21 000 0000</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <h1 id="kago-built-footer">KAGO BUILD</h1>
+    </section>
+    <!----><!---->
+
     <script>
 
     const acc = document.querySelectorAll(".accordion");
@@ -687,39 +740,64 @@
 
     </script>
 
+    <script>
 
+    const testiRow = document.getElementById("testimonials-row");
+    const testiPrev = document.getElementById("testi-prev");
+    const testiNext = document.getElementById("testi-next");
 
-    <!--Footer-->
-    <section class="Footer" id="footer">
-        <div class="footer-top">
-        <div class="footer-left">
-            <h1 id="footer-logo">
-            Kago <span id="span-build">build</span>
-            </h1>
+    if (testiRow && testiPrev && testiNext) {
 
-            <div class="footer-bottom-content">
-            <div class="footer-text-col">
-                <p>
-                Let's build something great together —
-                whether you have a project in mind or just
-                want to connect, we'd love to hear from you.
-                </p>
-                <button id="footer-btn">Get a Quote</button>
-            </div>
+        const scrollAmount = 360;
 
-            <ul class="footer-list-items">
-                <li>Home</li>
-                <li>Services</li>
-                <li>Processes</li>
-                <li>About Us</li>
-                <li>Contact</li>
-            </ul>
-            </div>
-        </div>
-        </div>
+        testiPrev.addEventListener("click", () => {
+            testiRow.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+        });
 
-        <h1 id="kago-built-footer">KAGO BUILD</h1>
-    </section>
-    <!----><!---->
+        testiNext.addEventListener("click", () => {
+            testiRow.scrollBy({ left: scrollAmount, behavior: "smooth" });
+        });
+
+    }
+
+    </script>
+
+    <script>
+
+    const quoteForm = document.getElementById("quote-form");
+    const quoteConfirmation = document.getElementById("quote-confirmation");
+
+    if (quoteForm && quoteConfirmation) {
+
+        quoteForm.addEventListener("submit", function () {
+
+            quoteConfirmation.style.display = "block";
+            quoteForm.querySelectorAll("input, select, textarea").forEach(el => el.value = "");
+
+        });
+
+    }
+
+    </script>
+
+    <script>
+
+    const newsletterForm = document.getElementById("newsletter-form");
+    const newsletterEmail = document.getElementById("newsletter-email");
+    const newsletterNote = document.getElementById("newsletter-note");
+
+    if (newsletterForm && newsletterEmail && newsletterNote) {
+
+        newsletterForm.addEventListener("submit", function () {
+
+            newsletterNote.textContent = "Thanks for subscribing — check your inbox!";
+            newsletterEmail.value = "";
+
+        });
+
+    }
+
+    </script>
+
 </body>
 </html>
