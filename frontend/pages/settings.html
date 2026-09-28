@@ -8,6 +8,39 @@
     <link rel="stylesheet" href="../styles/settings.css">
 </head>
 <body>
+
+    <!-- Shared icon sprite: every icon inside the settings page comes from
+         here so they all share the same stroke weight, size and colour. -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+        <defs>
+            <symbol id="i-user" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></symbol>
+            <symbol id="i-building" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 22v-4h6v4M8 6h.01M12 6h.01M16 6h.01M8 10h.01M12 10h.01M16 10h.01M8 14h.01M12 14h.01M16 14h.01"/></symbol>
+            <symbol id="i-sliders" viewBox="0 0 24 24"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></symbol>
+            <symbol id="i-bell" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></symbol>
+            <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></symbol>
+            <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></symbol>
+            <symbol id="i-card" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></symbol>
+            <symbol id="i-database" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></symbol>
+            <symbol id="i-chev-right" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></symbol>
+            <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></symbol>
+            <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></symbol>
+            <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></symbol>
+            <symbol id="i-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></symbol>
+            <symbol id="i-plug" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></symbol>
+            <symbol id="i-cloud" viewBox="0 0 24 24"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></symbol>
+            <symbol id="i-dollar" viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></symbol>
+            <symbol id="i-lock" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol>
+            <symbol id="i-phone" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></symbol>
+            <symbol id="i-key" viewBox="0 0 24 24"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.78 7.78 5.5 5.5 0 0 1 7.78-7.78zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></symbol>
+            <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></symbol>
+            <symbol id="i-download" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></symbol>
+            <symbol id="i-archive" viewBox="0 0 24 24"><polyline points="21 8 21 21 3 21 3 8"/><rect x="1" y="3" width="22" height="5"/><line x1="10" y1="12" x2="14" y2="12"/></symbol>
+            <symbol id="i-trash" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></symbol>
+            <symbol id="i-x" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></symbol>
+            <symbol id="i-camera" viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></symbol>
+        </defs>
+    </svg>
+
     <section class="dashboard">
 
         <aside class="dashboard-navbar">
@@ -35,26 +68,28 @@
             </div>
 
             <div class="lower-sidebar">
-                <button id="need-help">
-                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none">
-                    <path d="M4 15V12C4 7.58172 7.58172 4 12 4C16.4183 4 20 7.58172 20 12V15" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-                    <rect x="2.5" y="13.5" width="4" height="6" rx="1.8" stroke="currentColor" stroke-width="1.6"/>
-                    <rect x="17.5" y="13.5" width="4" height="6" rx="1.8" stroke="currentColor" stroke-width="1.6"/>
-                    <path d="M20 19.5V20.2C20 21.7464 18.7464 23 17.2 23H14.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-                    <circle cx="13" cy="23" r="1.4" stroke="currentColor" stroke-width="1.6"/>
-                    </svg>
-                    need help
-                </button>
-                <button id="Premium-plan">
-                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none">
-                    <path d="M4 9L8 12L12 5L16 12L20 9L18.5 18H5.5L4 9Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
-                    <path d="M5.5 18H18.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-                    <circle cx="4" cy="8" r="1.3" stroke="currentColor" stroke-width="1.4"/>
-                    <circle cx="12" cy="4" r="1.3" stroke="currentColor" stroke-width="1.4"/>
-                    <circle cx="20" cy="8" r="1.3" stroke="currentColor" stroke-width="1.4"/>
-                    </svg>
-                    Premium plan
-                </button>
+                <a href="help-support.html">
+                    <button id="need-help">
+                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none">
+                            <path d="M4 15V12C4 7.58172 7.58172 4 12 4C16.4183 4 20 7.58172 20 12V15" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                            <rect x="2.5" y="13.5" width="4" height="6" rx="1.8" stroke="currentColor" stroke-width="1.6"/>
+                            <rect x="17.5" y="13.5" width="4" height="6" rx="1.8" stroke="currentColor" stroke-width="1.6"/>
+                            <path d="M20 19.5V20.2C20 21.7464 18.7464 23 17.2 23H14.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                            <circle cx="13" cy="23" r="1.4" stroke="currentColor" stroke-width="1.6"/>
+                        </svg>
+                        need help
+                    </button>
+                </a>
+
+                <a href="premium.html">
+                    <button id="Premium-plan">
+                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none">
+                            <path d="M4 9L8 12L12 5L16 12L20 9L18.5 18H5.5L4 9Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                            <path d="M5.5 18H18.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                        </svg>
+                        Premium plan
+                    </button>
+                </a>
             </div>
         </aside>
 
@@ -62,31 +97,59 @@
 
         <main class="dashboard-overview">
 
-            <header class="dashboard-header">
+            <!-- Settings header (original design: icon tile, title + subtitle,
+                 search pill, bell, divider, profile chip) -->
+            <header class="dashboard-header settings-header">
+
                 <div class="header-left">
-                    <h2>Settings</h2>
+
+                    <div class="settings-header-titles">
+                        <h2>Settings</h2>
+                        <p class="header-subtitle">Manage your account, company and preferences.</p>
+                    </div>
                 </div>
 
                 <div class="header-right">
-                    <div class="search-container">
-                        <span class="search-icon"><img src="../assets/icons/search.svg" alt="" width="27" height="27"></span>
-                        <input type="search" placeholder="Search projects, suppliers, materials...">
+                    <div class="search-container" id="searchBox">
+                        <span class="search-icon"><img src="../assets/icons/search.svg" alt="" width="20" height="20"></span>
+                        <input type="search" id="headerSearch" placeholder="Search settings..." autocomplete="off" aria-label="Search settings">
+                        <kbd class="search-hint">/</kbd>
+                        <div class="search-results" id="searchResults" role="listbox"></div>
                     </div>
 
-                    <button class="notification-btn">
-                        <img src="../assets/icons/notification.svg" alt="" width="25" height="25">
-                        <span class="notification-count">5</span>
-                    </button>
+                    <div class="notif-menu">
+                        <button class="notification-btn" id="bellBtn" aria-label="Notifications" aria-haspopup="true" aria-expanded="false">
+                            <img src="../assets/icons/notification.svg" alt="" width="22" height="22">
+                            <span class="notification-count" id="bellCount">5</span>
+                        </button>
+
+                        <div class="notif-dropdown" id="notifDropdown">
+                            <div class="notif-dropdown-header">
+                                <span>Notifications</span>
+                                <button type="button" class="link-btn" id="markAllRead">Mark all as read</button>
+                            </div>
+                            <div class="notif-item"><span class="notif-dot"></span><div><strong>Sarah Parker invited you</strong><small>Modern Family Home project · 5m ago</small></div></div>
+                            <div class="notif-item"><span class="notif-dot"></span><div><strong>New estimate completed</strong><small>Beach House Project · 1h ago</small></div></div>
+                            <div class="notif-item"><span class="notif-dot"></span><div><strong>Material price updated</strong><small>Cement (32.5N) up 5.2% · 2h ago</small></div></div>
+                            <div class="notif-item"><span class="notif-dot"></span><div><strong>Michael Johnson mentioned you</strong><small>Please review the updated plan · 3h ago</small></div></div>
+                            <div class="notif-item"><span class="notif-dot"></span><div><strong>Office Building is now In Progress</strong><small>Status changed · 5h ago</small></div></div>
+                            <a class="notif-dropdown-footer" href="notifications.html">View all notifications</a>
+                        </div>
+                    </div>
+
+                    <span class="header-divider" aria-hidden="true"></span>
 
                     <div class="profile-menu">
                         <div class="profile-section">
-                            <img src="images/profile.jpg" alt="Profile Picture">
-                            <div class="user-details"><h4>Moses</h4><p>Estimator</p></div>
+                            <span class="profile-avatar">
+                                <img id="hdrAvatar" alt="Profile Picture">
+                            </span>
+                            <div class="user-details"><h4 id="hdrName">Moses</h4><p>Estimator</p></div>
                             <span class="dropdown-arrow">▼</span>
                         </div>
                         <div class="dropdown">
-                            <a href="#">👤 My Profile</a>
-                            <a href="settings.html">⚙️ Settings</a>
+                            <a href="#account">👤 My Profile</a>
+                            <a href="#account">⚙️ Settings</a>
                             <a href="notifications.html">🔔 Notifications</a>
                             <a href="projects.html">📁 Projects</a>
                             <a href="index.html">
@@ -101,7 +164,6 @@
                     <style>
                         .dropdown { position:absolute; top:70px; right:24px; width:260px; background:#fff; border-radius:12px; box-shadow:0 12px 35px rgba(0,0,0,.12); opacity:0; visibility:hidden; transform:translateY(10px); transition:.25s; overflow:hidden; z-index:1000; }
                         .dropdown::before { position:absolute; top:-8px; right:25px; width:16px; height:16px; background:white; transform:rotate(45deg); }
-                        .profile-menu { margin-right:12px; border:#222 solid 2px; }
                         .profile-menu:hover .dropdown { opacity:1; visibility:visible; transform:translateY(0); }
                         .profile-menu:hover .dropdown-arrow { transform:rotate(180deg); }
                         .dropdown a { display:flex; align-items:center; gap:14px; padding:18px 24px; font-size:18px; color:#222; text-decoration:none; border-bottom:1px solid #efefef; transition:.2s; }
@@ -114,49 +176,63 @@
             <div class="main-card settings-main-card">
                 <div class="settings-page">
 
-                    <nav class="settings-tabs" id="settingsTabs">
-                        <button class="settings-tab active" data-tab="account">👤 Account</button>
-                        <button class="settings-tab" data-tab="company">🏢 Company</button>
-                        <button class="settings-tab" data-tab="preferences">⚙️ Preferences</button>
-                        <button class="settings-tab" data-tab="notifications">🔔 Notifications</button>
-                        <button class="settings-tab" data-tab="integrations">🔗 Integrations</button>
-                        <button class="settings-tab" data-tab="security">🛡️ Security</button>
-                        <button class="settings-tab" data-tab="billing">💳 Billing</button>
-                        <button class="settings-tab" data-tab="data">📊 Data & Export</button>
+                    <nav class="settings-tabs" id="settingsTabs" role="tablist">
+                        <button class="settings-tab active" data-tab="account" role="tab" aria-selected="true"><svg class="ico" aria-hidden="true"><use href="#i-user"/></svg>Account</button>
+                        <button class="settings-tab" data-tab="company" role="tab" aria-selected="false"><svg class="ico" aria-hidden="true"><use href="#i-building"/></svg>Company</button>
+                        <button class="settings-tab" data-tab="preferences" role="tab" aria-selected="false"><svg class="ico" aria-hidden="true"><use href="#i-sliders"/></svg>Preferences</button>
+                        <button class="settings-tab" data-tab="notifications" role="tab" aria-selected="false"><svg class="ico" aria-hidden="true"><use href="#i-bell"/></svg>Notifications</button>
+                        <button class="settings-tab" data-tab="integrations" role="tab" aria-selected="false"><svg class="ico" aria-hidden="true"><use href="#i-link"/></svg>Integrations</button>
+                        <button class="settings-tab" data-tab="security" role="tab" aria-selected="false"><svg class="ico" aria-hidden="true"><use href="#i-shield"/></svg>Security</button>
+                        <button class="settings-tab" data-tab="billing" role="tab" aria-selected="false"><svg class="ico" aria-hidden="true"><use href="#i-card"/></svg>Billing</button>
+                        <button class="settings-tab" data-tab="data" role="tab" aria-selected="false"><svg class="ico" aria-hidden="true"><use href="#i-database"/></svg>Data &amp; Export</button>
                     </nav>
 
                     <div class="settings-panels">
 
-                        <!-- ACCOUNT -->
+                        <!-- ACCOUNT: cards are stacked, one under the other -->
                         <div class="settings-panel" id="panel-account">
                             <div class="settings-cards-row">
 
-                                <div class="settings-card">
+                                <div class="settings-card" data-card="profile">
                                     <h5>Profile Information</h5>
                                     <p class="settings-card-sub">Update your personal information and profile details.</p>
 
                                     <div class="profile-photo-block">
-                                        <img src="https://picsum.photos/seed/moses/100/100" alt="Moses">
-                                        <button class="change-photo-btn">Change Photo</button>
+                                        <img id="profilePhoto" alt="Profile photo">
+                                        <div class="photo-actions">
+                                            <button type="button" class="change-photo-btn" id="changePhotoBtn"><svg class="ico" aria-hidden="true"><use href="#i-camera"/></svg>Change Photo</button>
+                                            <button type="button" class="link-btn" id="removePhotoBtn">Remove</button>
+                                        </div>
+                                        <input type="file" id="photoInput" accept="image/*" hidden>
                                     </div>
 
-                                    <div class="settings-field"><label>Full Name</label><input type="text" value="Moses"></div>
-                                    <div class="settings-field"><label>Email Address</label><input type="email" value="moses@buildwise.co.za"></div>
-                                    <div class="settings-field"><label>Phone Number</label><input type="text" value="+27 82 123 4567"></div>
-                                    <div class="settings-field"><label>Role</label><input type="text" value="Estimator" disabled></div>
+                                    <div class="settings-fields-grid">
+                                        <div class="settings-field"><label for="fName">Full Name</label><input id="fName" type="text" data-key="profile.name"></div>
+                                        <div class="settings-field"><label for="fEmail">Email Address</label><input id="fEmail" type="email" data-key="profile.email"></div>
+                                        <div class="settings-field"><label for="fPhone">Phone Number</label><input id="fPhone" type="text" data-key="profile.phone"></div>
+                                        <div class="settings-field"><label for="fRole">Role</label><input id="fRole" type="text" value="Estimator" disabled></div>
+                                    </div>
 
-                                    <button class="settings-save-btn">Save Changes</button>
+                                    <div class="settings-card-actions">
+                                        <button type="button" class="settings-save-btn" data-save="profile">Save Changes</button>
+                                    </div>
                                 </div>
 
-                                <div class="settings-card">
+                                <div class="settings-card" data-card="password">
                                     <h5>Change Password</h5>
                                     <p class="settings-card-sub">Update your password regularly to keep your account secure.</p>
 
-                                    <div class="settings-field"><label>Current Password</label><input type="password" placeholder="Enter current password"></div>
-                                    <div class="settings-field"><label>New Password</label><input type="password" placeholder="Enter new password"></div>
-                                    <div class="settings-field"><label>Confirm New Password</label><input type="password" placeholder="Confirm new password"></div>
+                                    <div class="settings-field"><label for="curPass">Current Password</label><input id="curPass" type="password" placeholder="Enter current password" autocomplete="current-password"></div>
+                                    <div class="settings-field">
+                                        <label for="newPass">New Password</label>
+                                        <input id="newPass" type="password" placeholder="Enter new password" autocomplete="new-password">
+                                        <small class="field-hint">At least 8 characters with an uppercase letter, a number and a symbol.</small>
+                                    </div>
+                                    <div class="settings-field"><label for="confPass">Confirm New Password</label><input id="confPass" type="password" placeholder="Confirm new password" autocomplete="new-password"></div>
 
-                                    <button class="settings-save-btn">Update Password</button>
+                                    <div class="settings-card-actions">
+                                        <button type="button" class="settings-save-btn" id="updatePasswordBtn">Update Password</button>
+                                    </div>
                                 </div>
 
                             </div>
@@ -165,16 +241,20 @@
                         <!-- COMPANY -->
                         <div class="settings-panel is-hidden" id="panel-company">
                             <div class="settings-cards-row">
-                                <div class="settings-card">
+                                <div class="settings-card" data-card="company">
                                     <h5>Company Information</h5>
                                     <p class="settings-card-sub">Manage your company details and settings.</p>
 
-                                    <div class="settings-field"><label>Company Name</label><input type="text" value="BuildWise Constructions"></div>
-                                    <div class="settings-field"><label>Registration Number</label><input type="text" value="2019/123456/07"></div>
-                                    <div class="settings-field"><label>Website</label><input type="text" value="www.buildwise.co.za"></div>
-                                    <div class="settings-field"><label>Primary Address</label><input type="text" value="123 Construction Road, Sandton, Johannesburg, 2196"></div>
+                                    <div class="settings-fields-grid">
+                                        <div class="settings-field"><label for="cName">Company Name</label><input id="cName" type="text" data-key="company.name"></div>
+                                        <div class="settings-field"><label for="cReg">Registration Number</label><input id="cReg" type="text" data-key="company.reg"></div>
+                                        <div class="settings-field"><label for="cWeb">Website</label><input id="cWeb" type="text" data-key="company.website"></div>
+                                        <div class="settings-field"><label for="cAddr">Primary Address</label><input id="cAddr" type="text" data-key="company.address"></div>
+                                    </div>
 
-                                    <button class="settings-save-btn">Save Changes</button>
+                                    <div class="settings-card-actions">
+                                        <button type="button" class="settings-save-btn" data-save="company">Save Changes</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -183,34 +263,39 @@
                         <div class="settings-panel is-hidden" id="panel-preferences">
                             <div class="settings-cards-row">
 
-                                <div class="settings-card">
+                                <div class="settings-card" data-card="preferences">
                                     <h5>Application Preferences</h5>
                                     <p class="settings-card-sub">Customize how the application works for you.</p>
 
-                                    <div class="settings-field"><label>Default Measurement Unit</label>
-                                        <select><option>Metric (m, kg, m²)</option><option>Imperial (ft, lb, ft²)</option></select>
-                                    </div>
-                                    <div class="settings-field"><label>Currency</label>
-                                        <select><option>ZAR (R) - South African Rand</option><option>USD ($)</option></select>
-                                    </div>
-                                    <div class="settings-field"><label>Default Region</label>
-                                        <select><option>Gauteng</option><option>Western Cape</option><option>KwaZulu-Natal</option></select>
-                                    </div>
-                                    <div class="settings-field"><label>Items per page</label>
-                                        <select><option>25</option><option>50</option><option>100</option></select>
+                                    <div class="settings-fields-grid">
+                                        <div class="settings-field"><label for="pUnit">Default Measurement Unit</label>
+                                            <select id="pUnit" data-key="pref.unit"><option>Metric (m, kg, m²)</option><option>Imperial (ft, lb, ft²)</option></select>
+                                        </div>
+                                        <div class="settings-field"><label for="pCur">Currency</label>
+                                            <select id="pCur" data-key="pref.currency"><option>ZAR (R) - South African Rand</option><option>USD ($)</option></select>
+                                        </div>
+                                        <div class="settings-field"><label for="pReg">Default Region</label>
+                                            <select id="pReg" data-key="pref.region"><option>Gauteng</option><option>Western Cape</option><option>KwaZulu-Natal</option></select>
+                                        </div>
+                                        <div class="settings-field"><label for="pPer">Items per page</label>
+                                            <select id="pPer" data-key="pref.perPage"><option>25</option><option>50</option><option>100</option></select>
+                                        </div>
                                     </div>
 
-                                    <button class="settings-save-btn">Save Preferences</button>
+                                    <div class="settings-card-actions">
+                                        <button type="button" class="settings-save-btn" data-save="preferences">Save Preferences</button>
+                                    </div>
                                 </div>
 
                                 <div class="settings-card">
                                     <h5>Quick Settings</h5>
+                                    <p class="settings-card-sub">Click a setting to change it. Changes apply straight away.</p>
 
-                                    <div class="quick-setting-row"><span>🌐 Language</span><span class="quick-value">English ›</span></div>
-                                    <div class="quick-setting-row"><span>🕐 Timezone</span><span class="quick-value">(GMT+02:00) Johannesburg ›</span></div>
-                                    <div class="quick-setting-row"><span>📅 Date Format</span><span class="quick-value">DD MMM YYYY ›</span></div>
-                                    <div class="quick-setting-row"><span>🕑 Time Format</span><span class="quick-value">24 Hour (14:30) ›</span></div>
-                                    <div class="quick-setting-row"><span>◐ Theme</span><span class="quick-value">Light ›</span></div>
+                                    <button type="button" class="quick-setting-row" data-quick="language"><span class="quick-label"><svg class="ico" aria-hidden="true"><use href="#i-globe"/></svg>Language</span><span class="quick-right"><span class="quick-value"></span><svg class="ico" aria-hidden="true"><use href="#i-chev-right"/></svg></span></button>
+                                    <button type="button" class="quick-setting-row" data-quick="timezone"><span class="quick-label"><svg class="ico" aria-hidden="true"><use href="#i-clock"/></svg>Timezone</span><span class="quick-right"><span class="quick-value"></span><svg class="ico" aria-hidden="true"><use href="#i-chev-right"/></svg></span></button>
+                                    <button type="button" class="quick-setting-row" data-quick="dateFormat"><span class="quick-label"><svg class="ico" aria-hidden="true"><use href="#i-calendar"/></svg>Date Format</span><span class="quick-right"><span class="quick-value"></span><svg class="ico" aria-hidden="true"><use href="#i-chev-right"/></svg></span></button>
+                                    <button type="button" class="quick-setting-row" data-quick="timeFormat"><span class="quick-label"><svg class="ico" aria-hidden="true"><use href="#i-clock"/></svg>Time Format</span><span class="quick-right"><span class="quick-value"></span><svg class="ico" aria-hidden="true"><use href="#i-chev-right"/></svg></span></button>
+                                    <button type="button" class="quick-setting-row" data-quick="theme"><span class="quick-label"><svg class="ico" aria-hidden="true"><use href="#i-moon"/></svg>Theme</span><span class="quick-right"><span class="quick-value"></span><svg class="ico" aria-hidden="true"><use href="#i-chev-right"/></svg></span></button>
                                 </div>
 
                             </div>
@@ -219,32 +304,34 @@
                         <!-- NOTIFICATIONS -->
                         <div class="settings-panel is-hidden" id="panel-notifications">
                             <div class="settings-cards-row">
-                                <div class="settings-card">
+                                <div class="settings-card" data-card="notifications">
                                     <h5>Notification Preferences</h5>
                                     <p class="settings-card-sub">Choose what you want to be notified about.</p>
 
                                     <div class="toggle-row">
                                         <div><strong>Email Notifications</strong><span>Receive email notifications</span></div>
-                                        <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+                                        <label class="switch"><input type="checkbox" data-key="notif.email"><span class="slider"></span></label>
                                     </div>
-                                    <div class="toggle-row">
+                                    <div class="toggle-row" data-depends="email">
                                         <div><strong>Project Updates</strong><span>When projects are updated</span></div>
-                                        <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+                                        <label class="switch"><input type="checkbox" data-key="notif.projects"><span class="slider"></span></label>
                                     </div>
-                                    <div class="toggle-row">
+                                    <div class="toggle-row" data-depends="email">
                                         <div><strong>Price Changes</strong><span>When material prices change</span></div>
-                                        <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+                                        <label class="switch"><input type="checkbox" data-key="notif.prices"><span class="slider"></span></label>
                                     </div>
-                                    <div class="toggle-row">
+                                    <div class="toggle-row" data-depends="email">
                                         <div><strong>Supplier Updates</strong><span>When new suppliers are added</span></div>
-                                        <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+                                        <label class="switch"><input type="checkbox" data-key="notif.suppliers"><span class="slider"></span></label>
                                     </div>
-                                    <div class="toggle-row">
+                                    <div class="toggle-row" data-depends="email">
                                         <div><strong>System Announcements</strong><span>Important system updates</span></div>
-                                        <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+                                        <label class="switch"><input type="checkbox" data-key="notif.system"><span class="slider"></span></label>
                                     </div>
 
-                                    <button class="settings-save-btn">Save Preferences</button>
+                                    <div class="settings-card-actions">
+                                        <button type="button" class="settings-save-btn" data-save="notifications">Save Preferences</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -256,23 +343,23 @@
                                     <h5>Integrations</h5>
                                     <p class="settings-card-sub">Manage external integrations and API connections.</p>
 
-                                    <div class="integration-row">
-                                        <span class="integration-icon">🔌</span>
-                                        <div><strong>Supplier APIs</strong><span>Connected to 5 suppliers</span></div>
-                                        <span class="integration-pill connected">Connected</span>
+                                    <div class="integration-row" data-integ="suppliers">
+                                        <span class="row-icon"><svg class="ico" aria-hidden="true"><use href="#i-plug"/></svg></span>
+                                        <div><strong>Supplier APIs</strong><span class="row-sub"></span></div>
+                                        <button type="button" class="integration-pill" data-toggle-integ="suppliers"></button>
                                     </div>
-                                    <div class="integration-row">
-                                        <span class="integration-icon">💹</span>
-                                        <div><strong>Accounting Software</strong><span>QuickBooks Online</span></div>
-                                        <span class="integration-pill connected">Connected</span>
+                                    <div class="integration-row" data-integ="accounting">
+                                        <span class="row-icon"><svg class="ico" aria-hidden="true"><use href="#i-dollar"/></svg></span>
+                                        <div><strong>Accounting Software</strong><span class="row-sub"></span></div>
+                                        <button type="button" class="integration-pill" data-toggle-integ="accounting"></button>
                                     </div>
-                                    <div class="integration-row">
-                                        <span class="integration-icon">☁️</span>
-                                        <div><strong>Cloud Storage</strong><span>Google Drive</span></div>
-                                        <span class="integration-pill connected">Connected</span>
+                                    <div class="integration-row" data-integ="storage">
+                                        <span class="row-icon"><svg class="ico" aria-hidden="true"><use href="#i-cloud"/></svg></span>
+                                        <div><strong>Cloud Storage</strong><span class="row-sub"></span></div>
+                                        <button type="button" class="integration-pill" data-toggle-integ="storage"></button>
                                     </div>
 
-                                    <a class="settings-link-row" href="#">Manage Integrations ›</a>
+                                    <button type="button" class="settings-link-row" data-open="integrations">Manage Integrations <svg class="ico" aria-hidden="true"><use href="#i-chev-right"/></svg></button>
                                 </div>
                             </div>
                         </div>
@@ -285,27 +372,27 @@
                                     <p class="settings-card-sub">Manage your account security and access.</p>
 
                                     <div class="security-row">
-                                        <span class="security-icon">🔐</span>
-                                        <div><strong>Two-Factor Authentication</strong><span>Enabled</span></div>
-                                        <button class="security-manage-btn">Manage</button>
+                                        <span class="row-icon"><svg class="ico" aria-hidden="true"><use href="#i-lock"/></svg></span>
+                                        <div><strong>Two-Factor Authentication</strong><span class="row-sub" id="secTwofaSub"></span></div>
+                                        <button type="button" class="security-manage-btn" data-open="twofa">Manage</button>
                                     </div>
                                     <div class="security-row">
-                                        <span class="security-icon">📱</span>
-                                        <div><strong>Login Sessions</strong><span>3 active sessions</span></div>
-                                        <button class="security-manage-btn">View</button>
+                                        <span class="row-icon"><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg></span>
+                                        <div><strong>Login Sessions</strong><span class="row-sub" id="secSessionsSub"></span></div>
+                                        <button type="button" class="security-manage-btn" data-open="sessions">View</button>
                                     </div>
                                     <div class="security-row">
-                                        <span class="security-icon">🔑</span>
-                                        <div><strong>API Access</strong><span>2 API keys active</span></div>
-                                        <button class="security-manage-btn">Manage</button>
+                                        <span class="row-icon"><svg class="ico" aria-hidden="true"><use href="#i-key"/></svg></span>
+                                        <div><strong>API Access</strong><span class="row-sub" id="secApiSub"></span></div>
+                                        <button type="button" class="security-manage-btn" data-open="api">Manage</button>
                                     </div>
                                     <div class="security-row">
-                                        <span class="security-icon">📋</span>
-                                        <div><strong>Activity Log</strong><span>View account activity</span></div>
-                                        <button class="security-manage-btn">View</button>
+                                        <span class="row-icon"><svg class="ico" aria-hidden="true"><use href="#i-file"/></svg></span>
+                                        <div><strong>Activity Log</strong><span class="row-sub">View account activity</span></div>
+                                        <button type="button" class="security-manage-btn" data-open="activity">View</button>
                                     </div>
 
-                                    <a class="settings-link-row" href="#">Security Dashboard ›</a>
+                                    <button type="button" class="settings-link-row" data-open="activity">Security Dashboard <svg class="ico" aria-hidden="true"><use href="#i-chev-right"/></svg></button>
                                 </div>
                             </div>
                         </div>
@@ -314,25 +401,25 @@
                         <div class="settings-panel is-hidden" id="panel-billing">
                             <div class="settings-cards-row">
                                 <div class="settings-card">
-                                    <h5>Billing & Subscription</h5>
+                                    <h5>Billing &amp; Subscription</h5>
                                     <p class="settings-card-sub">Manage your subscription and billing information.</p>
 
                                     <div class="billing-plan-row">
                                         <div><span>Current Plan</span><strong>Professional Plan</strong><small>R2,499 / month</small><small>Next billing: 15 Feb 2024</small></div>
-                                        <button class="security-manage-btn">Manage Plan</button>
+                                        <a class="security-manage-btn" href="premium.html">Manage Plan</a>
                                     </div>
                                     <div class="billing-row">
-                                        <span class="integration-icon">💳</span>
-                                        <div><strong>Payment Methods</strong><span>2 cards on file</span></div>
-                                        <button class="security-manage-btn">Manage</button>
+                                        <span class="row-icon"><svg class="ico" aria-hidden="true"><use href="#i-card"/></svg></span>
+                                        <div><strong>Payment Methods</strong><span class="row-sub" id="billPaySub"></span></div>
+                                        <button type="button" class="security-manage-btn" data-open="payments">Manage</button>
                                     </div>
                                     <div class="billing-row">
-                                        <span class="integration-icon">🧾</span>
-                                        <div><strong>Billing History</strong><span>View all invoices</span></div>
-                                        <button class="security-manage-btn">View</button>
+                                        <span class="row-icon"><svg class="ico" aria-hidden="true"><use href="#i-file"/></svg></span>
+                                        <div><strong>Billing History</strong><span class="row-sub">View all invoices</span></div>
+                                        <button type="button" class="security-manage-btn" data-open="invoices">View</button>
                                     </div>
 
-                                    <a class="settings-link-row" href="#">Billing Dashboard ›</a>
+                                    <a class="settings-link-row" href="premium.html">Billing Dashboard <svg class="ico" aria-hidden="true"><use href="#i-chev-right"/></svg></a>
                                 </div>
                             </div>
                         </div>
@@ -341,26 +428,26 @@
                         <div class="settings-panel is-hidden" id="panel-data">
                             <div class="settings-cards-row">
                                 <div class="settings-card">
-                                    <h5>Data & Export</h5>
+                                    <h5>Data &amp; Export</h5>
                                     <p class="settings-card-sub">Export your data or manage data retention.</p>
 
                                     <div class="billing-row">
-                                        <span class="integration-icon green">⬇</span>
-                                        <div><strong>Export My Data</strong><span>Download all your data</span></div>
-                                        <button class="security-manage-btn">Export</button>
+                                        <span class="row-icon green"><svg class="ico" aria-hidden="true"><use href="#i-download"/></svg></span>
+                                        <div><strong>Export My Data</strong><span class="row-sub">Download all your settings as a file</span></div>
+                                        <button type="button" class="security-manage-btn" id="exportDataBtn">Export</button>
                                     </div>
                                     <div class="billing-row">
-                                        <span class="integration-icon">🗄</span>
-                                        <div><strong>Data Retention</strong><span>Keep data for 2 years</span></div>
-                                        <button class="security-manage-btn">Manage</button>
+                                        <span class="row-icon"><svg class="ico" aria-hidden="true"><use href="#i-archive"/></svg></span>
+                                        <div><strong>Data Retention</strong><span class="row-sub" id="dataRetSub"></span></div>
+                                        <button type="button" class="security-manage-btn" data-open="retention">Manage</button>
                                     </div>
                                     <div class="billing-row">
-                                        <span class="integration-icon red">🗑</span>
-                                        <div><strong>Delete Account</strong><span>Permanently delete account</span></div>
-                                        <button class="security-manage-btn danger">Delete</button>
+                                        <span class="row-icon red"><svg class="ico" aria-hidden="true"><use href="#i-trash"/></svg></span>
+                                        <div><strong>Delete Account</strong><span class="row-sub">Permanently delete account</span></div>
+                                        <button type="button" class="security-manage-btn danger" data-open="delete">Delete</button>
                                     </div>
 
-                                    <a class="settings-link-row" href="#">Data Management ›</a>
+                                    <button type="button" class="settings-link-row" data-open="retention">Data Management <svg class="ico" aria-hidden="true"><use href="#i-chev-right"/></svg></button>
                                 </div>
                             </div>
                         </div>
@@ -373,25 +460,36 @@
         </main>
     </section>
 
+    <!-- One reusable modal for every settings dialog -->
+    <div class="modal-overlay" id="modal" aria-hidden="true">
+        <div class="modal-box" id="modalBox" role="dialog" aria-modal="true"></div>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
     <script>
+    (function () {
 
-    // ---------------------------------------------------------------
-    // Sidebar resize + collapse, persisted to localStorage (same
-    // behaviour as dashboard.html / projects.html)
-    // ---------------------------------------------------------------
+    const $  = (s, r = document) => r.querySelector(s);
+    const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+    const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+    const ic = (name, cls) => `<svg class="ico${cls ? " " + cls : ""}" aria-hidden="true"><use href="#${name}"/></svg>`;
 
-    const sidebar = document.querySelector(".dashboard-navbar");
-    const resizer = document.getElementById("sidebarResizer");
+    // =================================================================
+    // Sidebar resize + collapse (same limits / keys as every other page)
+    // =================================================================
+
+    const sidebar = $(".dashboard-navbar");
+    const resizer = $("#sidebarResizer");
 
     const COLLAPSE_THRESHOLD = 85;
     const COLLAPSED_WIDTH = 72;
     const MIN_WIDTH = 70;
-    const MAX_WIDTH = 300;
-    const DEFAULT_WIDTH = 220;
+    const MAX_WIDTH = 240;
+    const DEFAULT_WIDTH = 180;
 
     function applyWidth(width, persist) {
         const collapsed = width <= COLLAPSE_THRESHOLD;
-
         if (collapsed) {
             sidebar.style.width = COLLAPSED_WIDTH + "px";
             sidebar.classList.add("collapsed");
@@ -399,7 +497,6 @@
             sidebar.style.width = width + "px";
             sidebar.classList.remove("collapsed");
         }
-
         if (persist) {
             localStorage.setItem("kb-sidebar-width", collapsed ? COLLAPSED_WIDTH : width);
             localStorage.setItem("kb-sidebar-collapsed", collapsed ? "1" : "0");
@@ -409,54 +506,857 @@
     (function restoreSidebar() {
         const savedCollapsed = localStorage.getItem("kb-sidebar-collapsed") === "1";
         const savedWidth = parseInt(localStorage.getItem("kb-sidebar-width"), 10);
-
-        if (savedCollapsed) {
-            applyWidth(COLLAPSED_WIDTH, false);
-        } else if (!isNaN(savedWidth)) {
-            applyWidth(savedWidth, false);
-        } else {
-            applyWidth(DEFAULT_WIDTH, false);
-        }
+        if (savedCollapsed) applyWidth(COLLAPSED_WIDTH, false);
+        else if (!isNaN(savedWidth)) applyWidth(savedWidth, false);
+        else applyWidth(DEFAULT_WIDTH, false);
     })();
 
     let dragging = false;
-
-    resizer.addEventListener("mousedown", () => {
-        dragging = true;
-        document.body.style.cursor = "ew-resize";
-    });
-
+    resizer.addEventListener("mousedown", () => { dragging = true; document.body.style.cursor = "ew-resize"; });
     document.addEventListener("mouseup", () => {
         if (!dragging) return;
         dragging = false;
         document.body.style.cursor = "default";
         applyWidth(parseInt(sidebar.style.width, 10), true);
     });
-
-    document.addEventListener("mousemove",(e)=>{
-        if(!dragging) return;
+    document.addEventListener("mousemove", (e) => {
+        if (!dragging) return;
         let width = e.clientX;
-        if(width < MIN_WIDTH) width = MIN_WIDTH;
-        if(width > MAX_WIDTH) width = MAX_WIDTH;
+        if (width < MIN_WIDTH) width = MIN_WIDTH;
+        if (width > MAX_WIDTH) width = MAX_WIDTH;
         applyWidth(width, false);
     });
 
-    // ---------------------------------------------------------------
-    // Settings tabs: clicking a tab shows only that tab's panel and
-    // hides the rest, instead of scrolling down a single long page.
-    // ---------------------------------------------------------------
+    // =================================================================
+    // Settings store (localStorage — no backend yet)
+    // =================================================================
 
-    document.querySelectorAll(".settings-tab").forEach(tab => {
-        tab.addEventListener("click", () => {
-            document.querySelectorAll(".settings-tab").forEach(t => t.classList.remove("active"));
-            tab.classList.add("active");
+    const KEY = "kb-settings";
 
-            document.querySelectorAll(".settings-panel").forEach(panel => {
-                panel.classList.toggle("is-hidden", panel.id !== "panel-" + tab.dataset.tab);
-            });
+    const DEFAULTS = {
+        "profile.name": "Moses",
+        "profile.email": "moses@buildwise.co.za",
+        "profile.phone": "+27 82 123 4567",
+        "profile.photo": "",
+        "company.name": "BuildWise Constructions",
+        "company.reg": "2019/123456/07",
+        "company.website": "www.buildwise.co.za",
+        "company.address": "123 Construction Road, Sandton, Johannesburg, 2196",
+        "pref.unit": "Metric (m, kg, m²)",
+        "pref.currency": "ZAR (R) - South African Rand",
+        "pref.region": "Gauteng",
+        "pref.perPage": "25",
+        "quick.language": "English",
+        "quick.timezone": "(GMT+02:00) Johannesburg",
+        "quick.dateFormat": "DD MMM YYYY",
+        "quick.timeFormat": "24 Hour (14:30)",
+        "quick.theme": "Light",
+        "notif.email": true,
+        "notif.projects": true,
+        "notif.prices": true,
+        "notif.suppliers": false,
+        "notif.system": true,
+        "integ.suppliers": true,
+        "integ.accounting": true,
+        "integ.storage": true,
+        "sec.twofa": true,
+        "data.retention": "2 years"
+    };
+
+    let store;
+    try { store = Object.assign({}, DEFAULTS, JSON.parse(localStorage.getItem(KEY) || "{}")); }
+    catch (e) { store = Object.assign({}, DEFAULTS); }
+
+    const S = {
+        get: k => store[k],
+        set(k, v) {
+            store[k] = v;
+            try { localStorage.setItem(KEY, JSON.stringify(store)); }
+            catch (e) { toast("Couldn't save — browser storage is full or blocked.", "error"); }
+        }
+    };
+
+    const clone = v => JSON.parse(JSON.stringify(v));
+    const L = {
+        get(k, d) { try { const v = JSON.parse(localStorage.getItem(k)); return v === null ? clone(d) : v; } catch (e) { return clone(d); } },
+        set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+    };
+
+    const DEFAULT_SESSIONS = [
+        { id:"s1", device:"Chrome on Windows", place:"Johannesburg, ZA", last:"Active now", current:true },
+        { id:"s2", device:"Safari on iPhone",  place:"Sandton, ZA",      last:"2 hours ago" },
+        { id:"s3", device:"Edge on Windows",   place:"Pretoria, ZA",     last:"3 days ago" }
+    ];
+    const DEFAULT_KEYS = [
+        { id:"k1", name:"Production", hint:"kb_live_••••7f3a", created:"2024-02-02" },
+        { id:"k2", name:"Staging",    hint:"kb_test_••••c91d", created:"2024-03-11" }
+    ];
+    const DEFAULT_CARDS = [
+        { id:"c1", brand:"Visa",       last4:"4417", exp:"08/27", def:true },
+        { id:"c2", brand:"Mastercard", last4:"9021", exp:"11/26" }
+    ];
+    const INVOICES = [
+        { no:"INV-1042", iso:"2024-01-15", amount:"R2,499.00", status:"Paid" },
+        { no:"INV-0987", iso:"2023-12-15", amount:"R2,499.00", status:"Paid" },
+        { no:"INV-0931", iso:"2023-11-15", amount:"R2,499.00", status:"Paid" }
+    ];
+
+    const DEFAULT_AVATAR = "data:image/svg+xml;utf8," + encodeURIComponent(
+        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" fill="#EAE9EB"/><circle cx="32" cy="25" r="11" fill="#A9A3A4"/><path d="M10 60c2-13 12-19 22-19s20 6 22 19z" fill="#A9A3A4"/></svg>'
+    );
+
+    // ---------- date / time formatting follows the Quick Settings ----------
+
+    const TZ = {
+        "(GMT+02:00) Johannesburg": "Africa/Johannesburg",
+        "(GMT+00:00) London": "Europe/London",
+        "(GMT+00:00) UTC": "UTC"
+    };
+    const tz = () => TZ[S.get("quick.timezone")] || "Africa/Johannesburg";
+    function dtParts(d, opts) {
+        return Object.fromEntries(new Intl.DateTimeFormat("en-GB", Object.assign({ timeZone: tz() }, opts)).formatToParts(d).map(p => [p.type, p.value]));
+    }
+    function fmtDate(d) {
+        const a = dtParts(d, { day:"2-digit", month:"short", year:"numeric" });
+        const n = dtParts(d, { month:"2-digit" });
+        switch (S.get("quick.dateFormat")) {
+            case "DD/MM/YYYY": return `${a.day}/${n.month}/${a.year}`;
+            case "MM/DD/YYYY": return `${n.month}/${a.day}/${a.year}`;
+            case "YYYY-MM-DD": return `${a.year}-${n.month}-${a.day}`;
+            default: return `${a.day} ${a.month} ${a.year}`;
+        }
+    }
+    function fmtTime(d) {
+        const h12 = String(S.get("quick.timeFormat")).startsWith("12");
+        return new Intl.DateTimeFormat("en-GB", { timeZone: tz(), hour:"2-digit", minute:"2-digit", hour12: h12 }).format(d);
+    }
+
+    // ---------- activity log ----------
+
+    function seedActivity() {
+        const now = Date.now();
+        return [
+            { t: now - 2 * 3600e3,  text: "Signed in from Chrome on Windows" },
+            { t: now - 26 * 3600e3, text: "Updated material prices for Gauteng" },
+            { t: now - 3 * 86400e3, text: "Signed in from Edge on Windows" }
+        ];
+    }
+    try { if (!localStorage.getItem("kb-activity")) L.set("kb-activity", seedActivity()); } catch (e) {}
+
+    function logActivity(text) {
+        const list = L.get("kb-activity", []);
+        list.unshift({ t: Date.now(), text });
+        L.set("kb-activity", list.slice(0, 30));
+    }
+
+    // =================================================================
+    // Toast
+    // =================================================================
+
+    const toastEl = $("#toast");
+    let toastTimer = null;
+    function toast(msg, kind) {
+        toastEl.textContent = msg;
+        toastEl.className = "toast show" + (kind === "error" ? " error" : "");
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => toastEl.classList.remove("show"), 2600);
+    }
+
+    // =================================================================
+    // Header: avatar, name, bell menu
+    // =================================================================
+
+    function photoSrc() { return S.get("profile.photo") || DEFAULT_AVATAR; }
+
+    function updateHeader() {
+        $("#hdrName").textContent = S.get("profile.name") || "User";
+        ["#hdrAvatar", "#profilePhoto"].forEach(sel => {
+            const img = $(sel);
+            img.onerror = () => { img.onerror = null; img.src = DEFAULT_AVATAR; };
+            img.src = photoSrc();
+        });
+        $("#removePhotoBtn").hidden = !S.get("profile.photo");
+    }
+
+    const bellBtn = $("#bellBtn");
+    const notifMenu = $("#notifDropdown");
+
+    function closeMenus() {
+        notifMenu.classList.remove("open");
+        bellBtn.setAttribute("aria-expanded", "false");
+    }
+
+    bellBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const willOpen = !notifMenu.classList.contains("open");
+        closeMenus();
+        if (willOpen) { notifMenu.classList.add("open"); bellBtn.setAttribute("aria-expanded", "true"); }
+    });
+
+    document.addEventListener("click", (e) => {
+        if (!e.target.closest(".notif-dropdown")) closeMenus();
+        if (!e.target.closest("#searchBox")) hideResults();
+    });
+
+    $("#markAllRead").addEventListener("click", () => {
+        $$("#notifDropdown .notif-item").forEach(i => i.classList.add("read"));
+        const badge = $("#bellCount");
+        badge.textContent = "0";
+        badge.hidden = true;
+        toast("All notifications marked as read");
+    });
+
+    // =================================================================
+    // Tabs
+    // =================================================================
+
+    const tabButtons = $$(".settings-tab");
+    const TABS = tabButtons.map(t => t.dataset.tab);
+    const TAB_LABELS = Object.fromEntries(tabButtons.map(t => [t.dataset.tab, t.textContent.trim()]));
+
+    function showTab(name, opts) {
+        if (!TABS.includes(name)) name = "account";
+        tabButtons.forEach(t => {
+            const on = t.dataset.tab === name;
+            t.classList.toggle("active", on);
+            t.setAttribute("aria-selected", on ? "true" : "false");
+        });
+        $$(".settings-panel").forEach(p => p.classList.toggle("is-hidden", p.id !== "panel-" + name));
+        if (!opts || opts.hash !== false) history.replaceState(null, "", "#" + name);
+    }
+
+    tabButtons.forEach(t => t.addEventListener("click", () => showTab(t.dataset.tab)));
+    window.addEventListener("hashchange", () => showTab(location.hash.slice(1), { hash:false }));
+
+    function focusTarget(el) {
+        if (!el) return;
+        el.scrollIntoView({ behavior:"smooth", block:"center" });
+        el.classList.remove("flash-hit");
+        void el.offsetWidth;
+        el.classList.add("flash-hit");
+        setTimeout(() => el.classList.remove("flash-hit"), 1800);
+    }
+
+    // =================================================================
+    // Header search across every setting
+    // =================================================================
+
+    const SEARCH_SEL = ".settings-card h5, .settings-field label, .toggle-row strong, .quick-setting-row .quick-label, .integration-row strong, .security-row strong, .billing-row strong, .billing-plan-row strong";
+    const searchIndex = [];
+    const seen = new Set();
+    $$(".settings-panel").forEach(panel => {
+        const tab = panel.id.replace("panel-", "");
+        $$(SEARCH_SEL, panel).forEach(el => {
+            const text = el.textContent.trim().replace(/\s+/g, " ");
+            const k = tab + "|" + text;
+            if (text && !seen.has(k)) { seen.add(k); searchIndex.push({ el, text, tab }); }
         });
     });
 
+    const searchInput = $("#headerSearch");
+    const resultsEl = $("#searchResults");
+    let activeHit = -1;
+    let currentHits = [];
+
+    function hideResults() { resultsEl.classList.remove("open"); activeHit = -1; }
+
+    function renderResults(q) {
+        const term = q.trim().toLowerCase();
+        if (!term) { hideResults(); return; }
+        currentHits = searchIndex
+            .filter(i => i.text.toLowerCase().includes(term))
+            .sort((a, b) => (b.text.toLowerCase().startsWith(term) - a.text.toLowerCase().startsWith(term)))
+            .slice(0, 7);
+        activeHit = currentHits.length ? 0 : -1;
+        resultsEl.innerHTML = currentHits.length
+            ? currentHits.map((h, i) => `<button type="button" class="search-result${i === 0 ? " active" : ""}" data-i="${i}" role="option"><span>${esc(h.text)}</span><small>${esc(TAB_LABELS[h.tab])}</small></button>`).join("")
+            : `<div class="search-empty">No settings match “${esc(q.trim())}”</div>`;
+        resultsEl.classList.add("open");
+    }
+
+    function goToHit(h) {
+        if (!h) return;
+        hideResults();
+        searchInput.value = "";
+        searchInput.blur();
+        showTab(h.tab);
+        focusTarget(h.el.closest(".toggle-row, .quick-setting-row, .integration-row, .security-row, .billing-row, .settings-field, .settings-card"));
+    }
+
+    function moveActive(delta) {
+        if (!currentHits.length) return;
+        activeHit = (activeHit + delta + currentHits.length) % currentHits.length;
+        $$(".search-result", resultsEl).forEach((b, i) => b.classList.toggle("active", i === activeHit));
+    }
+
+    searchInput.addEventListener("input", () => renderResults(searchInput.value));
+    searchInput.addEventListener("focus", () => { if (searchInput.value) renderResults(searchInput.value); });
+    searchInput.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowDown") { e.preventDefault(); moveActive(1); }
+        else if (e.key === "ArrowUp") { e.preventDefault(); moveActive(-1); }
+        else if (e.key === "Enter") { e.preventDefault(); goToHit(currentHits[activeHit]); }
+        else if (e.key === "Escape") { searchInput.value = ""; hideResults(); searchInput.blur(); }
+    });
+    resultsEl.addEventListener("mousedown", (e) => {
+        const b = e.target.closest(".search-result");
+        if (b) { e.preventDefault(); goToHit(currentHits[Number(b.dataset.i)]); }
+    });
+
+    document.addEventListener("keydown", (e) => {
+        const tag = (document.activeElement && document.activeElement.tagName) || "";
+        if (e.key === "/" && !["INPUT", "TEXTAREA", "SELECT"].includes(tag) && !$("#modal").classList.contains("open")) {
+            e.preventDefault();
+            searchInput.focus();
+        }
+    });
+
+    // =================================================================
+    // Bind fields to the store
+    // =================================================================
+
+    function loadFields() {
+        $$("[data-key]").forEach(el => {
+            const v = S.get(el.dataset.key);
+            if (el.type === "checkbox") el.checked = !!v;
+            else if (v !== undefined) el.value = v;
+        });
+    }
+
+    function setError(input, msg) {
+        const f = input.closest(".settings-field");
+        f.classList.toggle("has-error", !!msg);
+        let e = f.querySelector(".field-error");
+        if (msg) {
+            if (!e) { e = document.createElement("small"); e.className = "field-error"; f.appendChild(e); }
+            e.textContent = msg;
+        } else if (e) e.remove();
+    }
+    $$(".settings-field input").forEach(i => i.addEventListener("input", () => setError(i, "")));
+
+    function saveCard(card) {
+        const name = card.dataset.card;
+        let ok = true;
+
+        if (name === "profile") {
+            const n = $("#fName"), em = $("#fEmail"), ph = $("#fPhone");
+            if (!n.value.trim()) { setError(n, "Enter your full name"); ok = false; }
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em.value.trim())) { setError(em, "Enter a valid email address"); ok = false; }
+            if (ph.value.trim() && !/^\+?[\d\s()-]{7,}$/.test(ph.value.trim())) { setError(ph, "Enter a valid phone number"); ok = false; }
+        }
+        if (name === "company") {
+            const n = $("#cName");
+            if (!n.value.trim()) { setError(n, "Enter your company name"); ok = false; }
+        }
+
+        if (!ok) { toast("Please fix the highlighted fields", "error"); return; }
+
+        $$("[data-key]", card).forEach(el => S.set(el.dataset.key, el.type === "checkbox" ? el.checked : el.value.trim()));
+
+        updateHeader();
+        renderSummaries();
+        logActivity({ profile:"Profile information updated", company:"Company information updated", preferences:"Application preferences updated", notifications:"Notification preferences updated" }[name] || "Settings updated");
+        toast("Changes saved");
+    }
+
+    document.addEventListener("click", (e) => {
+        const btn = e.target.closest("[data-save]");
+        if (btn) saveCard(btn.closest("[data-card]"));
+    });
+
+    // ---------- profile photo ----------
+
+    $("#changePhotoBtn").addEventListener("click", () => $("#photoInput").click());
+    $("#photoInput").addEventListener("change", (e) => {
+        const file = e.target.files[0];
+        e.target.value = "";
+        if (!file) return;
+        if (!file.type.startsWith("image/")) { toast("Please choose an image file", "error"); return; }
+        if (file.size > 8 * 1024 * 1024) { toast("Image is too large (max 8MB)", "error"); return; }
+
+        const reader = new FileReader();
+        reader.onload = () => {
+            const img = new Image();
+            img.onload = () => {
+                const size = 256;
+                const canvas = document.createElement("canvas");
+                canvas.width = canvas.height = size;
+                const ctx = canvas.getContext("2d");
+                const s = Math.min(img.width, img.height);
+                ctx.drawImage(img, (img.width - s) / 2, (img.height - s) / 2, s, s, 0, 0, size, size);
+                S.set("profile.photo", canvas.toDataURL("image/jpeg", 0.85));
+                updateHeader();
+                logActivity("Profile photo changed");
+                toast("Profile photo updated");
+            };
+            img.onerror = () => toast("Couldn't read that image", "error");
+            img.src = reader.result;
+        };
+        reader.readAsDataURL(file);
+    });
+    $("#removePhotoBtn").addEventListener("click", () => {
+        S.set("profile.photo", "");
+        updateHeader();
+        toast("Profile photo removed");
+    });
+
+    // ---------- password ----------
+
+    $("#updatePasswordBtn").addEventListener("click", () => {
+        const cur = $("#curPass"), nw = $("#newPass"), cf = $("#confPass");
+        let ok = true;
+        [cur, nw, cf].forEach(i => setError(i, ""));
+
+        if (!cur.value) { setError(cur, "Enter your current password"); ok = false; }
+        if (!/^(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/.test(nw.value)) {
+            setError(nw, "Use 8+ characters with an uppercase letter, a number and a symbol"); ok = false;
+        } else if (nw.value === cur.value) {
+            setError(nw, "New password must be different from the current one"); ok = false;
+        }
+        if (cf.value !== nw.value) { setError(cf, "Passwords don't match"); ok = false; }
+        if (!ok) return;
+
+        cur.value = nw.value = cf.value = "";
+        logActivity("Password changed");
+        toast("Password updated");
+    });
+
+    // ---------- notification toggles ----------
+
+    function syncNotifMaster() {
+        const on = $('[data-key="notif.email"]').checked;
+        $$(".toggle-row[data-depends]").forEach(r => {
+            r.classList.toggle("is-disabled", !on);
+            $("input", r).disabled = !on;
+        });
+    }
+    $('[data-key="notif.email"]').addEventListener("change", syncNotifMaster);
+
+    // =================================================================
+    // Summaries (subtitle text on rows, kept in sync with the data)
+    // =================================================================
+
+    const INTEG = {
+        suppliers:  { label:"Supplier APIs",       on:"Connected to 5 suppliers", icon:"i-plug" },
+        accounting: { label:"Accounting Software", on:"QuickBooks Online",        icon:"i-dollar" },
+        storage:    { label:"Cloud Storage",       on:"Google Drive",             icon:"i-cloud" }
+    };
+
+    function renderSummaries() {
+        Object.entries(INTEG).forEach(([k, v]) => {
+            const on = !!S.get("integ." + k);
+            const row = $(`.integration-row[data-integ="${k}"]`);
+            $(".row-sub", row).textContent = on ? v.on : "Not connected";
+            const pill = $(".integration-pill", row);
+            pill.textContent = on ? "Connected" : "Disconnected";
+            pill.classList.toggle("connected", on);
+            pill.classList.toggle("off", !on);
+            pill.title = on ? "Click to disconnect" : "Click to connect";
+        });
+
+        $("#secTwofaSub").textContent = S.get("sec.twofa") ? "Enabled" : "Disabled";
+        const sessions = L.get("kb-sessions", DEFAULT_SESSIONS);
+        $("#secSessionsSub").textContent = sessions.length + " active session" + (sessions.length === 1 ? "" : "s");
+        const keys = L.get("kb-keys", DEFAULT_KEYS);
+        $("#secApiSub").textContent = keys.length ? keys.length + " API key" + (keys.length === 1 ? "" : "s") + " active" : "No API keys";
+        const cards = L.get("kb-cards", DEFAULT_CARDS);
+        $("#billPaySub").textContent = cards.length + " card" + (cards.length === 1 ? "" : "s") + " on file";
+        const ret = S.get("data.retention");
+        $("#dataRetSub").textContent = ret === "Keep forever" ? "Keep data forever" : "Keep data for " + ret;
+
+        $$("[data-quick]").forEach(b => { $(".quick-value", b).textContent = S.get("quick." + b.dataset.quick); });
+    }
+
+    // =================================================================
+    // Modal system
+    // =================================================================
+
+    const modalEl = $("#modal");
+    const modalBox = $("#modalBox");
+    let modalHandler = null;
+    let modalOnClose = null;
+
+    function showModal(cfg) {
+        modalHandler = cfg.handler || null;
+        modalOnClose = cfg.onClose || null;
+        modalBox.classList.toggle("wide", !!cfg.wide);
+        modalBox.innerHTML = `
+            <div class="modal-head">
+                <h3>${esc(cfg.title)}</h3>
+                <button type="button" class="modal-close" data-act="close" aria-label="Close">${ic("i-x")}</button>
+            </div>
+            ${cfg.sub ? `<p class="modal-sub">${cfg.sub}</p>` : ""}
+            <div class="modal-body">${cfg.body || ""}</div>
+            <div class="modal-actions">
+                ${(cfg.buttons || [{ label:"Close", act:"close" }]).map(b =>
+                    `<button type="button" class="modal-btn ${b.kind || ""}" data-act="${b.act}" ${b.disabled ? "disabled" : ""}>${esc(b.label)}</button>`).join("")}
+            </div>`;
+        modalEl.classList.add("open");
+        modalEl.setAttribute("aria-hidden", "false");
+        if (cfg.onOpen) cfg.onOpen(modalBox);
+    }
+
+    function closeModal() {
+        if (!modalEl.classList.contains("open")) return;
+        modalEl.classList.remove("open");
+        modalEl.setAttribute("aria-hidden", "true");
+        const cb = modalOnClose;
+        modalOnClose = modalHandler = null;
+        if (cb) cb();
+    }
+
+    modalBox.addEventListener("click", (e) => {
+        const el = e.target.closest("[data-act]");
+        if (!el || el.disabled) return;
+        if (el.dataset.act === "close") { closeModal(); return; }
+        if (modalHandler) modalHandler(el.dataset.act, el, e);
+    });
+    modalEl.addEventListener("mousedown", (e) => { if (e.target === modalEl) closeModal(); });
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape") { closeModal(); closeMenus(); } });
+
+    // ---------- Quick settings (choice modal) ----------
+
+    const QUICK = {
+        language:   { title:"Language",    options:[{ v:"English" }, { v:"Afrikaans", disabled:true, note:"coming soon" }, { v:"isiZulu", disabled:true, note:"coming soon" }] },
+        timezone:   { title:"Timezone",    options:[{ v:"(GMT+02:00) Johannesburg" }, { v:"(GMT+00:00) London" }, { v:"(GMT+00:00) UTC" }] },
+        dateFormat: { title:"Date Format", options:[{ v:"DD MMM YYYY" }, { v:"DD/MM/YYYY" }, { v:"MM/DD/YYYY" }, { v:"YYYY-MM-DD" }] },
+        timeFormat: { title:"Time Format", options:[{ v:"24 Hour (14:30)" }, { v:"12 Hour (2:30 PM)" }] },
+        theme:      { title:"Theme",       options:[{ v:"Light" }, { v:"Dark", disabled:true, note:"coming soon" }, { v:"System", disabled:true, note:"coming soon" }] }
+    };
+
+    function openChoice(key) {
+        const cfg = QUICK[key];
+        const current = S.get("quick." + key);
+        showModal({
+            title: cfg.title,
+            sub: "Choose an option.",
+            body: `<div class="choice-list">${cfg.options.map(o => `
+                <label class="choice-row ${o.disabled ? "is-disabled" : ""}">
+                    <input type="radio" name="choice" value="${esc(o.v)}" ${o.v === current ? "checked" : ""} ${o.disabled ? "disabled" : ""}>
+                    <span>${esc(o.v)}${o.note ? ` <small>${esc(o.note)}</small>` : ""}</span>
+                </label>`).join("")}</div>`,
+            buttons: [{ label:"Cancel", act:"close" }, { label:"Apply", act:"apply", kind:"primary" }],
+            handler(act) {
+                if (act !== "apply") return;
+                const picked = $('input[name="choice"]:checked', modalBox);
+                if (!picked) return;
+                S.set("quick." + key, picked.value);
+                renderSummaries();
+                logActivity(cfg.title + " set to " + picked.value);
+                closeModal();
+                toast(cfg.title + " updated");
+            }
+        });
+    }
+    $$("[data-quick]").forEach(b => b.addEventListener("click", () => openChoice(b.dataset.quick)));
+
+    // ---------- Integrations ----------
+
+    function toggleInteg(k) {
+        const on = !S.get("integ." + k);
+        S.set("integ." + k, on);
+        renderSummaries();
+        logActivity(INTEG[k].label + (on ? " connected" : " disconnected"));
+        toast(INTEG[k].label + (on ? " connected" : " disconnected"));
+    }
+    $$("[data-toggle-integ]").forEach(b => b.addEventListener("click", () => toggleInteg(b.dataset.toggleInteg)));
+
+    function openIntegrations() {
+        showModal({
+            title: "Manage Integrations",
+            sub: "Connect or disconnect the services BuildWise works with.",
+            body: `<div class="m-list">${Object.entries(INTEG).map(([k, v]) => {
+                const on = !!S.get("integ." + k);
+                return `<div class="m-row">
+                    <span class="row-icon">${ic(v.icon)}</span>
+                    <div class="m-row-main"><strong>${v.label}</strong><span>${on ? v.on : "Not connected"}</span></div>
+                    <button type="button" class="mini-btn ${on ? "danger" : "primary"}" data-act="integ" data-k="${k}">${on ? "Disconnect" : "Connect"}</button>
+                </div>`;
+            }).join("")}</div>`,
+            handler(act, el) { if (act === "integ") { toggleInteg(el.dataset.k); openIntegrations(); } }
+        });
+    }
+
+    // ---------- Two-factor ----------
+
+    function openTwoFA() {
+        const on = !!S.get("sec.twofa");
+        showModal({
+            title: "Two-Factor Authentication",
+            sub: on
+                ? "Two-factor authentication is <strong>enabled</strong>. You'll be asked for a verification code when you sign in on a new device."
+                : "Two-factor authentication is <strong>disabled</strong>. Turn it on to protect your account with a verification code at sign-in.",
+            buttons: [
+                { label:"Close", act:"close" },
+                on ? { label:"Disable 2FA", act:"toggle", kind:"danger" } : { label:"Enable 2FA", act:"toggle", kind:"primary" }
+            ],
+            handler(act) {
+                if (act !== "toggle") return;
+                S.set("sec.twofa", !on);
+                renderSummaries();
+                logActivity("Two-factor authentication " + (!on ? "enabled" : "disabled"));
+                toast("Two-factor authentication " + (!on ? "enabled" : "disabled"));
+                openTwoFA();
+            }
+        });
+    }
+
+    // ---------- Sessions ----------
+
+    function openSessions() {
+        const sessions = L.get("kb-sessions", DEFAULT_SESSIONS);
+        const others = sessions.filter(s => !s.current).length;
+        showModal({
+            title: "Login Sessions",
+            sub: "Devices currently signed in to your account.",
+            body: `<div class="m-list">${sessions.map(s => `
+                <div class="m-row">
+                    <span class="row-icon">${ic("i-phone")}</span>
+                    <div class="m-row-main"><strong>${esc(s.device)}${s.current ? ' <em class="tag">This device</em>' : ""}</strong><span>${esc(s.place)} · ${esc(s.last)}</span></div>
+                    ${s.current ? "" : `<button type="button" class="mini-btn danger" data-act="signout" data-id="${s.id}">Sign out</button>`}
+                </div>`).join("")}</div>`,
+            buttons: [
+                { label:"Close", act:"close" },
+                { label:"Sign out all other sessions", act:"signout-all", kind:"danger", disabled: !others }
+            ],
+            handler(act, el) {
+                let list = L.get("kb-sessions", DEFAULT_SESSIONS);
+                if (act === "signout") {
+                    list = list.filter(s => s.id !== el.dataset.id);
+                    logActivity("Signed out a session");
+                    toast("Session signed out");
+                } else if (act === "signout-all") {
+                    list = list.filter(s => s.current);
+                    logActivity("Signed out all other sessions");
+                    toast("Signed out all other sessions");
+                } else return;
+                L.set("kb-sessions", list);
+                renderSummaries();
+                openSessions();
+            }
+        });
+    }
+
+    // ---------- API keys ----------
+
+    let freshKey = null;
+
+    function randomKey() {
+        const chars = "abcdefghijklmnopqrstuvwxyz0123456789";
+        const bytes = new Uint32Array(28);
+        (window.crypto || window.msCrypto).getRandomValues(bytes);
+        return "kb_live_" + Array.from(bytes, b => chars[b % chars.length]).join("");
+    }
+
+    function openApiKeys() {
+        const keys = L.get("kb-keys", DEFAULT_KEYS);
+        showModal({
+            title: "API Access",
+            sub: "Keys let other tools talk to your BuildWise account. Treat them like passwords.",
+            body: (freshKey ? `<div class="key-banner"><strong>Copy your new key now — it won't be shown again.</strong><code>${esc(freshKey.full)}</code><button type="button" class="mini-btn" data-act="copy">Copy key</button></div>` : "") +
+                (keys.length ? `<div class="m-list">${keys.map(k => `
+                    <div class="m-row">
+                        <span class="row-icon">${ic("i-key")}</span>
+                        <div class="m-row-main"><strong>${esc(k.name)}</strong><span>${esc(k.hint)} · Created ${fmtDate(new Date(k.created + "T12:00:00Z"))}</span></div>
+                        <button type="button" class="mini-btn danger" data-act="revoke" data-id="${k.id}">Revoke</button>
+                    </div>`).join("")}</div>` : `<p class="modal-empty">No API keys yet.</p>`),
+            buttons: [{ label:"Close", act:"close" }, { label:"Generate new key", act:"generate", kind:"primary" }],
+            onClose() { freshKey = null; },
+            handler(act, el) {
+                let list = L.get("kb-keys", DEFAULT_KEYS);
+                if (act === "generate") {
+                    if (list.length >= 5) { toast("You can have up to 5 API keys", "error"); return; }
+                    const full = randomKey();
+                    const id = "k" + Date.now();
+                    list.push({ id, name:"Key " + (list.length + 1), hint: full.slice(0, 8) + "••••" + full.slice(-4), created: new Date().toISOString().slice(0, 10) });
+                    L.set("kb-keys", list);
+                    freshKey = { id, full };
+                    logActivity("API key created");
+                    toast("API key created");
+                } else if (act === "revoke") {
+                    list = list.filter(k => k.id !== el.dataset.id);
+                    L.set("kb-keys", list);
+                    if (freshKey && freshKey.id === el.dataset.id) freshKey = null;
+                    logActivity("API key revoked");
+                    toast("API key revoked");
+                } else if (act === "copy") {
+                    if (navigator.clipboard && freshKey) navigator.clipboard.writeText(freshKey.full).then(() => toast("Key copied"), () => toast("Couldn't copy — select and copy it manually", "error"));
+                    return;
+                } else return;
+                renderSummaries();
+                openApiKeys();
+            }
+        });
+    }
+
+    // ---------- Activity log ----------
+
+    function openActivity() {
+        const list = L.get("kb-activity", []);
+        showModal({
+            title: "Activity Log",
+            sub: "Recent security and account activity.",
+            wide: true,
+            body: list.length ? `<div class="m-list">${list.map(a => {
+                const d = new Date(a.t);
+                return `<div class="m-row"><span class="row-icon">${ic("i-file")}</span><div class="m-row-main"><strong>${esc(a.text)}</strong><span>${fmtDate(d)}, ${fmtTime(d)}</span></div></div>`;
+            }).join("")}</div>` : `<p class="modal-empty">No activity yet.</p>`,
+            buttons: [{ label:"Clear log", act:"clear" }, { label:"Close", act:"close", kind:"primary" }],
+            handler(act) {
+                if (act === "clear") { L.set("kb-activity", []); toast("Activity log cleared"); openActivity(); }
+            }
+        });
+    }
+
+    // ---------- Payment methods ----------
+
+    function openPayments() {
+        const cards = L.get("kb-cards", DEFAULT_CARDS);
+        showModal({
+            title: "Payment Methods",
+            sub: "Cards on file for your subscription. Only the last four digits are shown.",
+            body: cards.length ? `<div class="m-list">${cards.map(c => `
+                <div class="m-row">
+                    <span class="row-icon">${ic("i-card")}</span>
+                    <div class="m-row-main"><strong>${esc(c.brand)} •••• ${esc(c.last4)}${c.def ? ' <em class="tag">Default</em>' : ""}</strong><span>Expires ${esc(c.exp)}</span></div>
+                    ${c.def ? "" : `<button type="button" class="mini-btn" data-act="default" data-id="${c.id}">Make default</button>`}
+                    <button type="button" class="mini-btn danger" data-act="remove" data-id="${c.id}">Remove</button>
+                </div>`).join("")}</div>` : `<p class="modal-empty">No cards on file.</p>`,
+            handler(act, el) {
+                let list = L.get("kb-cards", DEFAULT_CARDS);
+                if (act === "default") {
+                    list.forEach(c => c.def = c.id === el.dataset.id);
+                    logActivity("Default payment method changed");
+                    toast("Default card updated");
+                } else if (act === "remove") {
+                    const target = list.find(c => c.id === el.dataset.id);
+                    if (list.length === 1) { toast("Add another card before removing your only one", "error"); return; }
+                    list = list.filter(c => c.id !== el.dataset.id);
+                    if (target && target.def && list.length) list[0].def = true;
+                    logActivity("Payment method removed");
+                    toast("Card removed");
+                } else return;
+                L.set("kb-cards", list);
+                renderSummaries();
+                openPayments();
+            }
+        });
+    }
+
+    // ---------- Invoices ----------
+
+    function openInvoices() {
+        showModal({
+            title: "Billing History",
+            sub: "Your recent invoices.",
+            wide: true,
+            body: `<table class="m-table"><thead><tr><th>Invoice</th><th>Date</th><th>Amount</th><th>Status</th><th></th></tr></thead><tbody>${INVOICES.map(i => `
+                <tr><td>${i.no}</td><td>${fmtDate(new Date(i.iso + "T12:00:00Z"))}</td><td>${i.amount}</td><td><span class="paid-pill">${i.status}</span></td>
+                <td><button type="button" class="mini-btn" data-act="dl" data-no="${i.no}">${ic("i-download")}Download</button></td></tr>`).join("")}</tbody></table>`,
+            handler(act, el) {
+                if (act !== "dl") return;
+                const inv = INVOICES.find(i => i.no === el.dataset.no);
+                const text = `${inv.no}\nDate: ${fmtDate(new Date(inv.iso + "T12:00:00Z"))}\nPlan: Professional Plan\nAmount: ${inv.amount}\nStatus: ${inv.status}\n`;
+                download(inv.no + ".txt", text, "text/plain");
+                toast(inv.no + " downloaded");
+            }
+        });
+    }
+
+    // ---------- Data retention ----------
+
+    function openRetention() {
+        const current = S.get("data.retention");
+        const opts = ["1 year", "2 years", "5 years", "Keep forever"];
+        showModal({
+            title: "Data Retention",
+            sub: "How long BuildWise keeps your project data after it's archived.",
+            body: `<div class="choice-list">${opts.map(o => `
+                <label class="choice-row"><input type="radio" name="ret" value="${o}" ${o === current ? "checked" : ""}><span>${o}</span></label>`).join("")}</div>`,
+            buttons: [{ label:"Cancel", act:"close" }, { label:"Apply", act:"apply", kind:"primary" }],
+            handler(act) {
+                if (act !== "apply") return;
+                const picked = $('input[name="ret"]:checked', modalBox);
+                if (!picked) return;
+                S.set("data.retention", picked.value);
+                renderSummaries();
+                logActivity("Data retention set to " + picked.value);
+                closeModal();
+                toast("Data retention updated");
+            }
+        });
+    }
+
+    // ---------- Delete account ----------
+
+    function openDelete() {
+        showModal({
+            title: "Delete Account",
+            sub: "This permanently deletes your account and all saved settings. <strong>This can't be undone.</strong>",
+            body: `<div class="settings-field"><label for="delConfirm">Type <strong>DELETE</strong> to confirm</label><input id="delConfirm" type="text" autocomplete="off" placeholder="DELETE"></div>`,
+            buttons: [{ label:"Cancel", act:"close" }, { label:"Delete my account", act:"delete", kind:"danger", disabled:true }],
+            onOpen(box) {
+                const input = $("#delConfirm", box);
+                const btn = $('[data-act="delete"]', box);
+                input.addEventListener("input", () => { btn.disabled = input.value.trim() !== "DELETE"; });
+                input.focus();
+            },
+            handler(act) {
+                if (act !== "delete") return;
+                Object.keys(localStorage).filter(k => k.startsWith("kb-")).forEach(k => localStorage.removeItem(k));
+                closeModal();
+                toast("Account deleted. Redirecting…");
+                setTimeout(() => { location.href = "index.html"; }, 1200);
+            }
+        });
+    }
+
+    // ---------- Export ----------
+
+    function download(filename, content, type) {
+        const url = URL.createObjectURL(new Blob([content], { type }));
+        const a = document.createElement("a");
+        a.href = url; a.download = filename;
+        document.body.appendChild(a); a.click(); a.remove();
+        setTimeout(() => URL.revokeObjectURL(url), 500);
+    }
+
+    $("#exportDataBtn").addEventListener("click", () => {
+        const data = Object.assign({}, store);
+        delete data["profile.photo"];
+        const payload = {
+            exportedAt: new Date().toISOString(),
+            settings: data,
+            sessions: L.get("kb-sessions", DEFAULT_SESSIONS),
+            apiKeys: L.get("kb-keys", DEFAULT_KEYS).map(k => ({ name:k.name, hint:k.hint, created:k.created })),
+            activity: L.get("kb-activity", [])
+        };
+        download("buildwise-settings-" + new Date().toISOString().slice(0, 10) + ".json", JSON.stringify(payload, null, 2), "application/json");
+        logActivity("Data exported");
+        toast("Export downloaded");
+    });
+
+    // ---------- row buttons that open modals ----------
+
+    const OPENERS = {
+        integrations: openIntegrations, twofa: openTwoFA, sessions: openSessions, api: openApiKeys,
+        activity: openActivity, payments: openPayments, invoices: openInvoices, retention: openRetention, delete: openDelete
+    };
+    document.addEventListener("click", (e) => {
+        const b = e.target.closest("[data-open]");
+        if (b && OPENERS[b.dataset.open]) OPENERS[b.dataset.open]();
+    });
+
+    // =================================================================
+    // Init
+    // =================================================================
+
+    loadFields();
+    syncNotifMaster();
+    updateHeader();
+    renderSummaries();
+    showTab(location.hash.slice(1) || "account", { hash:false });
+
+    })();
     </script>
 </body>
 </html>

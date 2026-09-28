@@ -25,6 +25,32 @@
     container-type: inline-size;
 }
 
+/* Icons
+   -----------------------------------------------------------
+   All icons come from the SVG sprite at the top of the page and
+   inherit the surrounding text colour via currentColor.
+------------------------------------------------------------ */
+
+.ico{
+    width:16px;
+    height:16px;
+    fill:none;
+    stroke:currentColor;
+    stroke-width:1.8;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+    flex-shrink:0;
+    pointer-events:none;
+}
+
+.main-card-for-reports button:focus-visible,
+.popover button:focus-visible,
+.rm-box button:focus-visible,
+.reports-table-v2 th.sortable:focus-visible{
+    outline:2px solid #2f6feb;
+    outline-offset:2px;
+}
+
 /* Toolbar
    -----------------------------------------------------------
    Allowed to wrap onto a second line rather than clipping any
@@ -43,6 +69,9 @@
 }
 
 .reports-filter-dropdown-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
     height:38px;
     padding:0 16px;
     border:1px solid #e6e9ef;
@@ -54,6 +83,8 @@
     cursor:pointer;
     white-space:nowrap;
 }
+
+.reports-filter-dropdown-btn:hover{ background:#f5f7fb; }
 
 .reports-toolbar-right{
     display:flex;
@@ -72,14 +103,19 @@
 }
 
 .view-toggle-btn{
+    display:flex;
+    align-items:center;
+    justify-content:center;
     width:36px;
     height:36px;
     border:none;
     background:#fff;
-    font-size:15px;
     color:#8a93a8;
     cursor:pointer;
+    transition:background .15s, color .15s;
 }
+
+.view-toggle-btn:hover{ background:#f5f7fb; color:#3a4256; }
 
 .view-toggle-btn.active{
     background:#eaf1ff;
@@ -88,6 +124,9 @@
 
 .reports-sort-btn,
 .reports-filter-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
     height:36px;
     padding:0 14px;
     border:1px solid #e6e9ef;
@@ -103,6 +142,21 @@
 
 .reports-sort-btn:hover,
 .reports-filter-btn:hover{ background:#f5f7fb; }
+
+.filter-badge{
+    min-width:18px;
+    height:18px;
+    padding:0 5px;
+    border-radius:999px;
+    background:#2f6feb;
+    color:#fff;
+    font-size:11px;
+    font-weight:700;
+    line-height:18px;
+    text-align:center;
+}
+
+.filter-badge[hidden]{ display:none; }
 
 /* Table
    -----------------------------------------------------------
@@ -123,6 +177,8 @@
     max-width:100%;
 }
 
+.reports-table-wrap[hidden]{ display:none; }
+
 .reports-table-v2{
     width:100%;
     min-width:920px;
@@ -140,6 +196,14 @@
     border-bottom:1px solid #eef0f5;
     white-space:nowrap;
 }
+
+.reports-table-v2 thead th.sortable{
+    cursor:pointer;
+    user-select:none;
+    transition:color .15s;
+}
+
+.reports-table-v2 thead th.sortable:hover{ color:#2f6feb; }
 
 .reports-table-v2 tbody td{
     padding:14px 12px;
@@ -169,14 +233,15 @@
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:14px;
 }
 
-.report-icon.blue{ background:#eaf1ff; }
-.report-icon.green{ background:#e9f9ef; }
-.report-icon.purple{ background:#f2eaff; }
-.report-icon.orange{ background:#fff3de; }
-.report-icon.teal{ background:#e6f9f6; }
+.report-icon .ico{ width:17px; height:17px; }
+
+.report-icon.blue{ background:#eaf1ff; color:#2f6feb; }
+.report-icon.green{ background:#e9f9ef; color:#1e9e4d; }
+.report-icon.purple{ background:#f2eaff; color:#8a3ff0; }
+.report-icon.orange{ background:#fff3de; color:#c9770c; }
+.report-icon.teal{ background:#e6f9f6; color:#0f9c8b; }
 
 .report-name-cell div{ min-width:0; }
 
@@ -273,27 +338,124 @@
 }
 
 /* Action buttons — given real breathing room so all five icons
-   are always fully visible, never squeezed or cut off. */
+   are always fully visible, never squeezed or cut off.
+   The flex layout lives on a <div> INSIDE the <td> (not on the
+   <td> itself) so the table cell keeps normal table behaviour. */
 
 .report-actions-cell{
     display:flex;
     gap:6px;
     flex-wrap:nowrap;
-    min-width:190px;
+    min-width:172px;
 }
 
 .report-actions-cell button{
+    display:flex;
+    align-items:center;
+    justify-content:center;
     width:28px;
     height:28px;
+    padding:0;
     border:1px solid #e6e9ef;
     border-radius:7px;
     background:#fff;
+    color:#5a6480;
     cursor:pointer;
-    font-size:12px;
+    flex-shrink:0;
+    transition:background .15s, color .15s, border-color .15s;
+}
+
+.report-actions-cell button .ico{ width:14px; height:14px; }
+
+.report-actions-cell button:hover{
+    background:#eaf1ff;
+    border-color:#c9dafc;
+    color:#2f6feb;
+}
+
+/* Grid view */
+
+.reports-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+    gap:16px;
     flex-shrink:0;
 }
 
-.report-actions-cell button:hover{ background:#f5f7fb; }
+.reports-grid[hidden]{ display:none; }
+
+.report-card{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    padding:16px;
+    background:#fff;
+    border:1px solid #e6e9ef;
+    border-radius:12px;
+    transition:box-shadow .18s, border-color .18s, transform .18s;
+}
+
+.report-card:hover{
+    border-color:#d5dbe8;
+    box-shadow:0 8px 22px rgba(20,30,60,.08);
+    transform:translateY(-2px);
+}
+
+.rc-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.report-card h5{
+    margin:0;
+    font-size:14px;
+    font-weight:700;
+    color:#18233c;
+}
+
+.rc-desc{
+    margin:0;
+    font-size:12px;
+    line-height:1.45;
+    color:#8a93a8;
+    min-height:34px;
+}
+
+.report-card .report-project-cell{ min-width:0; }
+
+.rc-meta{
+    display:flex;
+    justify-content:space-between;
+    gap:8px;
+    font-size:11.5px;
+    color:#8a93a8;
+    padding-top:10px;
+    border-top:1px solid #f2f4f8;
+}
+
+.report-card .report-actions-cell{ min-width:0; flex-wrap:wrap; }
+
+/* Empty state */
+
+.reports-empty{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+    gap:6px;
+    padding:48px 20px;
+    background:#fff;
+    border:1px dashed #d5dbe8;
+    border-radius:12px;
+    color:#8a93a8;
+    flex-shrink:0;
+}
+
+.reports-empty[hidden]{ display:none; }
+.reports-empty .ico{ width:34px; height:34px; color:#b6bfd3; stroke-width:1.5; }
+.reports-empty h4{ margin:6px 0 0; font-size:15px; color:#18233c; }
+.reports-empty p{ margin:0 0 10px; font-size:12.5px; }
 
 /* Footer */
 
@@ -327,12 +489,241 @@
     font-size:12px;
     color:#3a4256;
     flex-shrink:0;
+    transition:background .15s;
+}
+
+.reports-pagination button:hover:not(:disabled):not(.active){ background:#f5f7fb; }
+
+.reports-pagination button:disabled{
+    opacity:.45;
+    cursor:not-allowed;
 }
 
 .reports-pagination button.active{
     background:#2f6feb;
     color:#fff;
     border-color:#2f6feb;
+}
+
+/* =========================================================
+   Floating menu (lives on <body> so nothing can clip it)
+========================================================= */
+
+.popover{
+    position:fixed;
+    z-index:2500;
+    min-width:190px;
+    max-width:280px;
+    max-height:70vh;
+    overflow-y:auto;
+    padding:6px;
+    background:#fff;
+    border:1px solid #e6e9ef;
+    border-radius:12px;
+    box-shadow:0 14px 34px rgba(20,25,40,.16);
+}
+
+.popover[hidden]{ display:none; }
+
+.pop-label{
+    padding:8px 10px 4px;
+    font-size:10.5px;
+    font-weight:700;
+    letter-spacing:.05em;
+    text-transform:uppercase;
+    color:#8a93a8;
+}
+
+.pop-sep{ height:1px; margin:6px 4px; background:#eef0f5; }
+
+.pop-item{
+    display:flex;
+    align-items:center;
+    gap:9px;
+    width:100%;
+    padding:9px 10px;
+    border:none;
+    border-radius:8px;
+    background:none;
+    text-align:left;
+    font-size:13px;
+    font-weight:500;
+    color:#3a4256;
+    cursor:pointer;
+    transition:background .12s, color .12s;
+}
+
+.pop-item span{ flex:1; }
+.pop-item .ico{ width:15px; height:15px; }
+.pop-item:hover{ background:#f0f5ff; color:#2458ff; }
+.pop-item.active{ color:#2f6feb; font-weight:700; }
+.pop-item.danger{ color:#e5484d; }
+.pop-item.danger:hover{ background:#fdeaea; color:#d63a3a; }
+
+/* =========================================================
+   Dialog + toast
+========================================================= */
+
+.rm-overlay{
+    position:fixed;
+    inset:0;
+    z-index:3000;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    background:rgba(15,20,35,.5);
+    backdrop-filter:blur(3px);
+}
+
+.rm-overlay.open{ display:flex; }
+
+.rm-box{
+    width:460px;
+    max-width:92vw;
+    max-height:90vh;
+    overflow-y:auto;
+    padding:24px;
+    background:#fff;
+    border-radius:16px;
+    box-shadow:0 30px 70px rgba(0,0,0,.28);
+}
+
+.rm-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:16px;
+}
+
+.rm-header h3{ margin:0; font-size:18px; font-weight:800; color:#18233c; }
+
+.rm-close{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:32px;
+    height:32px;
+    border:none;
+    border-radius:8px;
+    background:none;
+    color:#8a93a8;
+    cursor:pointer;
+}
+
+.rm-close:hover{ background:#eef1f7; color:#18233c; }
+
+.rm-note{ margin:0 0 14px; font-size:13.5px; line-height:1.5; color:#465069; }
+.rm-note strong{ color:#18233c; }
+
+.rm-head{
+    display:flex;
+    gap:12px;
+    align-items:flex-start;
+    padding-bottom:16px;
+    margin-bottom:14px;
+    border-bottom:1px solid #eef1f6;
+}
+
+.rm-head .report-icon{ width:42px; height:42px; border-radius:11px; }
+.rm-head .report-icon .ico{ width:20px; height:20px; }
+.rm-head h4{ margin:0; font-size:15px; color:#18233c; }
+.rm-head p{ margin:4px 0 0; font-size:12.5px; line-height:1.45; color:#8a93a8; }
+
+.rm-dl{ margin:0; display:flex; flex-direction:column; gap:10px; }
+.rm-dl div{ display:flex; justify-content:space-between; gap:16px; font-size:13px; }
+.rm-dl dt{ color:#8a93a8; }
+.rm-dl dd{ margin:0; font-weight:600; color:#22304d; text-align:right; }
+
+.rm-field label{ display:block; margin-bottom:7px; font-size:12.5px; font-weight:700; color:#465069; }
+
+.rm-field input,
+.rm-linkrow input{
+    width:100%;
+    height:42px;
+    padding:0 14px;
+    border:1px solid #dde2ec;
+    border-radius:10px;
+    font-size:13.5px;
+    font-family:inherit;
+    color:#18233c;
+    outline:none;
+    transition:border-color .15s, box-shadow .15s;
+}
+
+.rm-field input:focus,
+.rm-linkrow input:focus{
+    border-color:#2f6feb;
+    box-shadow:0 0 0 3px rgba(47,111,235,.15);
+}
+
+.rm-field input.invalid{
+    border-color:#e5484d;
+    box-shadow:0 0 0 3px rgba(229,72,77,.12);
+}
+
+.rm-linkrow input{ background:#f8f9fc; }
+
+.rm-footer{
+    display:flex;
+    justify-content:flex-end;
+    gap:10px;
+    margin-top:20px;
+}
+
+.rm-footer:empty{ display:none; }
+
+.rm-btn{
+    height:40px;
+    padding:0 20px;
+    border:1px solid #dde2ec;
+    border-radius:10px;
+    background:#fff;
+    font-size:13.5px;
+    font-weight:700;
+    color:#465069;
+    cursor:pointer;
+    transition:background .15s;
+}
+
+.rm-btn:hover{ background:#f5f7fb; }
+
+.rm-btn.primary{
+    border-color:#2f6feb;
+    background:#2f6feb;
+    color:#fff;
+}
+
+.rm-btn.primary:hover{ background:#2159cf; }
+
+.rm-btn.danger{
+    border-color:#e5484d;
+    background:#e5484d;
+    color:#fff;
+}
+
+.rm-btn.danger:hover{ background:#d63a3a; }
+
+.rm-toast{
+    position:fixed;
+    left:50%;
+    bottom:28px;
+    z-index:3500;
+    padding:11px 18px;
+    border-radius:10px;
+    background:#18233c;
+    color:#fff;
+    font-size:13px;
+    font-weight:600;
+    box-shadow:0 10px 30px rgba(0,0,0,.25);
+    opacity:0;
+    transform:translate(-50%,10px);
+    pointer-events:none;
+    transition:opacity .2s, transform .2s;
+}
+
+.rm-toast.show{
+    opacity:1;
+    transform:translate(-50%,0);
 }
 
 /* =========================================================
@@ -345,4 +736,9 @@
    clipped. table-layout:auto plus a sane min-width means every
    column — including the five-icon Actions column — sizes to
    fit its real content instead of being force-squeezed.
+
+   Menus and dialogs are appended to <body> (not inside
+   .main-card-for-reports) because that container uses
+   container-type, which would otherwise trap position:fixed
+   children inside it.
 ========================================================= */

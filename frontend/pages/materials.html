@@ -192,209 +192,112 @@
                             <h1>Materials</h1>
                             <p>Manage and track all construction materials.</p>
                         </div>
-                        <button class="Add-Material-btn" id="addMaterialBtn">+ Add Material</button>
+                        <button type="button" class="Add-Material-btn" id="addMaterialBtn">
+                            <span data-icon="plus"></span>
+                            Add Material
+                        </button>
                     </div>
 
                     <div class="materials-stats">
                         <div class="stat-card">
-                            <span class="stat-icon blue">📦</span>
+                            <span class="stat-icon blue" data-icon="package"></span>
                             <div>
                                 <h4>Total Materials</h4>
-                                <h2>156</h2>
-                                <p>All materials in catalog</p>
+                                <h2 id="statTotal">156</h2>
+                                <p>All materials in catalogue</p>
                             </div>
                         </div>
                         <div class="stat-card">
-                            <span class="stat-icon green">💰</span>
+                            <span class="stat-icon green" data-icon="banknote"></span>
                             <div>
                                 <h4>Total Value (Est.)</h4>
-                                <h2>R2,458,750</h2>
-                                <p>Estimated value of all materials</p>
+                                <h2 id="statValue">R2,458,750</h2>
+                                <p>Estimated stock value</p>
                             </div>
                         </div>
                         <div class="stat-card">
-                            <span class="stat-icon orange">⚠️</span>
+                            <span class="stat-icon orange" data-icon="alert"></span>
                             <div>
                                 <h4>Low Stock Items</h4>
-                                <h2>8</h2>
-                                <p>Materials that need reorder</p>
+                                <h2 id="statLow">8</h2>
+                                <p>Materials to reorder</p>
                             </div>
                         </div>
                         <div class="stat-card">
-                            <span class="stat-icon red">⛔</span>
+                            <span class="stat-icon red" data-icon="xcircle"></span>
                             <div>
                                 <h4>Out of Stock</h4>
-                                <h2>2</h2>
+                                <h2 id="statOut">2</h2>
                                 <p>Currently unavailable</p>
                             </div>
                         </div>
                         <div class="stat-card">
-                            <span class="stat-icon purple">🗂️</span>
+                            <span class="stat-icon purple" data-icon="layers"></span>
                             <div>
                                 <h4>Categories</h4>
-                                <h2>12</h2>
+                                <h2 id="statCats">12</h2>
                                 <p>Material categories</p>
                             </div>
                         </div>
                     </div>
 
                     <div class="materials-toolbar">
-                        <div class="materials-tabs" id="materialsTabs">
-                            <button class="mat-tab active" data-tab="all">All Materials</button>
-                            <button class="mat-tab" data-tab="low">Low Stock</button>
-                            <button class="mat-tab" data-tab="out">Out of Stock</button>
-                            <button class="mat-tab" data-tab="recent">Recently Added</button>
-                            <button class="mat-tab" data-tab="fav">Favourites</button>
+                        <div class="materials-tabs" id="materialsTabs" role="tablist">
+                            <button type="button" class="mat-tab active" data-tab="all" role="tab">All Materials</button>
+                            <button type="button" class="mat-tab" data-tab="low" role="tab">Low Stock</button>
+                            <button type="button" class="mat-tab" data-tab="out" role="tab">Out of Stock</button>
+                            <button type="button" class="mat-tab" data-tab="recent" role="tab">Recently Added</button>
+                            <button type="button" class="mat-tab" data-tab="fav" role="tab">Favourites</button>
                         </div>
                         <div class="materials-actions">
-                            <button>Filter ▾</button>
-                            <button>Category ▾</button>
-                            <button>Export ▾</button>
+                            <button type="button" id="sortBtn"><span data-icon="sort"></span><span class="btn-label">Sort</span><span data-icon="chevron-down"></span></button>
+                            <button type="button" id="categoryBtn"><span data-icon="tag"></span><span class="btn-label">Category</span><span data-icon="chevron-down"></span></button>
+                            <button type="button" id="exportBtn"><span data-icon="download"></span><span class="btn-label">Export</span><span data-icon="chevron-down"></span></button>
                         </div>
                     </div>
 
                     <div class="materials-table-wrap">
                         <table class="materials-table">
+                            <colgroup>
+                                <col style="width:4%">
+                                <col style="width:18%">
+                                <col style="width:10%">
+                                <col style="width:14%">
+                                <col style="width:6%">
+                                <col style="width:10%">
+                                <col style="width:11%">
+                                <col style="width:10%">
+                                <col style="width:9%">
+                                <col style="width:8%">
+                            </colgroup>
                             <thead>
                                 <tr>
-                                    <th></th>
-                                    <th>Material Name</th>
+                                    <th><span class="sr-only">Favourite</span></th>
+                                    <th>Material</th>
                                     <th>Category</th>
                                     <th>Supplier</th>
                                     <th>Unit</th>
-                                    <th>Unit Price (Excl. VAT)</th>
+                                    <th>Unit Price</th>
                                     <th>Stock</th>
                                     <th>Total Value</th>
-                                    <th>Last Updated</th>
+                                    <th>Updated</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
-                            <tbody id="materialsTableBody">
-
-                                <tr data-status="in">
-                                    <td><button class="fav-star">☆</button></td>
-                                    <td>
-                                        <div class="mat-name-cell">
-                                            <img src="https://picsum.photos/seed/mat-cement/60/60" alt="PPC Cement 50kg">
-                                            <div><h5>PPC Cement 50kg</h5><span>MAT-0001</span></div>
-                                        </div>
-                                    </td>
-                                    <td><span class="mat-category-pill cat-cement">Cement</span></td>
-                                    <td>
-                                        <div class="mat-supplier-cell"><span class="supplier-badge" style="background:#2f6feb;">B</span>Builders Warehouse</div>
-                                    </td>
-                                    <td>Bag</td>
-                                    <td>R89.50</td>
-                                    <td>
-                                        <div class="stock-cell stock-in"><span class="stock-dot"></span>450 In Stock</div>
-                                    </td>
-                                    <td>R40,275.00</td>
-                                    <td>22 May 2024<span class="stock-label">by Ariun Mehta</span></td>
-                                    <td class="mat-actions-cell"><button title="Edit">✎</button><button title="View">👁</button><button title="More">⋮</button></td>
-                                </tr>
-
-                                <tr data-status="in">
-                                    <td><button class="fav-star">☆</button></td>
-                                    <td>
-                                        <div class="mat-name-cell">
-                                            <img src="https://picsum.photos/seed/mat-bricks/60/60" alt="Clay Bricks">
-                                            <div><h5>Clay Bricks (Per 1000)</h5><span>MAT-0002</span></div>
-                                        </div>
-                                    </td>
-                                    <td><span class="mat-category-pill cat-bricks">Bricks</span></td>
-                                    <td>
-                                        <div class="mat-supplier-cell"><span class="supplier-badge" style="background:#e5484d;">C</span>Cashbuild</div>
-                                    </td>
-                                    <td>Pack</td>
-                                    <td>R2,350.00</td>
-                                    <td>
-                                        <div class="stock-cell stock-in"><span class="stock-dot"></span>120 In Stock</div>
-                                    </td>
-                                    <td>R282,000.00</td>
-                                    <td>21 May 2024<span class="stock-label">by Priya Shah</span></td>
-                                    <td class="mat-actions-cell"><button title="Edit">✎</button><button title="View">👁</button><button title="More">⋮</button></td>
-                                </tr>
-
-                                <tr data-status="low">
-                                    <td><button class="fav-star">☆</button></td>
-                                    <td>
-                                        <div class="mat-name-cell">
-                                            <img src="https://picsum.photos/seed/mat-timber/60/60" alt="SABS Timber">
-                                            <div><h5>SABS Timber 38x114mm</h5><span>MAT-0003</span></div>
-                                        </div>
-                                    </td>
-                                    <td><span class="mat-category-pill cat-timber">Timber</span></td>
-                                    <td>
-                                        <div class="mat-supplier-cell"><span class="supplier-badge" style="background:#f2994a;">M</span>Mica Hardware</div>
-                                    </td>
-                                    <td>Piece</td>
-                                    <td>R48.90</td>
-                                    <td>
-                                        <div class="stock-cell stock-low"><span class="stock-dot"></span>35 Low Stock</div>
-                                    </td>
-                                    <td>R1,711.50</td>
-                                    <td>20 May 2024<span class="stock-label">by Ariun Mehta</span></td>
-                                    <td class="mat-actions-cell"><button title="Edit">✎</button><button title="View">👁</button><button title="More">⋮</button></td>
-                                </tr>
-
-                                <tr data-status="in">
-                                    <td><button class="fav-star">☆</button></td>
-                                    <td>
-                                        <div class="mat-name-cell">
-                                            <img src="https://picsum.photos/seed/mat-roof/60/60" alt="Roof Sheeting">
-                                            <div><h5>Roof Sheeting IBR 0.4mm</h5><span>MAT-0004</span></div>
-                                        </div>
-                                    </td>
-                                    <td><span class="mat-category-pill cat-roofing">Roofing</span></td>
-                                    <td>
-                                        <div class="mat-supplier-cell"><span class="supplier-badge" style="background:#f5a524;">Bu</span>BUCO</div>
-                                    </td>
-                                    <td>Sheet</td>
-                                    <td>R129.00</td>
-                                    <td>
-                                        <div class="stock-cell stock-in"><span class="stock-dot"></span>200 In Stock</div>
-                                    </td>
-                                    <td>R25,800.00</td>
-                                    <td>20 May 2024<span class="stock-label">by John D.</span></td>
-                                    <td class="mat-actions-cell"><button title="Edit">✎</button><button title="View">👁</button><button title="More">⋮</button></td>
-                                </tr>
-
-                                <tr data-status="out">
-                                    <td><button class="fav-star">☆</button></td>
-                                    <td>
-                                        <div class="mat-name-cell">
-                                            <img src="https://picsum.photos/seed/mat-sand/60/60" alt="River Sand">
-                                            <div><h5>River Sand</h5><span>MAT-0005</span></div>
-                                        </div>
-                                    </td>
-                                    <td><span class="mat-category-pill cat-aggregates">Aggregates</span></td>
-                                    <td>
-                                        <div class="mat-supplier-cell"><span class="supplier-badge" style="background:#8a3ff0;">L</span>Local Supplier</div>
-                                    </td>
-                                    <td>m³</td>
-                                    <td>R380.00</td>
-                                    <td>
-                                        <div class="stock-cell stock-out"><span class="stock-dot"></span>0 Out of Stock</div>
-                                    </td>
-                                    <td>R0.00</td>
-                                    <td>19 May 2024<span class="stock-label">by Priya Shah</span></td>
-                                    <td class="mat-actions-cell"><button title="Edit">✎</button><button title="View">👁</button><button title="More">⋮</button></td>
-                                </tr>
-
-                            </tbody>
+                            <tbody id="materialsTableBody"></tbody>
                         </table>
                     </div>
 
                     <footer class="materials-footer">
-                        <span>Showing 1 to 5 of 156 materials</span>
-                        <div class="mat-pagination">
-                            <button>‹</button>
-                            <button class="active">1</button>
-                            <button>2</button>
-                            <button>3</button>
-                            <button>…</button>
-                            <button>32</button>
-                            <button>›</button>
+                        <span id="footerInfo">Showing 1 to 5 of 156 materials</span>
+                        <div class="mat-pagination" id="matPagination">
+                            <button type="button" aria-label="Previous page" data-icon="chevron-left"></button>
+                            <button type="button" class="active">1</button>
+                            <button type="button">2</button>
+                            <button type="button">3</button>
+                            <button type="button" aria-label="More pages">…</button>
+                            <button type="button">32</button>
+                            <button type="button" aria-label="Next page" data-icon="chevron-right"></button>
                         </div>
                     </footer>
 
@@ -404,19 +307,23 @@
         </main>
     </section>
 
-    <!-- Add Material Modal -->
+    <!-- Add / Edit Material Modal -->
     <div class="modal-overlay" id="addMaterialModal">
-        <div class="modal-box">
-            <h3>Add New Material</h3>
+        <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="formTitle">
+            <div class="modal-head">
+                <h3 id="formTitle">Add New Material</h3>
+                <button type="button" class="modal-close" data-close aria-label="Close" data-icon="x"></button>
+            </div>
 
             <div class="modal-field-row">
                 <div class="modal-field">
-                    <label>Material Name</label>
-                    <input type="text" placeholder="Enter material name">
+                    <label for="f-name">Material Name <span class="req">*</span></label>
+                    <input type="text" id="f-name" placeholder="e.g. PPC Cement 50kg">
+                    <small class="field-error" id="err-name"></small>
                 </div>
                 <div class="modal-field">
-                    <label>Category</label>
-                    <select>
+                    <label for="f-category">Category</label>
+                    <select id="f-category">
                         <option>Cement</option>
                         <option>Bricks</option>
                         <option>Timber</option>
@@ -428,8 +335,8 @@
 
             <div class="modal-field-row">
                 <div class="modal-field">
-                    <label>Supplier</label>
-                    <select>
+                    <label for="f-supplier">Supplier</label>
+                    <select id="f-supplier">
                         <option>Builders Warehouse</option>
                         <option>Cashbuild</option>
                         <option>Mica Hardware</option>
@@ -438,8 +345,8 @@
                     </select>
                 </div>
                 <div class="modal-field">
-                    <label>Unit</label>
-                    <select>
+                    <label for="f-unit">Unit</label>
+                    <select id="f-unit">
                         <option>Bag</option>
                         <option>Pack</option>
                         <option>Piece</option>
@@ -451,31 +358,51 @@
 
             <div class="modal-field-row">
                 <div class="modal-field">
-                    <label>Unit Price (Excl. VAT)</label>
-                    <input type="number" placeholder="0.00">
+                    <label for="f-price">Unit Price (Excl. VAT) <span class="req">*</span></label>
+                    <div class="input-prefix"><span>R</span><input type="number" id="f-price" placeholder="0.00" min="0" step="0.01"></div>
+                    <small class="field-error" id="err-price"></small>
                 </div>
                 <div class="modal-field">
-                    <label>Initial Stock Quantity</label>
-                    <input type="number" placeholder="0">
+                    <label for="f-stock">Stock Quantity</label>
+                    <input type="number" id="f-stock" placeholder="0" min="0" step="1">
+                    <small class="field-error" id="err-stock"></small>
                 </div>
             </div>
 
             <div class="modal-field">
-                <label>Reorder Level</label>
-                <input type="number" placeholder="0">
+                <label for="f-reorder">Reorder Level</label>
+                <input type="number" id="f-reorder" placeholder="Flag as low stock at or below this quantity" min="0" step="1">
             </div>
 
             <div class="modal-field">
-                <label>Notes (optional)</label>
-                <textarea rows="3" placeholder="Add any additional notes..."></textarea>
+                <label for="f-notes">Notes (optional)</label>
+                <textarea id="f-notes" rows="3" placeholder="Add any additional notes..."></textarea>
             </div>
 
             <div class="modal-actions">
-                <button class="modal-cancel-btn" id="cancelAddMaterial">Cancel</button>
-                <button class="modal-submit-btn" id="saveAddMaterial">Save Material</button>
+                <button type="button" class="modal-cancel-btn" id="cancelAddMaterial">Cancel</button>
+                <button type="button" class="modal-submit-btn" id="saveAddMaterial">Save Material</button>
             </div>
         </div>
     </div>
+
+    <!-- View Material Modal -->
+    <div class="modal-overlay" id="viewMaterialModal">
+        <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="viewTitle">
+            <div class="modal-head">
+                <h3 id="viewTitle">Material Details</h3>
+                <button type="button" class="modal-close" data-close aria-label="Close" data-icon="x"></button>
+            </div>
+            <div id="viewBody"></div>
+            <div class="modal-actions">
+                <button type="button" class="modal-cancel-btn" data-close>Close</button>
+                <button type="button" class="modal-submit-btn" id="viewEditBtn">Edit Material</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="popover" id="popover" role="menu"></div>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
     <script>
         const sidebar = document.querySelector(".dashboard-navbar");
@@ -505,40 +432,466 @@
             }
         });
 
-        // Tabs
-        const tabs = document.querySelectorAll(".mat-tab");
-        const rows = document.querySelectorAll("#materialsTableBody tr");
+        /* =====================================================
+           Icon library
+        ===================================================== */
+        const ICONS = {
+            plus: '<path d="M12 5v14M5 12h14"/>',
+            package: '<path d="M21 8l-9-5-9 5 9 5 9-5z"/><path d="M3 8v8l9 5 9-5V8"/><path d="M12 13v8"/>',
+            banknote: '<rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/><path d="M6 12h.01M18 12h.01"/>',
+            alert: '<path d="M10.3 3.9L1.8 18a2 2 0 001.7 3h17a2 2 0 001.7-3L13.7 3.9a2 2 0 00-3.4 0z"/><path d="M12 9v4M12 17h.01"/>',
+            xcircle: '<circle cx="12" cy="12" r="9"/><path d="M15 9l-6 6M9 9l6 6"/>',
+            layers: '<path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 12l9 5 9-5"/><path d="M3 16l9 5 9-5"/>',
+            sort: '<path d="M7 4v16M3 16l4 4 4-4M17 20V4M13 8l4-4 4 4"/>',
+            tag: '<path d="M20.6 13.4l-7.2 7.2a2 2 0 01-2.8 0L3 13V3h10l7.6 7.6a2 2 0 010 2.8z"/><circle cx="7.5" cy="7.5" r="1.2"/>',
+            download: '<path d="M12 3v12M7 10l5 5 5-5M4 21h16"/>',
+            printer: '<path d="M6 9V3h12v6M6 18H4a1 1 0 01-1-1v-6a2 2 0 012-2h14a2 2 0 012 2v6a1 1 0 01-1 1h-2"/><rect x="6" y="14" width="12" height="7" rx="1"/>',
+            'chevron-down': '<path d="M6 9l6 6 6-6"/>',
+            'chevron-left': '<path d="M15 6l-6 6 6 6"/>',
+            'chevron-right': '<path d="M9 6l6 6-6 6"/>',
+            check: '<path d="M5 12l5 5 9-10"/>',
+            x: '<path d="M18 6L6 18M6 6l12 12"/>',
+            edit: '<path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4 12.5-12.5z"/>',
+            eye: '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"/><circle cx="12" cy="12" r="3"/>',
+            more: '<circle cx="12" cy="5" r="1.3"/><circle cx="12" cy="12" r="1.3"/><circle cx="12" cy="19" r="1.3"/>',
+            copy: '<rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a1 1 0 01-1-1V4a1 1 0 011-1h10a1 1 0 011 1v1"/>',
+            trash: '<path d="M3 6h18M8 6V4a1 1 0 011-1h6a1 1 0 011 1v2M19 6l-1 14a1 1 0 01-1 1H7a1 1 0 01-1-1L5 6M10 11v6M14 11v6"/>',
+            star: '<path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4 6.1 20.5l1.2-6.5L2.5 9.4l6.6-.9L12 2.5z"/>',
+            cement: '<path d="M6 7l1-3h10l1 3"/><path d="M5 7h14l-1 13H6L5 7z"/><path d="M9 12h6"/>',
+            bricks: '<rect x="3" y="4" width="18" height="16" rx="1.5"/><path d="M3 9.3h18M3 14.7h18M9 4v5.3M15 9.3v5.4M9 14.7V20"/>',
+            timber: '<rect x="3" y="8" width="18" height="8" rx="1"/><path d="M7 8v3M11 8v2M15 8v3M19 8v2"/>',
+            roofing: '<path d="M3 12l9-8 9 8"/><path d="M5 10.5V20h14v-9.5"/><path d="M10 20v-5h4v5"/>',
+            aggregates: '<path d="M3 20l6-10 4 6 3-4 5 8H3z"/>'
+        };
+        const icon = (name, filled) =>
+            `<svg class="ico${filled ? ' filled' : ''}" viewBox="0 0 24 24" aria-hidden="true">${ICONS[name] || ''}</svg>`;
 
-        tabs.forEach(tab => {
-            tab.addEventListener("click", () => {
-                tabs.forEach(t => t.classList.remove("active"));
-                tab.classList.add("active");
+        document.querySelectorAll("[data-icon]").forEach(el => { el.innerHTML = icon(el.dataset.icon); });
 
-                const filter = tab.dataset.tab;
-                rows.forEach(row => {
-                    if (filter === "all" || filter === "recent" || filter === "fav") {
-                        row.style.display = "";
-                    } else {
-                        row.style.display = row.dataset.status === filter ? "" : "none";
-                    }
-                });
+        /* =====================================================
+           Data
+        ===================================================== */
+        const CATS = {
+            Cement:     { cls: "cement",     icon: "cement" },
+            Bricks:     { cls: "bricks",     icon: "bricks" },
+            Timber:     { cls: "timber",     icon: "timber" },
+            Roofing:    { cls: "roofing",    icon: "roofing" },
+            Aggregates: { cls: "aggregates", icon: "aggregates" }
+        };
+        const SUPPLIERS = {
+            "Builders Warehouse": { badge: "B",  color: "#2f6feb" },
+            "Cashbuild":          { badge: "C",  color: "#e5484d" },
+            "Mica Hardware":      { badge: "M",  color: "#f2994a" },
+            "BUCO":               { badge: "Bu", color: "#f5a524" },
+            "Local Supplier":     { badge: "L",  color: "#8a3ff0" }
+        };
+        const STATUS_LABEL = { in: "In stock", low: "Low stock", out: "Out of stock" };
+        const CURRENT_USER = "Moses";
+        const BASE = { total: 156, value: 2458750, low: 8, out: 2, cats: 12 };
+
+        let materials = [
+            { id: "MAT-0001", name: "PPC Cement 50kg", category: "Cement", supplier: "Builders Warehouse", unit: "Bag", price: 89.50, stock: 450, reorder: 100, updated: "22 May 2024", by: "Ariun Mehta", fav: false, recent: true, notes: "" },
+            { id: "MAT-0002", name: "Clay Bricks (Per 1000)", category: "Bricks", supplier: "Cashbuild", unit: "Pack", price: 2350.00, stock: 120, reorder: 30, updated: "21 May 2024", by: "Priya Shah", fav: false, recent: true, notes: "" },
+            { id: "MAT-0003", name: "SABS Timber 38x114mm", category: "Timber", supplier: "Mica Hardware", unit: "Piece", price: 48.90, stock: 35, reorder: 50, updated: "20 May 2024", by: "Ariun Mehta", fav: false, recent: true, notes: "" },
+            { id: "MAT-0004", name: "Roof Sheeting IBR 0.4mm", category: "Roofing", supplier: "BUCO", unit: "Sheet", price: 129.00, stock: 200, reorder: 50, updated: "20 May 2024", by: "John D.", fav: false, recent: false, notes: "" },
+            { id: "MAT-0005", name: "River Sand", category: "Aggregates", supplier: "Local Supplier", unit: "m³", price: 380.00, stock: 0, reorder: 20, updated: "19 May 2024", by: "Priya Shah", fav: false, recent: false, notes: "" }
+        ];
+
+        const statusOf = m => m.stock <= 0 ? "out" : (m.stock <= m.reorder ? "low" : "in");
+        const valueOf = m => m.price * m.stock;
+        const seedValue = materials.reduce((s, m) => s + valueOf(m), 0);
+        const seedLow = materials.filter(m => statusOf(m) === "low").length;
+        const seedOut = materials.filter(m => statusOf(m) === "out").length;
+        const seedCount = materials.length;
+        const seedCats = new Set(materials.map(m => m.category)).size;
+
+        /* =====================================================
+           Helpers
+        ===================================================== */
+        const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+        const money = n => "R" + n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        const moneyWhole = n => "R" + Math.round(n).toLocaleString("en-US");
+        const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+        const today = () => { const d = new Date(); return `${d.getDate()} ${MONTHS[d.getMonth()]} ${d.getFullYear()}`; };
+        const $ = id => document.getElementById(id);
+
+        let toastTimer;
+        function showToast(msg) {
+            const t = $("toast");
+            t.textContent = msg;
+            t.classList.add("show");
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => t.classList.remove("show"), 2600);
+        }
+
+        /* =====================================================
+           State + rendering
+        ===================================================== */
+        const state = { tab: "all", category: "all", sort: "default", query: "" };
+        const SORTS = {
+            default: { label: "Default order" },
+            name:    { label: "Name (A–Z)",             fn: (a, b) => a.name.localeCompare(b.name) },
+            priceAsc:{ label: "Unit price: low to high", fn: (a, b) => a.price - b.price },
+            priceDesc:{label: "Unit price: high to low", fn: (a, b) => b.price - a.price },
+            stockAsc:{ label: "Stock: low to high",      fn: (a, b) => a.stock - b.stock },
+            valueDesc:{label: "Total value: high to low",fn: (a, b) => valueOf(b) - valueOf(a) }
+        };
+
+        function getVisible() {
+            const q = state.query.trim().toLowerCase();
+            let list = materials.filter(m => {
+                if (state.tab === "low" && statusOf(m) !== "low") return false;
+                if (state.tab === "out" && statusOf(m) !== "out") return false;
+                if (state.tab === "recent" && !m.recent) return false;
+                if (state.tab === "fav" && !m.fav) return false;
+                if (state.category !== "all" && m.category !== state.category) return false;
+                if (q && !`${m.name} ${m.id} ${m.category} ${m.supplier}`.toLowerCase().includes(q)) return false;
+                return true;
             });
+            if (SORTS[state.sort].fn) list = list.slice().sort(SORTS[state.sort].fn);
+            return list;
+        }
+
+        function rowHTML(m) {
+            const cat = CATS[m.category];
+            const sup = SUPPLIERS[m.supplier] || { badge: m.supplier.charAt(0).toUpperCase(), color: "#8a93a8" };
+            const st = statusOf(m);
+            return `
+            <tr data-id="${esc(m.id)}" data-status="${st}">
+                <td><button type="button" class="fav-star${m.fav ? " is-fav" : ""}" data-act="fav" aria-pressed="${m.fav}" aria-label="${m.fav ? "Remove from" : "Add to"} favourites">${icon("star", m.fav)}</button></td>
+                <td>
+                    <div class="mat-name-cell">
+                        <span class="cat-tile cat-${cat.cls}">${icon(cat.icon)}</span>
+                        <div><h5 title="${esc(m.name)}">${esc(m.name)}</h5><span>${esc(m.id)}</span></div>
+                    </div>
+                </td>
+                <td><span class="mat-category-pill cat-${cat.cls}">${esc(m.category)}</span></td>
+                <td><div class="mat-supplier-cell" title="${esc(m.supplier)}"><span class="supplier-badge" style="background:${sup.color};">${esc(sup.badge)}</span>${esc(m.supplier)}</div></td>
+                <td>${esc(m.unit)}</td>
+                <td>${money(m.price)}</td>
+                <td><div class="stock-cell stock-${st}"><span class="stock-dot"></span><span class="stock-num">${m.stock.toLocaleString("en-US")}</span><span class="stock-status">${STATUS_LABEL[st]}</span></div></td>
+                <td>${money(valueOf(m))}</td>
+                <td>${esc(m.updated)}<span class="stock-label">${esc(m.by)}</span></td>
+                <td>
+                    <div class="mat-actions-cell">
+                        <button type="button" data-act="edit" title="Edit" aria-label="Edit ${esc(m.name)}">${icon("edit")}</button>
+                        <button type="button" data-act="view" title="View" aria-label="View ${esc(m.name)}">${icon("eye")}</button>
+                        <button type="button" data-act="more" title="More" aria-label="More actions">${icon("more")}</button>
+                    </div>
+                </td>
+            </tr>`;
+        }
+
+        function renderStats() {
+            const cur = materials;
+            const value = BASE.value - seedValue + cur.reduce((s, m) => s + valueOf(m), 0);
+            $("statTotal").textContent = BASE.total - seedCount + cur.length;
+            $("statValue").textContent = moneyWhole(value);
+            $("statLow").textContent = BASE.low - seedLow + cur.filter(m => statusOf(m) === "low").length;
+            $("statOut").textContent = BASE.out - seedOut + cur.filter(m => statusOf(m) === "out").length;
+            $("statCats").textContent = BASE.cats - seedCats + new Set(cur.map(m => m.category)).size;
+        }
+
+        function render() {
+            const list = getVisible();
+            const body = $("materialsTableBody");
+            const filtered = state.tab !== "all" || state.category !== "all" || state.query.trim() !== "";
+            const total = BASE.total - seedCount + materials.length;
+
+            if (!list.length) {
+                const msgs = { fav: "No favourites yet. Tap the star on a material to pin it here.", recent: "Nothing has been added recently.", low: "No materials are running low.", out: "Nothing is out of stock." };
+                const msg = filtered && state.query.trim() ? `No materials match “${esc(state.query.trim())}”.` : (msgs[state.tab] || "No materials found.");
+                body.innerHTML = `<tr class="empty-row"><td colspan="10"><div class="empty-state">${icon("package")}<p>${msg}</p></div></td></tr>`;
+            } else {
+                body.innerHTML = list.map(rowHTML).join("");
+            }
+
+            $("footerInfo").textContent = !list.length
+                ? "No materials to show"
+                : filtered
+                    ? `Showing ${list.length} of ${total} materials`
+                    : `Showing 1 to ${list.length} of ${total} materials`;
+            $("matPagination").classList.toggle("hidden", filtered);
+
+            $("sortBtn").classList.toggle("is-active", state.sort !== "default");
+            $("categoryBtn").classList.toggle("is-active", state.category !== "all");
+            $("categoryBtn").querySelector(".btn-label").textContent = state.category === "all" ? "Category" : state.category;
+
+            renderStats();
+        }
+
+        /* =====================================================
+           Tabs + header search
+        ===================================================== */
+        function setTab(tab) {
+            state.tab = tab;
+            document.querySelectorAll(".mat-tab").forEach(t => {
+                const on = t.dataset.tab === tab;
+                t.classList.toggle("active", on);
+                t.setAttribute("aria-selected", on);
+            });
+        }
+        document.querySelectorAll(".mat-tab").forEach(tab => {
+            tab.addEventListener("click", () => { setTab(tab.dataset.tab); render(); });
         });
 
-        // Favourite star toggle
-        document.querySelectorAll(".fav-star").forEach(star => {
-            star.addEventListener("click", () => {
-                star.textContent = star.textContent === "☆" ? "★" : "☆";
-                star.classList.toggle("is-fav");
+        const headerSearch = document.querySelector(".header-right input[type='search']");
+        if (headerSearch) {
+            headerSearch.addEventListener("input", () => { state.query = headerSearch.value; render(); });
+        }
+
+        /* =====================================================
+           Popover menus (sort / category / export / row actions)
+        ===================================================== */
+        const pop = $("popover");
+        let popAnchor = null;
+
+        function closeMenu() { pop.classList.remove("open"); popAnchor = null; }
+
+        function openMenu(anchor, items) {
+            if (popAnchor === anchor) { closeMenu(); return; }
+            pop.innerHTML = "";
+            items.forEach(it => {
+                if (it.divider) { pop.insertAdjacentHTML("beforeend", '<div class="pop-divider"></div>'); return; }
+                const b = document.createElement("button");
+                b.type = "button";
+                b.className = "pop-item" + (it.danger ? " danger" : "") + (it.active ? " active" : "");
+                b.setAttribute("role", "menuitem");
+                b.innerHTML = `<span class="pop-ico">${it.icon ? icon(it.icon) : ""}</span><span class="pop-label">${esc(it.label)}</span><span class="pop-check">${it.active ? icon("check") : ""}</span>`;
+                b.addEventListener("click", () => { closeMenu(); it.onClick(); });
+                pop.appendChild(b);
             });
+            pop.classList.add("open");
+            popAnchor = anchor;
+            const r = anchor.getBoundingClientRect();
+            const w = pop.offsetWidth, h = pop.offsetHeight;
+            let left = Math.min(Math.max(8, r.right - w), window.innerWidth - w - 8);
+            let top = r.bottom + 6;
+            if (top + h > window.innerHeight - 8) top = Math.max(8, r.top - h - 6);
+            pop.style.left = left + "px";
+            pop.style.top = top + "px";
+        }
+
+        document.addEventListener("click", e => {
+            if (!pop.classList.contains("open")) return;
+            if (pop.contains(e.target) || (popAnchor && popAnchor.contains(e.target))) return;
+            closeMenu();
+        });
+        window.addEventListener("resize", closeMenu);
+        window.addEventListener("scroll", closeMenu, true);
+
+        $("sortBtn").addEventListener("click", e => {
+            openMenu(e.currentTarget, Object.keys(SORTS).map(k => ({
+                label: SORTS[k].label, active: state.sort === k,
+                onClick: () => { state.sort = k; render(); }
+            })));
         });
 
-        // Add Material modal
-        const addModal = document.getElementById("addMaterialModal");
-        document.getElementById("addMaterialBtn").addEventListener("click", () => addModal.classList.add("open"));
-        document.getElementById("cancelAddMaterial").addEventListener("click", () => addModal.classList.remove("open"));
-        document.getElementById("saveAddMaterial").addEventListener("click", () => addModal.classList.remove("open"));
-        addModal.addEventListener("click", (e) => { if (e.target === addModal) addModal.classList.remove("open"); });
+        $("categoryBtn").addEventListener("click", e => {
+            const items = [{ label: "All categories", active: state.category === "all", onClick: () => { state.category = "all"; render(); } }, { divider: true }];
+            Object.keys(CATS).forEach(c => items.push({
+                label: c, icon: CATS[c].icon, active: state.category === c,
+                onClick: () => { state.category = c; render(); }
+            }));
+            openMenu(e.currentTarget, items);
+        });
+
+        $("exportBtn").addEventListener("click", e => {
+            openMenu(e.currentTarget, [
+                { label: "Download CSV", icon: "download", onClick: exportCSV },
+                { label: "Print list", icon: "printer", onClick: () => window.print() }
+            ]);
+        });
+
+        function exportCSV() {
+            const list = getVisible();
+            if (!list.length) { showToast("There is nothing to export."); return; }
+            const cell = v => `"${String(v).replace(/"/g, '""')}"`;
+            const head = ["ID","Material","Category","Supplier","Unit","Unit Price (Excl. VAT)","Stock","Status","Reorder Level","Total Value","Last Updated","Updated By","Notes"];
+            const rows = list.map(m => [m.id, m.name, m.category, m.supplier, m.unit, m.price.toFixed(2), m.stock, STATUS_LABEL[statusOf(m)], m.reorder, valueOf(m).toFixed(2), m.updated, m.by, m.notes]);
+            const csv = [head, ...rows].map(r => r.map(cell).join(",")).join("\r\n");
+            const blob = new Blob(["\ufeff" + csv], { type: "text/csv;charset=utf-8;" });
+            const a = document.createElement("a");
+            a.href = URL.createObjectURL(blob);
+            a.download = "materials.csv";
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+            setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+            showToast(`Exported ${list.length} material${list.length === 1 ? "" : "s"} to CSV.`);
+        }
+
+        /* =====================================================
+           Table actions
+        ===================================================== */
+        const findMat = id => materials.find(m => m.id === id);
+
+        $("materialsTableBody").addEventListener("click", e => {
+            const btn = e.target.closest("[data-act]");
+            if (!btn) return;
+            const tr = btn.closest("tr");
+            const m = findMat(tr.dataset.id);
+            if (!m) return;
+            const act = btn.dataset.act;
+
+            if (act === "fav") {
+                m.fav = !m.fav;
+                render();
+                showToast(m.fav ? `${m.name} added to favourites.` : `${m.name} removed from favourites.`);
+            } else if (act === "edit") {
+                openForm("edit", m);
+            } else if (act === "view") {
+                openView(m);
+            } else if (act === "more") {
+                openMenu(btn, [
+                    { label: "Duplicate", icon: "copy", onClick: () => duplicateMat(m) },
+                    { divider: true },
+                    { label: "Delete", icon: "trash", danger: true, onClick: () => deleteMat(m) }
+                ]);
+            }
+        });
+
+        function nextId() {
+            const max = materials.reduce((n, m) => Math.max(n, parseInt(m.id.replace(/\D/g, ""), 10) || 0), 0);
+            return "MAT-" + String(max + 1).padStart(4, "0");
+        }
+
+        function duplicateMat(m) {
+            const copy = Object.assign({}, m, { id: nextId(), name: m.name + " (copy)", fav: false, recent: true, updated: today(), by: CURRENT_USER });
+            materials.unshift(copy);
+            render();
+            showToast(`Duplicated ${m.name}.`);
+        }
+
+        function deleteMat(m) {
+            if (!confirm(`Delete "${m.name}"? This can't be undone.`)) return;
+            materials = materials.filter(x => x.id !== m.id);
+            render();
+            showToast(`${m.name} deleted.`);
+        }
+
+        /* =====================================================
+           Modals
+        ===================================================== */
+        const formModal = $("addMaterialModal");
+        const viewModal = $("viewMaterialModal");
+        let editingId = null;
+        let viewingId = null;
+
+        function openModal(el) { el.classList.add("open"); }
+        function closeModals() { document.querySelectorAll(".modal-overlay.open").forEach(m => m.classList.remove("open")); }
+
+        document.querySelectorAll("[data-close]").forEach(b => b.addEventListener("click", closeModals));
+        [formModal, viewModal].forEach(m => m.addEventListener("click", e => { if (e.target === m) closeModals(); }));
+        document.addEventListener("keydown", e => { if (e.key === "Escape") { closeModals(); closeMenu(); } });
+
+        const F = { name: $("f-name"), category: $("f-category"), supplier: $("f-supplier"), unit: $("f-unit"), price: $("f-price"), stock: $("f-stock"), reorder: $("f-reorder"), notes: $("f-notes") };
+
+        function clearErrors() {
+            document.querySelectorAll(".field-error").forEach(e => { e.textContent = ""; });
+            Object.values(F).forEach(f => f.classList.remove("invalid"));
+        }
+
+        function openForm(mode, m) {
+            closeModals();
+            clearErrors();
+            editingId = mode === "edit" ? m.id : null;
+            $("formTitle").textContent = mode === "edit" ? "Edit Material" : "Add New Material";
+            $("saveAddMaterial").textContent = mode === "edit" ? "Save Changes" : "Save Material";
+            F.name.value = m ? m.name : "";
+            F.category.value = m ? m.category : "Cement";
+            F.supplier.value = m ? m.supplier : "Builders Warehouse";
+            F.unit.value = m ? m.unit : "Bag";
+            F.price.value = m ? m.price : "";
+            F.stock.value = m ? m.stock : "";
+            F.reorder.value = m ? m.reorder : "";
+            F.notes.value = m ? m.notes : "";
+            openModal(formModal);
+            setTimeout(() => F.name.focus(), 50);
+        }
+
+        function fail(field, errId, msg) {
+            field.classList.add("invalid");
+            $(errId).textContent = msg;
+        }
+
+        function saveForm() {
+            clearErrors();
+            const name = F.name.value.trim();
+            const price = parseFloat(F.price.value);
+            const stockRaw = F.stock.value.trim();
+            const stock = stockRaw === "" ? 0 : parseInt(stockRaw, 10);
+            const reorder = F.reorder.value.trim() === "" ? 0 : parseInt(F.reorder.value, 10);
+            let ok = true;
+
+            if (!name) { fail(F.name, "err-name", "Please enter a material name."); ok = false; }
+            if (isNaN(price) || price < 0) { fail(F.price, "err-price", "Enter a valid price."); ok = false; }
+            if (isNaN(stock) || stock < 0) { fail(F.stock, "err-stock", "Stock can't be negative."); ok = false; }
+            if (isNaN(reorder) || reorder < 0) { F.reorder.classList.add("invalid"); ok = false; }
+            if (!ok) return;
+
+            const data = { name, category: F.category.value, supplier: F.supplier.value, unit: F.unit.value, price, stock, reorder, notes: F.notes.value.trim(), updated: today(), by: CURRENT_USER };
+
+            if (editingId) {
+                Object.assign(findMat(editingId), data);
+                showToast(`${name} updated.`);
+            } else {
+                materials.unshift(Object.assign({ id: nextId(), fav: false, recent: true }, data));
+                setTab("all");
+                state.category = "all";
+                state.query = "";
+                if (headerSearch) headerSearch.value = "";
+                showToast(`${name} added to materials.`);
+            }
+            closeModals();
+            render();
+        }
+
+        $("addMaterialBtn").addEventListener("click", () => openForm("add"));
+        $("cancelAddMaterial").addEventListener("click", closeModals);
+        $("saveAddMaterial").addEventListener("click", saveForm);
+        formModal.addEventListener("keydown", e => {
+            if (e.key === "Enter" && e.target.tagName !== "TEXTAREA") { e.preventDefault(); saveForm(); }
+        });
+
+        function openView(m) {
+            viewingId = m.id;
+            const cat = CATS[m.category];
+            const st = statusOf(m);
+            const row = (k, v) => `<div><dt>${k}</dt><dd>${v}</dd></div>`;
+            $("viewBody").innerHTML = `
+                <div class="view-head">
+                    <span class="cat-tile large cat-${cat.cls}">${icon(cat.icon)}</span>
+                    <div><h4>${esc(m.name)}</h4><span>${esc(m.id)}</span></div>
+                    <span class="status-pill stock-${st}"><span class="stock-dot"></span>${STATUS_LABEL[st]}</span>
+                </div>
+                <dl class="view-grid">
+                    ${row("Category", esc(m.category))}
+                    ${row("Supplier", esc(m.supplier))}
+                    ${row("Unit", esc(m.unit))}
+                    ${row("Unit price (excl. VAT)", money(m.price))}
+                    ${row("In stock", m.stock.toLocaleString("en-US") + " " + esc(m.unit.toLowerCase()) + (m.stock === 1 ? "" : "s"))}
+                    ${row("Reorder level", m.reorder.toLocaleString("en-US"))}
+                    ${row("Total value", money(valueOf(m)))}
+                    ${row("Last updated", esc(m.updated) + " by " + esc(m.by))}
+                </dl>
+                <div class="view-notes"><dt>Notes</dt><dd>${m.notes ? esc(m.notes) : "No notes added."}</dd></div>`;
+            openModal(viewModal);
+        }
+
+        $("viewEditBtn").addEventListener("click", () => {
+            const m = findMat(viewingId);
+            if (m) openForm("edit", m);
+        });
+
+        /* =====================================================
+           Pagination (sample data only has one page loaded)
+        ===================================================== */
+        $("matPagination").addEventListener("click", e => {
+            if (e.target.closest("button")) showToast("Only the first page of sample data is loaded.");
+        });
+
+        render();
     </script>
 </body>
 </html>

@@ -9,6 +9,33 @@
         <link rel="stylesheet" href="../styles/reports.css">
 </head>
 <body>
+    <!-- Icon sprite (used via <use href="#i-...">) -->
+    <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+        <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></symbol>
+        <symbol id="i-list" viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></symbol>
+        <symbol id="i-chevron" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
+        <symbol id="i-sort" viewBox="0 0 24 24"><path d="M7 4v16M3 16l4 4 4-4M17 20V4M13 8l4-4 4 4"/></symbol>
+        <symbol id="i-filter" viewBox="0 0 24 24"><path d="M3 4h18l-7 8v6l-4 2v-8z"/></symbol>
+        <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+        <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M4 21h16"/></symbol>
+        <symbol id="i-share" viewBox="0 0 24 24"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7M16 6l-4-4-4 4M12 2v13"/></symbol>
+        <symbol id="i-print" viewBox="0 0 24 24"><path d="M6 9V3h12v6"/><path d="M6 18H4a1 1 0 0 1-1-1v-6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1h-2"/><path d="M6 14h12v7H6z"/></symbol>
+        <symbol id="i-more" viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.6" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none"/><circle cx="12" cy="19" r="1.6" fill="currentColor" stroke="none"/></symbol>
+        <symbol id="i-boq" viewBox="0 0 24 24"><path d="M9 4h6v3H9z"/><path d="M7 5H6a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1h-1"/><path d="M9 12h6M9 16h6"/></symbol>
+        <symbol id="i-budget" viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9h-9z"/><path d="M15 3.6A9 9 0 0 1 20.4 9H15z"/></symbol>
+        <symbol id="i-truck" viewBox="0 0 24 24"><path d="M1 5h12v11H1z"/><path d="M13 9h4l4 4v3h-8z"/><circle cx="5.5" cy="18.5" r="1.8"/><circle cx="17.5" cy="18.5" r="1.8"/></symbol>
+        <symbol id="i-hardhat" viewBox="0 0 24 24"><path d="M3 18h18"/><path d="M5 18v-2a7 7 0 0 1 14 0v2"/><path d="M12 9v5"/><path d="M9.5 10v4M14.5 10v4"/></symbol>
+        <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></symbol>
+        <symbol id="i-cash" viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/><path d="M6 12h.01M18 12h.01"/></symbol>
+        <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8z"/><path d="M14 3v5h5"/></symbol>
+        <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+        <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></symbol>
+        <symbol id="i-edit" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></symbol>
+        <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/></symbol>
+        <symbol id="i-trash" viewBox="0 0 24 24"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 11v6M14 11v6"/></symbol>
+        <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></symbol>
+    </svg>
+
     <section class="dashboard">
 
         <aside class="dashboard-navbar">
@@ -193,247 +220,86 @@
             <div class="main-card-for-reports">
 
                 <div class="reports-toolbar">
-                    <button class="reports-filter-dropdown-btn">All Reports ▾</button>
+                    <button type="button" class="reports-filter-dropdown-btn" data-act="cat" aria-haspopup="menu">
+                        <span id="catLabel">All Reports</span>
+                        <svg class="ico" aria-hidden="true"><use href="#i-chevron"/></svg>
+                    </button>
 
                     <div class="reports-toolbar-right">
                         <div class="reports-view-toggle">
-                            <button class="view-toggle-btn" title="Grid view">⊞</button>
-                            <button class="view-toggle-btn active" title="List view">☰</button>
+                            <button type="button" class="view-toggle-btn" data-act="view" data-view="grid" title="Grid view" aria-label="Grid view" aria-pressed="false">
+                                <svg class="ico" aria-hidden="true"><use href="#i-grid"/></svg>
+                            </button>
+                            <button type="button" class="view-toggle-btn active" data-act="view" data-view="list" title="List view" aria-label="List view" aria-pressed="true">
+                                <svg class="ico" aria-hidden="true"><use href="#i-list"/></svg>
+                            </button>
                         </div>
-                        <button class="reports-sort-btn">Last Modified ▾</button>
-                        <button class="reports-filter-btn">Filter ▾</button>
+                        <button type="button" class="reports-sort-btn" data-act="sort" aria-haspopup="menu">
+                            <svg class="ico" aria-hidden="true"><use href="#i-sort"/></svg>
+                            <span id="sortLabel">Last Modified</span>
+                            <svg class="ico" aria-hidden="true"><use href="#i-chevron"/></svg>
+                        </button>
+                        <button type="button" class="reports-filter-btn" data-act="filter" aria-haspopup="menu">
+                            <svg class="ico" aria-hidden="true"><use href="#i-filter"/></svg>
+                            Filter
+                            <span class="filter-badge" id="filterBadge" hidden>0</span>
+                        </button>
                     </div>
                 </div>
 
-                <div class="reports-table-wrap">
+                <div class="reports-table-wrap" id="reportsTableWrap">
                     <table class="reports-table-v2">
                         <thead>
                             <tr>
-                                <th>Name ↑</th>
+                                <th class="sortable" data-sort="name" data-label="Name" tabindex="0" role="button">Name</th>
                                 <th>Type</th>
                                 <th>Project</th>
-                                <th>Last Modified</th>
-                                <th>Size</th>
+                                <th class="sortable" data-sort="date" data-label="Last Modified" tabindex="0" role="button">Last Modified</th>
+                                <th class="sortable" data-sort="size" data-label="Size" tabindex="0" role="button">Size</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
-                        <tbody>
-
-                            <tr>
-                                <td>
-                                    <div class="report-name-cell">
-                                        <span class="report-icon blue">📄</span>
-                                        <div>
-                                            <h5>Bill of Quantities</h5>
-                                            <p>Detailed list of all materials, quantities and specifications</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td><span class="report-type-pill excel">Excel</span></td>
-                                <td>
-                                    <div class="report-project-cell">
-                                        <img src="https://picsum.photos/seed/mfh-thumb/40/40" alt="Modern Family Home">
-                                        <div><strong>Modern Family Home</strong><span>Residential</span></div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="report-modified-cell">
-                                        <img src="https://picsum.photos/seed/ariun-mehta/28/28" alt="Ariun Mehta">
-                                        <div><strong>Ariun Mehta</strong><span>20 May 2024, 10:30 AM</span></div>
-                                    </div>
-                                </td>
-                                <td>2.4 MB</td>
-                                <td class="report-actions-cell">
-                                    <button title="Preview">👁</button>
-                                    <button title="Download">⬇</button>
-                                    <button title="Share">↗</button>
-                                    <button title="Print">🖨</button>
-                                    <button title="More">⋮</button>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <div class="report-name-cell">
-                                        <span class="report-icon green">📊</span>
-                                        <div>
-                                            <h5>Budget Report</h5>
-                                            <p>Estimated vs actual costs with breakdown</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td><span class="report-type-pill pdf">PDF</span></td>
-                                <td>
-                                    <div class="report-project-cell">
-                                        <img src="https://picsum.photos/seed/mfh-thumb/40/40" alt="Modern Family Home">
-                                        <div><strong>Modern Family Home</strong><span>Residential</span></div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="report-modified-cell">
-                                        <img src="https://picsum.photos/seed/ariun-mehta/28/28" alt="Ariun Mehta">
-                                        <div><strong>Ariun Mehta</strong><span>20 May 2024, 9:15 AM</span></div>
-                                    </div>
-                                </td>
-                                <td>1.8 MB</td>
-                                <td class="report-actions-cell">
-                                    <button title="Preview">👁</button>
-                                    <button title="Download">⬇</button>
-                                    <button title="Share">↗</button>
-                                    <button title="Print">🖨</button>
-                                    <button title="More">⋮</button>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <div class="report-name-cell">
-                                        <span class="report-icon purple">👥</span>
-                                        <div>
-                                            <h5>Supplier Report</h5>
-                                            <p>List of suppliers, quotes and order status</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td><span class="report-type-pill pdf">PDF</span></td>
-                                <td>
-                                    <div class="report-project-cell">
-                                        <img src="https://picsum.photos/seed/mfh-thumb/40/40" alt="Modern Family Home">
-                                        <div><strong>Modern Family Home</strong><span>Residential</span></div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="report-modified-cell">
-                                        <img src="https://picsum.photos/seed/ariun-mehta/28/28" alt="Ariun Mehta">
-                                        <div><strong>Ariun Mehta</strong><span>19 May 2024, 4:45 PM</span></div>
-                                    </div>
-                                </td>
-                                <td>1.2 MB</td>
-                                <td class="report-actions-cell">
-                                    <button title="Preview">👁</button>
-                                    <button title="Download">⬇</button>
-                                    <button title="Share">↗</button>
-                                    <button title="Print">🖨</button>
-                                    <button title="More">⋮</button>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <div class="report-name-cell">
-                                        <span class="report-icon orange">🦺</span>
-                                        <div>
-                                            <h5>Labour Report</h5>
-                                            <p>Labour costs, hours and productivity analysis</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td><span class="report-type-pill excel">Excel</span></td>
-                                <td>
-                                    <div class="report-project-cell">
-                                        <img src="https://picsum.photos/seed/mfh-thumb/40/40" alt="Modern Family Home">
-                                        <div><strong>Modern Family Home</strong><span>Residential</span></div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="report-modified-cell">
-                                        <img src="https://picsum.photos/seed/ariun-mehta/28/28" alt="Ariun Mehta">
-                                        <div><strong>Ariun Mehta</strong><span>19 May 2024, 11:20 AM</span></div>
-                                    </div>
-                                </td>
-                                <td>1.6 MB</td>
-                                <td class="report-actions-cell">
-                                    <button title="Preview">👁</button>
-                                    <button title="Download">⬇</button>
-                                    <button title="Share">↗</button>
-                                    <button title="Print">🖨</button>
-                                    <button title="More">⋮</button>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <div class="report-name-cell">
-                                        <span class="report-icon teal">📅</span>
-                                        <div>
-                                            <h5>Construction Timeline</h5>
-                                            <p>Project schedule and milestones timeline</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td><span class="report-type-pill pdf">PDF</span></td>
-                                <td>
-                                    <div class="report-project-cell">
-                                        <img src="https://picsum.photos/seed/mfh-thumb/40/40" alt="Modern Family Home">
-                                        <div><strong>Modern Family Home</strong><span>Residential</span></div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="report-modified-cell">
-                                        <img src="https://picsum.photos/seed/ariun-mehta/28/28" alt="Ariun Mehta">
-                                        <div><strong>Ariun Mehta</strong><span>18 May 2024, 3:30 PM</span></div>
-                                    </div>
-                                </td>
-                                <td>3.1 MB</td>
-                                <td class="report-actions-cell">
-                                    <button title="Preview">👁</button>
-                                    <button title="Download">⬇</button>
-                                    <button title="Share">↗</button>
-                                    <button title="Print">🖨</button>
-                                    <button title="More">⋮</button>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <div class="report-name-cell">
-                                        <span class="report-icon blue">💲</span>
-                                        <div>
-                                            <h5>Cash Flow</h5>
-                                            <p>Cash flow projection and payment schedule</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td><span class="report-type-pill excel">Excel</span></td>
-                                <td>
-                                    <div class="report-project-cell">
-                                        <img src="https://picsum.photos/seed/mfh-thumb/40/40" alt="Modern Family Home">
-                                        <div><strong>Modern Family Home</strong><span>Residential</span></div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="report-modified-cell">
-                                        <img src="https://picsum.photos/seed/ariun-mehta/28/28" alt="Ariun Mehta">
-                                        <div><strong>Ariun Mehta</strong><span>18 May 2024, 10:05 AM</span></div>
-                                    </div>
-                                </td>
-                                <td>2.0 MB</td>
-                                <td class="report-actions-cell">
-                                    <button title="Preview">👁</button>
-                                    <button title="Download">⬇</button>
-                                    <button title="Share">↗</button>
-                                    <button title="Print">🖨</button>
-                                    <button title="More">⋮</button>
-                                </td>
-                            </tr>
-
-                        </tbody>
+                        <tbody id="reportsBody"></tbody>
                     </table>
+                </div>
+
+                <div class="reports-grid" id="reportsGrid" hidden></div>
+
+                <div class="reports-empty" id="reportsEmpty" hidden>
+                    <svg class="ico" aria-hidden="true"><use href="#i-file"/></svg>
+                    <h4>No reports found</h4>
+                    <p>Nothing matches your current search or filters.</p>
+                    <button type="button" class="rm-btn primary" data-act="clear">Clear filters</button>
                 </div>
 
                 <footer class="reports-footer">
                     <div>Showing <span class="report-start">1</span> to <span class="report-end">6</span> of <span class="report-total">6</span> reports</div>
-                    <div class="reports-pagination">
-                        <button>‹</button>
-                        <button class="active">1</button>
-                        <button>›</button>
-                    </div>
+                    <div class="reports-pagination" id="reportsPagination"></div>
                 </footer>
 
             </div>
 
         </main>
     </section>
+
+    <!-- Floating menu (dropdowns / filter / row menu) -->
+    <div class="popover" id="popover" hidden></div>
+
+    <!-- Generic dialog (preview / share / rename / delete) -->
+    <div class="rm-overlay" id="reportModal" aria-hidden="true">
+        <div class="rm-box" role="dialog" aria-modal="true" aria-labelledby="rmTitle">
+            <div class="rm-header">
+                <h3 id="rmTitle"></h3>
+                <button type="button" class="rm-close" id="rmClose" aria-label="Close">
+                    <svg class="ico" aria-hidden="true"><use href="#i-x"/></svg>
+                </button>
+            </div>
+            <div class="rm-body" id="rmBody"></div>
+            <div class="rm-footer" id="rmFooter"></div>
+        </div>
+    </div>
+
+    <div class="rm-toast" id="rmToast" role="status" aria-live="polite"></div>
 
     <script>
         const sidebar = document.querySelector(".dashboard-navbar");
@@ -463,14 +329,501 @@
                 sidebar.classList.remove("collapsed");
             }
         });
+    </script>
 
-        // Grid / list view toggle (visual only for now)
-        document.querySelectorAll(".view-toggle-btn").forEach(btn => {
-            btn.addEventListener("click", () => {
-                document.querySelectorAll(".view-toggle-btn").forEach(b => b.classList.remove("active"));
-                btn.classList.add("active");
+    <script>
+    (function(){
+        // ---------------------------------------------------------------
+        // Data (swap this array for an API call when the backend exists)
+        // ---------------------------------------------------------------
+        const PAGE_SIZE = 5;
+        const CURRENT_USER = "Moses";
+
+        const CATS = { all:"All Reports", financial:"Financial", operational:"Operational", planning:"Planning" };
+        const SORTS = {
+            "date-desc": ["date","desc","Last Modified"],
+            "date-asc":  ["date","asc","Oldest First"],
+            "name-asc":  ["name","asc","Name (A–Z)"],
+            "name-desc": ["name","desc","Name (Z–A)"],
+            "size-desc": ["size","desc","Size (Largest)"],
+            "size-asc":  ["size","asc","Size (Smallest)"]
+        };
+
+        const PROJECT = { project:"Modern Family Home", ptype:"Residential", thumb:"mfh-thumb", by:"Ariun Mehta" };
+
+        let reports = [
+            { id:1, name:"Bill of Quantities", desc:"Detailed list of all materials, quantities and specifications", type:"excel", cat:"financial",   icon:"boq",      color:"blue",   date:"2024-05-20T10:30", size:2.4, ...PROJECT },
+            { id:2, name:"Budget Report",      desc:"Estimated vs actual costs with breakdown",                      type:"pdf",   cat:"financial",   icon:"budget",   color:"green",  date:"2024-05-20T09:15", size:1.8, ...PROJECT },
+            { id:3, name:"Supplier Report",    desc:"List of suppliers, quotes and order status",                    type:"pdf",   cat:"operational", icon:"truck",    color:"purple", date:"2024-05-19T16:45", size:1.2, ...PROJECT },
+            { id:4, name:"Labour Report",      desc:"Labour costs, hours and productivity analysis",                 type:"excel", cat:"operational", icon:"hardhat",  color:"orange", date:"2024-05-19T11:20", size:1.6, ...PROJECT },
+            { id:5, name:"Construction Timeline", desc:"Project schedule and milestones timeline",                   type:"pdf",   cat:"planning",    icon:"calendar", color:"teal",   date:"2024-05-18T15:30", size:3.1, ...PROJECT },
+            { id:6, name:"Cash Flow",          desc:"Cash flow projection and payment schedule",                     type:"excel", cat:"financial",   icon:"cash",     color:"blue",   date:"2024-05-18T10:05", size:2.0, ...PROJECT }
+        ];
+        let nextId = 7;
+
+        const state = { cat:"all", type:"all", project:"all", q:"", sort:"date-desc", view:"list", page:1 };
+        try { const v = localStorage.getItem("reports-view"); if (v === "grid" || v === "list") state.view = v; } catch(e){}
+
+        // ---------------------------------------------------------------
+        // Helpers
+        // ---------------------------------------------------------------
+        const $ = s => document.querySelector(s);
+        const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+        const icon = id => `<svg class="ico" aria-hidden="true"><use href="#i-${id}"/></svg>`;
+        const MON = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+        const slug = s => String(s).toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
+        const typeLabel = t => t === "pdf" ? "PDF" : "Excel";
+
+        function fmtDate(iso){
+            const d = new Date(iso);
+            let h = d.getHours();
+            const ap = h >= 12 ? "PM" : "AM";
+            h = h % 12 || 12;
+            return d.getDate() + " " + MON[d.getMonth()] + " " + d.getFullYear() + ", " + h + ":" + String(d.getMinutes()).padStart(2,"0") + " " + ap;
+        }
+        function nowIso(){
+            const d = new Date(), p = n => String(n).padStart(2,"0");
+            return d.getFullYear()+"-"+p(d.getMonth()+1)+"-"+p(d.getDate())+"T"+p(d.getHours())+":"+p(d.getMinutes());
+        }
+
+        const tbody = $("#reportsBody");
+        const grid = $("#reportsGrid");
+        const tableWrap = $("#reportsTableWrap");
+        const emptyBox = $("#reportsEmpty");
+        const pagEl = $("#reportsPagination");
+        const searchInput = document.querySelector('.dashboard-header input[type="search"]');
+
+        // ---------------------------------------------------------------
+        // Rendering
+        // ---------------------------------------------------------------
+        const typePill = r => `<span class="report-type-pill ${r.type}">${typeLabel(r.type)}</span>`;
+        const projectCell = r => `<div class="report-project-cell"><img src="https://picsum.photos/seed/${esc(r.thumb)}/40/40" alt=""><div><strong>${esc(r.project)}</strong><span>${esc(r.ptype)}</span></div></div>`;
+        const modCell = r => `<div class="report-modified-cell"><img src="https://picsum.photos/seed/${esc(slug(r.by))}/28/28" alt=""><div><strong>${esc(r.by)}</strong><span>${fmtDate(r.date)}</span></div></div>`;
+        const actionBtns = r => [
+            ["preview","Preview","eye"],["download","Download","download"],["share","Share","share"],["print","Print","print"],["more","More","more"]
+        ].map(([a,l,i]) => `<button type="button" data-act="${a}" data-id="${r.id}" title="${l}" aria-label="${l} ${esc(r.name)}">${icon(i)}</button>`).join("");
+
+        function rowHtml(r){
+            return `<tr data-id="${r.id}">
+                <td><div class="report-name-cell"><span class="report-icon ${r.color}">${icon(r.icon)}</span><div><h5>${esc(r.name)}</h5><p>${esc(r.desc)}</p></div></div></td>
+                <td>${typePill(r)}</td>
+                <td>${projectCell(r)}</td>
+                <td>${modCell(r)}</td>
+                <td>${r.size.toFixed(1)} MB</td>
+                <td><div class="report-actions-cell">${actionBtns(r)}</div></td>
+            </tr>`;
+        }
+        function cardHtml(r){
+            return `<article class="report-card" data-id="${r.id}">
+                <div class="rc-top"><span class="report-icon ${r.color}">${icon(r.icon)}</span>${typePill(r)}</div>
+                <h5>${esc(r.name)}</h5>
+                <p class="rc-desc">${esc(r.desc)}</p>
+                ${projectCell(r)}
+                <div class="rc-meta"><span>${fmtDate(r.date)}</span><span>${r.size.toFixed(1)} MB</span></div>
+                <div class="report-actions-cell">${actionBtns(r)}</div>
+            </article>`;
+        }
+
+        function getVisible(){
+            const q = state.q.trim().toLowerCase();
+            const [key, dir] = SORTS[state.sort];
+            const list = reports.filter(r =>
+                (state.cat === "all" || r.cat === state.cat) &&
+                (state.type === "all" || r.type === state.type) &&
+                (state.project === "all" || r.project === state.project) &&
+                (!q || (r.name + " " + r.desc + " " + r.project + " " + r.by).toLowerCase().includes(q))
+            );
+            list.sort((a,b) => {
+                let c;
+                if (key === "name") c = a.name.localeCompare(b.name);
+                else if (key === "size") c = a.size - b.size;
+                else c = a.date < b.date ? -1 : a.date > b.date ? 1 : 0;
+                return dir === "asc" ? c : -c;
+            });
+            return list;
+        }
+
+        function render(){
+            const list = getVisible();
+            const pages = Math.max(1, Math.ceil(list.length / PAGE_SIZE));
+            if (state.page > pages) state.page = pages;
+            const startIdx = (state.page - 1) * PAGE_SIZE;
+            const slice = list.slice(startIdx, startIdx + PAGE_SIZE);
+
+            tbody.innerHTML = slice.map(rowHtml).join("");
+            grid.innerHTML = slice.map(cardHtml).join("");
+
+            const none = list.length === 0;
+            tableWrap.hidden = none || state.view !== "list";
+            grid.hidden = none || state.view !== "grid";
+            emptyBox.hidden = !none;
+
+            document.querySelectorAll(".view-toggle-btn").forEach(b => {
+                const on = b.dataset.view === state.view;
+                b.classList.toggle("active", on);
+                b.setAttribute("aria-pressed", on ? "true" : "false");
+            });
+
+            $("#catLabel").textContent = CATS[state.cat];
+            $("#sortLabel").textContent = SORTS[state.sort][2];
+            const [sk, sd] = SORTS[state.sort];
+            document.querySelectorAll("th.sortable").forEach(th => {
+                th.textContent = th.dataset.label + (th.dataset.sort === sk ? (sd === "asc" ? " ↑" : " ↓") : "");
+            });
+
+            const nFilters = (state.type !== "all") + (state.project !== "all");
+            const badge = $("#filterBadge");
+            badge.textContent = nFilters;
+            badge.hidden = nFilters === 0;
+
+            $(".report-start").textContent = none ? 0 : startIdx + 1;
+            $(".report-end").textContent = startIdx + slice.length;
+            $(".report-total").textContent = list.length;
+
+            let h = `<button type="button" data-act="page" data-page="${state.page-1}" ${state.page<=1?"disabled":""} aria-label="Previous page">‹</button>`;
+            for (let i = 1; i <= pages; i++){
+                h += `<button type="button" data-act="page" data-page="${i}" class="${i===state.page?"active":""}" aria-label="Page ${i}">${i}</button>`;
+            }
+            h += `<button type="button" data-act="page" data-page="${state.page+1}" ${state.page>=pages?"disabled":""} aria-label="Next page">›</button>`;
+            pagEl.innerHTML = h;
+        }
+
+        // ---------------------------------------------------------------
+        // Floating menu
+        // ---------------------------------------------------------------
+        const pop = $("#popover");
+        let popState = null;
+
+        function closePop(){ pop.hidden = true; popState = null; }
+
+        function placePop(){
+            if (!popState) return;
+            const r = popState.anchor.getBoundingClientRect();
+            const w = pop.offsetWidth, h = pop.offsetHeight;
+            let left = popState.align === "right" ? r.right - w : r.left;
+            left = Math.max(8, Math.min(left, window.innerWidth - w - 8));
+            let top = r.bottom + 6;
+            if (top + h > window.innerHeight - 8 && r.top - h - 6 > 8) top = r.top - h - 6;
+            pop.style.left = left + "px";
+            pop.style.top = top + "px";
+        }
+
+        function openPop(anchor, build, onPick, opts){
+            if (popState && popState.anchor === anchor){ closePop(); return; }
+            popState = { anchor, build, onPick, keep: !!(opts && opts.keep), align: (opts && opts.align) || "left" };
+            pop.innerHTML = build();
+            pop.hidden = false;
+            placePop();
+        }
+
+        pop.addEventListener("click", e => {
+            e.stopPropagation();
+            const b = e.target.closest("[data-v]");
+            if (!b || !popState) return;
+            const s = popState;
+            s.onPick(b.dataset.g, b.dataset.v);
+            if (s.keep && popState === s){ pop.innerHTML = s.build(); placePop(); }
+            else closePop();
+        });
+
+        const item = (g, v, label, active) =>
+            `<button type="button" class="pop-item${active?" active":""}" data-g="${g}" data-v="${esc(v)}"><span>${esc(label)}</span>${active?icon("check"):""}</button>`;
+
+        function filterMenu(){
+            const projects = [...new Set(reports.map(r => r.project))];
+            let h = `<div class="pop-label">File type</div>`;
+            h += item("type","all","All types",state.type==="all");
+            h += item("type","excel","Excel",state.type==="excel");
+            h += item("type","pdf","PDF",state.type==="pdf");
+            h += `<div class="pop-label">Project</div>`;
+            h += item("project","all","All projects",state.project==="all");
+            projects.forEach(p => { h += item("project",p,p,state.project===p); });
+            if (state.type !== "all" || state.project !== "all"){
+                h += `<div class="pop-sep"></div><button type="button" class="pop-item danger" data-g="clear" data-v="1"><span>Clear filters</span></button>`;
+            }
+            return h;
+        }
+
+        // ---------------------------------------------------------------
+        // Dialog + toast
+        // ---------------------------------------------------------------
+        const modal = $("#reportModal"), mTitle = $("#rmTitle"), mBody = $("#rmBody"), mFoot = $("#rmFooter");
+        let lastFocus = null;
+
+        function openModal(title, bodyHtml, actions){
+            lastFocus = document.activeElement;
+            mTitle.textContent = title;
+            mBody.innerHTML = bodyHtml;
+            mFoot.innerHTML = "";
+            actions.forEach(a => {
+                const b = document.createElement("button");
+                b.type = "button";
+                b.className = "rm-btn " + (a.cls || "");
+                b.textContent = a.label;
+                b.addEventListener("click", () => {
+                    if (a.onClick && a.onClick() === false) return;
+                    if (!a.keep) closeModal();
+                });
+                mFoot.appendChild(b);
+            });
+            modal.classList.add("open");
+            modal.setAttribute("aria-hidden","false");
+            const f = mBody.querySelector("input");
+            if (f){ f.focus(); f.select(); }
+        }
+        function closeModal(){
+            modal.classList.remove("open");
+            modal.setAttribute("aria-hidden","true");
+            if (lastFocus && lastFocus.focus) lastFocus.focus();
+        }
+        $("#rmClose").addEventListener("click", closeModal);
+        modal.addEventListener("click", e => { if (e.target === modal) closeModal(); });
+        mBody.addEventListener("keydown", e => {
+            if (e.key === "Enter" && e.target.tagName === "INPUT"){
+                const p = mFoot.querySelector(".primary, .danger");
+                if (p) p.click();
+            }
+        });
+
+        let toastTimer;
+        function toast(msg){
+            const t = $("#rmToast");
+            t.textContent = msg;
+            t.classList.add("show");
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => t.classList.remove("show"), 2400);
+        }
+
+        // ---------------------------------------------------------------
+        // Report actions
+        // ---------------------------------------------------------------
+        function details(r){
+            return [
+                ["Type", typeLabel(r.type)],
+                ["Category", CATS[r.cat]],
+                ["Project", r.project + " (" + r.ptype + ")"],
+                ["Last modified", fmtDate(r.date)],
+                ["Modified by", r.by],
+                ["Size", r.size.toFixed(1) + " MB"]
+            ];
+        }
+
+        function previewReport(r){
+            const dl = details(r).map(([k,v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join("");
+            openModal("Report preview",
+                `<div class="rm-head"><span class="report-icon ${r.color}">${icon(r.icon)}</span><div><h4>${esc(r.name)}</h4><p>${esc(r.desc)}</p></div></div><dl class="rm-dl">${dl}</dl>`,
+                [{label:"Close"},{label:"Download",cls:"primary",onClick:()=>{ downloadReport(r); }}]);
+        }
+
+        function buildPdf(lines){
+            const clean = s => String(s).replace(/[^\x20-\x7E]/g,"?").replace(/[\\()]/g,"\\$&");
+            let content = "BT /F1 14 Tf 50 780 Td 20 TL\n";
+            lines.forEach((l,i) => { content += (i ? "T* " : "") + "(" + clean(l) + ") Tj\n"; });
+            content += "ET";
+            const objs = [
+                "<< /Type /Catalog /Pages 2 0 R >>",
+                "<< /Type /Pages /Kids [3 0 R] /Count 1 >>",
+                "<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>",
+                "<< /Length " + content.length + " >>\nstream\n" + content + "\nendstream",
+                "<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>"
+            ];
+            let pdf = "%PDF-1.4\n";
+            const offs = [];
+            objs.forEach((o,i) => { offs.push(pdf.length); pdf += (i+1) + " 0 obj\n" + o + "\nendobj\n"; });
+            const xref = pdf.length;
+            pdf += "xref\n0 " + (objs.length + 1) + "\n0000000000 65535 f \n";
+            offs.forEach(o => { pdf += String(o).padStart(10,"0") + " 00000 n \n"; });
+            pdf += "trailer\n<< /Size " + (objs.length + 1) + " /Root 1 0 R >>\nstartxref\n" + xref + "\n%%EOF";
+            return new Blob([pdf], { type:"application/pdf" });
+        }
+
+        function downloadReport(r){
+            const base = r.name.replace(/[^\w\- ]+/g,"").trim().replace(/\s+/g,"-") || "report";
+            const rows = [["Report",r.name],["Description",r.desc],["Project",r.project],["Type",typeLabel(r.type)],["Last modified",fmtDate(r.date)],["Modified by",r.by],["Size",r.size.toFixed(1)+" MB"]];
+            let blob, ext;
+            if (r.type === "pdf"){
+                blob = buildPdf(rows.map(([k,v]) => k + ": " + v));
+                ext = "pdf";
+            } else {
+                const csv = [["Field","Value"]].concat(rows).map(row => row.map(c => '"' + String(c).replace(/"/g,'""') + '"').join(",")).join("\r\n");
+                blob = new Blob(["\ufeff" + csv], { type:"text/csv" });
+                ext = "csv";
+            }
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url; a.download = base + "." + ext;
+            document.body.appendChild(a); a.click(); a.remove();
+            setTimeout(() => URL.revokeObjectURL(url), 1000);
+            toast("Downloading " + base + "." + ext);
+        }
+
+        function copyText(text, input){
+            if (navigator.clipboard && navigator.clipboard.writeText){
+                return navigator.clipboard.writeText(text).then(() => true, () => false);
+            }
+            try { input.select(); return Promise.resolve(document.execCommand("copy")); }
+            catch(e){ return Promise.resolve(false); }
+        }
+
+        function shareReport(r){
+            const u = new URL(location.href);
+            u.hash = "report-" + r.id;
+            openModal("Share report",
+                `<p class="rm-note">Anyone with access to this link can view <strong>${esc(r.name)}</strong>.</p>
+                 <div class="rm-linkrow"><input type="text" id="shareLink" readonly value="${esc(u.href)}" aria-label="Share link"></div>`,
+                [{label:"Done"},{label:"Copy link",cls:"primary",keep:true,onClick:()=>{
+                    const inp = $("#shareLink");
+                    copyText(inp.value, inp).then(ok => toast(ok ? "Link copied to clipboard" : "Press Ctrl+C to copy the link"));
+                    inp.select();
+                }}]);
+            $("#shareLink").select();
+        }
+
+        function printReport(r){
+            const rows = [["Description",r.desc]].concat(details(r)).map(([k,v]) => "<tr><td>" + esc(k) + "</td><td>" + esc(v) + "</td></tr>").join("");
+            const html = '<!DOCTYPE html><html><head><meta charset="utf-8"><title>' + esc(r.name) + '</title><style>body{font-family:Arial,sans-serif;padding:40px;color:#18233c}h1{margin:0 0 6px}p{color:#666;margin:0}table{border-collapse:collapse;margin-top:24px;width:100%}td{padding:10px 12px;border-bottom:1px solid #ddd;font-size:14px}td:first-child{color:#777;width:180px}</style></head><body><h1>' + esc(r.name) + '</h1><p>Report summary</p><table>' + rows + '</table></body></html>';
+            const f = document.createElement("iframe");
+            f.style.cssText = "position:fixed;right:0;bottom:0;width:0;height:0;border:0";
+            document.body.appendChild(f);
+            const d = f.contentWindow.document;
+            d.open(); d.write(html); d.close();
+            setTimeout(() => {
+                f.contentWindow.focus();
+                f.contentWindow.print();
+                setTimeout(() => f.remove(), 1500);
+            }, 200);
+        }
+
+        function renameReport(r){
+            openModal("Rename report",
+                `<div class="rm-field"><label for="renameInput">Report name</label><input type="text" id="renameInput" maxlength="80" value="${esc(r.name)}"></div>`,
+                [{label:"Cancel"},{label:"Save",cls:"primary",onClick:()=>{
+                    const inp = $("#renameInput"), v = inp.value.trim();
+                    if (!v){ inp.classList.add("invalid"); inp.focus(); return false; }
+                    r.name = v; r.date = nowIso(); r.by = CURRENT_USER;
+                    render(); toast("Report renamed");
+                }}]);
+        }
+
+        function duplicateReport(r){
+            reports.push(Object.assign({}, r, { id:nextId++, name:r.name + " (Copy)", date:nowIso(), by:CURRENT_USER }));
+            state.page = 1;
+            render();
+            toast("Report duplicated");
+        }
+
+        function deleteReport(r){
+            openModal("Delete report",
+                `<p class="rm-note">Are you sure you want to delete <strong>${esc(r.name)}</strong>? This can't be undone.</p>`,
+                [{label:"Cancel"},{label:"Delete",cls:"danger",onClick:()=>{
+                    reports = reports.filter(x => x.id !== r.id);
+                    render(); toast("Report deleted");
+                }}]);
+        }
+
+        function clearFilters(){
+            state.cat = "all"; state.type = "all"; state.project = "all"; state.q = "";
+            if (searchInput) searchInput.value = "";
+            state.page = 1;
+            render();
+        }
+
+        // ---------------------------------------------------------------
+        // Events
+        // ---------------------------------------------------------------
+        document.addEventListener("click", e => {
+            const a = e.target.closest("[data-act]");
+            if (popState && !(a && a === popState.anchor)) closePop();
+            if (!a) return;
+
+            const act = a.dataset.act;
+            const r = reports.find(x => x.id === +a.dataset.id);
+
+            switch (act){
+                case "cat":
+                    openPop(a, () => Object.entries(CATS).map(([v,l]) => item("cat",v,l,state.cat===v)).join(""),
+                        (g,v) => { state.cat = v; state.page = 1; render(); });
+                    break;
+                case "sort":
+                    openPop(a, () => Object.entries(SORTS).map(([v,s]) => item("sort",v,s[2],state.sort===v)).join(""),
+                        (g,v) => { state.sort = v; state.page = 1; render(); }, { align:"right" });
+                    break;
+                case "filter":
+                    openPop(a, filterMenu, (g,v) => {
+                        if (g === "clear"){ state.type = "all"; state.project = "all"; }
+                        else state[g] = v;
+                        state.page = 1; render();
+                    }, { keep:true, align:"right" });
+                    break;
+                case "view":
+                    state.view = a.dataset.view;
+                    try { localStorage.setItem("reports-view", state.view); } catch(err){}
+                    render();
+                    break;
+                case "page":
+                    state.page = +a.dataset.page;
+                    render();
+                    break;
+                case "clear":
+                    clearFilters();
+                    break;
+                case "preview":  if (r) previewReport(r);  break;
+                case "download": if (r) downloadReport(r); break;
+                case "share":    if (r) shareReport(r);    break;
+                case "print":    if (r) printReport(r);    break;
+                case "more":
+                    if (!r) break;
+                    openPop(a, () =>
+                        `<button type="button" class="pop-item" data-g="m" data-v="rename">${icon("edit")}<span>Rename</span></button>
+                         <button type="button" class="pop-item" data-g="m" data-v="duplicate">${icon("copy")}<span>Duplicate</span></button>
+                         <div class="pop-sep"></div>
+                         <button type="button" class="pop-item danger" data-g="m" data-v="delete">${icon("trash")}<span>Delete</span></button>`,
+                        (g,v) => {
+                            if (v === "rename") renameReport(r);
+                            else if (v === "duplicate") duplicateReport(r);
+                            else if (v === "delete") deleteReport(r);
+                        }, { align:"right" });
+                    break;
+            }
+        });
+
+        // Sortable column headers
+        function sortByHeader(th){
+            const key = th.dataset.sort;
+            const [ck, cd] = SORTS[state.sort];
+            let dir;
+            if (ck === key) dir = cd === "asc" ? "desc" : "asc";
+            else dir = key === "name" ? "asc" : "desc";
+            state.sort = key + "-" + dir;
+            state.page = 1;
+            render();
+        }
+        document.querySelectorAll("th.sortable").forEach(th => {
+            th.addEventListener("click", () => sortByHeader(th));
+            th.addEventListener("keydown", e => {
+                if (e.key === "Enter" || e.key === " "){ e.preventDefault(); sortByHeader(th); }
             });
         });
+
+        // Header search box (wired from here, header markup untouched)
+        if (searchInput){
+            searchInput.addEventListener("input", () => {
+                state.q = searchInput.value;
+                state.page = 1;
+                render();
+            });
+        }
+
+        document.addEventListener("keydown", e => {
+            if (e.key !== "Escape") return;
+            if (modal.classList.contains("open")) closeModal();
+            else closePop();
+        });
+        window.addEventListener("resize", closePop);
+        document.addEventListener("scroll", closePop, true);
+
+        render();
+    })();
     </script>
 
 </body>
