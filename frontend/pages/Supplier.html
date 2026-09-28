@@ -117,7 +117,6 @@
             <header class="dashboard-header">
                 <div class="header-left">
                     <h2>Supplier Marketplace</h2>
-                    <p class="header-subtitle">Find trusted suppliers for your construction project</p>
                 </div>
 
                 <div class="header-right">
@@ -125,7 +124,7 @@
                         <span class="search-icon">
                             <img src="../assets/icons/search.svg" alt="" width="27" height="27">
                         </span>
-                        <input type="search" placeholder="Search suppliers...">
+                        <input type="search" id="supplierSearch" placeholder="Search suppliers...">
                     </div>
 
                     <button class="notification-btn">
@@ -201,142 +200,24 @@
 
                     <div class="supplier-container">
 
+                        <!-- ================= LEFT: SUPPLIER LIST ================= -->
                         <div class="supplier-list-col">
 
-                            <p class="supplier-count" id="supplierCount">24 suppliers found</p>
+                            <p class="supplier-count" id="supplierCount">8 suppliers found</p>
 
                             <div class="supplier-cards" id="supplierCards">
-
-                                <div class="supplier-card active" data-supplier-id="builders-warehouse">
-                                    <div class="supp-card-top">
-                                        <span class="supp-logo" style="background:#f5c518;">
-                                            <img src="https://picsum.photos/seed/bw-logo/60/60" alt="Builders Warehouse">
-                                        </span>
-                                        <button class="supp-fav">♡</button>
-                                    </div>
-                                    <h4>Builders Warehouse <span class="supp-verified">✓</span></h4>
-                                    <div class="supp-rating">★ 4.6 <span>(128 reviews)</span></div>
-                                    <div class="supp-meta"><span>🚚 Delivery: 1 - 3 days</span></div>
-                                    <div class="supp-meta"><span>📦 Products: 15,000+</span></div>
-                                    <div class="supp-meta"><span>📍 Distance: 3.2 km</span></div>
-                                    <button class="supp-open-btn">Open Store</button>
-                                </div>
-
-                                <div class="supplier-card" data-supplier-id="cashbuild">
-                                    <div class="supp-card-top">
-                                        <span class="supp-logo" style="background:#e8eef7;">
-                                            <img src="https://picsum.photos/seed/cashbuild-logo/60/60" alt="Cashbuild">
-                                        </span>
-                                        <button class="supp-fav">♡</button>
-                                    </div>
-                                    <h4>Cashbuild</h4>
-                                    <div class="supp-rating">★ 4.4 <span>(96 reviews)</span></div>
-                                    <div class="supp-meta"><span>🚚 Delivery: 2 - 4 days</span></div>
-                                    <div class="supp-meta"><span>📦 Products: 12,000+</span></div>
-                                    <div class="supp-meta"><span>📍 Distance: 5.7 km</span></div>
-                                    <button class="supp-open-btn">Open Store</button>
-                                </div>
-
-                                <div class="supplier-card" data-supplier-id="buco">
-                                    <div class="supp-card-top">
-                                        <span class="supp-logo" style="background:#f5a524;">
-                                            <img src="https://picsum.photos/seed/buco-logo/60/60" alt="BUCO">
-                                        </span>
-                                        <button class="supp-fav">♡</button>
-                                    </div>
-                                    <h4>BUCO</h4>
-                                    <div class="supp-rating">★ 4.3 <span>(76 reviews)</span></div>
-                                    <div class="supp-meta"><span>🚚 Delivery: 2 - 5 days</span></div>
-                                    <div class="supp-meta"><span>📦 Products: 10,500+</span></div>
-                                    <div class="supp-meta"><span>📍 Distance: 6.1 km</span></div>
-                                    <button class="supp-open-btn">Open Store</button>
-                                </div>
-
-                                <div class="supplier-card" data-supplier-id="mica">
-                                    <div class="supp-card-top">
-                                        <span class="supp-logo" style="background:#2f6feb;">
-                                            <img src="https://picsum.photos/seed/mica-logo/60/60" alt="Mica Hardware">
-                                        </span>
-                                        <button class="supp-fav">♡</button>
-                                    </div>
-                                    <h4>Mica Hardware</h4>
-                                    <div class="supp-rating">★ 4.2 <span>(63 reviews)</span></div>
-                                    <div class="supp-meta"><span>🚚 Delivery: 2 - 4 days</span></div>
-                                    <div class="supp-meta"><span>📦 Products: 8,000+</span></div>
-                                    <div class="supp-meta"><span>📍 Distance: 7.4 km</span></div>
-                                    <button class="supp-open-btn">Open Store</button>
-                                </div>
-
-                                <div class="supplier-card" data-supplier-id="build-it">
-                                    <div class="supp-card-top">
-                                        <span class="supp-logo" style="background:#e5484d;">
-                                            <img src="https://picsum.photos/seed/buildit-logo/60/60" alt="Build It">
-                                        </span>
-                                        <button class="supp-fav">♡</button>
-                                    </div>
-                                    <h4>Build It</h4>
-                                    <div class="supp-rating">★ 4.1 <span>(58 reviews)</span></div>
-                                    <div class="supp-meta"><span>🚚 Delivery: 2 - 4 days</span></div>
-                                    <div class="supp-meta"><span>📦 Products: 9,000+</span></div>
-                                    <div class="supp-meta"><span>📍 Distance: 8.3 km</span></div>
-                                    <button class="supp-open-btn">Open Store</button>
-                                </div>
-
-                                <div class="supplier-card" data-supplier-id="pro-build">
-                                    <div class="supp-card-top">
-                                        <span class="supp-logo" style="background:#1e9e4d;">
-                                            <img src="https://picsum.photos/seed/probuild-logo/60/60" alt="Pro Build">
-                                        </span>
-                                        <button class="supp-fav">♡</button>
-                                    </div>
-                                    <h4>Pro Build</h4>
-                                    <div class="supp-rating">★ 4.0 <span>(49 reviews)</span></div>
-                                    <div class="supp-meta"><span>🚚 Delivery: 3 - 5 days</span></div>
-                                    <div class="supp-meta"><span>📦 Products: 7,500+</span></div>
-                                    <div class="supp-meta"><span>📍 Distance: 9.6 km</span></div>
-                                    <button class="supp-open-btn">Open Store</button>
-                                </div>
-
-                                <div class="supplier-card" data-supplier-id="chamberlains">
-                                    <div class="supp-card-top">
-                                        <span class="supp-logo" style="background:#3a4256;">
-                                            <img src="https://picsum.photos/seed/chamberlains-logo/60/60" alt="Chamberlains">
-                                        </span>
-                                        <button class="supp-fav">♡</button>
-                                    </div>
-                                    <h4>Chamberlains</h4>
-                                    <div class="supp-rating">★ 4.2 <span>(37 reviews)</span></div>
-                                    <div class="supp-meta"><span>🚚 Delivery: 3 - 6 days</span></div>
-                                    <div class="supp-meta"><span>📦 Products: 6,500+</span></div>
-                                    <div class="supp-meta"><span>📍 Distance: 10.2 km</span></div>
-                                    <button class="supp-open-btn">Open Store</button>
-                                </div>
-
-                                <div class="supplier-card" data-supplier-id="ctm">
-                                    <div class="supp-card-top">
-                                        <span class="supp-logo" style="background:#8a3ff0;">
-                                            <img src="https://picsum.photos/seed/ctm-logo/60/60" alt="CTM">
-                                        </span>
-                                        <button class="supp-fav">♡</button>
-                                    </div>
-                                    <h4>CTM</h4>
-                                    <div class="supp-rating">★ 4.3 <span>(41 reviews)</span></div>
-                                    <div class="supp-meta"><span>🚚 Delivery: 2 - 4 days</span></div>
-                                    <div class="supp-meta"><span>📦 Products: 11,000+</span></div>
-                                    <div class="supp-meta"><span>📍 Distance: 4.8 km</span></div>
-                                    <button class="supp-open-btn">Open Store</button>
-                                </div>
-
+                                <!-- rendered by JS -->
                             </div>
 
-                            <button class="load-more-suppliers-btn">Load More Suppliers ▾</button>
+                            <button class="load-more-suppliers-btn" id="loadMoreBtn">Load More Suppliers ▾</button>
 
                         </div>
 
+                        <!-- ================= RIGHT: SUPPLIER DETAIL ================= -->
                         <div class="supplier-detail-col" id="supplierDetail">
 
                             <div class="supp-banner">
-                                <img src="https://picsum.photos/seed/bw-banner/900/220" alt="Builders Warehouse banner">
+                                <img id="detailBannerImg" src="" alt="Supplier banner">
                                 <div class="supp-banner-overlay">
                                     <span>EVERYTHING YOU NEED.</span>
                                     <strong>ALL IN ONE PLACE.</strong>
@@ -345,22 +226,22 @@
 
                             <div class="supp-detail-header">
 
-                                <div class="supp-detail-logo">
-                                    <img src="https://picsum.photos/seed/bw-logo/80/80" alt="Builders Warehouse logo">
+                                <div class="supp-detail-logo" id="detailLogoWrap">
+                                    <img id="detailLogoImg" src="" alt="Supplier logo">
                                 </div>
 
                                 <div class="supp-detail-titles">
                                     <div class="supp-detail-name-row">
-                                        <h3>Builders Warehouse</h3>
-                                        <span class="supp-verified-pill">✓ Verified Supplier</span>
+                                        <h3 id="detailName">Builders Warehouse</h3>
+                                        <span class="supp-verified-pill" id="detailVerifiedPill">✓ Verified Supplier</span>
                                     </div>
-                                    <p class="supp-detail-sub">★ 4.6 (128 reviews) · 15,000+ Products</p>
-                                    <p class="supp-detail-desc">South Africa's leading builder's merchant with a wide range of quality building materials and tools.</p>
+                                    <p class="supp-detail-sub" id="detailSub">★ 4.6 (128 reviews) · 15,000+ Products</p>
+                                    <p class="supp-detail-desc" id="detailDesc"></p>
                                 </div>
 
                                 <div class="supp-detail-actions">
-                                    <button class="supp-follow-btn">♡ Follow</button>
-                                    <button class="supp-contact-btn">✉ Contact</button>
+                                    <button class="supp-follow-btn" id="followBtn">♡ Follow</button>
+                                    <button class="supp-contact-btn" id="contactBtn">✉ Contact</button>
                                 </div>
 
                             </div>
@@ -374,127 +255,126 @@
                                 <button class="supp-detail-tab" data-panel="contact">Contact</button>
                             </nav>
 
+                            <!-- ---------------- PRODUCTS ---------------- -->
                             <div class="supp-detail-panel" id="panel-products">
-
                                 <div class="supp-featured-header">
                                     <h5>Featured Products</h5>
                                     <a href="materials.html">View all</a>
                                 </div>
-
-                                <div class="supp-featured-grid">
-                                    <div class="supp-product-card">
-                                        <img src="https://picsum.photos/seed/mat-cement/200/140" alt="PPC Cement 50kg">
-                                        <div class="supp-product-info">
-                                            <h6>PPC Cement 50kg</h6>
-                                            <p>R89.50</p>
-                                            <span class="supp-stock-pill">In Stock</span>
-                                            <button class="supp-add-btn">+</button>
-                                        </div>
-                                    </div>
-                                    <div class="supp-product-card">
-                                        <img src="https://picsum.photos/seed/mat-bricks/200/140" alt="Clay Bricks Per 1000">
-                                        <div class="supp-product-info">
-                                            <h6>Clay Bricks Per 1000</h6>
-                                            <p>R2,350.00</p>
-                                            <span class="supp-stock-pill">In Stock</span>
-                                            <button class="supp-add-btn">+</button>
-                                        </div>
-                                    </div>
-                                    <div class="supp-product-card">
-                                        <img src="https://picsum.photos/seed/mat-timber/200/140" alt="SABS Timber 38x114mm">
-                                        <div class="supp-product-info">
-                                            <h6>SABS Timber 38x114mm</h6>
-                                            <p>R48.90</p>
-                                            <span class="supp-stock-pill">In Stock</span>
-                                            <button class="supp-add-btn">+</button>
-                                        </div>
-                                    </div>
-                                    <div class="supp-product-card">
-                                        <img src="https://picsum.photos/seed/mat-roof/200/140" alt="Roof Sheeting IBR 0.4mm">
-                                        <div class="supp-product-info">
-                                            <h6>Roof Sheeting IBR 0.4mm</h6>
-                                            <p>R129.00</p>
-                                            <span class="supp-stock-pill">In Stock</span>
-                                            <button class="supp-add-btn">+</button>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="supp-lower-grid">
-
-                                    <div class="supp-lower-card">
-                                        <div class="supp-lower-header">
-                                            <h5>Current Promotions</h5>
-                                            <a href="#">View all</a>
-                                        </div>
-                                        <div class="supp-promo-row">
-                                            <span class="supp-promo-icon red">🧱</span>
-                                            <div>
-                                                <strong>Cement Special</strong>
-                                                <p>Save 10% on PPC Cement</p>
-                                                <span>Valid until 31 May 2024</span>
-                                            </div>
-                                        </div>
-                                        <div class="supp-promo-row">
-                                            <span class="supp-promo-icon orange">🔧</span>
-                                            <div>
-                                                <strong>Tool Time</strong>
-                                                <p>Up to 15% off selected tools</p>
-                                                <span>Valid until 25 May 2024</span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="supp-lower-card">
-                                        <div class="supp-lower-header">
-                                            <h5>Delivery Options</h5>
-                                        </div>
-                                        <div class="supp-delivery-row">
-                                            <span class="supp-delivery-icon">🚚</span>
-                                            <div><strong>Standard Delivery</strong><span>1 - 3 days</span></div>
-                                            <span class="supp-delivery-price">From R150</span>
-                                        </div>
-                                        <div class="supp-delivery-row">
-                                            <span class="supp-delivery-icon">⚡</span>
-                                            <div><strong>Express Delivery</strong><span>Next day</span></div>
-                                            <span class="supp-delivery-price">From R250</span>
-                                        </div>
-                                        <div class="supp-delivery-row">
-                                            <span class="supp-delivery-icon">🏬</span>
-                                            <div><strong>Click & Collect</strong><span>Same day</span></div>
-                                            <span class="supp-delivery-price">Free</span>
-                                        </div>
-                                    </div>
-
-                                    <div class="supp-lower-card">
-                                        <div class="supp-lower-header">
-                                            <h5>Contact Information</h5>
-                                        </div>
-                                        <div class="supp-contact-row"><span>📞</span> 087 741 0000</div>
-                                        <div class="supp-contact-row"><span>✉</span> <a href="mailto:online@builders.co.za">online@builders.co.za</a></div>
-                                        <div class="supp-contact-row"><span>🌐</span> <a href="#">www.builders.co.za</a></div>
-                                        <div class="supp-contact-row"><span>🕐</span> Mon – Fri: 7:00 – 17:00</div>
-                                        <div class="supp-contact-row"><span></span> Sat: 7:00 – 13:00</div>
-                                    </div>
-
-                                </div>
-
+                                <div class="supp-featured-grid" id="productsGrid"></div>
                             </div>
 
+                            <!-- ---------------- REVIEWS ---------------- -->
                             <div class="supp-detail-panel is-hidden" id="panel-reviews">
-                                <p class="supp-empty-panel">128 reviews for Builders Warehouse would be listed here.</p>
+                                <div class="supp-reviews-layout">
+                                    <div class="supp-review-summary">
+                                        <div class="supp-review-score" id="reviewScoreBig">4.6</div>
+                                        <div class="supp-review-stars" id="reviewScoreStars">★★★★★</div>
+                                        <div class="supp-review-count" id="reviewScoreCount">128 reviews</div>
+                                        <div class="supp-review-bars" id="reviewBars"></div>
+                                    </div>
+                                    <div class="supp-reviews-list" id="reviewsList"></div>
+                                </div>
                             </div>
+
+                            <!-- ---------------- PROMOTIONS ---------------- -->
                             <div class="supp-detail-panel is-hidden" id="panel-promotions">
-                                <p class="supp-empty-panel">All current promotions would be listed here.</p>
+                                <div class="supp-featured-header">
+                                    <h5>Current Promotions</h5>
+                                </div>
+                                <div class="supp-promo-grid" id="promoGrid"></div>
                             </div>
+
+                            <!-- ---------------- INVENTORY ---------------- -->
                             <div class="supp-detail-panel is-hidden" id="panel-inventory">
-                                <p class="supp-empty-panel">Live inventory for this supplier would be listed here.</p>
+                                <div class="supp-inventory-header-row">
+                                    <h5>Live Inventory by Category</h5>
+                                    <span class="supp-inventory-updated">Updated 2 hours ago</span>
+                                </div>
+                                <div class="supp-inventory-list" id="inventoryList"></div>
                             </div>
+
+                            <!-- ---------------- DELIVERY ---------------- -->
                             <div class="supp-detail-panel is-hidden" id="panel-delivery">
-                                <p class="supp-empty-panel">Full delivery zones and pricing would be listed here.</p>
+                                <div class="supp-delivery-layout">
+                                    <div>
+                                        <h5>Delivery Options</h5>
+                                        <div id="deliveryOptionsList"></div>
+                                    </div>
+                                    <div>
+                                        <h5>Delivery Zones</h5>
+                                        <div id="deliveryZonesList"></div>
+                                    </div>
+                                </div>
                             </div>
+
+                            <!-- ---------------- CONTACT ---------------- -->
                             <div class="supp-detail-panel is-hidden" id="panel-contact">
-                                <p class="supp-empty-panel">Full contact and store details would be listed here.</p>
+                                <div class="supp-contact-grid">
+
+                                    <div class="supp-lower-card">
+                                        <div class="supp-lower-header"><h5>Contact Information</h5></div>
+                                        <div class="supp-contact-row"><span>📞</span> <span id="cPhone"></span></div>
+                                        <div class="supp-contact-row"><span>✉</span> <a id="cEmail" href="#"></a></div>
+                                        <div class="supp-contact-row"><span>🌐</span> <a id="cWebsite" href="#" target="_blank"></a></div>
+                                        <div class="supp-contact-row"><span>📍</span> <span id="cAddress"></span></div>
+                                        <div class="supp-contact-row"><span>🕐</span> <span id="cHours"></span></div>
+
+                                        <div class="supp-follow-row">
+                                            <span>Follow Us</span>
+                                            <div class="supp-follow-icons">
+                                                <a href="#" title="Facebook">📘</a>
+                                                <a href="#" title="Instagram">📷</a>
+                                                <a href="#" title="LinkedIn">💼</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="supp-lower-card">
+                                        <div class="supp-lower-header"><h5>Send Message</h5></div>
+
+                                        <div class="supp-form-field">
+                                            <label>Your Name</label>
+                                            <input type="text" placeholder="Enter your full name">
+                                        </div>
+                                        <div class="supp-form-field">
+                                            <label>Email Address</label>
+                                            <input type="email" placeholder="Enter your email">
+                                        </div>
+                                        <div class="supp-form-field">
+                                            <label>Subject</label>
+                                            <select>
+                                                <option>Product enquiry</option>
+                                                <option>Bulk order</option>
+                                                <option>Delivery question</option>
+                                                <option>Other</option>
+                                            </select>
+                                        </div>
+                                        <div class="supp-form-field">
+                                            <label>Message</label>
+                                            <textarea rows="3" placeholder="Type your message here..."></textarea>
+                                        </div>
+
+                                        <button class="supp-send-btn" id="sendMessageBtn">➤ Send Message</button>
+                                    </div>
+
+                                    <div class="supp-lower-card">
+                                        <div class="supp-lower-header"><h5>Map &amp; Location</h5></div>
+                                        <div class="supp-map-placeholder">
+                                            <img id="mapImg" src="" alt="Map location">
+                                            <span class="supp-map-pin">📍 <span id="mapLabel"></span></span>
+                                        </div>
+                                        <a class="supp-map-link" href="#" target="_blank">Open in Google Maps</a>
+                                    </div>
+
+                                    <div class="supp-lower-card">
+                                        <div class="supp-lower-header"><h5>Customer Support</h5></div>
+                                        <div class="supp-support-row"><span>📞 General Enquiries</span><strong id="cPhoneGeneral"></strong></div>
+                                        <div class="supp-support-row"><span>📦 Order Support</span><strong id="cPhoneOrders"></strong></div>
+                                        <div class="supp-support-row"><span>↩ Returns &amp; Refunds</span><strong id="cPhoneReturns"></strong></div>
+                                    </div>
+
+                                </div>
                             </div>
 
                         </div>
@@ -507,6 +387,9 @@
     </section>
 
     <script>
+        /* =====================================================
+           Sidebar resize + collapse
+        ===================================================== */
         const sidebar = document.querySelector(".dashboard-navbar");
         const resizer = document.getElementById("sidebarResizer");
         let dragging = false;
@@ -515,64 +398,459 @@
             dragging = true;
             document.body.style.cursor = "ew-resize";
         });
-
         document.addEventListener("mouseup", () => {
             dragging = false;
             document.body.style.cursor = "default";
         });
-
         document.addEventListener("mousemove",(e)=>{
             if(!dragging) return;
             let width = e.clientX;
             if(width < 70) width = 70;
             if(width > 320) width = 320;
             sidebar.style.width = width + "px";
-            if(width <= 85){
-                sidebar.classList.add("collapsed");
-            }else{
-                sidebar.classList.remove("collapsed");
+            sidebar.classList.toggle("collapsed", width <= 85);
+        });
+
+        /* =====================================================
+           Supplier data
+        ===================================================== */
+
+        const suppliers = [
+            {
+                id:"builders-warehouse", name:"Builders Warehouse", color:"#f5c518", priceMultiplier:1.0,
+                verified:true, rating:4.6, reviews:128, delivery:"1 - 3 days", products:"15,000+",
+                distance:"3.2 km", logo:"https://picsum.photos/seed/bw-logo/140/140",
+                desc:"South Africa's leading builder's merchant with a wide range of quality building materials and tools.",
+                location:"South Africa", phone:"087 741 0000", email:"online@builders.co.za",
+                website:"www.builders.co.za", address:"1 Builders Way, Waterfall City, Midrand, 1685, South Africa",
+                hours:"Mon – Fri: 7:00 AM – 5:00 PM<br>Sat: 7:00 AM – 1:00 PM<br>Sun &amp; Public Holidays: Closed"
+            },
+            {
+                id:"cashbuild", name:"Cashbuild", color:"#e8eef7", priceMultiplier:0.95,
+                verified:false, rating:4.4, reviews:96, delivery:"2 - 4 days", products:"12,000+",
+                distance:"5.7 km", logo:"https://picsum.photos/seed/cashbuild-logo/140/140",
+                desc:"A trusted supplier of building materials for homeowners and contractors across South Africa.",
+                location:"South Africa", phone:"0860 112 261", email:"info@cashbuild.co.za",
+                website:"www.cashbuild.co.za", address:"1 Adcock Street, Wadeville, Germiston, 1422, South Africa",
+                hours:"Mon – Fri: 7:00 AM – 5:00 PM<br>Sat: 7:00 AM – 1:00 PM<br>Sun: Closed"
+            },
+            {
+                id:"buco", name:"BUCO", color:"#f5a524", priceMultiplier:1.05,
+                verified:false, rating:4.3, reviews:76, delivery:"2 - 5 days", products:"10,500+",
+                distance:"8.1 km", logo:"https://picsum.photos/seed/buco-logo/140/140",
+                desc:"Building and hardware materials supplier serving builders and DIY customers nationwide.",
+                location:"South Africa", phone:"0861 222 826", email:"support@buco.co.za",
+                website:"www.buco.co.za", address:"12 Industrial Road, Paarden Eiland, Cape Town, 7405, South Africa",
+                hours:"Mon – Fri: 7:00 AM – 5:00 PM<br>Sat: 8:00 AM – 1:00 PM<br>Sun: Closed"
+            },
+            {
+                id:"mica", name:"Mica Hardware", color:"#2f6feb", priceMultiplier:1.1,
+                verified:false, rating:4.2, reviews:63, delivery:"2 - 4 days", products:"8,000+",
+                distance:"7.4 km", logo:"https://picsum.photos/seed/mica-logo/140/140",
+                desc:"Independent hardware and building materials retailer with locally owned stores.",
+                location:"South Africa", phone:"011 555 0134", email:"hello@mica.co.za",
+                website:"www.mica.co.za", address:"45 Hardware Street, Randburg, 2194, South Africa",
+                hours:"Mon – Fri: 7:30 AM – 5:00 PM<br>Sat: 8:00 AM – 1:00 PM<br>Sun: Closed"
+            },
+            {
+                id:"build-it", name:"Build It", color:"#e5484d", priceMultiplier:0.9,
+                verified:false, rating:4.1, reviews:58, delivery:"2 - 4 days", products:"9,000+",
+                distance:"8.3 km", logo:"https://picsum.photos/seed/buildit-logo/140/140",
+                desc:"A nationwide network of independently owned building material stores.",
+                location:"South Africa", phone:"0861 114 448", email:"info@buildit.co.za",
+                website:"www.buildit.co.za", address:"78 Main Road, Boksburg, 1459, South Africa",
+                hours:"Mon – Fri: 7:00 AM – 5:00 PM<br>Sat: 7:00 AM – 1:00 PM<br>Sun: Closed"
+            },
+            {
+                id:"pro-build", name:"Pro Build", color:"#1e9e4d", priceMultiplier:1.15,
+                verified:false, rating:4.0, reviews:49, delivery:"3 - 5 days", products:"7,500+",
+                distance:"9.6 km", logo:"https://picsum.photos/seed/probuild-logo/140/140",
+                desc:"Bulk building supplies and project material packages for contractors.",
+                location:"South Africa", phone:"012 333 8820", email:"sales@probuild.co.za",
+                website:"www.probuild.co.za", address:"3 Contractor Ave, Centurion, 0157, South Africa",
+                hours:"Mon – Fri: 7:00 AM – 4:30 PM<br>Sat: Closed<br>Sun: Closed"
+            },
+            {
+                id:"chamberlains", name:"Chamberlains", color:"#3a4256", priceMultiplier:1.2,
+                verified:false, rating:4.2, reviews:37, delivery:"3 - 6 days", products:"6,500+",
+                distance:"10.2 km", logo:"https://picsum.photos/seed/chamberlains-logo/140/140",
+                desc:"Family-owned hardware and building supplies retailer since 1932.",
+                location:"South Africa", phone:"021 447 0000", email:"info@chamberlains.co.za",
+                website:"www.chamberlains.co.za", address:"157 Victoria Road, Woodstock, Cape Town, 7925, South Africa",
+                hours:"Mon – Fri: 7:30 AM – 5:00 PM<br>Sat: 8:00 AM – 1:00 PM<br>Sun: Closed"
+            },
+            {
+                id:"ctm", name:"CTM", color:"#8a3ff0", priceMultiplier:1.3,
+                verified:false, rating:4.3, reviews:41, delivery:"2 - 4 days", products:"11,000+",
+                distance:"4.8 km", logo:"https://picsum.photos/seed/ctm-logo/140/140",
+                desc:"Tiles, bathroomware and finishing materials supplier with showrooms nationwide.",
+                location:"South Africa", phone:"0860 100 286", email:"customercare@ctm.co.za",
+                website:"www.ctm.co.za", address:"22 Tile Way, Fourways, Johannesburg, 2191, South Africa",
+                hours:"Mon – Fri: 8:00 AM – 5:00 PM<br>Sat: 8:00 AM – 1:00 PM<br>Sun: Closed"
+            }
+        ];
+
+        /* Deterministic per-supplier "randomness" so Products / Reviews /
+           Inventory content stays stable across renders but still varies
+           between suppliers. */
+
+        function hashStr(str){
+            let h = 0;
+            for (let i = 0; i < str.length; i++){
+                h = (h * 31 + str.charCodeAt(i)) >>> 0;
+            }
+            return h;
+        }
+
+        function seeded(seed, i){
+            const x = Math.sin(hashStr(seed + ":" + i)) * 10000;
+            return x - Math.floor(x); // 0..1
+        }
+
+        const PRODUCT_POOL = [
+            { name:"Cement 50kg",            unit:"Bag",    base:89.50,  seed:"mat-cement"   },
+            { name:"Clay Bricks (Per 1000)",  unit:"Pack",   base:2350,   seed:"mat-bricks"   },
+            { name:"Timber 38x114mm",         unit:"Piece",  base:48.90,  seed:"mat-timber"   },
+            { name:"Roof Sheeting IBR 0.4mm", unit:"Sheet",  base:129,    seed:"mat-roof"     },
+            { name:"PVA Paint 20L",           unit:"Tin",    base:650,    seed:"mat-paint"    },
+            { name:"Steel Rebar Y12",         unit:"Length", base:95,     seed:"mat-steel"    },
+            { name:"Windows & Doors",         unit:"Unit",   base:1450,   seed:"mat-windows"  },
+            { name:"Ceiling Board",           unit:"Sheet",  base:210,    seed:"mat-ceiling"  }
+        ];
+
+        const REVIEWER_NAMES = ["Thabo M.", "Naledi K.", "Johan V.", "Priya S.", "Ahmed R.", "Lindiwe N.", "Pieter B.", "Zanele D."];
+
+        const REVIEW_TEMPLATES = [
+            "Ordered from {name} for our last project — good stock levels and the delivery arrived on time.",
+            "{name} has competitive prices on bulk cement and steel. Would recommend for larger builds.",
+            "Customer service at {name} was excellent, they helped source materials that were out of stock elsewhere.",
+            "Delivery from {name} took a little longer than quoted but the quality of the materials was solid.",
+            "We use {name} regularly for our sites — consistent quality and easy to place bulk orders.",
+            "Good overall experience with {name}, though a few items have gone up in price recently."
+        ];
+
+        function ratingDistribution(rating){
+            if (rating >= 4.5) return [70, 20, 6, 2, 2];
+            if (rating >= 4.2) return [55, 28, 10, 4, 3];
+            if (rating >= 3.8) return [42, 30, 15, 8, 5];
+            return [28, 26, 24, 14, 8];
+        }
+
+        const PROMO_POOL = [
+            { icon:"🧱", title:"Cement Special", desc:"Save 10% on cement when you buy 20 bags or more.", days:14 },
+            { icon:"🔧", title:"Tool Time",       desc:"Up to 15% off selected power tools this month.",   days:9  },
+            { icon:"🚚", title:"Free Delivery",   desc:"Free delivery on orders over R10,000 within 15 km.", days:21 },
+            { icon:"🏗", title:"Bulk Builder Deal", desc:"Bundle pricing on cement, bricks and steel for full builds.", days:30 }
+        ];
+
+        const INVENTORY_CATEGORIES = [
+            "Cement & Concrete", "Bricks & Blocks", "Timber", "Steel & Reinforcement",
+            "Roofing", "Paint & Finishes", "Plumbing", "Electrical"
+        ];
+
+        /* =====================================================
+           List rendering + filtering
+        ===================================================== */
+
+        let currentFilter = "all";
+        let selectedId = suppliers[0].id;
+
+        function filterSuppliers(filterId){
+            if (filterId === "all") return suppliers;
+            if (filterId === "local") {
+                return suppliers.filter(s => !["builders-warehouse","cashbuild","buco"].includes(s.id));
+            }
+            return suppliers.filter(s => s.id === filterId);
+        }
+
+        function cardTemplate(s){
+            return `
+                <div class="supplier-card" data-supplier-id="${s.id}">
+                    <div class="supp-card-top">
+                        <span class="supp-logo" style="background:${s.color};">
+                            <img src="${s.logo}" alt="${s.name}">
+                        </span>
+                        <button class="supp-fav">♡</button>
+                    </div>
+                    <h4>${s.name} ${s.verified ? '<span class="supp-verified">✓</span>' : ''}</h4>
+                    <div class="supp-rating">★ ${s.rating.toFixed(1)} <span>(${s.reviews} reviews)</span></div>
+                    <div class="supp-meta"><span>🚚 Delivery: ${s.delivery}</span></div>
+                    <div class="supp-meta"><span>📦 Products: ${s.products}</span></div>
+                    <div class="supp-meta"><span>📍 Distance: ${s.distance}</span></div>
+                    <button class="supp-open-btn" data-open="${s.id}">Open Store</button>
+                </div>
+            `;
+        }
+
+        function updateActiveCard(){
+            document.querySelectorAll(".supplier-card").forEach(c => {
+                c.classList.toggle("active", c.dataset.supplierId === selectedId);
+            });
+        }
+
+        function renderCards(){
+            const list = filterSuppliers(currentFilter);
+            document.getElementById("supplierCount").textContent = list.length + " suppliers found";
+            document.getElementById("supplierCards").innerHTML = list.map(cardTemplate).join("");
+            updateActiveCard();
+        }
+
+        /* =====================================================
+           Detail panel renderers
+        ===================================================== */
+
+        function renderProducts(s){
+            const container = document.getElementById("productsGrid");
+            container.innerHTML = PRODUCT_POOL.map((p, i) => {
+                const price = (p.base * s.priceMultiplier).toFixed(2);
+                const r = seeded(s.id, "prod" + i);
+                const stockLabel = r > 0.85 ? "Low Stock" : (r > 0.95 ? "Out of Stock" : "In Stock");
+                const stockClass = stockLabel === "In Stock" ? "in" : (stockLabel === "Low Stock" ? "low" : "out");
+                return `
+                    <div class="supp-product-card">
+                        <img src="https://picsum.photos/seed/${p.seed}-${s.id}/220/150" alt="${p.name}">
+                        <div class="supp-product-info">
+                            <h6>${p.name}</h6>
+                            <p>R${Number(price).toLocaleString("en-ZA", {minimumFractionDigits:2})}</p>
+                            <span class="supp-stock-pill ${stockClass}">${stockLabel}</span>
+                            <button class="supp-add-btn" ${stockClass === "out" ? "disabled" : ""}>+</button>
+                        </div>
+                    </div>
+                `;
+            }).join("");
+        }
+
+        function renderReviews(s){
+            document.getElementById("reviewScoreBig").textContent = s.rating.toFixed(1);
+            document.getElementById("reviewScoreCount").textContent = s.reviews + " reviews";
+            document.getElementById("reviewScoreStars").textContent = "★".repeat(Math.round(s.rating)) + "☆".repeat(5 - Math.round(s.rating));
+
+            const dist = ratingDistribution(s.rating);
+            document.getElementById("reviewBars").innerHTML = [5,4,3,2,1].map((star, i) => `
+                <div class="supp-review-bar-row">
+                    <span>${star}★</span>
+                    <div class="supp-review-bar-track"><div class="supp-review-bar-fill" style="width:${dist[i]}%"></div></div>
+                    <span>${dist[i]}%</span>
+                </div>
+            `).join("");
+
+            const daysAgo = [2, 6, 13, 28];
+            document.getElementById("reviewsList").innerHTML = daysAgo.map((d, i) => {
+                const nameIdx = Math.floor(seeded(s.id, "rev-name" + i) * REVIEWER_NAMES.length);
+                const tmplIdx = Math.floor(seeded(s.id, "rev-tmpl" + i) * REVIEW_TEMPLATES.length);
+                const starOffset = seeded(s.id, "rev-star" + i) > 0.7 ? -1 : 0;
+                const starCount = Math.max(3, Math.min(5, Math.round(s.rating) + starOffset));
+                const name = REVIEWER_NAMES[nameIdx];
+                const comment = REVIEW_TEMPLATES[tmplIdx].replace("{name}", s.name);
+                return `
+                    <div class="supp-review-card">
+                        <div class="supp-review-top">
+                            <span class="supp-review-avatar">${name.split(" ")[0][0]}${name.split(" ")[1][0]}</span>
+                            <span class="supp-review-name">${name} <span class="supp-review-inline-stars">${"★".repeat(starCount)}${"☆".repeat(5 - starCount)}</span></span>
+                            <span class="supp-review-date">${d} day${d === 1 ? "" : "s"} ago</span>
+                        </div>
+                        <p class="supp-review-comment">${comment}</p>
+                    </div>
+                `;
+            }).join("");
+        }
+
+        function renderPromotions(s){
+            const container = document.getElementById("promoGrid");
+            const html = PROMO_POOL.map((p, i) => {
+                const active = seeded(s.id, "promo" + i) > 0.35;
+                if (!active) return "";
+                const validDate = new Date();
+                validDate.setDate(validDate.getDate() + p.days);
+                const dateStr = validDate.toLocaleDateString("en-ZA", { day:"2-digit", month:"short", year:"numeric" });
+                return `
+                    <div class="supp-promo-card">
+                        <span class="supp-promo-icon">${p.icon}</span>
+                        <div>
+                            <strong>${p.title}</strong>
+                            <p>${p.desc.replace("cement", "cement from " + s.name)}</p>
+                            <span>Valid until ${dateStr}</span>
+                        </div>
+                    </div>
+                `;
+            }).join("");
+            container.innerHTML = html || `<p class="supp-empty-panel">No active promotions from ${s.name} right now — check back soon.</p>`;
+        }
+
+        function renderInventory(s){
+            document.getElementById("inventoryList").innerHTML = INVENTORY_CATEGORIES.map((cat, i) => {
+                const pct = Math.round(15 + seeded(s.id, "inv" + i) * 85);
+                const status = pct >= 60 ? "in" : (pct >= 25 ? "low" : "out");
+                const label = pct >= 60 ? "Well Stocked" : (pct >= 25 ? "Low Stock" : "Out of Stock");
+                return `
+                    <div class="supp-inventory-row">
+                        <span>${cat}</span>
+                        <div class="supp-inventory-bar-track"><div class="supp-inventory-bar-fill ${status}" style="width:${pct}%"></div></div>
+                        <span>${pct}%</span>
+                        <span class="supp-inventory-status-pill ${status}">${label}</span>
+                    </div>
+                `;
+            }).join("");
+        }
+
+        function renderDelivery(s){
+            const std = Math.round(150 * s.priceMultiplier);
+            const express = Math.round(250 * s.priceMultiplier);
+
+            document.getElementById("deliveryOptionsList").innerHTML = `
+                <div class="supp-delivery-row">
+                    <span class="supp-delivery-icon">🚚</span>
+                    <div><strong>Standard Delivery</strong><span>${s.delivery}</span></div>
+                    <span class="supp-delivery-price">From R${std}</span>
+                </div>
+                <div class="supp-delivery-row">
+                    <span class="supp-delivery-icon">⚡</span>
+                    <div><strong>Express Delivery</strong><span>Next day, subject to stock</span></div>
+                    <span class="supp-delivery-price">From R${express}</span>
+                </div>
+                <div class="supp-delivery-row">
+                    <span class="supp-delivery-icon">🏬</span>
+                    <div><strong>Click &amp; Collect</strong><span>Ready same day at your nearest branch</span></div>
+                    <span class="supp-delivery-price">Free</span>
+                </div>
+            `;
+
+            document.getElementById("deliveryZonesList").innerHTML = `
+                <div class="supp-delivery-zone-row"><span>Local (0 – 15 km)</span><strong>1 - 2 days</strong></div>
+                <div class="supp-delivery-zone-row"><span>Regional (15 – 100 km)</span><strong>${s.delivery}</strong></div>
+                <div class="supp-delivery-zone-row"><span>National</span><strong>5 - 7 days</strong></div>
+                <p class="supp-delivery-note">Delivery times are estimates from ${s.name} and may vary based on stock availability and location.</p>
+            `;
+        }
+
+        function renderContact(s){
+            document.getElementById("cPhone").textContent = s.phone;
+            document.getElementById("cEmail").textContent = s.email;
+            document.getElementById("cEmail").href = "mailto:" + s.email;
+            document.getElementById("cWebsite").textContent = s.website;
+            document.getElementById("cWebsite").href = "https://" + s.website;
+            document.getElementById("cAddress").textContent = s.address;
+            document.getElementById("cHours").innerHTML = s.hours;
+
+            document.getElementById("mapImg").src = `https://picsum.photos/seed/${s.id}-map/400/220`;
+            document.getElementById("mapLabel").textContent = s.name;
+
+            document.getElementById("cPhoneGeneral").textContent = s.phone;
+            document.getElementById("cPhoneOrders").textContent = s.phone;
+            document.getElementById("cPhoneReturns").textContent = s.phone;
+        }
+
+        /* =====================================================
+           Supplier selection + detail tabs
+        ===================================================== */
+
+        function showDetailTab(panelName){
+            document.querySelectorAll(".supp-detail-tab").forEach(t =>
+                t.classList.toggle("active", t.dataset.panel === panelName)
+            );
+            document.querySelectorAll(".supp-detail-panel").forEach(panel =>
+                panel.classList.toggle("is-hidden", panel.id !== "panel-" + panelName)
+            );
+        }
+
+        function selectSupplier(id, keepTab){
+            const s = suppliers.find(x => x.id === id);
+            if (!s) return;
+            selectedId = id;
+
+            document.getElementById("detailBannerImg").src = `https://picsum.photos/seed/${id}-banner/900/220`;
+            document.getElementById("detailLogoImg").src = s.logo;
+            document.getElementById("detailLogoWrap").style.background = s.color;
+            document.getElementById("detailName").textContent = s.name;
+            document.getElementById("detailVerifiedPill").style.display = s.verified ? "inline-block" : "none";
+            document.getElementById("detailSub").textContent = `★ ${s.rating.toFixed(1)} (${s.reviews} reviews) · ${s.products} Products`;
+            document.getElementById("detailDesc").textContent = s.desc;
+
+            renderProducts(s);
+            renderReviews(s);
+            renderPromotions(s);
+            renderInventory(s);
+            renderDelivery(s);
+            renderContact(s);
+
+            updateActiveCard();
+
+            if (!keepTab) showDetailTab("products");
+
+            const followBtn = document.getElementById("followBtn");
+            followBtn.classList.remove("is-following");
+            followBtn.innerHTML = "♡ Follow";
+        }
+
+        /* =====================================================
+           Event wiring
+        ===================================================== */
+
+        document.getElementById("supplierCards").addEventListener("click", (e) => {
+            const fav = e.target.closest(".supp-fav");
+            if (fav){
+                fav.textContent = fav.textContent === "♡" ? "♥" : "♡";
+                fav.classList.toggle("is-fav");
+                return;
+            }
+
+            const card = e.target.closest(".supplier-card");
+            if (card){
+                selectSupplier(card.dataset.supplierId);
             }
         });
 
-        // Supplier card selection -> highlight card (detail panel content stays
-        // as a static Builders Warehouse example; wiring real per-supplier data
-        // is a backend concern)
-        document.querySelectorAll(".supplier-card").forEach(card => {
-            card.addEventListener("click", (e) => {
-                if (e.target.closest(".supp-fav")) return;
-                document.querySelectorAll(".supplier-card").forEach(c => c.classList.remove("active"));
-                card.classList.add("active");
-            });
-        });
-
-        // Favourite heart toggle
-        document.querySelectorAll(".supp-fav").forEach(btn => {
-            btn.addEventListener("click", (e) => {
-                e.stopPropagation();
-                btn.textContent = btn.textContent === "♡" ? "♥" : "♡";
-                btn.classList.toggle("is-fav");
-            });
-        });
-
-        // Top filter tabs (All Suppliers / Builders Warehouse / etc.)
         document.querySelectorAll(".supp-tab").forEach(tab => {
             tab.addEventListener("click", () => {
                 document.querySelectorAll(".supp-tab").forEach(t => t.classList.remove("active"));
                 tab.classList.add("active");
+
+                currentFilter = tab.dataset.supplier;
+                renderCards();
+
+                const visible = filterSuppliers(currentFilter);
+                if (visible.length && !visible.find(s => s.id === selectedId)){
+                    selectSupplier(visible[0].id);
+                }
             });
         });
 
-        // Detail tabs (Products / Reviews / Promotions / ...)
         document.querySelectorAll(".supp-detail-tab").forEach(tab => {
-            tab.addEventListener("click", () => {
-                document.querySelectorAll(".supp-detail-tab").forEach(t => t.classList.remove("active"));
-                tab.classList.add("active");
-
-                document.querySelectorAll(".supp-detail-panel").forEach(panel => {
-                    panel.classList.toggle("is-hidden", panel.id !== "panel-" + tab.dataset.panel);
-                });
-            });
+            tab.addEventListener("click", () => showDetailTab(tab.dataset.panel));
         });
+
+        document.getElementById("followBtn").addEventListener("click", () => {
+            const btn = document.getElementById("followBtn");
+            const following = btn.classList.toggle("is-following");
+            btn.innerHTML = following ? "★ Following" : "♡ Follow";
+        });
+
+        document.getElementById("contactBtn").addEventListener("click", () => showDetailTab("contact"));
+
+        document.getElementById("sendMessageBtn").addEventListener("click", () => {
+            alert("Message sent (demo only) — this isn't wired up to a backend yet.");
+        });
+
+        document.getElementById("loadMoreBtn").addEventListener("click", function(){
+            this.disabled = true;
+            this.textContent = "All suppliers loaded";
+        });
+
+        document.getElementById("supplierSearch").addEventListener("input", (e) => {
+            const term = e.target.value.trim().toLowerCase();
+            const base = filterSuppliers(currentFilter);
+            const list = term ? base.filter(s => s.name.toLowerCase().includes(term)) : base;
+            document.getElementById("supplierCount").textContent = list.length + " suppliers found";
+            document.getElementById("supplierCards").innerHTML = list.map(cardTemplate).join("");
+            updateActiveCard();
+        });
+
+        /* =====================================================
+           Init
+        ===================================================== */
+
+        renderCards();
+        selectSupplier(suppliers[0].id, true);
     </script>
 </body>
 </html>

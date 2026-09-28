@@ -30,7 +30,7 @@
                 <a href="estimator.html" class="nav-link"><button id="Cost-Estimator"><img src="../assets/icons/Cost.svg" alt="Cost Estimator" width="17" height="17">Cost Estimator</button></a>
                 <a href="reports.html" class="nav-link"><button id="Reports"><img src="../assets/icons/Reports.svg" alt="Reports" width="17" height="17">Reports</button></a>
                 <a href="Supplier.html" class="nav-link"><button id="Suppliers"><img src="../assets/icons/Suppliers.svg" alt="Suppliers" width="17" height="17">Suppliers</button></a>
-                <a href="teams.html" class="nav-link"><button id="Teams"><img src="../assets/icons/Teams.svg" alt="Teams" width="17" height="17">Team</button></a>
+                <a href="teams.html" class="nav-link"><button id="Teams"><img src="../assets/icons/Teams.svg" alt="Teams" width="17" height="17">Teams</button></a>
                 <a href="settings.html" class="nav-link active"><button id="Settings"><img src="../assets/icons/settings-icon.svg" alt="Settings" width="17" height="17">Settings</button></a>
             </div>
 
@@ -65,7 +65,6 @@
             <header class="dashboard-header">
                 <div class="header-left">
                     <h2>Settings</h2>
-                    <p class="header-subtitle">Manage your account, preferences and application settings</p>
                 </div>
 
                 <div class="header-right">
@@ -82,7 +81,7 @@
                     <div class="profile-menu">
                         <div class="profile-section">
                             <img src="images/profile.jpg" alt="Profile Picture">
-                            <div class="user-details"><h4>Arjun Mehta</h4><p>Estimator</p></div>
+                            <div class="user-details"><h4>Moses</h4><p>Estimator</p></div>
                             <span class="dropdown-arrow">▼</span>
                         </div>
                         <div class="dropdown">
@@ -112,7 +111,7 @@
                 </div>
             </header>
 
-            <div class="main-card">
+            <div class="main-card settings-main-card">
                 <div class="settings-page">
 
                     <nav class="settings-tabs" id="settingsTabs">
@@ -126,23 +125,23 @@
                         <button class="settings-tab" data-tab="data">📊 Data & Export</button>
                     </nav>
 
-                    <div class="settings-grid">
+                    <div class="settings-panels">
 
-                        <div class="settings-col-left">
-
-                            <div class="settings-row-3">
+                        <!-- ACCOUNT -->
+                        <div class="settings-panel" id="panel-account">
+                            <div class="settings-cards-row">
 
                                 <div class="settings-card">
                                     <h5>Profile Information</h5>
                                     <p class="settings-card-sub">Update your personal information and profile details.</p>
 
                                     <div class="profile-photo-block">
-                                        <img src="https://picsum.photos/seed/arjun-mehta/100/100" alt="Arjun Mehta">
+                                        <img src="https://picsum.photos/seed/moses/100/100" alt="Moses">
                                         <button class="change-photo-btn">Change Photo</button>
                                     </div>
 
-                                    <div class="settings-field"><label>Full Name</label><input type="text" value="Arjun Mehta"></div>
-                                    <div class="settings-field"><label>Email Address</label><input type="email" value="arjun.mehta@buildwise.co.za"></div>
+                                    <div class="settings-field"><label>Full Name</label><input type="text" value="Moses"></div>
+                                    <div class="settings-field"><label>Email Address</label><input type="email" value="moses@buildwise.co.za"></div>
                                     <div class="settings-field"><label>Phone Number</label><input type="text" value="+27 82 123 4567"></div>
                                     <div class="settings-field"><label>Role</label><input type="text" value="Estimator" disabled></div>
 
@@ -160,6 +159,12 @@
                                     <button class="settings-save-btn">Update Password</button>
                                 </div>
 
+                            </div>
+                        </div>
+
+                        <!-- COMPANY -->
+                        <div class="settings-panel is-hidden" id="panel-company">
+                            <div class="settings-cards-row">
                                 <div class="settings-card">
                                     <h5>Company Information</h5>
                                     <p class="settings-card-sub">Manage your company details and settings.</p>
@@ -171,10 +176,12 @@
 
                                     <button class="settings-save-btn">Save Changes</button>
                                 </div>
-
                             </div>
+                        </div>
 
-                            <div class="settings-row-3">
+                        <!-- PREFERENCES -->
+                        <div class="settings-panel is-hidden" id="panel-preferences">
+                            <div class="settings-cards-row">
 
                                 <div class="settings-card">
                                     <h5>Application Preferences</h5>
@@ -196,6 +203,22 @@
                                     <button class="settings-save-btn">Save Preferences</button>
                                 </div>
 
+                                <div class="settings-card">
+                                    <h5>Quick Settings</h5>
+
+                                    <div class="quick-setting-row"><span>🌐 Language</span><span class="quick-value">English ›</span></div>
+                                    <div class="quick-setting-row"><span>🕐 Timezone</span><span class="quick-value">(GMT+02:00) Johannesburg ›</span></div>
+                                    <div class="quick-setting-row"><span>📅 Date Format</span><span class="quick-value">DD MMM YYYY ›</span></div>
+                                    <div class="quick-setting-row"><span>🕑 Time Format</span><span class="quick-value">24 Hour (14:30) ›</span></div>
+                                    <div class="quick-setting-row"><span>◐ Theme</span><span class="quick-value">Light ›</span></div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- NOTIFICATIONS -->
+                        <div class="settings-panel is-hidden" id="panel-notifications">
+                            <div class="settings-cards-row">
                                 <div class="settings-card">
                                     <h5>Notification Preferences</h5>
                                     <p class="settings-card-sub">Choose what you want to be notified about.</p>
@@ -223,119 +246,123 @@
 
                                     <button class="settings-save-btn">Save Preferences</button>
                                 </div>
-
-                                <div class="settings-card">
-                                    <h5>Quick Settings</h5>
-
-                                    <div class="quick-setting-row"><span>🌐 Language</span><span class="quick-value">English ›</span></div>
-                                    <div class="quick-setting-row"><span>🕐 Timezone</span><span class="quick-value">(GMT+02:00) Johannesburg ›</span></div>
-                                    <div class="quick-setting-row"><span>📅 Date Format</span><span class="quick-value">DD MMM YYYY ›</span></div>
-                                    <div class="quick-setting-row"><span>🕑 Time Format</span><span class="quick-value">24 Hour (14:30) ›</span></div>
-                                    <div class="quick-setting-row"><span>◐ Theme</span><span class="quick-value">Light ›</span></div>
-                                </div>
-
                             </div>
-
                         </div>
 
-                        <div class="settings-col-right">
+                        <!-- INTEGRATIONS -->
+                        <div class="settings-panel is-hidden" id="panel-integrations">
+                            <div class="settings-cards-row">
+                                <div class="settings-card">
+                                    <h5>Integrations</h5>
+                                    <p class="settings-card-sub">Manage external integrations and API connections.</p>
 
-                            <div class="settings-card">
-                                <h5>Integrations</h5>
-                                <p class="settings-card-sub">Manage external integrations and API connections.</p>
+                                    <div class="integration-row">
+                                        <span class="integration-icon">🔌</span>
+                                        <div><strong>Supplier APIs</strong><span>Connected to 5 suppliers</span></div>
+                                        <span class="integration-pill connected">Connected</span>
+                                    </div>
+                                    <div class="integration-row">
+                                        <span class="integration-icon">💹</span>
+                                        <div><strong>Accounting Software</strong><span>QuickBooks Online</span></div>
+                                        <span class="integration-pill connected">Connected</span>
+                                    </div>
+                                    <div class="integration-row">
+                                        <span class="integration-icon">☁️</span>
+                                        <div><strong>Cloud Storage</strong><span>Google Drive</span></div>
+                                        <span class="integration-pill connected">Connected</span>
+                                    </div>
 
-                                <div class="integration-row">
-                                    <span class="integration-icon">🔌</span>
-                                    <div><strong>Supplier APIs</strong><span>Connected to 5 suppliers</span></div>
-                                    <span class="integration-pill connected">Connected</span>
+                                    <a class="settings-link-row" href="#">Manage Integrations ›</a>
                                 </div>
-                                <div class="integration-row">
-                                    <span class="integration-icon">💹</span>
-                                    <div><strong>Accounting Software</strong><span>QuickBooks Online</span></div>
-                                    <span class="integration-pill connected">Connected</span>
-                                </div>
-                                <div class="integration-row">
-                                    <span class="integration-icon">☁️</span>
-                                    <div><strong>Cloud Storage</strong><span>Google Drive</span></div>
-                                    <span class="integration-pill connected">Connected</span>
-                                </div>
-
-                                <a class="settings-link-row" href="#">Manage Integrations ›</a>
                             </div>
+                        </div>
 
-                            <div class="settings-card">
-                                <h5>Security Settings</h5>
-                                <p class="settings-card-sub">Manage your account security and access.</p>
+                        <!-- SECURITY -->
+                        <div class="settings-panel is-hidden" id="panel-security">
+                            <div class="settings-cards-row">
+                                <div class="settings-card">
+                                    <h5>Security Settings</h5>
+                                    <p class="settings-card-sub">Manage your account security and access.</p>
 
-                                <div class="security-row">
-                                    <span class="security-icon">🔐</span>
-                                    <div><strong>Two-Factor Authentication</strong><span>Enabled</span></div>
-                                    <button class="security-manage-btn">Manage</button>
-                                </div>
-                                <div class="security-row">
-                                    <span class="security-icon">📱</span>
-                                    <div><strong>Login Sessions</strong><span>3 active sessions</span></div>
-                                    <button class="security-manage-btn">View</button>
-                                </div>
-                                <div class="security-row">
-                                    <span class="security-icon">🔑</span>
-                                    <div><strong>API Access</strong><span>2 API keys active</span></div>
-                                    <button class="security-manage-btn">Manage</button>
-                                </div>
-                                <div class="security-row">
-                                    <span class="security-icon">📋</span>
-                                    <div><strong>Activity Log</strong><span>View account activity</span></div>
-                                    <button class="security-manage-btn">View</button>
-                                </div>
+                                    <div class="security-row">
+                                        <span class="security-icon">🔐</span>
+                                        <div><strong>Two-Factor Authentication</strong><span>Enabled</span></div>
+                                        <button class="security-manage-btn">Manage</button>
+                                    </div>
+                                    <div class="security-row">
+                                        <span class="security-icon">📱</span>
+                                        <div><strong>Login Sessions</strong><span>3 active sessions</span></div>
+                                        <button class="security-manage-btn">View</button>
+                                    </div>
+                                    <div class="security-row">
+                                        <span class="security-icon">🔑</span>
+                                        <div><strong>API Access</strong><span>2 API keys active</span></div>
+                                        <button class="security-manage-btn">Manage</button>
+                                    </div>
+                                    <div class="security-row">
+                                        <span class="security-icon">📋</span>
+                                        <div><strong>Activity Log</strong><span>View account activity</span></div>
+                                        <button class="security-manage-btn">View</button>
+                                    </div>
 
-                                <a class="settings-link-row" href="#">Security Dashboard ›</a>
+                                    <a class="settings-link-row" href="#">Security Dashboard ›</a>
+                                </div>
                             </div>
+                        </div>
 
-                            <div class="settings-card">
-                                <h5>Billing & Subscription</h5>
-                                <p class="settings-card-sub">Manage your subscription and billing information.</p>
+                        <!-- BILLING -->
+                        <div class="settings-panel is-hidden" id="panel-billing">
+                            <div class="settings-cards-row">
+                                <div class="settings-card">
+                                    <h5>Billing & Subscription</h5>
+                                    <p class="settings-card-sub">Manage your subscription and billing information.</p>
 
-                                <div class="billing-plan-row">
-                                    <div><span>Current Plan</span><strong>Professional Plan</strong><small>R2,499 / month</small><small>Next billing: 15 Feb 2024</small></div>
-                                    <button class="security-manage-btn">Manage Plan</button>
-                                </div>
-                                <div class="billing-row">
-                                    <span class="integration-icon">💳</span>
-                                    <div><strong>Payment Methods</strong><span>2 cards on file</span></div>
-                                    <button class="security-manage-btn">Manage</button>
-                                </div>
-                                <div class="billing-row">
-                                    <span class="integration-icon">🧾</span>
-                                    <div><strong>Billing History</strong><span>View all invoices</span></div>
-                                    <button class="security-manage-btn">View</button>
-                                </div>
+                                    <div class="billing-plan-row">
+                                        <div><span>Current Plan</span><strong>Professional Plan</strong><small>R2,499 / month</small><small>Next billing: 15 Feb 2024</small></div>
+                                        <button class="security-manage-btn">Manage Plan</button>
+                                    </div>
+                                    <div class="billing-row">
+                                        <span class="integration-icon">💳</span>
+                                        <div><strong>Payment Methods</strong><span>2 cards on file</span></div>
+                                        <button class="security-manage-btn">Manage</button>
+                                    </div>
+                                    <div class="billing-row">
+                                        <span class="integration-icon">🧾</span>
+                                        <div><strong>Billing History</strong><span>View all invoices</span></div>
+                                        <button class="security-manage-btn">View</button>
+                                    </div>
 
-                                <a class="settings-link-row" href="#">Billing Dashboard ›</a>
+                                    <a class="settings-link-row" href="#">Billing Dashboard ›</a>
+                                </div>
                             </div>
+                        </div>
 
-                            <div class="settings-card">
-                                <h5>Data & Export</h5>
-                                <p class="settings-card-sub">Export your data or manage data retention.</p>
+                        <!-- DATA & EXPORT -->
+                        <div class="settings-panel is-hidden" id="panel-data">
+                            <div class="settings-cards-row">
+                                <div class="settings-card">
+                                    <h5>Data & Export</h5>
+                                    <p class="settings-card-sub">Export your data or manage data retention.</p>
 
-                                <div class="billing-row">
-                                    <span class="integration-icon green">⬇</span>
-                                    <div><strong>Export My Data</strong><span>Download all your data</span></div>
-                                    <button class="security-manage-btn">Export</button>
-                                </div>
-                                <div class="billing-row">
-                                    <span class="integration-icon">🗄</span>
-                                    <div><strong>Data Retention</strong><span>Keep data for 2 years</span></div>
-                                    <button class="security-manage-btn">Manage</button>
-                                </div>
-                                <div class="billing-row">
-                                    <span class="integration-icon red">🗑</span>
-                                    <div><strong>Delete Account</strong><span>Permanently delete account</span></div>
-                                    <button class="security-manage-btn danger">Delete</button>
-                                </div>
+                                    <div class="billing-row">
+                                        <span class="integration-icon green">⬇</span>
+                                        <div><strong>Export My Data</strong><span>Download all your data</span></div>
+                                        <button class="security-manage-btn">Export</button>
+                                    </div>
+                                    <div class="billing-row">
+                                        <span class="integration-icon">🗄</span>
+                                        <div><strong>Data Retention</strong><span>Keep data for 2 years</span></div>
+                                        <button class="security-manage-btn">Manage</button>
+                                    </div>
+                                    <div class="billing-row">
+                                        <span class="integration-icon red">🗑</span>
+                                        <div><strong>Delete Account</strong><span>Permanently delete account</span></div>
+                                        <button class="security-manage-btn danger">Delete</button>
+                                    </div>
 
-                                <a class="settings-link-row" href="#">Data Management ›</a>
+                                    <a class="settings-link-row" href="#">Data Management ›</a>
+                                </div>
                             </div>
-
                         </div>
 
                     </div>
@@ -347,48 +374,89 @@
     </section>
 
     <script>
-        const sidebar = document.querySelector(".dashboard-navbar");
-        const resizer = document.getElementById("sidebarResizer");
-        let dragging = false;
 
-        resizer.addEventListener("mousedown", () => { dragging = true; document.body.style.cursor = "ew-resize"; });
-        document.addEventListener("mouseup", () => { dragging = false; document.body.style.cursor = "default"; });
-        document.addEventListener("mousemove",(e)=>{
-            if(!dragging) return;
-            let width = e.clientX;
-            if(width < 70) width = 70;
-            if(width > 320) width = 320;
+    // ---------------------------------------------------------------
+    // Sidebar resize + collapse, persisted to localStorage (same
+    // behaviour as dashboard.html / projects.html)
+    // ---------------------------------------------------------------
+
+    const sidebar = document.querySelector(".dashboard-navbar");
+    const resizer = document.getElementById("sidebarResizer");
+
+    const COLLAPSE_THRESHOLD = 85;
+    const COLLAPSED_WIDTH = 72;
+    const MIN_WIDTH = 70;
+    const MAX_WIDTH = 300;
+    const DEFAULT_WIDTH = 220;
+
+    function applyWidth(width, persist) {
+        const collapsed = width <= COLLAPSE_THRESHOLD;
+
+        if (collapsed) {
+            sidebar.style.width = COLLAPSED_WIDTH + "px";
+            sidebar.classList.add("collapsed");
+        } else {
             sidebar.style.width = width + "px";
-            sidebar.classList.toggle("collapsed", width <= 85);
-        });
+            sidebar.classList.remove("collapsed");
+        }
 
-        // Settings top tabs: just scrolls to / highlights the relevant card since
-        // everything lives on one page; Account is the default full view.
-        const tabTargets = {
-            account: null,
-            company: ".settings-row-3 .settings-card:nth-child(3)",
-            preferences: ".settings-row-3:nth-child(2) .settings-card:nth-child(1)",
-            notifications: ".settings-row-3:nth-child(2) .settings-card:nth-child(2)",
-            integrations: ".settings-col-right .settings-card:nth-child(1)",
-            security: ".settings-col-right .settings-card:nth-child(2)",
-            billing: ".settings-col-right .settings-card:nth-child(3)",
-            data: ".settings-col-right .settings-card:nth-child(4)"
-        };
+        if (persist) {
+            localStorage.setItem("kb-sidebar-width", collapsed ? COLLAPSED_WIDTH : width);
+            localStorage.setItem("kb-sidebar-collapsed", collapsed ? "1" : "0");
+        }
+    }
 
-        document.querySelectorAll(".settings-tab").forEach(tab => {
-            tab.addEventListener("click", () => {
-                document.querySelectorAll(".settings-tab").forEach(t => t.classList.remove("active"));
-                tab.classList.add("active");
+    (function restoreSidebar() {
+        const savedCollapsed = localStorage.getItem("kb-sidebar-collapsed") === "1";
+        const savedWidth = parseInt(localStorage.getItem("kb-sidebar-width"), 10);
 
-                const selector = tabTargets[tab.dataset.tab];
-                if (selector) {
-                    const el = document.querySelector(selector);
-                    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-                } else {
-                    document.querySelector(".settings-grid").scrollIntoView({ behavior: "smooth", block: "start" });
-                }
+        if (savedCollapsed) {
+            applyWidth(COLLAPSED_WIDTH, false);
+        } else if (!isNaN(savedWidth)) {
+            applyWidth(savedWidth, false);
+        } else {
+            applyWidth(DEFAULT_WIDTH, false);
+        }
+    })();
+
+    let dragging = false;
+
+    resizer.addEventListener("mousedown", () => {
+        dragging = true;
+        document.body.style.cursor = "ew-resize";
+    });
+
+    document.addEventListener("mouseup", () => {
+        if (!dragging) return;
+        dragging = false;
+        document.body.style.cursor = "default";
+        applyWidth(parseInt(sidebar.style.width, 10), true);
+    });
+
+    document.addEventListener("mousemove",(e)=>{
+        if(!dragging) return;
+        let width = e.clientX;
+        if(width < MIN_WIDTH) width = MIN_WIDTH;
+        if(width > MAX_WIDTH) width = MAX_WIDTH;
+        applyWidth(width, false);
+    });
+
+    // ---------------------------------------------------------------
+    // Settings tabs: clicking a tab shows only that tab's panel and
+    // hides the rest, instead of scrolling down a single long page.
+    // ---------------------------------------------------------------
+
+    document.querySelectorAll(".settings-tab").forEach(tab => {
+        tab.addEventListener("click", () => {
+            document.querySelectorAll(".settings-tab").forEach(t => t.classList.remove("active"));
+            tab.classList.add("active");
+
+            document.querySelectorAll(".settings-panel").forEach(panel => {
+                panel.classList.toggle("is-hidden", panel.id !== "panel-" + tab.dataset.tab);
             });
         });
+    });
+
     </script>
 </body>
 </html>

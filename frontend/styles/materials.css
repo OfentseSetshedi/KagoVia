@@ -4,6 +4,7 @@
 
 .materials-page{
     width:100%;
+    container-type: inline-size;
 }
 
 .materials-heading{
@@ -12,19 +13,24 @@
     align-items:flex-start;
     padding:18px 20px 0;
     gap:16px;
+    flex-wrap:nowrap;
 }
 
 .materials-heading h1{
     margin:0;
-    font-size:22px;
+    font-size:clamp(16px, 3.2cqw, 22px);
     font-weight:700;
     color:#18233c;
+    white-space:nowrap;
 }
 
 .materials-heading p{
     margin:6px 0 0;
     font-size:13px;
     color:#8a93a8;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
 }
 
 .Add-Material-btn{
@@ -38,42 +44,47 @@
     font-weight:700;
     cursor:pointer;
     white-space:nowrap;
+    flex-shrink:0;
 }
 
 .Add-Material-btn:hover{ background:#255fd1; }
 
 /* =========================================================
    Stat cards
+   -----------------------------------------------------------
+   Always exactly 5 across — cards shrink rather than reflowing
+   into fewer columns.
 ========================================================= */
 
 .materials-stats{
     display:grid;
-    grid-template-columns:repeat(5,1fr);
-    gap:14px;
+    grid-template-columns:repeat(5,minmax(0,1fr));
+    gap:12px;
     padding:18px 20px 0;
 }
 
 .stat-card{
     display:flex;
-    gap:12px;
+    gap:10px;
     align-items:flex-start;
+    min-width:0;
 
     background:#fff;
     border:1px solid #e6e9ef;
     border-radius:12px;
-    padding:16px;
+    padding:14px;
 }
 
 .stat-icon{
-    width:40px;
-    height:40px;
+    width:36px;
+    height:36px;
     border-radius:10px;
     flex-shrink:0;
 
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:17px;
+    font-size:16px;
 }
 
 .stat-icon.blue{ background:#eaf1ff; }
@@ -82,24 +93,33 @@
 .stat-icon.red{ background:#fdeaea; }
 .stat-icon.purple{ background:#f2eaff; }
 
+.stat-card > div{ min-width:0; }
+
 .stat-card h4{
     margin:0;
-    font-size:11.5px;
+    font-size:clamp(9px, 1.8cqw, 11.5px);
     font-weight:600;
     color:#8a93a8;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
 }
 
 .stat-card h2{
     margin:5px 0 2px;
-    font-size:21px;
+    font-size:clamp(14px, 3.2cqw, 21px);
     font-weight:800;
     color:#18233c;
+    white-space:nowrap;
 }
 
 .stat-card p{
     margin:0;
-    font-size:11px;
+    font-size:clamp(8.5px, 1.7cqw, 11px);
     color:#8a93a8;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
 }
 
 /* =========================================================
@@ -110,7 +130,7 @@
     display:flex;
     justify-content:space-between;
     align-items:center;
-    flex-wrap:wrap;
+    flex-wrap:nowrap;
     gap:12px;
 
     padding:18px 20px 0;
@@ -118,23 +138,29 @@
 
 .materials-tabs{
     display:flex;
-    gap:4px;
+    gap:2px;
+    flex-wrap:nowrap;
     background:#f5f7fb;
     border-radius:10px;
     padding:4px;
+    min-width:0;
+    overflow:hidden;
 }
 
 .mat-tab{
     border:none;
     background:none;
-    padding:8px 14px;
+    padding:8px 10px;
     border-radius:8px;
 
-    font-size:13px;
+    font-size:clamp(10px, 2cqw, 13px);
     font-weight:600;
     color:#5d6778;
     cursor:pointer;
     white-space:nowrap;
+    flex-shrink:1;
+    overflow:hidden;
+    text-overflow:ellipsis;
 }
 
 .mat-tab.active{
@@ -145,26 +171,33 @@
 
 .materials-actions{
     display:flex;
-    gap:10px;
+    gap:8px;
+    flex-wrap:nowrap;
+    flex-shrink:0;
 }
 
 .materials-actions button{
     height:36px;
-    padding:0 14px;
+    padding:0 12px;
     border:1px solid #e6e9ef;
     border-radius:8px;
     background:#fff;
 
-    font-size:13px;
+    font-size:12.5px;
     font-weight:600;
     color:#3a4256;
     cursor:pointer;
+    white-space:nowrap;
 }
 
 .materials-actions button:hover{ background:#f5f7fb; }
 
 /* =========================================================
    Table
+   -----------------------------------------------------------
+   Fixed column widths so the table never grows wider than its
+   container; cell text truncates with an ellipsis instead of
+   wrapping or scrolling sideways.
 ========================================================= */
 
 .materials-table-wrap{
@@ -174,20 +207,20 @@
     border:1px solid #e6e9ef;
     border-radius:12px;
 
-    overflow-x:auto;
+    overflow:hidden;
 }
 
 .materials-table{
     width:100%;
-    min-width:920px;
+    table-layout:fixed;
     border-collapse:collapse;
 }
 
 .materials-table th{
     text-align:left;
-    padding:12px 14px;
+    padding:12px 10px;
 
-    font-size:11px;
+    font-size:clamp(9px, 1.6cqw, 11px);
     font-weight:700;
     letter-spacing:.02em;
     color:#8a93a8;
@@ -195,14 +228,17 @@
     background:#fafbfd;
     border-bottom:1px solid #eef0f5;
     white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
 }
 
 .materials-table td{
-    padding:12px 14px;
+    padding:12px 10px;
     font-size:13px;
     color:#3a4256;
     border-bottom:1px solid #f2f4f8;
     vertical-align:middle;
+    overflow:hidden;
 }
 
 .materials-table tbody tr:last-child td{ border-bottom:none; }
@@ -221,36 +257,51 @@
 .mat-name-cell{
     display:flex;
     align-items:center;
-    gap:10px;
+    gap:8px;
+    flex-wrap:nowrap;
+    min-width:0;
 }
 
 .mat-name-cell img{
-    width:36px;
-    height:36px;
+    width:32px;
+    height:32px;
     border-radius:8px;
     object-fit:cover;
     flex-shrink:0;
 }
+
+.mat-name-cell div{ min-width:0; }
 
 .mat-name-cell h5{
     margin:0;
     font-size:13px;
     font-weight:700;
     color:#1d2945;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
 }
 
 .mat-name-cell span{
     font-size:11px;
     color:#8a93a8;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    display:block;
 }
 
 .mat-category-pill{
     display:inline-block;
+    max-width:100%;
     padding:4px 10px;
     border-radius:999px;
     font-size:11px;
     font-weight:700;
     white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    box-sizing:border-box;
 }
 
 .cat-cement{ background:#fff3de; color:#c9770c; }
@@ -262,13 +313,17 @@
 .mat-supplier-cell{
     display:flex;
     align-items:center;
-    gap:8px;
+    gap:6px;
+    flex-wrap:nowrap;
+    min-width:0;
+    overflow:hidden;
+    text-overflow:ellipsis;
     white-space:nowrap;
 }
 
 .supplier-badge{
-    width:22px;
-    height:22px;
+    width:20px;
+    height:20px;
     border-radius:6px;
     flex-shrink:0;
 
@@ -276,7 +331,7 @@
     align-items:center;
     justify-content:center;
 
-    font-size:10px;
+    font-size:9px;
     font-weight:700;
     color:#fff;
 }
@@ -284,8 +339,12 @@
 .stock-cell{
     display:flex;
     align-items:center;
-    gap:8px;
+    gap:6px;
     font-weight:700;
+    flex-wrap:nowrap;
+    min-width:0;
+    overflow:hidden;
+    text-overflow:ellipsis;
     white-space:nowrap;
 }
 
@@ -293,6 +352,7 @@
     width:8px;
     height:8px;
     border-radius:50%;
+    flex-shrink:0;
 }
 
 .stock-in{ color:#1e9e4d; }
@@ -310,22 +370,26 @@
     font-size:10px;
     font-weight:400;
     color:#8a93a8;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
 }
 
 .mat-actions-cell{
     display:flex;
-    gap:6px;
-    white-space:nowrap;
+    gap:4px;
+    flex-wrap:nowrap;
 }
 
 .mat-actions-cell button{
-    width:28px;
-    height:28px;
+    width:26px;
+    height:26px;
     border:1px solid #e6e9ef;
     border-radius:6px;
     background:#fff;
     cursor:pointer;
-    font-size:12px;
+    font-size:11px;
+    flex-shrink:0;
 }
 
 .mat-actions-cell button:hover{ background:#f5f7fb; }
@@ -338,30 +402,40 @@
     display:flex;
     justify-content:space-between;
     align-items:center;
-    flex-wrap:wrap;
+    flex-wrap:nowrap;
     gap:10px;
 
     padding:0 20px 20px;
 
     font-size:12px;
     color:#8a93a8;
+    white-space:nowrap;
+    overflow:hidden;
+}
+
+.materials-footer > span{
+    overflow:hidden;
+    text-overflow:ellipsis;
 }
 
 .mat-pagination{
     display:flex;
-    gap:6px;
+    gap:5px;
     align-items:center;
+    flex-shrink:0;
+    flex-wrap:nowrap;
 }
 
 .mat-pagination button{
-    width:30px;
-    height:30px;
+    width:28px;
+    height:28px;
     border:1px solid #e6e9ef;
     border-radius:8px;
     background:#fff;
     cursor:pointer;
     font-size:12px;
     color:#3a4256;
+    flex-shrink:0;
 }
 
 .mat-pagination button.active{
@@ -415,6 +489,7 @@
 
 .modal-field{
     margin-bottom:14px;
+    min-width:0;
 }
 
 .modal-field label{
@@ -423,6 +498,9 @@
     font-weight:700;
     color:#3a4256;
     margin-bottom:6px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
 }
 
 .modal-field input,
@@ -430,6 +508,7 @@
 .modal-field textarea{
     width:100%;
     padding:0 12px;
+    box-sizing:border-box;
 
     border:1px solid #e2e6ef;
     border-radius:8px;
@@ -486,14 +565,11 @@
 .modal-submit-btn:hover{ background:#255fd1; }
 
 /* =========================================================
-   Responsive
+   LAYOUT IS INTENTIONALLY NON-WRAPPING
+   -----------------------------------------------------------
+   The 5 stat cards, tabs, table columns and footer all stay on
+   one row always; font-size, icon size and padding shrink via
+   clamp()/cqw instead of anything wrapping onto a new line, and
+   table-layout:fixed keeps the table from ever overflowing the
+   container.
 ========================================================= */
-
-@media(max-width:1200px){
-    .materials-stats{ grid-template-columns:repeat(3,1fr); }
-}
-
-@media(max-width:760px){
-    .materials-stats{ grid-template-columns:repeat(2,1fr); }
-    .modal-field-row{ grid-template-columns:1fr; }
-}

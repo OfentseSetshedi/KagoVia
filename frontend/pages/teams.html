@@ -43,7 +43,7 @@
                     <button id="Suppliers"><img src="../assets/icons/Suppliers.svg" alt="Suppliers" width="17" height="17">Suppliers</button>
                 </a>
                 <a href="teams.html" class="nav-link active">
-                    <button id="Teams"><img src="../assets/icons/Teams.svg" alt="Teams" width="17" height="17">Team</button>
+                    <button id="Teams"><img src="../assets/icons/Teams.svg" alt="Teams" width="17" height="17">Teams</button>
                 </a>
                 <a href="settings.html" class="nav-link">
                     <button id="Settings"><img src="../assets/icons/settings-icon.svg" alt="Settings" width="17" height="17">Settings</button>
@@ -81,7 +81,6 @@
             <header class="dashboard-header">
                 <div class="header-left">
                     <h2>Team Management</h2>
-                    <p class="header-subtitle">Manage your team members, roles and permissions</p>
                 </div>
 
                 <div class="header-right">
@@ -98,7 +97,7 @@
                     <div class="profile-menu">
                         <div class="profile-section">
                             <img src="images/profile.jpg" alt="Profile Picture">
-                            <div class="user-details"><h4>Arjun Mehta</h4><p>Estimator</p></div>
+                            <div class="user-details"><h4>Moses</h4><p>Estimator</p></div>
                             <span class="dropdown-arrow">▼</span>
                         </div>
                         <div class="dropdown">
@@ -144,7 +143,7 @@
                             <div class="team-stat-icon blue">👥</div>
                             <div>
                                 <h4>Total Members</h4>
-                                <h2>12</h2>
+                                <h2 id="statTotalMembers">12</h2>
                                 <p>+2 this month</p>
                             </div>
                         </div>
@@ -152,15 +151,15 @@
                             <div class="team-stat-icon green">✅</div>
                             <div>
                                 <h4>Active Members</h4>
-                                <h2>10</h2>
-                                <p>83% of total</p>
+                                <h2 id="statActiveMembers">10</h2>
+                                <p id="statActiveSub">83% of total</p>
                             </div>
                         </div>
                         <div class="team-stat-card">
                             <div class="team-stat-icon orange">✉</div>
                             <div>
                                 <h4>Pending Invites</h4>
-                                <h2>2</h2>
+                                <h2 id="statPendingInvites">2</h2>
                                 <p>Expires in 7 days</p>
                             </div>
                         </div>
@@ -168,8 +167,8 @@
                             <div class="team-stat-icon purple">👑</div>
                             <div>
                                 <h4>Admin Members</h4>
-                                <h2>3</h2>
-                                <p>25% of total</p>
+                                <h2 id="statAdminMembers">3</h2>
+                                <p id="statAdminSub">28% of total</p>
                             </div>
                         </div>
                     </div>
@@ -183,8 +182,8 @@
                             <thead>
                                 <tr><th>Member</th><th>Role</th><th>Department</th><th>Status</th><th>Joined</th><th>Actions</th></tr>
                             </thead>
-                            <tbody>
-                                <tr>
+                            <tbody id="teamMembersBody">
+                                <tr data-member-row data-role="admin">
                                     <td>
                                         <div class="team-member-cell">
                                             <img src="https://picsum.photos/seed/arjun-mehta/60/60" alt="Arjun Mehta">
@@ -195,9 +194,16 @@
                                     <td>Estimating</td>
                                     <td><span class="status-pill-team active">● Active</span></td>
                                     <td>10 Jan 2024</td>
-                                    <td class="team-actions-cell"><button title="More">⋮</button></td>
+                                    <td class="team-actions-cell">
+                                        <button class="row-menu-btn" data-menu-btn="row1">⋮</button>
+                                        <div class="row-menu" data-menu="row1">
+                                            <button data-action="view">View Profile</button>
+                                            <button data-action="role">Change Role</button>
+                                            <button class="danger" data-action="remove">Remove Member</button>
+                                        </div>
+                                    </td>
                                 </tr>
-                                <tr>
+                                <tr data-member-row data-role="manager">
                                     <td>
                                         <div class="team-member-cell">
                                             <img src="https://picsum.photos/seed/sarah-parker/60/60" alt="Sarah Parker">
@@ -208,9 +214,16 @@
                                     <td>Projects</td>
                                     <td><span class="status-pill-team active">● Active</span></td>
                                     <td>18 Jan 2024</td>
-                                    <td class="team-actions-cell"><button title="More">⋮</button></td>
+                                    <td class="team-actions-cell">
+                                        <button class="row-menu-btn" data-menu-btn="row2">⋮</button>
+                                        <div class="row-menu" data-menu="row2">
+                                            <button data-action="view">View Profile</button>
+                                            <button data-action="role">Change Role</button>
+                                            <button class="danger" data-action="remove">Remove Member</button>
+                                        </div>
+                                    </td>
                                 </tr>
-                                <tr>
+                                <tr data-member-row data-role="estimator">
                                     <td>
                                         <div class="team-member-cell">
                                             <img src="https://picsum.photos/seed/michael-johnson/60/60" alt="Michael Johnson">
@@ -221,9 +234,16 @@
                                     <td>Estimating</td>
                                     <td><span class="status-pill-team active">● Active</span></td>
                                     <td>22 Jan 2024</td>
-                                    <td class="team-actions-cell"><button title="More">⋮</button></td>
+                                    <td class="team-actions-cell">
+                                        <button class="row-menu-btn" data-menu-btn="row3">⋮</button>
+                                        <div class="row-menu" data-menu="row3">
+                                            <button data-action="view">View Profile</button>
+                                            <button data-action="role">Change Role</button>
+                                            <button class="danger" data-action="remove">Remove Member</button>
+                                        </div>
+                                    </td>
                                 </tr>
-                                <tr>
+                                <tr data-member-row data-role="designer">
                                     <td>
                                         <div class="team-member-cell">
                                             <img src="https://picsum.photos/seed/lisa-wang/60/60" alt="Lisa Wang">
@@ -234,7 +254,14 @@
                                     <td>Design</td>
                                     <td><span class="status-pill-team active">● Active</span></td>
                                     <td>25 Jan 2024</td>
-                                    <td class="team-actions-cell"><button title="More">⋮</button></td>
+                                    <td class="team-actions-cell">
+                                        <button class="row-menu-btn" data-menu-btn="row4">⋮</button>
+                                        <div class="row-menu" data-menu="row4">
+                                            <button data-action="view">View Profile</button>
+                                            <button data-action="role">Change Role</button>
+                                            <button class="danger" data-action="remove">Remove Member</button>
+                                        </div>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -248,29 +275,31 @@
                                 <a href="#">View All</a>
                             </div>
 
-                            <div class="pending-invite-row">
-                                <span class="pending-invite-icon">JD</span>
-                                <div class="pending-invite-info">
-                                    <strong>John Doe</strong>
-                                    <span>Estimator</span>
-                                    <span class="pending-email">johndoe@email.com</span>
+                            <div id="pendingInvitesList">
+                                <div class="pending-invite-row">
+                                    <span class="pending-invite-icon">JD</span>
+                                    <div class="pending-invite-info">
+                                        <strong>John Doe</strong>
+                                        <span>Estimator</span>
+                                        <span class="pending-email">johndoe@email.com</span>
+                                    </div>
+                                    <div class="pending-invite-meta">
+                                        <span>Invited 2 days ago</span>
+                                        <span class="pending-expires">Expires in 5 days</span>
+                                    </div>
                                 </div>
-                                <div class="pending-invite-meta">
-                                    <span>Invited 2 days ago</span>
-                                    <span class="pending-expires">Expires in 5 days</span>
-                                </div>
-                            </div>
 
-                            <div class="pending-invite-row">
-                                <span class="pending-invite-icon">RP</span>
-                                <div class="pending-invite-info">
-                                    <strong>Rachel Phillips</strong>
-                                    <span>Designer</span>
-                                    <span class="pending-email">rachel.phillips@email.com</span>
-                                </div>
-                                <div class="pending-invite-meta">
-                                    <span>Invited 3 days ago</span>
-                                    <span class="pending-expires">Expires in 6 days</span>
+                                <div class="pending-invite-row">
+                                    <span class="pending-invite-icon">RP</span>
+                                    <div class="pending-invite-info">
+                                        <strong>Rachel Phillips</strong>
+                                        <span>Designer</span>
+                                        <span class="pending-email">rachel.phillips@email.com</span>
+                                    </div>
+                                    <div class="pending-invite-meta">
+                                        <span>Invited 3 days ago</span>
+                                        <span class="pending-expires">Expires in 6 days</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -281,25 +310,27 @@
                                 <a href="#">View All</a>
                             </div>
 
-                            <div class="recent-activity-row">
-                                <span class="activity-dot-icon"></span>
-                                <div><strong>Michael Johnson completed estimate</strong><span>Modern Family Home</span></div>
-                                <span class="activity-time">2 hours ago</span>
-                            </div>
-                            <div class="recent-activity-row">
-                                <span class="activity-dot-icon"></span>
-                                <div><strong>Lisa Wang uploaded new floor plan</strong><span>Beach House Project</span></div>
-                                <span class="activity-time">4 hours ago</span>
-                            </div>
-                            <div class="recent-activity-row">
-                                <span class="activity-dot-icon"></span>
-                                <div><strong>Sarah Parker invited Rachel Phillips</strong><span>to join the team</span></div>
-                                <span class="activity-time">1 day ago</span>
-                            </div>
-                            <div class="recent-activity-row">
-                                <span class="activity-dot-icon"></span>
-                                <div><strong>Arjun Mehta updated material prices</strong><span>for Gauteng region</span></div>
-                                <span class="activity-time">2 days ago</span>
+                            <div id="recentActivityList">
+                                <div class="recent-activity-row">
+                                    <span class="activity-dot-icon"></span>
+                                    <div><strong>Michael Johnson completed estimate</strong><span>Modern Family Home</span></div>
+                                    <span class="activity-time">2 hours ago</span>
+                                </div>
+                                <div class="recent-activity-row">
+                                    <span class="activity-dot-icon"></span>
+                                    <div><strong>Lisa Wang uploaded new floor plan</strong><span>Beach House Project</span></div>
+                                    <span class="activity-time">4 hours ago</span>
+                                </div>
+                                <div class="recent-activity-row">
+                                    <span class="activity-dot-icon"></span>
+                                    <div><strong>Sarah Parker invited Rachel Phillips</strong><span>to join the team</span></div>
+                                    <span class="activity-time">1 day ago</span>
+                                </div>
+                                <div class="recent-activity-row">
+                                    <span class="activity-dot-icon"></span>
+                                    <div><strong>Arjun Mehta updated material prices</strong><span>for Gauteng region</span></div>
+                                    <span class="activity-time">2 days ago</span>
+                                </div>
                             </div>
                         </div>
 
@@ -449,22 +480,127 @@
     </div>
 
     <script>
+        // ---------------------------------------------------------------
+        // Sidebar resize + collapse, persisted to localStorage (same
+        // behaviour as dashboard.html / projects.html / settings.html)
+        // ---------------------------------------------------------------
+
         const sidebar = document.querySelector(".dashboard-navbar");
         const resizer = document.getElementById("sidebarResizer");
+
+        const COLLAPSE_THRESHOLD = 85;
+        const COLLAPSED_WIDTH = 72;
+        const MIN_WIDTH = 70;
+        const MAX_WIDTH = 300;
+        const DEFAULT_WIDTH = 220;
+
+        function applyWidth(width, persist) {
+            const collapsed = width <= COLLAPSE_THRESHOLD;
+            if (collapsed) {
+                sidebar.style.width = COLLAPSED_WIDTH + "px";
+                sidebar.classList.add("collapsed");
+            } else {
+                sidebar.style.width = width + "px";
+                sidebar.classList.remove("collapsed");
+            }
+            if (persist) {
+                localStorage.setItem("kb-sidebar-width", collapsed ? COLLAPSED_WIDTH : width);
+                localStorage.setItem("kb-sidebar-collapsed", collapsed ? "1" : "0");
+            }
+        }
+
+        (function restoreSidebar() {
+            const savedCollapsed = localStorage.getItem("kb-sidebar-collapsed") === "1";
+            const savedWidth = parseInt(localStorage.getItem("kb-sidebar-width"), 10);
+            if (savedCollapsed) applyWidth(COLLAPSED_WIDTH, false);
+            else if (!isNaN(savedWidth)) applyWidth(savedWidth, false);
+            else applyWidth(DEFAULT_WIDTH, false);
+        })();
+
         let dragging = false;
 
-        resizer.addEventListener("mousedown", () => { dragging = true; document.body.style.cursor = "ew-resize"; });
-        document.addEventListener("mouseup", () => { dragging = false; document.body.style.cursor = "default"; });
+        resizer.addEventListener("mousedown", () => {
+            dragging = true;
+            document.body.style.cursor = "ew-resize";
+        });
+
+        document.addEventListener("mouseup", () => {
+            if (!dragging) return;
+            dragging = false;
+            document.body.style.cursor = "default";
+            applyWidth(parseInt(sidebar.style.width, 10), true);
+        });
+
         document.addEventListener("mousemove",(e)=>{
             if(!dragging) return;
             let width = e.clientX;
-            if(width < 70) width = 70;
-            if(width > 320) width = 320;
-            sidebar.style.width = width + "px";
-            sidebar.classList.toggle("collapsed", width <= 85);
+            if(width < MIN_WIDTH) width = MIN_WIDTH;
+            if(width > MAX_WIDTH) width = MAX_WIDTH;
+            applyWidth(width, false);
         });
 
+        // ---------------------------------------------------------------
+        // Team member row actions (View Profile / Change Role / Remove)
+        // ---------------------------------------------------------------
+
+        function bumpStat(id, delta){
+            const el = document.getElementById(id);
+            const next = Math.max(0, (parseInt(el.textContent, 10) || 0) + delta);
+            el.textContent = next;
+            return next;
+        }
+
+        function recalcPercentages(){
+            const total = parseInt(document.getElementById("statTotalMembers").textContent, 10) || 0;
+            const active = parseInt(document.getElementById("statActiveMembers").textContent, 10) || 0;
+            const admin = parseInt(document.getElementById("statAdminMembers").textContent, 10) || 0;
+
+            document.getElementById("statActiveSub").textContent =
+                total ? Math.round((active / total) * 100) + "% of total" : "0% of total";
+            document.getElementById("statAdminSub").textContent =
+                total ? Math.round((admin / total) * 100) + "% of total" : "0% of total";
+        }
+
+        document.querySelectorAll(".row-menu-btn").forEach(btn => {
+            btn.addEventListener("click", (e) => {
+                e.stopPropagation();
+                const menu = document.querySelector(`.row-menu[data-menu="${btn.dataset.menuBtn}"]`);
+                document.querySelectorAll(".row-menu.open").forEach(m => { if (m !== menu) m.classList.remove("open"); });
+                menu.classList.toggle("open");
+            });
+        });
+
+        document.addEventListener("click", (e) => {
+            if (!e.target.closest(".team-actions-cell")) {
+                document.querySelectorAll(".row-menu.open").forEach(m => m.classList.remove("open"));
+            }
+        });
+
+        document.querySelectorAll(".row-menu [data-action]").forEach(btn => {
+            btn.addEventListener("click", () => {
+                const action = btn.dataset.action;
+                const row = btn.closest("tr[data-member-row]");
+
+                if (action === "remove") {
+                    const isAdmin = row.dataset.role === "admin";
+                    const isActive = !!row.querySelector(".status-pill-team.active");
+
+                    row.remove();
+                    bumpStat("statTotalMembers", -1);
+                    if (isActive) bumpStat("statActiveMembers", -1);
+                    if (isAdmin) bumpStat("statAdminMembers", -1);
+                    recalcPercentages();
+                }
+                // "View Profile" / "Change Role" have no destination yet in this demo.
+
+                document.querySelectorAll(".row-menu.open").forEach(m => m.classList.remove("open"));
+            });
+        });
+
+        // ---------------------------------------------------------------
         // Invite modal flow
+        // ---------------------------------------------------------------
+
         const modal = document.getElementById("inviteModal");
         const steps = document.querySelectorAll(".invite-step");
 
@@ -522,9 +658,60 @@
 
         document.getElementById("inviteBack3").addEventListener("click", () => showStep("2"));
 
+        // Turns "jane.doe" into "Jane Doe" as a best-effort display name,
+        // since the invite form only collects an email address.
+        function emailToName(email){
+            const local = (email.split("@")[0] || email).replace(/[._-]+/g, " ").trim();
+            if (!local) return email;
+            return local.split(" ").filter(Boolean)
+                .map(w => w.charAt(0).toUpperCase() + w.slice(1))
+                .join(" ");
+        }
+
+        function addPendingInvite(email, role){
+            const list = document.getElementById("pendingInvitesList");
+            const name = emailToName(email);
+            const initials = (name.match(/\b\w/g) || []).join("").slice(0, 2).toUpperCase() || "??";
+
+            const row = document.createElement("div");
+            row.className = "pending-invite-row";
+            row.innerHTML = `
+                <span class="pending-invite-icon">${initials}</span>
+                <div class="pending-invite-info">
+                    <strong>${name}</strong>
+                    <span>${role}</span>
+                    <span class="pending-email">${email}</span>
+                </div>
+                <div class="pending-invite-meta">
+                    <span>Invited just now</span>
+                    <span class="pending-expires">Expires in 7 days</span>
+                </div>
+            `;
+            list.insertBefore(row, list.firstChild);
+        }
+
+        function addRecentActivity(title, sub){
+            const list = document.getElementById("recentActivityList");
+            const row = document.createElement("div");
+            row.className = "recent-activity-row";
+            row.innerHTML = `
+                <span class="activity-dot-icon"></span>
+                <div><strong>${title}</strong><span>${sub}</span></div>
+                <span class="activity-time">Just now</span>
+            `;
+            list.insertBefore(row, list.firstChild);
+        }
+
         document.getElementById("inviteSend").addEventListener("click", () => {
-            document.getElementById("doneEmail").textContent = document.getElementById("reviewEmail").textContent;
+            const email = document.getElementById("reviewEmail").textContent;
+            const role = document.getElementById("reviewRole").textContent;
+
+            document.getElementById("doneEmail").textContent = email;
             showStep("done");
+
+            addPendingInvite(email, role);
+            bumpStat("statPendingInvites", 1);
+            addRecentActivity("You invited " + emailToName(email), "to join the team");
         });
 
         document.getElementById("inviteDone").addEventListener("click", closeModal);

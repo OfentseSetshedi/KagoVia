@@ -87,27 +87,31 @@
             </div>
 
             <div class="lower-sidebar">
-                <button id="need-help">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 48 48">
-                        <path d="M0 0h48v48H0z" fill="none" />
-                        <defs>
-                            <mask id="SVGKI5kpbjS">
-                                <g fill="none">
-                                    <path fill="#fff" stroke="#fff" stroke-linejoin="round" stroke-width="4" d="M24 44a19.94 19.94 0 0 0 14.142-5.858A19.94 19.94 0 0 0 44 24a19.94 19.94 0 0 0-5.858-14.142A19.94 19.94 0 0 0 24 4A19.94 19.94 0 0 0 9.858 9.858A19.94 19.94 0 0 0 4 24a19.94 19.94 0 0 0 5.858 14.142A19.94 19.94 0 0 0 24 44Z" />
-                                    <path stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M24 28.625v-4a6 6 0 1 0-6-6" />
-                                    <path fill="#000" fill-rule="evenodd" d="M24 37.625a2.5 2.5 0 1 0 0-5a2.5 2.5 0 0 0 0 5" clip-rule="evenodd" />
-                                </g>
-                            </mask>
-                        </defs>
-                        <path fill="currentColor" d="M0 0h48v48H0z" mask="url(#SVGKI5kpbjS)" />
-                    </svg>
-                    need help
-                </button>
+                <a href="help-support.html">
+                    <button id="need-help">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 48 48">
+                            <path d="M0 0h48v48H0z" fill="none" />
+                            <defs>
+                                <mask id="SVGKI5kpbjS">
+                                    <g fill="none">
+                                        <path fill="#fff" stroke="#fff" stroke-linejoin="round" stroke-width="4" d="M24 44a19.94 19.94 0 0 0 14.142-5.858A19.94 19.94 0 0 0 44 24a19.94 19.94 0 0 0-5.858-14.142A19.94 19.94 0 0 0 24 4A19.94 19.94 0 0 0 9.858 9.858A19.94 19.94 0 0 0 4 24a19.94 19.94 0 0 0 5.858 14.142A19.94 19.94 0 0 0 24 44Z" />
+                                        <path stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M24 28.625v-4a6 6 0 1 0-6-6" />
+                                        <path fill="#000" fill-rule="evenodd" d="M24 37.625a2.5 2.5 0 1 0 0-5a2.5 2.5 0 0 0 0 5" clip-rule="evenodd" />
+                                    </g>
+                                </mask>
+                            </defs>
+                            <path fill="currentColor" d="M0 0h48v48H0z" mask="url(#SVGKI5kpbjS)" />
+                        </svg>
+                        need help
+                    </button>
+                </a>
 
-                <button id="Premium-plan">
-                    <img src="../assets/icons/Premium-icon.svg" alt="Premium" width="17" height="17">
-                    Premium plan
-                </button>
+                <a href="premium.html">
+                    <button id="Premium-plan">
+                        <img src="../assets/icons/Premium-icon.svg" alt="Premium" width="17" height="17">
+                        Premium plan
+                    </button>
+                </a>
             </div>
 
         </aside>
@@ -118,7 +122,7 @@
 
             <header class="dashboard-header">
                 <div class="header-left">
-                    <h2>AI Workspace </h2>
+                    <h2>AI Design <span class="beta-pill">BETA</span></h2>
                 </div>
 
                 <div class="header-right">
@@ -138,7 +142,7 @@
                         <div class="profile-section">
                             <img src="images/profile.jpg" alt="Profile Picture">
                             <div class="user-details">
-                                <h4>Moses</h4>
+                                <h4>Ariun Mehta</h4>
                                 <p>Estimator</p>
                             </div>
                             <span class="dropdown-arrow">▼</span>
@@ -159,14 +163,14 @@
                             </a>
                         </div>
                     </div>
-                    
+
                     <style>
                         .dropdown {
                             position:absolute; top:70px; right:24px; width:260px;
                             background:#fff; border-radius:12px;
                             box-shadow:0 12px 35px rgba(0,0,0,.12);
                             opacity:0; visibility:hidden; transform:translateY(10px);
-                            transition:.25s; overflow:hidden;
+                            transition:.25s; overflow:hidden; z-index:1000;
                         }
                         .dropdown::before {
                             position: absolute; top:-8px; right:25px;
@@ -187,244 +191,249 @@
             </header>
 
             <div class="main-card">
+                <div class="ai-design-page">
 
-                <div class="ai-toolbar">
-                    <button class="Back-2-Projects">← Back to Projects</button>
-                    <div class="ai-project-title" contenteditable="true" spellcheck="false">Modern Family Home</div>
-                    <div class="ai-toolbar-actions">
-                        <button class="ai-tool-btn">💾 Save</button>
-                        <button class="ai-tool-btn">⇄ Compare</button>
-                        <button class="ai-tool-btn primary">⬇ Export ▾</button>
-                    </div>
-                </div>
+                    <div class="ai-toolbar">
 
-                <div class="ai-studio">
-
-                    <aside class="ai-describe-col">
-
-                        <div class="describe-card">
-                            <h5>Describe your dream house</h5>
-                            <p>A spacious modern villa with 4 bedrooms, open kitchen, double height living room, large windows, and a pool.</p>
-                            <div class="describe-meta">
-                                <span>🛏 4 Beds</span>
-                                <span>🛁 3.5 Baths</span>
-                                <span>📐 320 m²</span>
-                            </div>
-                            <button class="modify-brief-btn">✎ Modify Brief</button>
-                        </div>
-
-                        <div class="design-options-card">
-                            <h5>Design Options</h5>
-                            <div class="design-options-list" id="designOptionsList">
-                                <button class="design-option active">
-                                    <span class="option-thumb"></span>
-                                    <span class="option-label">Option A</span>
-                                    <span class="option-check">✓</span>
-                                </button>
-                                <button class="design-option">
-                                    <span class="option-thumb"></span>
-                                    <span class="option-label">Option B</span>
-                                    <span class="option-check"></span>
-                                </button>
-                                <button class="design-option">
-                                    <span class="option-thumb"></span>
-                                    <span class="option-label">Option C</span>
-                                    <span class="option-check"></span>
-                                </button>
-                            </div>
-                            <button class="view-all-options-btn">⟲ View All Options</button>
-                        </div>
-
-                    </aside>
-
-                    <section class="ai-floorplan-col">
-                        <div class="floorplan-toolbar">
-                            <div class="floorplan-toggle" id="floorplanToggle">
-                                <button class="fp-toggle active" data-view="2d">2D</button>
-                                <button class="fp-toggle" data-view="3d">3D</button>
-                            </div>
-                            <div class="floorplan-zoom">
-                                <button title="Zoom in">＋</button>
-                                <button title="Zoom out">－</button>
-                                <button title="Rotate">↻</button>
-                                <button title="Fullscreen">⤢</button>
-                            </div>
-                        </div>
-
-                        <div class="floorplan-canvas">
-                            <svg viewBox="0 0 600 420" xmlns="http://www.w3.org/2000/svg">
-                                <rect x="15" y="15" width="570" height="390" rx="6" fill="#fff" stroke="#d8cdb8" stroke-width="2"/>
-                                <rect x="30" y="30" width="160" height="120" fill="none" stroke="#2c3550" stroke-width="1.4"/>
-                                <text x="36" y="44" font-size="9" fill="#55606e" font-family="Arial">PRIMARY BEDROOM</text>
-                                <rect x="200" y="30" width="180" height="200" fill="none" stroke="#2c3550" stroke-width="1.4"/>
-                                <text x="206" y="44" font-size="9" fill="#55606e" font-family="Arial">LIVING ROOM</text>
-                                <rect x="390" y="30" width="180" height="120" fill="none" stroke="#2c3550" stroke-width="1.4"/>
-                                <text x="396" y="44" font-size="9" fill="#55606e" font-family="Arial">KITCHEN / DINING</text>
-                                <rect x="30" y="160" width="160" height="120" fill="none" stroke="#2c3550" stroke-width="1.4"/>
-                                <text x="36" y="174" font-size="9" fill="#55606e" font-family="Arial">BEDROOM 2</text>
-                                <rect x="390" y="160" width="180" height="220" fill="none" stroke="#2c3550" stroke-width="1.4"/>
-                                <text x="396" y="174" font-size="9" fill="#55606e" font-family="Arial">GARAGE</text>
-                                <rect x="30" y="290" width="340" height="100" fill="none" stroke="#2c3550" stroke-width="1.4" stroke-dasharray="5 3"/>
-                                <text x="36" y="304" font-size="9" fill="#55606e" font-family="Arial">COVERED PATIO / POOL</text>
-                                <circle cx="90" cy="345" r="26" fill="#e7f1ff" stroke="#8fb7ef"/>
-                            </svg>
-                        </div>
-
-                        <p class="floorplan-caption">AI-generated design. Verify dimensions and consult professionals before building.</p>
-                    </section>
-
-                    <aside class="ai-suggest-chat-col">
-
-                        <div class="suggestions-card">
-                            <div class="card-title-row"><h5>✨ AI Suggestions</h5></div>
-                            <div class="suggest-list">
-                                <button class="suggest-row">
-                                    <span class="suggest-icon">🏠</span>
-                                    <span class="suggest-text"><strong>Move Kitchen</strong><small>Relocate the kitchen closer to the dining area for better flow.</small></span>
-                                    <span class="suggest-chevron">›</span>
-                                </button>
-                                <button class="suggest-row">
-                                    <span class="suggest-icon">🚗</span>
-                                    <span class="suggest-text"><strong>Increase Garage</strong><small>Expand the garage to accommodate 3 cars.</small></span>
-                                    <span class="suggest-chevron">›</span>
-                                </button>
-                                <button class="suggest-row">
-                                    <span class="suggest-icon">🛏</span>
-                                    <span class="suggest-text"><strong>Add Guest Bedroom</strong><small>Convert the study into a guest bedroom.</small></span>
-                                    <span class="suggest-chevron">›</span>
-                                </button>
-                                <button class="suggest-row">
-                                    <span class="suggest-icon">💰</span>
-                                    <span class="suggest-text"><strong>Reduce Cost</strong><small>Use cost-effective materials for flooring to save approx. R120,000.</small></span>
-                                    <span class="suggest-chevron">›</span>
-                                </button>
-                            </div>
-                            <button class="see-more-btn">See More Suggestions ›</button>
-                        </div>
-
-                        <div class="ai-chat">
-                            <div class="chat-title-row"><span>💬</span><h5>AI Construction Expert</h5></div>
-                            <section class="chat-body">
-                                <div class="chat-bubble bot">Hello! I'm your AI Construction Expert. How can I assist you today?</div>
-                                <div class="chat-bubble user">Why is my roof expensive?</div>
-                            </section>
-                            <section class="ask">
-                                <button class="attach-btn">📎</button>
-                                <textarea placeholder="Ask anything..." rows="1"></textarea>
-                                <button class="voice-btn">🎤</button>
-                                <button class="send-btn">➜</button>
-                            </section>
-                            <footer>Please verify important information.</footer>
-                        </div>
-
-                    </aside>
-
-                    <aside class="ai-preview-col">
-
-                        <section class="card">
-                            <div class="card-header">
-                                <h3>🏠 Live Preview</h3>
-                                <button>3D View ▼</button>
-                            </div>
-                            <div class="Preview-area">
-                                <img src="https://picsum.photos/seed/kago-render/500/300" alt="3D render preview">
-                            </div>
-                        </section>
-
-                        <section class="card">
-                            <div class="card-header">
-                                <h3>Project Overview</h3>
-                            </div>
-                            <div class="summary-grid">
-                                <div class="summary-item">
-                                    <h4>Total Cost</h4>
-                                    <p>R18,000,000</p>
-                                </div>
-                                <div class="summary-item">
-                                    <h4>Build Time</h4>
-                                    <p>8 Months</p>
-                                </div>
-                                <div class="summary-item">
-                                    <h4>Area</h4>
-                                    <p>320 m²</p>
-                                </div>
-                                <div class="summary-item">
-                                    <h4>Cost / m²</h4>
-                                    <p>R75,000</p>
-                                </div>
-                            </div>
-                        </section>
-
-                        <section class="card">
-                            <div class="card-header">
-                                <h3>Cost Breakdown</h3>
-                            </div>
-                            <div class="breakdown">
-                                <div class="chart"></div>
-                                <div class="legend">
-                                    <p><span>● Foundation</span><span>15%</span></p>
-                                    <p><span>● Structure</span><span>25%</span></p>
-                                    <p><span>● Roof</span><span>20%</span></p>
-                                    <p><span>● Finishes</span><span>23%</span></p>
-                                    <p><span>● Other</span><span>17%</span></p>
-                                </div>
-                            </div>
-                        </section>
-
-                        <div class="ai-tip-box">
-                            <span>💡</span>
-                            <p>Switching to a simpler roof design and local materials can save you up to <strong>R3,240,000</strong> (18% of total cost).</p>
-                        </div>
-
-                    </aside>
-
-                </div>
-
-                <div class="ai-next-steps">
-                    <div class="next-steps-title">
-                        <h5>What's Next?</h5>
-                        <p>Follow these steps to perfect your design</p>
-                    </div>
-                    <div class="next-steps-row">
-                        <div class="next-step">
-                            <span class="step-icon">🔍</span>
-                            <strong>Review & Refine</strong>
-                            <small>Review AI suggestions and apply the changes you like.</small>
-                        </div>
-                        <span class="step-arrow">→</span>
-                        <div class="next-step">
-                            <span class="step-icon">🧮</span>
-                            <strong>Estimate Costs</strong>
-                            <small>Get a detailed cost estimate based on the updated design.</small>
-                        </div>
-                        <span class="step-arrow">→</span>
-                        <div class="next-step">
-                            <span class="step-icon">⚖</span>
-                            <strong>Compare Options</strong>
-                            <small>Compare different design options and choose the best one.</small>
-                        </div>
-                        <span class="step-arrow">→</span>
-                        <div class="next-step">
-                            <span class="step-icon">📋</span>
-                            <strong>Finalize Design</strong>
-                            <small>Finalize your design and prepare it for construction.</small>
-                        </div>
-                        <span class="step-arrow">→</span>
-                        <div class="next-step">
-                            <span class="step-icon">📤</span>
-                            <strong>Export & Share</strong>
-                            <small>Export your design or share it with your team.</small>
+                        <div class="ai-toolbar-actions">
+                            <button class="ai-tool-btn">✎ Edit ▾</button>
+                            <button class="ai-tool-btn">💾 Save</button>
+                            <button class="ai-tool-btn">⇄ Compare</button>
+                            <button class="ai-tool-btn primary">⬆ Export ▾</button>
                         </div>
                     </div>
-                </div>
 
-            </div> 
+                    <div class="ai-studio">
+
+                        <aside class="ai-left-col">
+
+                            <div class="ai-panel describe-card">
+                                <h5>Describe your dream house...</h5>
+                                <textarea maxlength="500" placeholder="Describe your dream house...">A spacious modern villa with 4 bedrooms, open kitchen, double height living room, large windows, and a pool.</textarea>
+                                <span class="char-count">120/500</span>
+                                <button class="ai-generate-btn">✨ Generate</button>
+                            </div>
+
+                            <div class="ai-panel suggestions-tags-card">
+                                <h5>Suggestions</h5>
+                                <div class="style-tags">
+                                    <button class="style-tag active">Modern</button>
+                                    <button class="style-tag">Farmhouse</button>
+                                    <button class="style-tag">Luxury</button>
+                                    <button class="style-tag">Minimalist</button>
+                                </div>
+                            </div>
+
+                            <div class="ai-panel generated-designs-card">
+                                <h5>Generated Designs</h5>
+
+                                <div class="generated-designs-list" id="designOptionsList">
+
+                                    <button class="design-option active" data-design="A">
+                                        <span class="option-thumb">
+                                            <svg viewBox="0 0 120 90" xmlns="http://www.w3.org/2000/svg">
+                                                <rect x="4" y="4" width="112" height="82" rx="3" fill="#fff" stroke="#d8cdb8" stroke-width="1.2"/>
+                                                <rect x="10" y="10" width="34" height="26" fill="none" stroke="#2c3550" stroke-width="1"/>
+                                                <rect x="48" y="10" width="40" height="44" fill="none" stroke="#2c3550" stroke-width="1"/>
+                                                <rect x="92" y="10" width="24" height="26" fill="none" stroke="#2c3550" stroke-width="1"/>
+                                                <rect x="10" y="40" width="34" height="26" fill="none" stroke="#2c3550" stroke-width="1"/>
+                                                <rect x="92" y="40" width="24" height="46" fill="none" stroke="#2c3550" stroke-width="1"/>
+                                                <rect x="10" y="70" width="78" height="16" fill="none" stroke="#2c3550" stroke-width="1" stroke-dasharray="3 2"/>
+                                            </svg>
+                                        </span>
+                                        <span class="option-label">Option A</span>
+                                        <span class="option-check">✓</span>
+                                    </button>
+
+                                    <button class="design-option" data-design="B">
+                                        <span class="option-thumb">
+                                            <svg viewBox="0 0 120 90" xmlns="http://www.w3.org/2000/svg">
+                                                <rect x="4" y="4" width="112" height="82" rx="3" fill="#fff" stroke="#d8cdb8" stroke-width="1.2"/>
+                                                <rect x="10" y="10" width="50" height="36" fill="none" stroke="#2c3550" stroke-width="1"/>
+                                                <rect x="64" y="10" width="52" height="20" fill="none" stroke="#2c3550" stroke-width="1"/>
+                                                <rect x="64" y="34" width="52" height="24" fill="none" stroke="#2c3550" stroke-width="1"/>
+                                                <rect x="10" y="50" width="50" height="36" fill="none" stroke="#2c3550" stroke-width="1"/>
+                                                <rect x="64" y="62" width="52" height="24" fill="none" stroke="#2c3550" stroke-width="1"/>
+                                            </svg>
+                                        </span>
+                                        <span class="option-label">Option B</span>
+                                        <span class="option-check"></span>
+                                    </button>
+
+                                    <button class="design-option" data-design="C">
+                                        <span class="option-thumb">
+                                            <svg viewBox="0 0 120 90" xmlns="http://www.w3.org/2000/svg">
+                                                <rect x="4" y="4" width="112" height="82" rx="3" fill="#fff" stroke="#d8cdb8" stroke-width="1.2"/>
+                                                <rect x="10" y="10" width="46" height="30" fill="none" stroke="#2c3550" stroke-width="1"/>
+                                                <rect x="60" y="10" width="56" height="52" fill="none" stroke="#2c3550" stroke-width="1"/>
+                                                <rect x="10" y="44" width="46" height="42" fill="none" stroke="#2c3550" stroke-width="1"/>
+                                                <rect x="60" y="66" width="56" height="20" fill="none" stroke="#2c3550" stroke-width="1" stroke-dasharray="3 2"/>
+                                            </svg>
+                                        </span>
+                                        <span class="option-label">Option C</span>
+                                        <span class="option-check"></span>
+                                    </button>
+
+                                </div>
+
+                                <button class="generate-more-btn">↻ Generate More</button>
+                            </div>
+
+                        </aside>
+
+                        <section class="ai-floorplan-col">
+
+                            <div class="floorplan-title-row">
+                                <div class="floorplan-title-block">
+                                    <h3 id="planTitle">Option A</h3>
+                                    <p id="planMeta">Modern &nbsp;•&nbsp; 4 Beds &nbsp;•&nbsp; 3.5 Baths &nbsp;•&nbsp; 320 m²</p>
+                                </div>
+
+                                <div class="floorplan-title-tools">
+                                    <div class="floorplan-toggle" id="floorplanToggle">
+                                        <button class="fp-toggle active" data-view="2d">2D</button>
+                                        <button class="fp-toggle" data-view="3d">3D</button>
+                                    </div>
+                                    <div class="floorplan-zoom">
+                                        <button title="Zoom in">＋</button>
+                                        <button title="Zoom out">－</button>
+                                        <button title="Fullscreen">⤢</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="floorplan-canvas">
+                                <svg viewBox="0 0 900 700" xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="15" y="15" width="870" height="670" rx="6" fill="#fbf8f1" stroke="#d8cdb8" stroke-width="2"/>
+
+                                    <rect x="40" y="40" width="270" height="200" fill="none" stroke="#2c3550" stroke-width="1.6"/>
+                                    <text x="48" y="58" font-size="11" fill="#55606e" font-family="Arial">PRIMARY BEDROOM</text>
+                                    <text x="48" y="230" font-size="10" fill="#8a93a8" font-family="Arial">4.2m x 4.6m</text>
+
+                                    <rect x="330" y="40" width="290" height="330" fill="none" stroke="#2c3550" stroke-width="1.6"/>
+                                    <text x="338" y="58" font-size="11" fill="#55606e" font-family="Arial">LIVING ROOM</text>
+                                    <text x="338" y="360" font-size="10" fill="#8a93a8" font-family="Arial">6.0m x 6.0m</text>
+
+                                    <rect x="640" y="40" width="220" height="170" fill="none" stroke="#2c3550" stroke-width="1.6"/>
+                                    <text x="648" y="58" font-size="11" fill="#55606e" font-family="Arial">DINING AREA</text>
+
+                                    <rect x="40" y="260" width="130" height="150" fill="none" stroke="#2c3550" stroke-width="1.6"/>
+                                    <text x="46" y="278" font-size="10" fill="#55606e" font-family="Arial">WALK-IN CLOSET</text>
+
+                                    <rect x="180" y="260" width="130" height="150" fill="none" stroke="#2c3550" stroke-width="1.6"/>
+                                    <text x="186" y="278" font-size="10" fill="#55606e" font-family="Arial">ENSUITE</text>
+
+                                    <rect x="640" y="220" width="220" height="190" fill="none" stroke="#2c3550" stroke-width="1.6"/>
+                                    <text x="648" y="238" font-size="11" fill="#55606e" font-family="Arial">KITCHEN</text>
+                                    <text x="648" y="400" font-size="10" fill="#8a93a8" font-family="Arial">4.0m x 4.8m</text>
+
+                                    <rect x="330" y="380" width="290" height="130" fill="none" stroke="#2c3550" stroke-width="1.6"/>
+                                    <text x="338" y="398" font-size="11" fill="#55606e" font-family="Arial">FOYER</text>
+
+                                    <rect x="40" y="420" width="270" height="150" fill="none" stroke="#2c3550" stroke-width="1.6"/>
+                                    <text x="46" y="438" font-size="10" fill="#55606e" font-family="Arial">BEDROOM 2</text>
+
+                                    <rect x="640" y="420" width="220" height="230" fill="none" stroke="#2c3550" stroke-width="1.6"/>
+                                    <text x="648" y="438" font-size="10" fill="#55606e" font-family="Arial">GARAGE</text>
+                                    <circle cx="700" cy="560" r="14" fill="none" stroke="#8a93a8" stroke-width="1.2"/>
+                                    <circle cx="800" cy="560" r="14" fill="none" stroke="#8a93a8" stroke-width="1.2"/>
+
+                                    <rect x="330" y="520" width="290" height="130" fill="none" stroke="#2c3550" stroke-width="1.6"/>
+                                    <text x="338" y="538" font-size="10" fill="#55606e" font-family="Arial">BEDROOM 4 / GUEST</text>
+
+                                    <rect x="40" y="580" width="270" height="90" fill="none" stroke="#2c3550" stroke-width="1.6" stroke-dasharray="5 3"/>
+                                    <text x="46" y="598" font-size="10" fill="#55606e" font-family="Arial">COVERED PATIO / POOL</text>
+                                    <circle cx="100" cy="630" r="26" fill="#e7f1ff" stroke="#8fb7ef"/>
+                                </svg>
+                            </div>
+
+                            <p class="floorplan-caption">AI-generated design. Verify dimensions and consult professionals before building.</p>
+                        </section>
+
+                        <aside class="ai-suggest-col">
+                            <div class="ai-panel suggestions-card">
+                                <div class="card-title-row"><h5>✨ AI Suggestions</h5></div>
+
+                                <div class="suggest-list">
+                                    <button class="suggest-row">
+                                        <span class="suggest-icon">🏠</span>
+                                        <span class="suggest-text"><strong>Move Kitchen</strong><small>Relocate the kitchen closer to the dining area for better flow.</small></span>
+                                    </button>
+                                    <button class="suggest-row">
+                                        <span class="suggest-icon">🚗</span>
+                                        <span class="suggest-text"><strong>Increase Garage</strong><small>Expand the garage to accommodate 3 cars.</small></span>
+                                    </button>
+                                    <button class="suggest-row">
+                                        <span class="suggest-icon">🛏</span>
+                                        <span class="suggest-text"><strong>Add Guest Bedroom</strong><small>Convert the study into a guest bedroom.</small></span>
+                                    </button>
+                                    <button class="suggest-row">
+                                        <span class="suggest-icon">💰</span>
+                                        <span class="suggest-text"><strong>Reduce Cost</strong><small>Use cost-effective materials for flooring to save approx. R120,000.</small></span>
+                                    </button>
+                                    <button class="suggest-row">
+                                        <span class="suggest-icon">💡</span>
+                                        <span class="suggest-text"><strong>Improve Lighting</strong><small>Add skylights in the living room to improve natural lighting.</small></span>
+                                    </button>
+                                </div>
+
+                                <button class="see-more-btn">See More Suggestions ›</button>
+                            </div>
+                        </aside>
+
+                    </div>
+
+                </div>
+            </div>
         </main>
     </section>
 
     <script>
+        // ---------------------------------------------------------------
+        // Sidebar resize + collapse, persisted to localStorage so the
+        // width/collapsed state is shared across every page (same keys
+        // used everywhere) instead of resetting when you navigate.
+        // ---------------------------------------------------------------
+
         const sidebar = document.querySelector(".dashboard-navbar");
         const resizer = document.getElementById("sidebarResizer");
+
+        const COLLAPSE_THRESHOLD = 85;
+        const COLLAPSED_WIDTH = 72;
+        const MIN_WIDTH = 70;
+        const MAX_WIDTH = 240;
+        const DEFAULT_WIDTH = 180;
+
+        function applyWidth(width, persist) {
+            const collapsed = width <= COLLAPSE_THRESHOLD;
+
+            if (collapsed) {
+                sidebar.style.width = COLLAPSED_WIDTH + "px";
+                sidebar.classList.add("collapsed");
+            } else {
+                sidebar.style.width = width + "px";
+                sidebar.classList.remove("collapsed");
+            }
+
+            if (persist) {
+                localStorage.setItem("kb-sidebar-width", collapsed ? COLLAPSED_WIDTH : width);
+                localStorage.setItem("kb-sidebar-collapsed", collapsed ? "1" : "0");
+            }
+        }
+
+        (function restoreSidebar() {
+            const savedCollapsed = localStorage.getItem("kb-sidebar-collapsed") === "1";
+            const savedWidth = parseInt(localStorage.getItem("kb-sidebar-width"), 10);
+
+            if (savedCollapsed) {
+                applyWidth(COLLAPSED_WIDTH, false);
+            } else if (!isNaN(savedWidth)) {
+                applyWidth(savedWidth, false);
+            } else {
+                applyWidth(DEFAULT_WIDTH, false);
+            }
+        })();
+
         let dragging = false;
 
         resizer.addEventListener("mousedown", () => {
@@ -433,21 +442,18 @@
         });
 
         document.addEventListener("mouseup", () => {
+            if (!dragging) return;
             dragging = false;
             document.body.style.cursor = "default";
+            applyWidth(parseInt(sidebar.style.width, 10), true);
         });
 
         document.addEventListener("mousemove",(e)=>{
             if(!dragging) return;
             let width = e.clientX;
-            if(width < 70) width = 70;
-            if(width > 320) width = 320;
-            sidebar.style.width = width + "px";
-            if(width <= 85){
-                sidebar.classList.add("collapsed");
-            }else{
-                sidebar.classList.remove("collapsed");
-            }
+            if(width < MIN_WIDTH) width = MIN_WIDTH;
+            if(width > MAX_WIDTH) width = MAX_WIDTH;
+            applyWidth(width, false);
         });
 
         // 2D / 3D toggle
@@ -458,7 +464,16 @@
             });
         });
 
+        // Style tag selection
+        document.querySelectorAll(".style-tag").forEach(tag => {
+            tag.addEventListener("click", () => {
+                document.querySelectorAll(".style-tag").forEach(t => t.classList.remove("active"));
+                tag.classList.add("active");
+            });
+        });
+
         // Design option selection
+        const planTitle = document.getElementById("planTitle");
         document.querySelectorAll(".design-option").forEach(opt => {
             opt.addEventListener("click", () => {
                 document.querySelectorAll(".design-option").forEach(o => {
@@ -467,7 +482,15 @@
                 });
                 opt.classList.add("active");
                 opt.querySelector(".option-check").textContent = "✓";
+                planTitle.textContent = "Option " + opt.dataset.design;
             });
+        });
+
+        // Live char counter for the brief textarea
+        const briefInput = document.querySelector(".describe-card textarea");
+        const charCount = document.querySelector(".describe-card .char-count");
+        briefInput.addEventListener("input", () => {
+            charCount.textContent = briefInput.value.length + "/500";
         });
     </script>
 </body>

@@ -4,7 +4,16 @@
 
 .header-subtitle{ margin:2px 0 0; font-size:12px; color:#8a93a8; }
 
-.settings-page{ width:100%; padding:18px 20px; }
+/* The whole settings page is sized to fit inside the viewport with
+   no vertical scrollbar and no dragging required to see anything.
+   .main-card normally scrolls (dash.css), so this class — added
+   only on this page's main-card — turns that off without touching
+   the shared rule other pages rely on. */
+.settings-main-card{
+    overflow:hidden;
+}
+
+.settings-page{ width:100%; padding:14px 20px 16px; }
 
 /* Top tabs */
 
@@ -12,19 +21,19 @@
     display:flex;
     gap:6px;
     border-bottom:1px solid #eef0f5;
-    margin-bottom:20px;
+    margin-bottom:14px;
     overflow-x:auto;
 }
 
 .settings-tab{
-    height:42px;
-    padding:0 16px;
+    height:38px;
+    padding:0 14px;
     border:none;
     background:none;
     border-bottom:2px solid transparent;
     margin-bottom:-1px;
 
-    font-size:13px;
+    font-size:12.5px;
     font-weight:600;
     color:#8a93a8;
     cursor:pointer;
@@ -38,33 +47,47 @@
     border-bottom-color:#2f6feb;
 }
 
-/* Layout */
+/* Layout: one panel visible at a time, cards inside it lay out
+   in a wrapping row instead of a fixed grid, so a panel with one
+   card doesn't get stretched across three empty columns. */
 
-.settings-grid{
-    display:grid;
-    grid-template-columns:2.2fr 1fr;
-    gap:16px;
-    align-items:start;
-}
-
-.settings-col-left,
-.settings-col-right{
+.settings-panels{
     display:flex;
     flex-direction:column;
-    gap:16px;
 }
 
-.settings-row-3{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:16px;
+.settings-panel.is-hidden{
+    display:none;
+}
+
+/* align-items:stretch (instead of flex-start) makes every card in
+   the same row match the height of the tallest one, so their save
+   buttons and bottom edges line up instead of trailing off at
+   different heights. */
+.settings-cards-row{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:stretch;
+    gap:14px;
+}
+
+.settings-cards-row .settings-card{
+    flex:1 1 320px;
+    min-width:280px;
 }
 
 .settings-card{
     background:#fff;
     border:1px solid #e6e9ef;
     border-radius:12px;
-    padding:18px;
+    padding:16px;
+
+    /* Flex column so a shorter sibling card (stretched taller by
+       align-items:stretch above) can push its save button down to
+       the bottom via margin-top:auto, keeping buttons aligned
+       across a row. */
+    display:flex;
+    flex-direction:column;
 }
 
 .settings-card h5{
@@ -75,7 +98,7 @@
 }
 
 .settings-card-sub{
-    margin:0 0 16px;
+    margin:0 0 12px;
     font-size:11.5px;
     color:#8a93a8;
     line-height:1.4;
@@ -86,13 +109,13 @@
 .profile-photo-block{
     display:flex;
     align-items:center;
-    gap:14px;
-    margin-bottom:16px;
+    gap:12px;
+    margin-bottom:14px;
 }
 
 .profile-photo-block img{
-    width:64px;
-    height:64px;
+    width:52px;
+    height:52px;
     border-radius:50%;
     object-fit:cover;
 }
@@ -113,26 +136,27 @@
 
 /* Field */
 
-.settings-field{ margin-bottom:12px; }
+.settings-field{ margin-bottom:10px; }
 
 .settings-field label{
     display:block;
     font-size:11.5px;
     font-weight:700;
     color:#3a4256;
-    margin-bottom:6px;
+    margin-bottom:5px;
 }
 
 .settings-field input,
 .settings-field select{
     width:100%;
-    height:36px;
+    height:34px;
     padding:0 10px;
     border:1px solid #e2e6ef;
     border-radius:8px;
     font-size:12.5px;
     font-family:inherit;
     outline:none;
+    box-sizing:border-box;
 }
 
 .settings-field input:disabled{
@@ -145,8 +169,11 @@
 
 .settings-save-btn{
     width:100%;
-    height:38px;
-    margin-top:6px;
+    height:36px;
+    /* Pushed to the bottom of the card's flex column, so when this
+       card is stretched to match a taller sibling, the button still
+       lands on the same baseline as the other card's button/content. */
+    margin-top:auto;
     border:none;
     border-radius:8px;
     background:#2f6feb;
@@ -165,7 +192,7 @@
     justify-content:space-between;
     align-items:center;
     gap:10px;
-    padding:10px 0;
+    padding:9px 0;
     border-bottom:1px solid #f2f4f8;
 }
 
@@ -214,7 +241,7 @@
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding:10px 0;
+    padding:9px 0;
     border-bottom:1px solid #f2f4f8;
     font-size:12.5px;
     color:#3a4256;
@@ -235,7 +262,7 @@
     display:flex;
     align-items:center;
     gap:10px;
-    padding:10px 0;
+    padding:9px 0;
     border-bottom:1px solid #f2f4f8;
 }
 
@@ -335,10 +362,8 @@
    Responsive
 ========================================================= */
 
-@media(max-width:1300px){
-    .settings-grid{ grid-template-columns:1fr; }
-}
-
-@media(max-width:900px){
-    .settings-row-3{ grid-template-columns:1fr; }
+@media(max-width:760px){
+    .settings-cards-row .settings-card{
+        flex:1 1 100%;
+    }
 }

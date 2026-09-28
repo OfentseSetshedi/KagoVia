@@ -110,40 +110,28 @@
             </div>
 
             <div class="lower-sidebar">
-                <button class="sidebar-card" id="need-help">
-                    <span class="sidebar-card-icon">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <a href="help-support.html">
+                    <button id="need-help">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
                             <path d="M4 15V12C4 7.58172 7.58172 4 12 4C16.4183 4 20 7.58172 20 12V15" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
                             <rect x="2.5" y="13.5" width="4" height="6" rx="1.8" stroke="currentColor" stroke-width="1.6"/>
                             <rect x="17.5" y="13.5" width="4" height="6" rx="1.8" stroke="currentColor" stroke-width="1.6"/>
                             <path d="M20 19.5V20.2C20 21.7464 18.7464 23 17.2 23H14.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
                             <circle cx="13" cy="23" r="1.4" stroke="currentColor" stroke-width="1.6"/>
                         </svg>
-                    </span>
-                    <span class="sidebar-card-text">
-                        <span class="sidebar-card-title">Need Help?</span>
-                        <span class="sidebar-card-sub">Contact support</span>
-                    </span>
-                    <span class="sidebar-card-chevron">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    </span>
-                </button>
+                        need help
+                    </button>
+                </a>
 
-                <button class="sidebar-card" id="Premium-plan">
-                    <span class="sidebar-card-icon">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <a href="premium.html">
+                    <button id="Premium-plan">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
                             <path d="M4 9L8 12L12 5L16 12L20 9L18.5 18H5.5L4 9Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
                             <path d="M5.5 18H18.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
                         </svg>
-                    </span>
-                    <span class="sidebar-card-text">
-                        <span class="sidebar-card-title">Go Premium</span>
-                        <span class="sidebar-card-sub">Unlock all features</span>
-                    </span>
-                    <span class="sidebar-card-chevron">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    </span>
-                </button>
+                        Premium plan
+                    </button>
+                </a>
             </div>
 
         </aside>
@@ -463,7 +451,7 @@
                                     <aside class="Project-checklist">
                                         <h5>Project Checklist</h5>
                                         <div class="checklist-list" id="checklistList"></div>
-                                        <a class="ov-link" href="#" data-tab-link="materials">View Full Checklist →</a>
+                                        <button class="ov-link ov-link-btn" id="openFullChecklistBtn" type="button">View Full Checklist →</button>
                                     </aside>
 
                                 </div>
@@ -550,48 +538,404 @@
         </main>
     </section>
 
-    <!-- New Project modal -->
+    <!-- New Project modal (3-step wizard) -->
     <div class="modal-overlay" id="newProjectModal">
+        <div class="modal-box wizard-modal-box">
+
+            <div class="wizard-header">
+                <h3>New Project</h3>
+                <span class="wizard-step-label" id="npStepLabel">Step 1 of 3</span>
+            </div>
+
+            <!-- Step 1: Create Project -->
+            <div class="wizard-step" data-step="1">
+                <p class="wizard-step-title">Let's start with the basic details of your project.</p>
+
+                <div class="modal-field">
+                    <label>Project Name</label>
+                    <input type="text" id="npName" placeholder="Enter project name">
+                </div>
+
+                <div class="modal-field">
+                    <label>Project Type</label>
+                    <select id="npType">
+                        <option>Residential</option>
+                        <option>Commercial</option>
+                        <option>Mixed-Use</option>
+                    </select>
+                </div>
+
+                <div class="modal-field">
+                    <label>Location</label>
+                    <input type="text" id="npLocation" placeholder="Enter project location">
+                </div>
+
+                <div class="modal-field">
+                    <label>Total Floor Area (m²)</label>
+                    <input type="number" id="npArea" placeholder="Enter total area">
+                </div>
+
+                <div class="modal-field">
+                    <label>Description (Optional)</label>
+                    <textarea id="npDescription" rows="3" placeholder="Add a short description about this project"></textarea>
+                </div>
+
+                <div class="modal-actions">
+                    <button class="modal-cancel-btn" id="npCancel1">Cancel</button>
+                    <button class="modal-submit-btn" id="npNext1">Next</button>
+                </div>
+            </div>
+
+            <!-- Step 2: Configure Project -->
+            <div class="wizard-step is-hidden" data-step="2">
+                <p class="wizard-step-title">Configure your project settings and budget.</p>
+
+                <div class="modal-field">
+                    <label>Style</label>
+                    <select id="npStyle">
+                        <option>Modern</option>
+                        <option>Contemporary</option>
+                        <option>Traditional</option>
+                        <option>Farmhouse</option>
+                        <option>Luxury</option>
+                        <option>Minimalist</option>
+                    </select>
+                </div>
+
+                <div class="modal-field-row">
+                    <div class="modal-field">
+                        <label>Number of Floors</label>
+                        <select id="npFloors"><option>1</option><option>2</option><option>3</option><option>4</option></select>
+                    </div>
+                    <div class="modal-field">
+                        <label>Number of Bedrooms</label>
+                        <select id="npBedrooms"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select>
+                    </div>
+                </div>
+
+                <div class="modal-field">
+                    <label>Budget Range</label>
+                    <select id="npBudgetRange">
+                        <option>Under R1M</option>
+                        <option>R1M – R2M</option>
+                        <option selected>R2M – R3M</option>
+                        <option>R3M – R5M</option>
+                        <option>Over R5M</option>
+                    </select>
+                </div>
+
+                <div class="modal-field">
+                    <label>Currency</label>
+                    <select id="npCurrency">
+                        <option>ZAR (R) - South African Rand</option>
+                        <option>USD ($)</option>
+                    </select>
+                </div>
+
+                <div class="modal-field">
+                    <label>Upload Reference (Optional)</label>
+                    <div class="wizard-upload-box" id="npUploadBox">
+                        📎 Click to upload files or drag and drop
+                        <br><small>PDF, JPG, PNG (Max 10MB)</small>
+                    </div>
+                    <input type="file" id="npFileInput" multiple hidden>
+                    <div class="wizard-file-list" id="npFileList"></div>
+                </div>
+
+                <div class="modal-actions">
+                    <button class="modal-cancel-btn" id="npBack2">Back</button>
+                    <button class="modal-submit-btn" id="npNext2">Next</button>
+                </div>
+            </div>
+
+            <!-- Step 3: Review & Create -->
+            <div class="wizard-step is-hidden" data-step="3">
+                <p class="wizard-step-title">Review your project details before creating.</p>
+
+                <div class="wizard-review-card">
+                    <div class="wizard-review-card-header">
+                        <h5>Project Summary</h5>
+                        <a href="#" id="npEditLink">Edit</a>
+                    </div>
+                    <div class="wizard-review-rows" id="npReviewRows"></div>
+                </div>
+
+                <div class="modal-actions">
+                    <button class="modal-cancel-btn" id="npBack3">Back</button>
+                    <button class="modal-submit-btn" id="npCreate">Create Project</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Edit Project modal -->
+    <div class="modal-overlay" id="editProjectModal">
+        <div class="modal-box edit-modal-box">
+            <h3>Edit Project</h3>
+
+            <div class="edit-modal-tabs" id="editModalTabs">
+                <button class="edit-modal-tab active" data-etab="general">General</button>
+                <button class="edit-modal-tab" data-etab="details">Details</button>
+                <button class="edit-modal-tab" data-etab="budget">Budget</button>
+                <button class="edit-modal-tab" data-etab="settings">Settings</button>
+            </div>
+
+            <div class="edit-modal-panel" id="epanel-general">
+                <div class="modal-field">
+                    <label>Project Name</label>
+                    <input type="text" id="epName">
+                </div>
+                <div class="modal-field">
+                    <label>Project Type</label>
+                    <select id="epType">
+                        <option>Residential</option>
+                        <option>Commercial</option>
+                        <option>Mixed-Use</option>
+                    </select>
+                </div>
+                <div class="modal-field">
+                    <label>Location</label>
+                    <input type="text" id="epLocation">
+                </div>
+                <div class="modal-field">
+                    <label>Total Floor Area (m²)</label>
+                    <input type="number" id="epArea">
+                </div>
+                <div class="modal-field">
+                    <label>Description</label>
+                    <textarea id="epDescription" rows="3"></textarea>
+                </div>
+                <div class="modal-field">
+                    <label>Project Status</label>
+                    <select id="epStatus">
+                        <option>Active</option>
+                        <option>Draft</option>
+                        <option>Approved</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="edit-modal-panel is-hidden" id="epanel-details">
+                <div class="modal-field">
+                    <label>Style</label>
+                    <select id="epStyle">
+                        <option>Modern</option>
+                        <option>Contemporary</option>
+                        <option>Traditional</option>
+                        <option>Farmhouse</option>
+                        <option>Luxury</option>
+                        <option>Minimalist</option>
+                    </select>
+                </div>
+                <div class="modal-field-row">
+                    <div class="modal-field">
+                        <label>Floors</label>
+                        <select id="epFloors"><option>1</option><option>2</option><option>3</option><option>4</option></select>
+                    </div>
+                    <div class="modal-field">
+                        <label>Bedrooms</label>
+                        <select id="epBedrooms"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select>
+                    </div>
+                </div>
+                <div class="modal-field">
+                    <label>Bathrooms</label>
+                    <select id="epBathrooms">
+                        <option>1</option><option>1.5</option><option>2</option><option>2.5</option>
+                        <option>3</option><option>3.5</option><option>4</option><option>4.5</option>
+                        <option>5</option><option>5.5</option><option>6</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="edit-modal-panel is-hidden" id="epanel-budget">
+                <h5 class="edit-modal-subheading">Budget Information</h5>
+                <div class="modal-field">
+                    <label>Total Budget</label>
+                    <input type="number" id="epBudgetTotal">
+                </div>
+                <div class="modal-field">
+                    <label>Currency</label>
+                    <select id="epCurrency">
+                        <option>ZAR (R) - South African Rand</option>
+                        <option>USD ($)</option>
+                    </select>
+                </div>
+                <div class="modal-field">
+                    <label>Budget Breakdown (Optional)</label>
+                    <textarea id="epBudgetNotes" rows="2" placeholder="Add breakdown notes"></textarea>
+                </div>
+                <div class="modal-field">
+                    <label>Contingency (%)</label>
+                    <input type="number" id="epContingency" value="10">
+                </div>
+
+                <div class="edit-budget-summary">
+                    <div><span>Total Budget</span><strong id="epSummaryTotal">R0</strong></div>
+                    <div><span id="epSummaryContingencyLabel">Contingency (10%)</span><strong id="epSummaryContingency">R0</strong></div>
+                </div>
+                <div class="edit-budget-total-row">
+                    <span>Total with Contingency</span><strong id="epSummaryGrandTotal">R0</strong>
+                </div>
+            </div>
+
+            <div class="edit-modal-panel is-hidden" id="epanel-settings">
+                <div class="modal-field">
+                    <label>Default Measurement Unit</label>
+                    <select id="epMeasurementUnit">
+                        <option>Metric (m, kg, m²)</option>
+                        <option>Imperial (ft, lb, ft²)</option>
+                    </select>
+                </div>
+                <div class="modal-field">
+                    <label>Default Currency</label>
+                    <select id="epDefaultCurrency">
+                        <option>ZAR (R) - South African Rand</option>
+                        <option>USD ($)</option>
+                    </select>
+                </div>
+                <div class="modal-field">
+                    <label>Time Zone</label>
+                    <select id="epTimeZone">
+                        <option>(GMT+02:00) Johannesburg</option>
+                        <option>(GMT+00:00) London</option>
+                    </select>
+                </div>
+                <div class="modal-field">
+                    <label>Date Format</label>
+                    <select id="epDateFormat">
+                        <option>DD MMM YYYY</option>
+                        <option>MM/DD/YYYY</option>
+                    </select>
+                </div>
+                <div class="toggle-row">
+                    <div><strong>Enable Notifications</strong><span>Receive updates about this project</span></div>
+                    <label class="switch"><input type="checkbox" id="epNotifications" checked><span class="slider"></span></label>
+                </div>
+            </div>
+
+            <div class="modal-actions">
+                <button class="modal-cancel-btn" id="epCancel">Cancel</button>
+                <button class="modal-submit-btn" id="epSave">Save Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Full Project Checklist modal -->
+    <div class="modal-overlay" id="checklistModal">
+        <div class="modal-box checklist-modal-box">
+
+            <div class="checklist-modal-header">
+                <div class="checklist-modal-titles">
+                    <h3 id="checklistModalTitle">Project Checklist</h3>
+                    <p>Track all important steps from design to construction.</p>
+                </div>
+                <div class="checklist-progress-wrap">
+                    <span class="checklist-progress-pct" id="checklistPct">0% Complete</span>
+                    <div class="checklist-progress-track"><div class="checklist-progress-fill" id="checklistProgressFill"></div></div>
+                </div>
+            </div>
+
+            <div class="checklist-modal-toolbar">
+                <div class="checklist-search-box">
+                    <span>🔍</span>
+                    <input type="search" id="checklistSearchInput" placeholder="Search checklist items...">
+                </div>
+
+                <div class="filter-dropdown">
+                    <button class="filter-btn" id="checklistFilterBtn">Filter
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </button>
+                    <div class="filter-menu" id="checklistFilterMenu">
+                        <button data-chk-filter-value="all" class="selected">All Items</button>
+                        <button data-chk-filter-value="done">Completed</button>
+                        <button data-chk-filter-value="in-progress">In Progress</button>
+                        <button data-chk-filter-value="pending">Pending</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="checklist-table-wrap">
+                <table class="checklist-table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Checklist Item</th>
+                            <th>Status</th>
+                            <th>Assigned To</th>
+                            <th>Due Date</th>
+                            <th>Notes</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="checklistTableBody"></tbody>
+                </table>
+            </div>
+
+            <div class="checklist-modal-footer">
+                <button class="add-checklist-item-btn" id="addChecklistItemBtn">+ Add Checklist Item</button>
+                <button class="modal-cancel-btn" id="checklistClose">Close</button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Add / Edit Checklist Item modal -->
+    <div class="modal-overlay" id="checklistItemModal">
         <div class="modal-box">
-            <h3>New Project</h3>
+            <h3 id="checklistItemModalTitle">Add Checklist Item</h3>
 
             <div class="modal-field">
-                <label>Project Name</label>
-                <input type="text" id="npName" placeholder="e.g. Riverside Apartments">
+                <label>Task / Item</label>
+                <input type="text" id="ciTitle" placeholder="Enter checklist item">
+            </div>
+
+            <div class="modal-field">
+                <label>Description (Optional)</label>
+                <textarea id="ciNotes" rows="2" placeholder="Add more details about this item"></textarea>
+            </div>
+
+            <div class="modal-field">
+                <label>Assigned To</label>
+                <select id="ciAssignee">
+                    <option value="">Select team member</option>
+                    <option>Arjun Mehta</option>
+                    <option>Sarah Parker</option>
+                    <option>Michael Johnson</option>
+                    <option>Lisa Wang</option>
+                    <option>Priya Shah</option>
+                    <option>John D.</option>
+                </select>
+            </div>
+
+            <div class="modal-field">
+                <label>Due Date</label>
+                <input type="text" id="ciDueDate" placeholder="Select due date">
             </div>
 
             <div class="modal-field">
                 <label>Status</label>
-                <select id="npStatus">
-                    <option value="Draft">Draft</option>
-                    <option value="Active">Active</option>
-                    <option value="Approved">Approved</option>
+                <select id="ciStatus">
+                    <option>Pending</option>
+                    <option>In Progress</option>
+                    <option>Completed</option>
                 </select>
-            </div>
-
-            <div class="modal-field">
-                <label>Style</label>
-                <select id="npStyle">
-                    <option value="Modern">Modern</option>
-                    <option value="Contemporary">Contemporary</option>
-                    <option value="Traditional">Traditional</option>
-                </select>
-            </div>
-
-            <div class="modal-field">
-                <label>Budget (R)</label>
-                <input type="number" id="npBudget" placeholder="e.g. 2500000">
-            </div>
-
-            <div class="modal-field">
-                <label>Total Area (m²)</label>
-                <input type="number" id="npArea" placeholder="e.g. 250">
             </div>
 
             <div class="modal-actions">
-                <button class="modal-cancel-btn" id="npCancel">Cancel</button>
-                <button class="modal-submit-btn" id="npCreate">Create Project</button>
+                <button class="modal-cancel-btn" id="ciCancel">Cancel</button>
+                <button class="modal-submit-btn" id="ciSave">Add Item</button>
             </div>
+        </div>
+    </div>
+
+    <!-- Item Completed confirmation -->
+    <div class="modal-overlay" id="itemCompletedModal">
+        <div class="modal-box item-completed-box">
+            <div class="item-completed-icon">✓</div>
+            <h3>Item Completed!</h3>
+            <p>This checklist item has been marked as completed.</p>
+            <button class="modal-submit-btn" id="itemCompletedOk">OK</button>
         </div>
     </div>
 
@@ -600,8 +944,8 @@
     <script>
 
     // =================================================================
-    // Sidebar resize + collapse, persisted (shared behaviour with
-    // dashboard.html)
+    // Sidebar resize + collapse, persisted (same behaviour, same keys,
+    // and same limits — 70 / 240px, default 180px — everywhere)
     // =================================================================
 
     const sidebar = document.querySelector(".dashboard-navbar");
@@ -610,8 +954,8 @@
     const COLLAPSE_THRESHOLD = 85;
     const COLLAPSED_WIDTH = 72;
     const MIN_WIDTH = 70;
-    const MAX_WIDTH = 300;
-    const DEFAULT_WIDTH = 220;
+    const MAX_WIDTH = 240;
+    const DEFAULT_WIDTH = 180;
 
     function applyWidth(width, persist) {
         const collapsed = width <= COLLAPSE_THRESHOLD;
@@ -742,6 +1086,9 @@
             },
             breakdown: { design: 100, materials: 65, suppliers: 50, budget: 72 },
             budget: { total: 2500000, spent: 1800000, remaining: 700000 },
+            contingencyPct: 10,
+            budgetNotes: "",
+            notificationsEnabled: true,
             activity: [
                 ["Budget updated", "by Ariun Mehta", "22 May 2024"],
                 ["Materials added", "by Priya Shah", "21 May 2024"],
@@ -749,11 +1096,11 @@
                 ["Supplier quote received", "by John D.", "19 May 2024"]
             ],
             checklist: [
-                ["Design Completed", "done", "Completed on 18 May 2024"],
-                ["Materials Selected", "in-progress", "In Progress"],
-                ["Supplier Quotes", "pending", "Pending"],
-                ["Budget Finalized", "pending", "Pending"],
-                ["Construction Ready", "pending", "Pending"]
+                { title:"Design Completed", state:"done", sub:"Completed on 18 May 2024", assignedTo:"Arjun Mehta", dueDate:"18 May 2024", notes:"Floor plans and elevations done" },
+                { title:"Materials Selected", state:"in-progress", sub:"In Progress", assignedTo:"Priya Shah", dueDate:"25 May 2024", notes:"Main materials selected" },
+                { title:"Supplier Quotes", state:"pending", sub:"Pending", assignedTo:"John D.", dueDate:"28 May 2024", notes:"Waiting for supplier responses" },
+                { title:"Budget Finalized", state:"pending", sub:"Pending", assignedTo:"Arjun Mehta", dueDate:"30 May 2024", notes:"Need final cost review" },
+                { title:"Construction Ready", state:"pending", sub:"Pending", assignedTo:"—", dueDate:"05 Jun 2024", notes:"Final approval pending" }
             ]
         },
 
@@ -784,16 +1131,19 @@
             },
             breakdown: { design: 60, materials: 20, suppliers: 10, budget: 25 },
             budget: { total: 1800000, spent: 450000, remaining: 1350000 },
+            contingencyPct: 10,
+            budgetNotes: "",
+            notificationsEnabled: true,
             activity: [
                 ["Design drafted", "by Ariun Mehta", "20 May 2024"],
                 ["Estimate created", "by Ariun Mehta", "18 May 2024"]
             ],
             checklist: [
-                ["Design Completed", "in-progress", "In Progress"],
-                ["Materials Selected", "pending", "Pending"],
-                ["Supplier Quotes", "pending", "Pending"],
-                ["Budget Finalized", "pending", "Pending"],
-                ["Construction Ready", "pending", "Pending"]
+                { title:"Design Completed", state:"in-progress", sub:"In Progress", assignedTo:"Ariun Mehta", dueDate:"22 May 2024", notes:"Drafting floor plan" },
+                { title:"Materials Selected", state:"pending", sub:"Pending", assignedTo:"—", dueDate:"—", notes:"" },
+                { title:"Supplier Quotes", state:"pending", sub:"Pending", assignedTo:"—", dueDate:"—", notes:"" },
+                { title:"Budget Finalized", state:"pending", sub:"Pending", assignedTo:"—", dueDate:"—", notes:"" },
+                { title:"Construction Ready", state:"pending", sub:"Pending", assignedTo:"—", dueDate:"—", notes:"" }
             ]
         },
 
@@ -824,17 +1174,20 @@
             },
             breakdown: { design: 100, materials: 100, suppliers: 100, budget: 100 },
             budget: { total: 8200000, spent: 8200000, remaining: 0 },
+            contingencyPct: 10,
+            budgetNotes: "",
+            notificationsEnabled: true,
             activity: [
                 ["Final approval received", "by Client", "18 May 2024"],
                 ["Construction handover prepared", "by Ariun Mehta", "16 May 2024"],
                 ["Final supplier orders placed", "by Priya Shah", "10 May 2024"]
             ],
             checklist: [
-                ["Design Completed", "done", "Completed on 2 May 2024"],
-                ["Materials Selected", "done", "Completed on 6 May 2024"],
-                ["Supplier Quotes", "done", "Completed on 10 May 2024"],
-                ["Budget Finalized", "done", "Completed on 14 May 2024"],
-                ["Construction Ready", "done", "Completed on 18 May 2024"]
+                { title:"Design Completed", state:"done", sub:"Completed on 2 May 2024", assignedTo:"Arjun Mehta", dueDate:"02 May 2024", notes:"Design approved by client" },
+                { title:"Materials Selected", state:"done", sub:"Completed on 6 May 2024", assignedTo:"Priya Shah", dueDate:"06 May 2024", notes:"All materials confirmed" },
+                { title:"Supplier Quotes", state:"done", sub:"Completed on 10 May 2024", assignedTo:"John D.", dueDate:"10 May 2024", notes:"Quotes received and approved" },
+                { title:"Budget Finalized", state:"done", sub:"Completed on 14 May 2024", assignedTo:"Arjun Mehta", dueDate:"14 May 2024", notes:"Budget signed off" },
+                { title:"Construction Ready", state:"done", sub:"Completed on 18 May 2024", assignedTo:"Arjun Mehta", dueDate:"18 May 2024", notes:"Ready to start construction" }
             ]
         }
 
@@ -964,7 +1317,7 @@
                 duplicateProject(id);
             } else if (action === "edit") {
                 selectProject(id);
-                setActiveDetailTab("settings");
+                openEditProjectModal(id);
             }
             return;
         }
@@ -1023,6 +1376,8 @@
         const menu = dropdown.querySelector(".filter-menu");
         const key = dropdown.dataset.filter;
 
+        if (!key) return; // dropdowns owned by other modals (e.g. checklist) wire themselves up separately
+
         btn.addEventListener("click", (e) => {
             e.stopPropagation();
             document.querySelectorAll(".filter-menu.open").forEach(m => { if (m !== menu) m.classList.remove("open"); });
@@ -1057,84 +1412,282 @@
     });
 
     // =================================================================
-    // New Project modal
+    // New Project modal (3-step wizard)
     // =================================================================
 
     const npModal = document.getElementById("newProjectModal");
+    const wizardSteps = document.querySelectorAll(".wizard-step");
+    const npStepLabel = document.getElementById("npStepLabel");
+
+    const BUDGET_RANGE_MAP = {
+        "Under R1M": 800000,
+        "R1M – R2M": 1500000,
+        "R2M – R3M": 2500000,
+        "R3M – R5M": 4000000,
+        "Over R5M": 6000000
+    };
+
+    function showWizardStep(n) {
+        wizardSteps.forEach(s => s.classList.toggle("is-hidden", Number(s.dataset.step) !== n));
+        npStepLabel.textContent = "Step " + n + " of 3";
+    }
+
+    let npUploadedFiles = [];
+
+    function resetWizard() {
+        showWizardStep(1);
+        ["npName", "npLocation", "npArea", "npDescription"].forEach(id => document.getElementById(id).value = "");
+        document.getElementById("npType").selectedIndex = 0;
+        document.getElementById("npStyle").selectedIndex = 0;
+        document.getElementById("npFloors").selectedIndex = 0;
+        document.getElementById("npBedrooms").selectedIndex = 0;
+        document.getElementById("npBudgetRange").value = "R2M – R3M";
+        document.getElementById("npCurrency").selectedIndex = 0;
+        document.getElementById("npFileList").innerHTML = "";
+        npUploadedFiles = [];
+    }
 
     document.getElementById("newProjectBtn").addEventListener("click", () => {
+        resetWizard();
         npModal.classList.add("open");
     });
 
-    document.getElementById("npCancel").addEventListener("click", () => {
-        npModal.classList.remove("open");
-    });
+    document.getElementById("npCancel1").addEventListener("click", () => npModal.classList.remove("open"));
 
     npModal.addEventListener("click", (e) => {
         if (e.target === npModal) npModal.classList.remove("open");
     });
 
+    document.getElementById("npNext1").addEventListener("click", () => {
+        const name = document.getElementById("npName").value.trim();
+        if (!name) {
+            showToast("Give the project a name first");
+            document.getElementById("npName").focus();
+            return;
+        }
+        showWizardStep(2);
+    });
+
+    document.getElementById("npBack2").addEventListener("click", () => showWizardStep(1));
+
+    document.getElementById("npUploadBox").addEventListener("click", () => document.getElementById("npFileInput").click());
+
+    document.getElementById("npFileInput").addEventListener("change", (e) => {
+        npUploadedFiles = Array.from(e.target.files).map(f => f.name);
+        document.getElementById("npFileList").innerHTML = npUploadedFiles.map(n => `<span>📎 ${n}</span>`).join("");
+    });
+
+    function buildReviewRows() {
+        const rows = [
+            ["Project Name", document.getElementById("npName").value.trim() || "—"],
+            ["Project Type", document.getElementById("npType").value],
+            ["Location", document.getElementById("npLocation").value.trim() || "—"],
+            ["Total Floor Area", (document.getElementById("npArea").value || "—") + " m²"],
+            ["Style", document.getElementById("npStyle").value],
+            ["Floors", document.getElementById("npFloors").value],
+            ["Bedrooms", document.getElementById("npBedrooms").value],
+            ["Budget Range", document.getElementById("npBudgetRange").value],
+            ["Currency", document.getElementById("npCurrency").value]
+        ];
+
+        const desc = document.getElementById("npDescription").value.trim();
+
+        document.getElementById("npReviewRows").innerHTML = rows.map(([label, value]) =>
+            `<div class="wizard-review-row"><span>${label}</span><strong>${value}</strong></div>`
+        ).join("") + (desc ? `<div class="wizard-review-desc"><span>Description</span><p>${desc}</p></div>` : "");
+    }
+
+    document.getElementById("npNext2").addEventListener("click", () => {
+        buildReviewRows();
+        showWizardStep(3);
+    });
+
+    document.getElementById("npBack3").addEventListener("click", () => showWizardStep(2));
+
+    document.getElementById("npEditLink").addEventListener("click", (e) => {
+        e.preventDefault();
+        showWizardStep(1);
+    });
+
     document.getElementById("npCreate").addEventListener("click", () => {
         const name = document.getElementById("npName").value.trim();
         if (!name) {
+            showWizardStep(1);
             showToast("Give the project a name first");
             return;
         }
 
-        const status = document.getElementById("npStatus").value;
+        const type = document.getElementById("npType").value;
+        const location = document.getElementById("npLocation").value.trim() || "—";
+        const area = document.getElementById("npArea").value || "0";
+        const description = document.getElementById("npDescription").value.trim() || "No description added yet for this project.";
+
         const style = document.getElementById("npStyle").value;
-        const budgetNumeric = Number(document.getElementById("npBudget").value) || 0;
-        const area = document.getElementById("npArea").value || "—";
+        const floors = document.getElementById("npFloors").value;
+        const bedrooms = document.getElementById("npBedrooms").value;
+        const budgetRangeLabel = document.getElementById("npBudgetRange").value;
+        const budgetNumeric = BUDGET_RANGE_MAP[budgetRangeLabel] || 0;
 
         const newId = "project-" + (nextId++);
 
         projectsData[newId] = {
             id: newId,
             name: name,
-            type: "Residential",
-            status: status,
+            type: type,
+            status: "Draft",
             style: style,
             area: area + " m²",
             created: "Just now",
-            budgetDisplay: budgetNumeric ? money(budgetNumeric) : "—",
+            budgetDisplay: budgetRangeLabel,
             budgetNumeric: budgetNumeric,
             progress: 0,
             favorite: false,
             lastUpdated: "Just now",
             updatedBy: "Moses",
             summary: {
-                description: "No description added yet for this project.",
+                description: description,
                 rows: [
-                    ["Location", "—"],
+                    ["Location", location],
                     ["Style", style],
-                    ["Floors", "—"],
-                    ["Bedrooms", "—"],
+                    ["Floors", floors],
+                    ["Bedrooms", bedrooms],
                     ["Bathrooms", "—"],
                     ["Total Area", area + " m²"]
                 ]
             },
             breakdown: { design: 0, materials: 0, suppliers: 0, budget: 0 },
             budget: { total: budgetNumeric, spent: 0, remaining: budgetNumeric },
+            contingencyPct: 10,
+            budgetNotes: "",
+            notificationsEnabled: true,
             activity: [["Project created", "by Moses", "Just now"]],
             checklist: [
-                ["Design Completed", "pending", "Pending"],
-                ["Materials Selected", "pending", "Pending"],
-                ["Supplier Quotes", "pending", "Pending"],
-                ["Budget Finalized", "pending", "Pending"],
-                ["Construction Ready", "pending", "Pending"]
+                { title:"Design Completed", state:"pending", sub:"Pending", assignedTo:"—", dueDate:"—", notes:"" },
+                { title:"Materials Selected", state:"pending", sub:"Pending", assignedTo:"—", dueDate:"—", notes:"" },
+                { title:"Supplier Quotes", state:"pending", sub:"Pending", assignedTo:"—", dueDate:"—", notes:"" },
+                { title:"Budget Finalized", state:"pending", sub:"Pending", assignedTo:"—", dueDate:"—", notes:"" },
+                { title:"Construction Ready", state:"pending", sub:"Pending", assignedTo:"—", dueDate:"—", notes:"" }
             ]
         };
 
         projectOrder.unshift(newId);
 
-        document.getElementById("npName").value = "";
-        document.getElementById("npBudget").value = "";
-        document.getElementById("npArea").value = "";
-
         npModal.classList.remove("open");
         renderTable();
         selectProject(newId);
         showToast("Project created");
+    });
+
+    // =================================================================
+    // Edit Project modal
+    // =================================================================
+
+    const editModal = document.getElementById("editProjectModal");
+
+    function setEditModalTab(tab) {
+        document.querySelectorAll(".edit-modal-tab").forEach(t => t.classList.toggle("active", t.dataset.etab === tab));
+        document.querySelectorAll(".edit-modal-panel").forEach(panel => {
+            panel.classList.toggle("is-hidden", panel.id !== "epanel-" + tab);
+        });
+    }
+
+    document.getElementById("editModalTabs").addEventListener("click", (e) => {
+        const btn = e.target.closest(".edit-modal-tab");
+        if (btn) setEditModalTab(btn.dataset.etab);
+    });
+
+    function findRow(p, label) {
+        return p.summary.rows.find(r => r[0] === label);
+    }
+
+    function setRow(p, label, value) {
+        const row = findRow(p, label);
+        if (row) row[1] = value; else p.summary.rows.push([label, value]);
+    }
+
+    function recalcEditBudgetSummary() {
+        const total = Number(document.getElementById("epBudgetTotal").value) || 0;
+        const pct = Number(document.getElementById("epContingency").value) || 0;
+        const contingency = Math.round(total * (pct / 100));
+
+        document.getElementById("epSummaryTotal").textContent = money(total);
+        document.getElementById("epSummaryContingency").textContent = money(contingency);
+        document.getElementById("epSummaryGrandTotal").textContent = money(total + contingency);
+        document.getElementById("epSummaryContingencyLabel").textContent = "Contingency (" + pct + "%)";
+    }
+
+    document.getElementById("epBudgetTotal").addEventListener("input", recalcEditBudgetSummary);
+    document.getElementById("epContingency").addEventListener("input", recalcEditBudgetSummary);
+
+    function openEditProjectModal(id, startTab) {
+        const p = projectsData[id];
+        if (!p) return;
+
+        document.getElementById("epName").value = p.name;
+        document.getElementById("epType").value = p.type || "Residential";
+        document.getElementById("epLocation").value = (findRow(p, "Location") || [, ""])[1];
+        document.getElementById("epArea").value = parseInt(p.area, 10) || "";
+        document.getElementById("epDescription").value = p.summary.description;
+        document.getElementById("epStatus").value = p.status;
+
+        document.getElementById("epStyle").value = p.style || "Modern";
+        document.getElementById("epFloors").value = (findRow(p, "Floors") || [, "1"])[1];
+        document.getElementById("epBedrooms").value = (findRow(p, "Bedrooms") || [, "1"])[1];
+        document.getElementById("epBathrooms").value = (findRow(p, "Bathrooms") || [, "1"])[1];
+
+        document.getElementById("epBudgetTotal").value = p.budget.total;
+        document.getElementById("epContingency").value = p.contingencyPct || 10;
+        document.getElementById("epBudgetNotes").value = p.budgetNotes || "";
+        recalcEditBudgetSummary();
+
+        document.getElementById("epNotifications").checked = p.notificationsEnabled !== false;
+
+        editModal.dataset.editingId = id;
+        setEditModalTab(startTab || "general");
+        editModal.classList.add("open");
+    }
+
+    document.getElementById("epCancel").addEventListener("click", () => editModal.classList.remove("open"));
+    editModal.addEventListener("click", (e) => { if (e.target === editModal) editModal.classList.remove("open"); });
+
+    document.getElementById("epSave").addEventListener("click", () => {
+        const id = editModal.dataset.editingId;
+        const p = projectsData[id];
+        if (!p) return;
+
+        p.name = document.getElementById("epName").value.trim() || p.name;
+        p.type = document.getElementById("epType").value;
+        p.status = document.getElementById("epStatus").value;
+        p.style = document.getElementById("epStyle").value;
+
+        const area = document.getElementById("epArea").value || "0";
+        p.area = area + " m²";
+
+        setRow(p, "Location", document.getElementById("epLocation").value);
+        setRow(p, "Style", p.style);
+        setRow(p, "Floors", document.getElementById("epFloors").value);
+        setRow(p, "Bedrooms", document.getElementById("epBedrooms").value);
+        setRow(p, "Bathrooms", document.getElementById("epBathrooms").value);
+        setRow(p, "Total Area", p.area);
+
+        p.summary.description = document.getElementById("epDescription").value;
+
+        p.budget.total = Number(document.getElementById("epBudgetTotal").value) || p.budget.total;
+        p.budget.remaining = Math.max(0, p.budget.total - p.budget.spent);
+        p.budgetNumeric = p.budget.total;
+        p.budgetDisplay = money(p.budget.total);
+        p.contingencyPct = Number(document.getElementById("epContingency").value) || 0;
+        p.budgetNotes = document.getElementById("epBudgetNotes").value;
+
+        p.notificationsEnabled = document.getElementById("epNotifications").checked;
+
+        p.lastUpdated = "Just now";
+        p.updatedBy = "Moses";
+
+        renderTable();
+        selectProject(id);
+        editModal.classList.remove("open");
+        showToast("Project updated");
     });
 
     // =================================================================
@@ -1220,32 +1773,252 @@
     }
 
     function renderChecklist(p) {
-        checklistList.innerHTML = p.checklist.map(([title, state, sub], idx) => {
-            const icon = state === "done" ? "✓" : "";
+        checklistList.innerHTML = p.checklist.slice(0, 5).map((item, idx) => {
+            const icon = item.state === "done" ? "✓" : "";
             return `
-                <div class="checklist-item ${state}" data-idx="${idx}">
+                <div class="checklist-item ${item.state}" data-idx="${idx}">
                     <span class="chk-icon">${icon}</span>
-                    <div><strong>${title}</strong><span>${sub}</span></div>
+                    <div><strong>${item.title}</strong><span>${item.sub}</span></div>
                 </div>
             `;
         }).join("");
     }
 
     checklistList.addEventListener("click", (e) => {
-        const item = e.target.closest(".checklist-item");
-        if (!item) return;
+        const itemEl = e.target.closest(".checklist-item");
+        if (!itemEl) return;
 
         const p = projectsData[selectedProjectId];
-        const idx = Number(item.dataset.idx);
+        const idx = Number(itemEl.dataset.idx);
         const entry = p.checklist[idx];
 
         const order = ["pending", "in-progress", "done"];
-        const next = order[(order.indexOf(entry[1]) + 1) % order.length];
+        const next = order[(order.indexOf(entry.state) + 1) % order.length];
 
-        entry[1] = next;
-        entry[2] = next === "done" ? "Completed just now" : next === "in-progress" ? "In Progress" : "Pending";
+        entry.state = next;
+        entry.sub = next === "done" ? "Completed just now" : next === "in-progress" ? "In Progress" : "Pending";
 
         renderChecklist(p);
+
+        if (checklistModal.classList.contains("open")) {
+            renderChecklistTable();
+        }
+    });
+
+    // =================================================================
+    // Full Project Checklist modal (+ Add/Edit item, + Item Completed)
+    // =================================================================
+
+    const checklistModal = document.getElementById("checklistModal");
+    const checklistItemModal = document.getElementById("checklistItemModal");
+    const itemCompletedModal = document.getElementById("itemCompletedModal");
+
+    let checklistFilter = "all";
+    let checklistSearch = "";
+    let editingChecklistIndex = null;
+
+    function statusMeta(state) {
+        if (state === "done") return { label: "Completed", cls: "completed" };
+        if (state === "in-progress") return { label: "In Progress", cls: "in-progress" };
+        return { label: "Pending", cls: "pending" };
+    }
+
+    function renderChecklistProgress(p) {
+        const total = p.checklist.length;
+        const done = p.checklist.filter(i => i.state === "done").length;
+        const pct = total ? Math.round((done / total) * 100) : 0;
+
+        const pctEl = document.getElementById("checklistPct");
+        const fillEl = document.getElementById("checklistProgressFill");
+
+        pctEl.textContent = pct + "% Complete";
+        pctEl.classList.toggle("complete", pct === 100);
+        fillEl.style.width = pct + "%";
+        fillEl.classList.toggle("complete", pct === 100);
+    }
+
+    function checklistPasses(item) {
+        if (checklistFilter !== "all" && item.state !== checklistFilter) return false;
+        if (checklistSearch && !item.title.toLowerCase().includes(checklistSearch)) return false;
+        return true;
+    }
+
+    function renderChecklistTable() {
+        const p = projectsData[selectedProjectId];
+        if (!p) return;
+
+        document.getElementById("checklistModalTitle").textContent = "Project Checklist – " + p.name;
+        renderChecklistProgress(p);
+
+        const tbodyEl = document.getElementById("checklistTableBody");
+        const visible = p.checklist.map((item, idx) => ({ item, idx })).filter(({ item }) => checklistPasses(item));
+
+        if (!visible.length) {
+            tbodyEl.innerHTML = '<tr class="no-results-row"><td colspan="7">No checklist items match.</td></tr>';
+            return;
+        }
+
+        tbodyEl.innerHTML = visible.map(({ item, idx }) => {
+            const meta = statusMeta(item.state);
+            return `
+                <tr data-idx="${idx}">
+                    <td>${idx + 1}</td>
+                    <td class="chk-title-cell">${item.title}</td>
+                    <td><span class="chk-status-pill ${meta.cls}">${meta.label}</span></td>
+                    <td>${item.assignedTo || "—"}</td>
+                    <td>${item.dueDate || "—"}</td>
+                    <td class="chk-notes-cell" title="${item.notes || ""}">${item.notes || "—"}</td>
+                    <td class="chk-actions-cell">
+                        <button class="row-menu-btn" data-chk-menu-btn="${idx}">⋮</button>
+                        <div class="row-menu" data-chk-menu="${idx}">
+                            ${item.state !== "done" ? `<button data-chk-action="complete" data-chk-idx="${idx}">Mark Complete</button>` : ""}
+                            <button data-chk-action="edit" data-chk-idx="${idx}">Edit</button>
+                            <button class="danger" data-chk-action="delete" data-chk-idx="${idx}">Delete</button>
+                        </div>
+                    </td>
+                </tr>
+            `;
+        }).join("");
+    }
+
+    function openChecklistModal(id) {
+        if (!projectsData[id]) return;
+
+        checklistFilter = "all";
+        checklistSearch = "";
+        document.getElementById("checklistSearchInput").value = "";
+        document.querySelectorAll("#checklistFilterMenu button").forEach(b =>
+            b.classList.toggle("selected", b.dataset.chkFilterValue === "all")
+        );
+
+        renderChecklistTable();
+        checklistModal.classList.add("open");
+    }
+
+    document.getElementById("openFullChecklistBtn").addEventListener("click", () => openChecklistModal(selectedProjectId));
+
+    document.getElementById("checklistClose").addEventListener("click", () => checklistModal.classList.remove("open"));
+    checklistModal.addEventListener("click", (e) => { if (e.target === checklistModal) checklistModal.classList.remove("open"); });
+
+    document.getElementById("checklistSearchInput").addEventListener("input", (e) => {
+        checklistSearch = e.target.value.trim().toLowerCase();
+        renderChecklistTable();
+    });
+
+    const checklistFilterBtn = document.getElementById("checklistFilterBtn");
+    const checklistFilterMenu = document.getElementById("checklistFilterMenu");
+
+    checklistFilterBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        document.querySelectorAll(".filter-menu.open").forEach(m => { if (m !== checklistFilterMenu) m.classList.remove("open"); });
+        checklistFilterMenu.classList.toggle("open");
+    });
+
+    checklistFilterMenu.querySelectorAll("button").forEach(btn => {
+        btn.addEventListener("click", () => {
+            checklistFilter = btn.dataset.chkFilterValue;
+            checklistFilterMenu.querySelectorAll("button").forEach(b => b.classList.remove("selected"));
+            btn.classList.add("selected");
+            checklistFilterMenu.classList.remove("open");
+            renderChecklistTable();
+        });
+    });
+
+    document.getElementById("checklistTableBody").addEventListener("click", (e) => {
+
+        const menuBtn = e.target.closest("[data-chk-menu-btn]");
+        if (menuBtn) {
+            const menu = document.querySelector(`[data-chk-menu="${menuBtn.dataset.chkMenuBtn}"]`);
+            document.querySelectorAll(".row-menu.open").forEach(m => { if (m !== menu) m.classList.remove("open"); });
+            menu.classList.toggle("open");
+            return;
+        }
+
+        const actionBtn = e.target.closest("[data-chk-action]");
+        if (actionBtn) {
+            const idx = Number(actionBtn.dataset.chkIdx);
+            const action = actionBtn.dataset.chkAction;
+            const p = projectsData[selectedProjectId];
+
+            if (action === "delete") {
+                p.checklist.splice(idx, 1);
+                renderChecklistTable();
+                renderChecklist(p);
+            } else if (action === "edit") {
+                openChecklistItemModal(idx);
+            } else if (action === "complete") {
+                p.checklist[idx].state = "done";
+                p.checklist[idx].sub = "Completed just now";
+                renderChecklistTable();
+                renderChecklist(p);
+                itemCompletedModal.classList.add("open");
+            }
+
+            document.querySelectorAll(".row-menu.open").forEach(m => m.classList.remove("open"));
+        }
+    });
+
+    document.addEventListener("click", (e) => {
+        if (!e.target.closest(".chk-actions-cell")) {
+            document.querySelectorAll("[data-chk-menu].open").forEach(m => m.classList.remove("open"));
+        }
+    });
+
+    document.getElementById("itemCompletedOk").addEventListener("click", () => itemCompletedModal.classList.remove("open"));
+
+    function openChecklistItemModal(idx) {
+        editingChecklistIndex = (idx === null || idx === undefined) ? null : idx;
+        const isEdit = editingChecklistIndex !== null;
+        const p = projectsData[selectedProjectId];
+        const item = isEdit ? p.checklist[editingChecklistIndex] : null;
+
+        document.getElementById("checklistItemModalTitle").textContent = isEdit ? "Edit Checklist Item" : "Add Checklist Item";
+        document.getElementById("ciTitle").value = item ? item.title : "";
+        document.getElementById("ciNotes").value = item ? (item.notes || "") : "";
+        document.getElementById("ciAssignee").value = item ? (item.assignedTo || "") : "";
+        document.getElementById("ciDueDate").value = item ? (item.dueDate || "") : "";
+        document.getElementById("ciStatus").value = item ? statusMeta(item.state).label : "Pending";
+        document.getElementById("ciSave").textContent = isEdit ? "Save Changes" : "Add Item";
+
+        checklistItemModal.classList.add("open");
+    }
+
+    document.getElementById("addChecklistItemBtn").addEventListener("click", () => openChecklistItemModal(null));
+
+    document.getElementById("ciCancel").addEventListener("click", () => checklistItemModal.classList.remove("open"));
+    checklistItemModal.addEventListener("click", (e) => { if (e.target === checklistItemModal) checklistItemModal.classList.remove("open"); });
+
+    document.getElementById("ciSave").addEventListener("click", () => {
+        const title = document.getElementById("ciTitle").value.trim();
+        if (!title) { document.getElementById("ciTitle").focus(); return; }
+
+        const statusLabel = document.getElementById("ciStatus").value;
+        const state = statusLabel === "Completed" ? "done" : statusLabel === "In Progress" ? "in-progress" : "pending";
+
+        const newItem = {
+            title: title,
+            state: state,
+            sub: statusLabel,
+            assignedTo: document.getElementById("ciAssignee").value || "—",
+            dueDate: document.getElementById("ciDueDate").value.trim() || "—",
+            notes: document.getElementById("ciNotes").value.trim()
+        };
+
+        const p = projectsData[selectedProjectId];
+
+        if (editingChecklistIndex !== null) {
+            p.checklist[editingChecklistIndex] = newItem;
+        } else {
+            p.checklist.push(newItem);
+        }
+
+        checklistItemModal.classList.remove("open");
+        renderChecklistTable();
+        renderChecklist(p);
+
+        if (state === "done") {
+            itemCompletedModal.classList.add("open");
+        }
     });
 
     // =================================================================
@@ -1272,13 +2045,13 @@
         }
     });
 
-    document.getElementById("editProjectBtn").addEventListener("click", () => setActiveDetailTab("settings"));
+    document.getElementById("editProjectBtn").addEventListener("click", () => openEditProjectModal(selectedProjectId));
 
     document.getElementById("shareBtn").addEventListener("click", () => {
         showToast("Share link copied (demo only)");
     });
 
-    document.getElementById("moreBtn").addEventListener("click", () => setActiveDetailTab("settings"));
+    document.getElementById("moreBtn").addEventListener("click", () => openEditProjectModal(selectedProjectId, "settings"));
 
     document.getElementById("detailBack").addEventListener("click", () => {
         document.querySelector(".Projects-current-list").scrollIntoView({ behavior: "smooth" });

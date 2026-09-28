@@ -688,6 +688,19 @@
     text-decoration:underline;
 }
 
+/* Overview "View Full Checklist" is now a <button> styled like the
+   .ov-link anchor it replaced, so it keeps the same look while being
+   a real, keyboard-focusable button that opens the checklist modal. */
+.ov-link-btn
+{
+    border:none;
+    background:none;
+    padding:0;
+    text-align:left;
+    cursor:pointer;
+    font-family:inherit;
+}
+
 /* Progress overview donut */
 
 .ov-progress-body
@@ -1294,7 +1307,7 @@
 .btn-danger-sm:hover{ background:#fdeaea; }
 
 /* ======================================================================================
-    New Project modal
+    Shared modal shell (New Project, Edit Project, Checklist, etc.)
     ======================================================================================*/
 
 .modal-overlay
@@ -1340,6 +1353,18 @@
     margin-bottom:14px;
 }
 
+.modal-field-row
+{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+}
+
+.modal-field-row .modal-field
+{
+    margin-bottom:14px;
+}
+
 .modal-field label
 {
     display:block;
@@ -1350,21 +1375,36 @@
 }
 
 .modal-field input,
-.modal-field select
+.modal-field select,
+.modal-field textarea
 {
     width:100%;
-    height:38px;
     padding:0 12px;
+    box-sizing:border-box;
 
     border:1px solid #e2e6ef;
     border-radius:8px;
 
     font-size:13px;
+    font-family:inherit;
     outline:none;
 }
 
+.modal-field input,
+.modal-field select
+{
+    height:38px;
+}
+
+.modal-field textarea
+{
+    padding:10px 12px;
+    resize:vertical;
+}
+
 .modal-field input:focus,
-.modal-field select:focus
+.modal-field select:focus,
+.modal-field textarea:focus
 {
     border-color:#2f6feb;
 }
@@ -1404,6 +1444,568 @@
 }
 
 .modal-submit-btn:hover{ background:#255fd1; }
+
+/* ======================================================================================
+    New Project wizard (3-step)
+    ======================================================================================*/
+
+.wizard-modal-box
+{
+    width:440px;
+    max-height:90vh;
+    overflow-y:auto;
+}
+
+.wizard-header
+{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:6px;
+}
+
+.wizard-header h3
+{
+    margin:0;
+    font-size:17px;
+    font-weight:800;
+    color:#18233c;
+}
+
+.wizard-step-label
+{
+    flex-shrink:0;
+    font-size:11px;
+    font-weight:700;
+    color:#2f6feb;
+    background:#eaf1ff;
+    padding:4px 10px;
+    border-radius:999px;
+    white-space:nowrap;
+}
+
+.wizard-step-title
+{
+    margin:0 0 18px;
+    font-size:12.5px;
+    color:#8a93a8;
+}
+
+.wizard-step.is-hidden
+{
+    display:none;
+}
+
+.wizard-upload-box
+{
+    border:1.5px dashed #d8dce4;
+    border-radius:10px;
+    padding:16px;
+    text-align:center;
+    font-size:12px;
+    color:#8a93a8;
+    cursor:pointer;
+    line-height:1.6;
+}
+
+.wizard-upload-box:hover
+{
+    background:#f5f7fb;
+    border-color:#bcd2fb;
+}
+
+.wizard-file-list
+{
+    margin-top:8px;
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+    font-size:11.5px;
+    color:#3a4256;
+}
+
+.wizard-review-card
+{
+    border:1px solid #eef0f5;
+    border-radius:12px;
+    padding:16px;
+    margin-bottom:6px;
+}
+
+.wizard-review-card-header
+{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:12px;
+}
+
+.wizard-review-card-header h5
+{
+    margin:0;
+    font-size:13px;
+    font-weight:700;
+    color:#18233c;
+}
+
+.wizard-review-card-header a
+{
+    font-size:12px;
+    font-weight:700;
+    color:#2f6feb;
+    text-decoration:none;
+}
+
+.wizard-review-card-header a:hover
+{
+    text-decoration:underline;
+}
+
+.wizard-review-rows
+{
+    display:flex;
+    flex-direction:column;
+    gap:9px;
+}
+
+.wizard-review-row
+{
+    display:flex;
+    justify-content:space-between;
+    gap:12px;
+    font-size:12.5px;
+}
+
+.wizard-review-row span{ color:#8a93a8; }
+.wizard-review-row strong{ color:#22304d; font-weight:600; text-align:right; }
+
+.wizard-review-desc
+{
+    margin-top:10px;
+    padding-top:10px;
+    border-top:1px solid #f2f4f8;
+}
+
+.wizard-review-desc span
+{
+    display:block;
+    font-size:11.5px;
+    color:#8a93a8;
+    margin-bottom:4px;
+}
+
+.wizard-review-desc p
+{
+    margin:0;
+    font-size:12.5px;
+    color:#3a4256;
+    line-height:1.5;
+}
+
+/* ======================================================================================
+    Edit Project modal (tabbed)
+    ======================================================================================*/
+
+.edit-modal-box
+{
+    width:460px;
+    max-height:90vh;
+    overflow-y:auto;
+}
+
+.edit-modal-tabs
+{
+    display:flex;
+    gap:4px;
+    border-bottom:1px solid #eef0f5;
+    margin-bottom:16px;
+}
+
+.edit-modal-tab
+{
+    height:36px;
+    padding:0 12px;
+    border:none;
+    background:none;
+    border-bottom:2px solid transparent;
+    margin-bottom:-1px;
+
+    font-size:12.5px;
+    font-weight:600;
+    color:#8a93a8;
+    cursor:pointer;
+    white-space:nowrap;
+}
+
+.edit-modal-tab:hover{ color:#3a4256; }
+
+.edit-modal-tab.active
+{
+    color:#2f6feb;
+    border-bottom-color:#2f6feb;
+}
+
+.edit-modal-panel.is-hidden
+{
+    display:none;
+}
+
+.edit-modal-subheading
+{
+    margin:0 0 14px;
+    font-size:13px;
+    font-weight:700;
+    color:#18233c;
+}
+
+.edit-budget-summary
+{
+    display:flex;
+    justify-content:space-between;
+    gap:14px;
+    margin:14px 0;
+    padding:14px;
+    background:#f5f7fb;
+    border-radius:10px;
+}
+
+.edit-budget-summary div
+{
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+}
+
+.edit-budget-summary span
+{
+    font-size:11px;
+    color:#8a93a8;
+    white-space:nowrap;
+}
+
+.edit-budget-summary strong
+{
+    font-size:15px;
+    color:#18233c;
+}
+
+.edit-budget-total-row
+{
+    display:flex;
+    justify-content:space-between;
+    padding-top:12px;
+    border-top:1px solid #e6e9ef;
+
+    font-size:13px;
+    font-weight:700;
+    color:#18233c;
+}
+
+/* Toggle switch (used in Edit Project → Settings tab; projects.html
+   doesn't load settings.css, so this is defined locally). */
+
+.toggle-row
+{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+    padding:12px 0 4px;
+}
+
+.toggle-row strong{ display:block; font-size:12.5px; color:#22304d; }
+.toggle-row span{ font-size:11px; color:#8a93a8; }
+
+.switch
+{
+    position:relative;
+    display:inline-block;
+    width:38px;
+    height:22px;
+    flex-shrink:0;
+}
+
+.switch input{ opacity:0; width:0; height:0; }
+
+.slider
+{
+    position:absolute;
+    cursor:pointer;
+    inset:0;
+    background:#d8dce4;
+    border-radius:999px;
+    transition:.2s;
+}
+
+.slider::before
+{
+    content:"";
+    position:absolute;
+    width:16px;
+    height:16px;
+    left:3px;
+    top:3px;
+    background:#fff;
+    border-radius:50%;
+    transition:.2s;
+}
+
+.switch input:checked + .slider{ background:#2f6feb; }
+.switch input:checked + .slider::before{ transform:translateX(16px); }
+
+/* ======================================================================================
+    Full Project Checklist modal
+    ======================================================================================*/
+
+.checklist-modal-box
+{
+    width:820px;
+    max-width:95vw;
+    max-height:90vh;
+    overflow-y:auto;
+}
+
+.checklist-modal-header
+{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:16px;
+    margin-bottom:14px;
+}
+
+.checklist-modal-titles h3
+{
+    margin:0;
+    font-size:17px;
+    font-weight:800;
+    color:#18233c;
+}
+
+.checklist-modal-titles p
+{
+    margin:5px 0 0;
+    font-size:12px;
+    color:#8a93a8;
+}
+
+.checklist-progress-wrap
+{
+    flex-shrink:0;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-end;
+    gap:6px;
+}
+
+.checklist-progress-pct
+{
+    font-size:12px;
+    font-weight:700;
+    color:#2f6feb;
+    white-space:nowrap;
+}
+
+.checklist-progress-pct.complete{ color:#1e9e4d; }
+
+.checklist-progress-track
+{
+    width:140px;
+    height:6px;
+    background:#eceff5;
+    border-radius:999px;
+    overflow:hidden;
+}
+
+.checklist-progress-fill
+{
+    height:100%;
+    width:0%;
+    background:#2f6feb;
+    transition:width .2s ease;
+}
+
+.checklist-progress-fill.complete{ background:#1e9e4d; }
+
+.checklist-modal-toolbar
+{
+    display:flex;
+    gap:10px;
+    margin-bottom:14px;
+}
+
+.checklist-search-box
+{
+    flex:1;
+    display:flex;
+    align-items:center;
+    gap:8px;
+
+    height:38px;
+    padding:0 12px;
+
+    border:1px solid #e2e6ef;
+    border-radius:8px;
+}
+
+.checklist-search-box input
+{
+    flex:1;
+    border:none;
+    outline:none;
+    background:transparent;
+    font-size:13px;
+    font-family:inherit;
+}
+
+.checklist-table-wrap
+{
+    border:1px solid #e6e9ef;
+    border-radius:10px;
+    overflow:auto;
+    max-height:320px;
+    margin-bottom:14px;
+}
+
+.checklist-table
+{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.checklist-table thead th
+{
+    position:sticky;
+    top:0;
+    z-index:1;
+
+    text-align:left;
+    padding:10px 12px;
+
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.02em;
+    color:#8a93a8;
+
+    background:#fafbfd;
+    border-bottom:1px solid #eef0f5;
+    white-space:nowrap;
+}
+
+.checklist-table tbody td
+{
+    padding:12px;
+    font-size:12.5px;
+    color:#3a4256;
+    border-bottom:1px solid #f2f4f8;
+    vertical-align:middle;
+}
+
+.checklist-table tbody tr:last-child{ border-bottom:none; }
+.checklist-table tbody tr:hover{ background:#f8faff; }
+
+.chk-title-cell{ font-weight:600; color:#22304d; }
+
+.chk-notes-cell
+{
+    max-width:220px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    color:#8a93a8;
+}
+
+.chk-status-pill
+{
+    display:inline-block;
+    padding:4px 10px;
+    border-radius:999px;
+    font-size:11px;
+    font-weight:700;
+    white-space:nowrap;
+}
+
+.chk-status-pill.completed{ background:#e9f9ef; color:#1e9e4d; }
+.chk-status-pill.in-progress{ background:#eaf1ff; color:#2f6feb; }
+.chk-status-pill.pending{ background:#fff3de; color:#c9770c; }
+
+.chk-actions-cell
+{
+    position:relative;
+    text-align:right;
+    white-space:nowrap;
+}
+
+.checklist-modal-footer
+{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.add-checklist-item-btn
+{
+    height:38px;
+    padding:0 16px;
+    border:1px solid #e6e9ef;
+    border-radius:8px;
+    background:#fff;
+    font-size:12.5px;
+    font-weight:700;
+    color:#2f6feb;
+    cursor:pointer;
+    white-space:nowrap;
+}
+
+.add-checklist-item-btn:hover{ background:#f5f7fb; }
+
+/* ======================================================================================
+    Item Completed confirmation
+    ======================================================================================*/
+
+.item-completed-box
+{
+    text-align:center;
+    padding:8px 6px 4px;
+}
+
+.item-completed-icon
+{
+    width:64px;
+    height:64px;
+    margin:0 auto 18px;
+
+    border-radius:50%;
+    background:#e9f9ef;
+    color:#1e9e4d;
+
+    font-size:28px;
+    font-weight:700;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.item-completed-box h3
+{
+    margin:0 0 8px;
+    font-size:17px;
+    font-weight:800;
+    color:#18233c;
+}
+
+.item-completed-box p
+{
+    margin:0 0 20px;
+    font-size:13px;
+    color:#5d6778;
+}
+
+.item-completed-box .modal-submit-btn
+{
+    width:100%;
+}
 
 /* ======================================================================================
     Toast
@@ -1462,6 +2064,14 @@
     {
         width:100%;
     }
+}
+
+@media(max-width:900px)
+{
+    .checklist-modal-box{ width:95vw; }
+    .checklist-modal-header{ flex-direction:column; }
+    .checklist-progress-wrap{ align-items:flex-start; width:100%; }
+    .checklist-progress-track{ width:100%; }
 }
 
 @media(max-width:720px)

@@ -1,0 +1,42 @@
+/* =========================================================
+   KagoBuild Design Tokens
+   -----------------------------------------------------------
+   Minimal white + charcoal + vibrant red palette.
+   dash.css also defines these same tokens at :root so every
+   dashboard page (which loads dash.css) works standalone.
+   Link this file too on any page that does NOT load dash.css
+   (e.g. index.html, signin.html) if you want the same tokens
+   there.
+========================================================= */
+
+:root{
+    /* Backgrounds */
+    --color-bg: #F4F3F4;            /* Soft White — main background */
+    --color-surface: #EAE9EB;       /* Light Gray — cards / containers */
+    --color-surface-hover: #E0DEDF; /* slightly darker gray for hover states */
+
+    /* Text */
+    --color-text-primary: #171615;   /* Charcoal Black — primary text / dark widgets */
+    --color-text-secondary: #5F5C5C; /* Dark Gray — secondary text / icons */
+    --color-text-muted: #A9A3A4;     /* Medium Gray — borders / muted labels */
+
+    /* Borders */
+    --color-border: #DAD7D8;         /* soft border derived from Medium Gray */
+    --color-border-strong: #A9A3A4;  /* Medium Gray — stronger borders */
+
+    /* Brand red */
+    --color-primary: #F12823;        /* Primary Red — buttons / highlights / active charts */
+    --color-primary-hover: #EC605C;  /* Soft Coral Red — gradients / hover states */
+    --color-primary-soft: #FCE9E8;   /* light tint of primary, for active/selected backgrounds */
+    --color-primary-glow: #EC9F9E;   /* Light Blush — glow / background accent */
+    --color-shadow-deep: #5E1D12;    /* Deep Burgundy — gradient shadow / dark red */
+
+    /* Status colors (kept distinct from brand red so "delayed/error"
+       states don't visually collide with primary action red) */
+    --color-success: #1E9E4D;
+    --color-success-bg: #E9F9EF;
+    --color-warning: #C9770C;
+    --color-warning-bg: #FFF3DE;
+    --color-danger: #D63A3A;
+    --color-danger-bg: #FDEAEA;
+}

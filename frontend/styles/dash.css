@@ -1,3 +1,34 @@
+/* =========================================================
+   Design tokens (also mirrored in variables.css). Defined here
+   too so every page that loads dash.css gets the palette even
+   without separately linking variables.css.
+========================================================= */
+
+:root{
+    --color-bg: #F4F3F4;
+    --color-surface: #EAE9EB;
+    --color-surface-hover: #E0DEDF;
+
+    --color-text-primary: #171615;
+    --color-text-secondary: #5F5C5C;
+    --color-text-muted: #A9A3A4;
+
+    --color-border: #DAD7D8;
+    --color-border-strong: #A9A3A4;
+
+    --color-primary: #F12823;
+    --color-primary-hover: #EC605C;
+    --color-primary-soft: #FCE9E8;
+    --color-primary-glow: #EC9F9E;
+    --color-shadow-deep: #5E1D12;
+
+    --color-success: #1E9E4D;
+    --color-success-bg: #E9F9EF;
+    --color-warning: #C9770C;
+    --color-warning-bg: #FFF3DE;
+    --color-danger: #D63A3A;
+    --color-danger-bg: #FDEAEA;
+}
 
 html, body
 {
@@ -5,6 +36,8 @@ html, body
     margin: 0;
     overflow: hidden;
     font-family: Arial, Helvetica, sans-serif;
+    background: var(--color-bg);
+    color: var(--color-text-primary);
 }
 
 .dashboard
@@ -29,9 +62,9 @@ dashboard-navbar sidebar
 
 .dashboard-navbar
 {
-    width:220px;
+    width:180px;
     min-width:70px;
-    max-width:300px;
+    max-width:240px;
 
     height:100%;
 
@@ -39,12 +72,11 @@ dashboard-navbar sidebar
 
     display:flex;
     flex-direction:column;
-    justify-content:space-between;
 
-    padding:18px 14px;
+    padding:16px 10px;
 
     overflow:hidden;
-    background-color: #0b1533;
+    background-color: var(--color-text-primary);
 }
 
 .dashboard-navbar a
@@ -57,21 +89,22 @@ dashboard-navbar sidebar
 .dashboard-navbar button
 {
     width:100%;
-    height:42px;
+    height:36px;
 
-    padding:0 12px;
+    padding:0 10px;
 
     display:flex;
     align-items:center;
-    gap:12px;
+    gap:10px;
+    flex-wrap:nowrap;
 
     border:none;
-    border-radius:10px;
+    border-radius:9px;
 
     background-color: transparent;
-    color: #b7c0dc;
+    color: rgba(244,243,244,0.68);
 
-    font-size:14px;
+    font-size:13px;
     font-weight:500;
     white-space:nowrap;
     overflow:hidden;
@@ -86,6 +119,8 @@ dashboard-navbar sidebar
 .dashboard-navbar button img
 {
     flex-shrink:0;
+    width:16px;
+    height:16px;
 }
 
 /*=======================================
@@ -93,16 +128,16 @@ nav link states (active page / hover)
 =========================================*/
 
 .nav-link{
-    margin-bottom:4px;
+    margin-bottom:2px;
 }
 
 .nav-link:hover button{
-    background:rgba(255,255,255,0.08);
+    background:rgba(244,243,244,0.10);
     color:#fff;
 }
 
 .nav-link.active button{
-    background:#2f6feb;
+    background:var(--color-primary);
     color:#fff;
 }
 
@@ -112,12 +147,12 @@ dashboard-navbar sidebar dragable effect
 .sidebar-resizer
 {
     width:6px;
-    background:#d6d6d6;
+    background:var(--color-border-strong);
     cursor: ew-resize;
 }
 
 .sidebar-resizer:hover{
-    background:#2f80ed;
+    background:var(--color-primary);
 }
 
 /*=======================================
@@ -134,7 +169,7 @@ needing to touch any page's markup.
 
 .dashboard-navbar.collapsed{
     width:72px;
-    padding:18px 8px;
+    padding:16px 8px;
 }
 
 .dashboard-navbar.collapsed button{
@@ -148,9 +183,9 @@ needing to touch any page's markup.
 .dashboard-navbar.collapsed button svg
 {
     margin:0;
-    width:18px;
-    height:18px;
-    font-size:18px;
+    width:16px;
+    height:16px;
+    font-size:16px;
 }
 
 /*=
@@ -159,16 +194,41 @@ dashboard button layout
 =========================================*/
 .upper-sidebar
 {
-     display:flex;
+    display:flex;
     flex-direction:column;
+
+    /* Takes all the space it can. NOTE: no overflow-y:auto here —
+       the sidebar must never scroll. Button/logo sizing above is
+       tuned to fit the full nav list within a normal viewport
+       height; if it ever doesn't fit, items should be shrunk
+       further rather than reintroducing scroll. */
+    flex:1;
+    min-height:0;
+
+    overflow-y:hidden;
+    overflow-x:hidden;
 }
 
 .lower-sidebar
 {
     display:flex;
     flex-direction:column;
-    gap:10px;
+    gap:6px;
     width:100%;
+    min-width:0;
+
+    /* Never shrinks and never scrolls away — always pinned
+       to the bottom of the sidebar, visually separated from
+       the nav links above it. */
+    flex-shrink:0;
+    margin-top:16px;
+    padding-top:14px;
+    border-top:1px solid rgba(244,243,244,0.10);
+}
+
+.lower-sidebar > a{
+    display:block;
+    min-width:0;
 }
 
 /*=======================================
@@ -180,24 +240,24 @@ Logo
     height:auto;
     display:flex;
     align-items:center;
-    gap:10px;
+    gap:8px;
 
-    padding:0 4px 16px;
-    margin-bottom:10px;
+    padding:0 4px 12px;
+    margin-bottom:8px;
 
-    border-bottom:1px solid rgba(255,255,255,0.08);
+    border-bottom:1px solid rgba(244,243,244,0.08);
 
     color:#fff;
     font-weight:700;
-    font-size:17px;
+    font-size:15px;
 }
 
 .logo-mark{
     flex-shrink:0;
-    width:32px;
-    height:32px;
-    border-radius:9px;
-    background:#2f6feb;
+    width:28px;
+    height:28px;
+    border-radius:8px;
+    background:var(--color-primary);
 
     display:flex;
     align-items:center;
@@ -206,7 +266,7 @@ Logo
 
 .dashboard-navbar.collapsed #logo{
     justify-content:center;
-    padding-bottom:16px;
+    padding-bottom:12px;
 }
 
 .dashboard-navbar.collapsed .logo-text{
@@ -214,86 +274,43 @@ Logo
 }
 
 /*=======================================
-Bottom sidebar cards (Need help / Premium)
+"need help" / "Premium plan" — the two
+bottom sidebar buttons.
+
+STANDARDIZED across every page to the same
+simple single-line markup:
+
+    <a href="...">
+        <button id="need-help"> <svg/img/> need help </button>
+    </a>
+
+No title/subtitle/chevron "card" variant anymore — every page
+now renders these identically. Sized and spaced to line up with
+the regular nav buttons above, and guaranteed single-line via
+white-space:nowrap + text-overflow:ellipsis (inherited from the
+base ".dashboard-navbar button" rule), so long labels or a
+narrow sidebar truncate instead of wrapping to a second line.
 =========================================*/
 
-.sidebar-card{
-    width:100%;
-    display:flex;
-    align-items:center;
-    gap:10px;
-
-    padding:10px;
-
-    border:none;
-    border-radius:12px;
-
-    background:rgba(255,255,255,0.06);
-    color:#dfe4f2;
-
-    cursor:pointer;
-    text-align:left;
-
-    transition:background .15s ease;
+.lower-sidebar button#need-help,
+.lower-sidebar button#Premium-plan{
+    background:rgba(244,243,244,0.06);
+    border-radius:10px;
+    height:38px;
 }
 
-.sidebar-card:hover{
-    background:rgba(255,255,255,0.12);
-}
-
-.sidebar-card-icon{
-    flex-shrink:0;
-    width:32px;
-    height:32px;
-    border-radius:8px;
-
-    background:rgba(255,255,255,0.08);
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
+.lower-sidebar button#need-help:hover,
+.lower-sidebar button#Premium-plan:hover{
+    background:rgba(244,243,244,0.14);
     color:#fff;
 }
 
-.sidebar-card-text{
-    flex:1;
-    min-width:0;
-}
-
-.sidebar-card-title{
-    display:block;
-    font-size:13px;
-    font-weight:600;
-    color:#fff;
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis;
-}
-
-.sidebar-card-sub{
-    display:block;
-    font-size:11px;
-    color:#9aa6c4;
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis;
-}
-
-.sidebar-card-chevron{
-    flex-shrink:0;
-    color:#7c88ab;
-    display:flex;
-}
-
-.dashboard-navbar.collapsed .sidebar-card{
+.dashboard-navbar.collapsed .lower-sidebar button#need-help,
+.dashboard-navbar.collapsed .lower-sidebar button#Premium-plan{
     justify-content:center;
-    padding:8px;
+    padding:0;
     gap:0;
-}
-
-.dashboard-navbar.collapsed .sidebar-card-text,
-.dashboard-navbar.collapsed .sidebar-card-chevron{
-    display:none;
+    font-size:0;
 }
 
 /*=======================================
@@ -323,9 +340,9 @@ dashboard main content
 
     padding:0 20px;
 
-    background:white;
+    background:#fff;
 
-    border-bottom:1px solid #e6e9ef;
+    border-bottom:1px solid var(--color-border);
 }
 
 
@@ -348,7 +365,7 @@ dashboard main content
 
     font-weight:600;
 
-    color:#222;
+    color:var(--color-text-primary);
 }
 
 /*==========================================================
@@ -369,7 +386,7 @@ dashboard main content
 
     font-size:15px;
     font-weight:600;
-    color:#6b7280;
+    color:var(--color-text-secondary);
 
     text-decoration:none;
 
@@ -378,12 +395,12 @@ dashboard main content
 }
 
 .tab-link:hover{
-    color:#1d2945;
+    color:var(--color-text-primary);
 }
 
 .tab-link.active{
-    color:#2f6feb;
-    border-bottom-color:#2f6feb;
+    color:var(--color-primary);
+    border-bottom-color:var(--color-primary);
 }
 
 
@@ -416,9 +433,9 @@ dashboard main content
 
     height:38px;
 
-    background:#f5f7fb;
+    background:var(--color-surface);
 
-    border:1px solid #e6e9ef;
+    border:1px solid var(--color-border);
 
     border-radius:999px;
 
@@ -430,7 +447,7 @@ dashboard main content
 
 .search-icon{
 
-    color:#8a93a8;
+    color:var(--color-text-secondary);
 
     margin-right:10px;
 
@@ -452,6 +469,8 @@ dashboard main content
     font-size:14px;
 
     background:transparent;
+
+    color:var(--color-text-primary);
 }
 
 
@@ -473,23 +492,23 @@ dashboard main content
     border:none;
     border-radius:50%;
 
-    background:#f5f7fb;
+    background:var(--color-surface);
 
     display:flex;
     align-items:center;
     justify-content:center;
 
-    color:#4b5568;
+    color:var(--color-text-secondary);
 
     cursor:pointer;
 }
 
 .notification-btn:hover{
-    background:#eef1f8;
+    background:var(--color-surface-hover);
 }
 
 
-/* Small blue circle */
+/* Small red circle */
 
 .notification-count{
 
@@ -505,7 +524,7 @@ dashboard main content
 
     border-radius:50%;
 
-    background:#1f6bff;
+    background:var(--color-primary);
 
     color:white;
 
@@ -528,7 +547,7 @@ dashboard main content
     background:#fff;
     border-radius:12px;
 
-    box-shadow:0 12px 35px rgba(0,0,0,.12);
+    box-shadow:0 12px 35px rgba(23,22,21,.16);
 
     opacity:0;
     visibility:hidden;
@@ -550,8 +569,8 @@ dashboard main content
     padding:14px 18px;
     font-weight:700;
     font-size:14px;
-    color:#222;
-    border-bottom:1px solid #eee;
+    color:var(--color-text-primary);
+    border-bottom:1px solid var(--color-border);
 }
 
 .notif-item{
@@ -561,10 +580,10 @@ dashboard main content
 
     padding:12px 18px;
 
-    border-bottom:1px solid #f2f2f2;
+    border-bottom:1px solid var(--color-border);
 
     font-size:13px;
-    color:#444;
+    color:var(--color-text-primary);
     line-height:1.4;
 }
 
@@ -578,7 +597,7 @@ dashboard main content
     height:8px;
     margin-top:5px;
     border-radius:50%;
-    background:#2f6feb;
+    background:var(--color-primary);
 }
 
 
@@ -613,7 +632,7 @@ dashboard main content
     align-items:center;
     justify-content:center;
 
-    background:#e2e8f5;
+    background:var(--color-surface);
 
     flex-shrink:0;
 }
@@ -645,7 +664,7 @@ dashboard main content
 
     margin:0;
 
-    color:#222;
+    color:var(--color-text-primary);
 }
 
 
@@ -657,7 +676,7 @@ dashboard main content
 
     font-size:12px;
 
-    color:gray;
+    color:var(--color-text-secondary);
 }
 
 
@@ -669,7 +688,7 @@ dashboard main content
 
     font-size:12px;
 
-    color:#666;
+    color:var(--color-text-secondary);
 }
 
 
@@ -705,7 +724,15 @@ Dashboard overview of every Projects
        min-height: 0; */
     flex: 1;
     min-height: 0;
-    border-top: 1px solid rgb(123, 122, 139);
+    border-top: 1px solid var(--color-border-strong);
+
+    /* Soft White page background behind every card/container.
+       All the individual cards on the dashboard (Ongoing-Proj-card,
+       Projects-Cost panels, est-card, ai-panel, stat-card, supplier
+       cards, settings-card, etc.) render on the light-gray surface
+       tone, so giving THIS wrapper the soft-white background is
+       what makes them visually "pop" with contrast. */
+    background-color: var(--color-bg);
    
     display: flex;
     flex-wrap: wrap;
@@ -726,13 +753,13 @@ Dashboard overview of every Projects
 .Ongoing-Projects > div:first-child{
     font-size:16px;
     font-weight:700;
-    color:#18233c;
+    color:var(--color-text-primary);
 }
 
 .Ongoing-Projects > div:last-child{
     font-size:13px;
     font-weight:600;
-    color:#2f6feb;
+    color:var(--color-primary);
     cursor:pointer;
 }
 
@@ -786,9 +813,9 @@ Ongoing Projects Card
 
     height:180px;
 
-    background:#fff;
+    background:var(--color-surface);
 
-    border:1px solid #e6e9ef;
+    border:1px solid var(--color-border);
     border-radius:12px;
 
     box-sizing:border-box;
@@ -832,7 +859,7 @@ align-items:flex-start;
 
     font-weight:600;
 
-    color:#1d2945;
+    color:var(--color-text-primary);
 }
 
 .project-info p{
@@ -841,7 +868,7 @@ align-items:flex-start;
 
     font-size:12px;
 
-    color:#6b7280;
+    color:var(--color-text-secondary);
 }
 
 .project-status{
@@ -852,9 +879,9 @@ align-items:flex-start;
 
     border-radius:20px;
 
-    background:#eaf8ef;
+    background:var(--color-success-bg);
 
-    color:#22a652;
+    color:var(--color-success);
 
     font-size:11px;
 
@@ -862,13 +889,13 @@ align-items:flex-start;
 }
 
 .project-status.status-risk{
-    background:#fff4e5;
-    color:#c9770c;
+    background:var(--color-warning-bg);
+    color:var(--color-warning);
 }
 
 .project-status.status-delayed{
-    background:#fdeaea;
-    color:#d63a3a;
+    background:var(--color-danger-bg);
+    color:var(--color-danger);
 }
 
 
@@ -881,8 +908,8 @@ align-items:flex-start;
     flex-shrink:0;
 
     border-radius:8px;
-    border:1px solid #d9dee7;
-    background:#f0f3f9;
+    border:1px solid var(--color-border);
+    background:#fff;
 }
 
 .progress-card
@@ -924,29 +951,29 @@ align-items:flex-start;
 /* Background */
 .progress-card progress::-webkit-progress-bar 
 {
-    background: #e5e7eb;
+    background: var(--color-border);
     border-radius: 999px;
 }
 
 /* Filled part */
 .progress-card progress::-webkit-progress-value 
 {
-    background: #22c55e;
+    background: var(--color-success);
     border-radius: 999px;
 }
 
 /* Firefox */
 .progress-card progress::-moz-progress-bar 
 {
-    background: #22c55e;
+    background: var(--color-success);
     border-radius: 999px;
 }
 
-.progress-card progress.at-risk::-webkit-progress-value{ background:#f5a524; }
-.progress-card progress.at-risk::-moz-progress-bar{ background:#f5a524; }
+.progress-card progress.at-risk::-webkit-progress-value{ background:var(--color-warning); }
+.progress-card progress.at-risk::-moz-progress-bar{ background:var(--color-warning); }
 
-.progress-card progress.delayed::-webkit-progress-value{ background:#e5484d; }
-.progress-card progress.delayed::-moz-progress-bar{ background:#e5484d; }
+.progress-card progress.delayed::-webkit-progress-value{ background:var(--color-danger); }
+.progress-card progress.delayed::-moz-progress-bar{ background:var(--color-danger); }
 
 
 .progress-card span:first-child 
@@ -973,7 +1000,7 @@ align-items:flex-start;
 
     background:#fff;
 
-    box-shadow:0 2px 8px rgba(0,0,0,.15);
+    box-shadow:0 2px 8px rgba(23,22,21,.15);
 
     cursor:pointer;
 
@@ -997,14 +1024,14 @@ align-items:flex-start;
 
     display:flex;
 
-    background:#fff;
+    background:var(--color-surface);
 
-    border:1px solid #e6e9ef;
+    border:1px solid var(--color-border);
     border-radius:14px;
     margin-left: 12px;    margin-right: 12px;
     overflow:hidden;
 
-    box-shadow:0 2px 8px rgba(0,0,0,.05);
+    box-shadow:0 2px 8px rgba(23,22,21,.05);
 }
 
 /*=======================================
@@ -1023,13 +1050,13 @@ align-items:flex-start;
 
 .Cost-Estimator{
     flex:1;
-    border-right:1px solid #e6e9ef;
+    border-right:1px solid var(--color-border);
 
 }
 
 .Break-of-material{
     flex:1.45;
-    border-right:1px solid #e6e9ef;
+    border-right:1px solid var(--color-border);
 }
 
 .Overall-Forecast{
@@ -1049,7 +1076,7 @@ align-items:flex-start;
     font-size:16px;
     font-weight:600;
 
-    color:#18233c;
+    color:var(--color-text-primary);
 }
 
 .Cost-Estimator h6{
@@ -1058,7 +1085,7 @@ align-items:flex-start;
     margin-bottom:4px;
     font-size:13px;
 
-    color:#5d6778;
+    color:var(--color-text-secondary);
     font-weight:500;
 }
 
@@ -1070,7 +1097,7 @@ align-items:flex-start;
     line-height:1.2;
     font-weight:700;
 
-    color:#162544;
+    color:var(--color-text-primary);
     width: 100%;
 
 }
@@ -1086,12 +1113,12 @@ align-items:flex-start;
     align-items:center;
 
 
-    color:#5d6778;
+    color:var(--color-text-secondary);
 }
 
 .budget-info strong{
 
-    color:#1d2b4f;
+    color:var(--color-text-primary);
 }
 
 /*=======================================
@@ -1113,13 +1140,13 @@ align-items:flex-start;
     display:flex;
     align-items:center;
 
-    background:#fff4f4;
+    background:var(--color-danger-bg);
 
-    border:1px solid #e6e9ef;
+    border:1px solid var(--color-border);
 
     border-radius:10px;
 
-    color:#d63a3a;
+    color:var(--color-danger);
 }
 
 #current-Estimate strong{
@@ -1142,13 +1169,13 @@ align-items:flex-start;
     border:none;
     background:none;
 
-    border-top:1px solid #d9e2ef;
+    border-top:1px solid var(--color-border);
 
     padding-top:20px;
 
     text-align:left;
 
-    color:#2d6df5;
+    color:var(--color-primary);
 
     font-weight:600;
 
@@ -1177,6 +1204,10 @@ align-items:flex-start;
 
 /*=======================================
     DONUT GRAPH
+
+    Categorical breakdown colors — kept as a distinct multi-hue
+    set (led by the brand red) since these encode different
+    material categories, not a single "active" highlight.
 =======================================*/
 
 .graph{
@@ -1190,13 +1221,13 @@ align-items:flex-start;
 
     background:
     conic-gradient(
-        #2F80ED 0% 28%,
-        #4AA3FF 28% 50%,
-        #6FCF97 50% 63%,
-        #9B51E0 63% 72%,
-        #BB6BD9 72% 88%,
-        #F2994A 88% 94%,
-        #F2C94C 94% 100%
+        #F12823 0% 28%,
+        #EC605C 28% 50%,
+        #EC9F9E 50% 63%,
+        #5E1D12 63% 72%,
+        #A9A3A4 72% 88%,
+        #5F5C5C 88% 94%,
+        #171615 94% 100%
     );
 
     display:flex;
@@ -1226,14 +1257,14 @@ align-items:flex-start;
 
     font-size:13px;
 
-    color:#666;
+    color:var(--color-text-secondary);
 }
 
 .graph-center strong{
 
     font-size:14px;
 
-    color:#18233c;
+    color:var(--color-text-primary);
 }
 
 /*=======================================
@@ -1275,11 +1306,11 @@ align-items:flex-start;
 
 .material-item small
 {
-    color:#777;
+    color:var(--color-text-secondary);
 }
 
 /*=======================================
-    DOTS
+    DOTS (match the donut segments above)
 =======================================*/
 
 .dot{
@@ -1290,13 +1321,13 @@ align-items:flex-start;
     border-radius:50%;
 }
 
-.blue{background:#2F80ED;}
-.light-blue{background:#4AA3FF;}
-.green{background:#6FCF97;}
-.purple{background:#9B51E0;}
-.pink{background:#BB6BD9;}
-.orange{background:#F2994A;}
-.yellow{background:#F2C94C;}
+.blue{background:#F12823;}
+.light-blue{background:#EC605C;}
+.green{background:#EC9F9E;}
+.purple{background:#5E1D12;}
+.pink{background:#A9A3A4;}
+.orange{background:#5F5C5C;}
+.yellow{background:#171615;}
 
 /*=======================================
     BUTTON
@@ -1312,7 +1343,7 @@ align-items:flex-start;
 
     background:none;
 
-    color:#2d6df5;
+    color:var(--color-primary);
 
     font-weight:600;
 
@@ -1326,7 +1357,7 @@ align-items:flex-start;
 .forecast-details
 {
     margin-top:18px;
-    border:1px solid #e6e9ef;
+    border:1px solid var(--color-border);
     border-radius:12px;
      padding:14px;
     gap:12px;
@@ -1338,7 +1369,7 @@ align-items:flex-start;
 .forecast-title
 {
     font-size:15px;
-    color:#5d6778;
+    color:var(--color-text-secondary);
     font-weight:600;
 }
 
@@ -1346,8 +1377,8 @@ align-items:flex-start;
 {
     margin:10px 0 0;
    font-size:24px;
-    color:#d83d3d;
-    border-bottom:1px solid #e6e9ef;
+    color:var(--color-danger);
+    border-bottom:1px solid var(--color-border);
     width:100%;
     margin-bottom: 0px 0px 0px 0px;
 }
@@ -1362,7 +1393,7 @@ align-items:flex-start;
 {
     margin:0 0 18px;
    font-size:16px;
-    color:#18233c;
+    color:var(--color-text-primary);
 }
 
 .Forecasted-item
@@ -1386,10 +1417,10 @@ align-items:flex-start;
     border-radius:50%;
 }
 
-.red{background:#EB5757;}
-.purple{background:#9B51E0;}
-.blue{background:#2F80ED;}
-.gray{background:#828282;}
+.red{background:var(--color-danger);}
+.purple{background:#5E1D12;}
+.blue{background:var(--color-primary);}
+.gray{background:var(--color-text-muted);}
 
 .view-details
 {
@@ -1397,7 +1428,7 @@ align-items:flex-start;
     align-self:center;
     border:none;
     background:none;
-    color:#2d6df5;
+    color:var(--color-primary);
     font-weight:600;
     cursor:pointer;
 }
@@ -1418,7 +1449,7 @@ align-items:flex-start;
     .Break-of-material
     {
         border-right:none;
-        border-bottom:1px solid #e6e9ef;
+        border-bottom:1px solid var(--color-border);
     }
 
     .Break-material-main
@@ -1456,8 +1487,8 @@ align-items:flex-start;
     display:flex;
     flex-direction:column;
 
-    background:#fff;
-    border:1px solid #e6e9ef;
+    background:var(--color-surface);
+    border:1px solid var(--color-border);
     border-radius:10px;
     overflow:hidden;
 }
@@ -1475,12 +1506,12 @@ align-items:flex-start;
 
     padding:0 15px;
 
-    border-bottom:1px solid #e6e9ef;
+    border-bottom:1px solid var(--color-border);
 }
 
 .Design-Preview{
     font-weight:700;
-    color:#18233c;
+    color:var(--color-text-primary);
     font-size:15px;
 }
 
@@ -1499,18 +1530,18 @@ align-items:flex-start;
     cursor:pointer;
     font-weight:600;
     font-size:13px;
-    color:#8a93a8;
+    color:var(--color-text-secondary);
 
     border-bottom:2px solid transparent;
 }
 
 .preview-tabs div:hover{
-    color:#2f6feb;
+    color:var(--color-primary);
 }
 
 .preview-tabs div.active{
-    color:#2f6feb;
-    border-bottom-color:#2f6feb;
+    color:var(--color-primary);
+    border-bottom-color:var(--color-primary);
 }
 
 /* ===========================
@@ -1522,17 +1553,17 @@ align-items:flex-start;
     align-items:center;
     justify-content:space-between;
     padding:10px 15px;
-    border-bottom:1px solid #e6e9ef;
+    border-bottom:1px solid var(--color-border);
 }
 
 .floor-select{
-    border:1px solid #e6e9ef;
+    border:1px solid var(--color-border);
     background:#fff;
     border-radius:8px;
     padding:6px 12px;
     font-size:13px;
     font-weight:600;
-    color:#22304d;
+    color:var(--color-text-primary);
     cursor:pointer;
 }
 
@@ -1555,7 +1586,7 @@ align-items:flex-start;
 .floors{
     width:25%;
 
-    border-right:1px solid #e6e9ef;
+    border-right:1px solid var(--color-border);
 
     overflow-y:auto;
 
@@ -1571,7 +1602,7 @@ align-items:flex-start;
 
     border:2px solid transparent;
     border-radius:8px;
-    background:#f5f5f5;
+    background:var(--color-surface);
 
     cursor:pointer;
     overflow:hidden;
@@ -1582,13 +1613,13 @@ align-items:flex-start;
 
     font-size:11px;
     font-weight:600;
-    color:#8a93a8;
+    color:var(--color-text-secondary);
 }
 
 .floor-thumb.active{
-    border-color:#2f6feb;
-    color:#2f6feb;
-    background:#eef4ff;
+    border-color:var(--color-primary);
+    color:var(--color-primary);
+    background:var(--color-primary-soft);
 }
 
 /* ===========================
@@ -1601,7 +1632,7 @@ align-items:flex-start;
 
     position:relative;
 
-    background:#f5f5f5;
+    background:var(--color-surface);
 
     overflow:hidden;
 }
@@ -1610,9 +1641,9 @@ align-items:flex-start;
     position:fixed;
     inset:20px;
     z-index:2000;
-    background:#f5f5f5;
+    background:var(--color-surface);
     border-radius:12px;
-    box-shadow:0 20px 60px rgba(0,0,0,.3);
+    box-shadow:0 20px 60px rgba(23,22,21,.3);
 }
 
 .viewer-2d-wrap{
@@ -1648,7 +1679,7 @@ align-items:flex-start;
 
     height:100%;
 
-    color:#8a93a8;
+    color:var(--color-text-secondary);
     font-size:13px;
     text-align:center;
     padding:20px;
@@ -1679,11 +1710,11 @@ align-items:flex-start;
 {
     padding:8px 12px;
 
-    border:1px solid #e6e9ef;
+    border:1px solid var(--color-border);
     border-radius:6px;
 
     background:#fff;
-    color:#333;
+    color:var(--color-text-primary);
     font-size:12px;
     font-weight:600;
 
@@ -1691,7 +1722,7 @@ align-items:flex-start;
 }
 
 .main-zoom-btns button:hover{
-    background:#f5f7fb;
+    background:var(--color-surface);
 }
 
 /* ===========================
@@ -1708,13 +1739,13 @@ align-items:flex-start;
 
     padding:0 15px;
 
-    border-top:1px solid #e6e9ef;
+    border-top:1px solid var(--color-border);
 }
 
 .footer-info
 {
     font-size:13px;
-    color:#8a93a8;
+    color:var(--color-text-secondary);
 }
 
 /* ===========================
@@ -1732,11 +1763,11 @@ align-items:flex-start;
     height:34px;
     padding:0 14px;
 
-    border:1px solid #2f6feb;
+    border:1px solid var(--color-primary);
     border-radius:6px;
 
     background:#fff;
-    color:#2f6feb;
+    color:var(--color-primary);
     font-size:13px;
     font-weight:600;
 
@@ -1744,7 +1775,7 @@ align-items:flex-start;
 }
 
 .switch-view:hover{
-    background:#eef4ff;
+    background:var(--color-primary-soft);
 }
 
 
@@ -1760,9 +1791,9 @@ align-items:flex-start;
     flex-direction: column;
 
     width: 100%;
-    background: #fff;
+    background: var(--color-surface);
 
-    border: 1px solid #e6e9ef;
+    border: 1px solid var(--color-border);
     border-radius: 10px;
 
     padding: 8px;
@@ -1779,11 +1810,11 @@ align-items:flex-start;
     height:32px;
     display: flex;
     align-items: center;
-    border-bottom: 1px solid #e6e9ef;
+    border-bottom: 1px solid var(--color-border);
     padding:0 8px;
     font-size:14px;
     font-weight:700;
-    color:#22304d;
+    color:var(--color-text-primary);
 
     margin-bottom:6px;
 }
@@ -1792,7 +1823,7 @@ align-items:flex-start;
 {
     margin: 0;
     font-size: 18px;
-    color: #22304d;
+    color: var(--color-text-primary);
     font-weight: 600;
 }
 
@@ -1822,7 +1853,7 @@ align-items:flex-start;
 
     border-radius: 50%;
 
-    background: #29b765;
+    background: var(--color-success);
     color: #fff;
 
     display: flex;
@@ -1838,13 +1869,13 @@ align-items:flex-start;
 .progress-icon.gray
 {
     background: #fff;
-    border: 2px solid #d8dce4;
-    color: #7d8798;
+    border: 2px solid var(--color-border);
+    color: var(--color-text-secondary);
 }
 
 .progress-item.active .progress-icon
 {
-    background: #2563eb;
+    background: var(--color-primary);
 }
 
 /* ==========================================
@@ -1862,15 +1893,15 @@ align-items:flex-start;
 
     position: absolute;
 
-    background: #2bbd6b;
+    background: var(--color-success);
 }
 
 .progress-line.blue{
-    background: #2563eb;
+    background: var(--color-primary);
 }
 
 .progress-line.gray{
-    background: #d8dce4;
+    background: var(--color-border);
 }
 
 .progress-item:last-child .progress-line{
@@ -1897,14 +1928,14 @@ align-items:flex-start;
     margin: 0;
    font-size:12px;
     line-height:1.2;
-    color: #22304d;
+    color: var(--color-text-primary);
     font-weight: 600;
 }
 
 .progress-content p{
     margin-top: 2px;
     font-size: 10px;
-    color: #7a8699;
+    color: var(--color-text-secondary);
     line-height:1.2;
 }
 
@@ -1919,13 +1950,13 @@ align-items:flex-start;
 }
 
 .status.completed{
-    color: #23b35b;
+    color: var(--color-success);
 }
 
 .status.active{
-    color: #2563eb;
+    color: var(--color-primary);
 }
 
 .status.pending{
-    color: #8d95a5;
+    color: var(--color-text-secondary);
 }

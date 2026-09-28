@@ -1,50 +1,70 @@
 /* =========================================================
-   AI Design studio toolbar
+   AI Design page
+   -----------------------------------------------------------
+   Everything on this page is built to NEVER wrap and NEVER
+   cause the page to scroll sideways. The three columns
+   (Describe/Suggestions/Generated, Floor plan, AI Suggestions)
+   always stay on one row and only their widths breathe when the
+   sidebar is resized — the floor-plan column is the one flexible
+   column that actually grows/shrinks.
 ========================================================= */
+
+.beta-pill{
+    display:inline-block;
+    margin-left:8px;
+    padding:2px 9px;
+    border-radius:999px;
+    background:#eaf1ff;
+    color:#2f6feb;
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.02em;
+    vertical-align:middle;
+}
+
+.ai-design-page{
+    width:100%;
+    min-width:0;
+    padding:18px 20px;
+    box-sizing:border-box;
+    overflow-x:hidden;
+}
+
+/* Top toolbar: back link + action buttons */
 
 .ai-toolbar{
     display:flex;
     align-items:center;
+    justify-content:space-between;
     gap:16px;
-    padding:14px 16px;
-    border-bottom:1px solid #e6e9ef;
-    flex-wrap:wrap;
+    flex-wrap:nowrap;
+    margin-bottom:16px;
 }
 
-.Back-2-Projects{
-    height:36px;
-    padding:0 14px;
-    border:1px solid #e6e9ef;
-    border-radius:8px;
-    background:#fff;
-    font-size:13px;
+.ai-back-btn{
+    display:flex;
+    align-items:center;
+    gap:8px;
+
+    font-size:13.5px;
     font-weight:600;
     color:#3a4256;
-    cursor:pointer;
+    text-decoration:none;
+    white-space:nowrap;
+    flex-shrink:0;
 }
 
-.Back-2-Projects:hover{ background:#f5f7fb; }
-
-.ai-project-title{
-    flex:1;
-    min-width:120px;
-    font-size:17px;
-    font-weight:700;
-    color:#18233c;
-    outline:none;
-    padding:6px 10px;
-    border-radius:8px;
-}
-
-.ai-project-title:focus{ background:#f5f7fb; }
+.ai-back-btn:hover{ color:#2f6feb; }
 
 .ai-toolbar-actions{
     display:flex;
     gap:10px;
+    flex-shrink:0;
+    flex-wrap:nowrap;
 }
 
 .ai-tool-btn{
-    height:36px;
+    height:38px;
     padding:0 16px;
     border:1px solid #e6e9ef;
     border-radius:8px;
@@ -54,6 +74,7 @@
     color:#3a4256;
     cursor:pointer;
     white-space:nowrap;
+    flex-shrink:0;
 }
 
 .ai-tool-btn:hover{ background:#f5f7fb; }
@@ -67,83 +88,150 @@
 .ai-tool-btn.primary:hover{ background:#255fd1; }
 
 /* =========================================================
-   Studio grid (4 columns)
+   Studio row (3 columns, never wraps)
+   -----------------------------------------------------------
+   Left and right columns hold a fixed, comfortable width and
+   only give ground (down to min-width) if space genuinely runs
+   out. The floor-plan viewer is the flexible column that grows
+   or shrinks to fill whatever space the sidebar's collapse or
+   expand leaves behind.
 ========================================================= */
 
 .ai-studio{
-    display:grid;
-    grid-template-columns:250px 1fr 300px 300px;
-    gap:14px;
-    padding:14px 16px;
-    align-items:start;
+    display:flex;
+    flex-wrap:nowrap;
+    gap:16px;
+    align-items:flex-start;
+    min-width:0;
 }
 
-.ai-describe-col,
-.ai-suggest-chat-col,
-.ai-preview-col{
+.ai-left-col,
+.ai-suggest-col{
     display:flex;
     flex-direction:column;
-    gap:14px;
+    gap:16px;
+    min-width:0;
 }
 
-/* Describe / design options */
+.ai-left-col{
+    flex:0 1 280px;
+    min-width:230px;
+}
 
-.describe-card,
-.design-options-card{
+.ai-suggest-col{
+    flex:0 1 300px;
+    min-width:240px;
+}
+
+.ai-floorplan-col{
+    flex:1 1 420px;
+    min-width:340px;
+
+    display:flex;
+    flex-direction:column;
+
     background:#fff;
     border:1px solid #e6e9ef;
-    border-radius:12px;
-    padding:16px;
+    border-radius:14px;
+    overflow:hidden;
 }
 
-.describe-card h5,
-.design-options-card h5{
-    margin:0 0 10px;
+.ai-panel{
+    background:#fff;
+    border:1px solid #e6e9ef;
+    border-radius:14px;
+    padding:18px;
+    min-width:0;
+    box-sizing:border-box;
+}
+
+.ai-panel h5{
+    margin:0 0 12px;
     font-size:14px;
     font-weight:700;
     color:#18233c;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
 }
 
-.describe-card p{
-    margin:0 0 12px;
+/* Describe card */
+
+.describe-card textarea{
+    width:100%;
+    min-height:90px;
+    resize:vertical;
+    box-sizing:border-box;
+
+    border:1px solid #e2e6ef;
+    border-radius:10px;
+    padding:12px;
+
+    font-family:inherit;
     font-size:12.5px;
     line-height:1.5;
-    color:#5d6778;
+    color:#3a4256;
+
+    outline:none;
 }
 
-.describe-meta{
+.describe-card textarea:focus{ border-color:#2f6feb; }
+
+.char-count{
+    display:block;
+    margin:6px 0 14px;
+    text-align:right;
+    font-size:11px;
+    color:#b6bccb;
+}
+
+.ai-generate-btn{
+    width:100%;
+    height:42px;
+    border:none;
+    border-radius:9px;
+    background:#2f6feb;
+    color:#fff;
+    font-size:13.5px;
+    font-weight:700;
+    cursor:pointer;
+    white-space:nowrap;
+}
+
+.ai-generate-btn:hover{ background:#255fd1; }
+
+/* Suggestions (style tags) card */
+
+.style-tags{
     display:flex;
     flex-wrap:wrap;
     gap:8px;
-    margin-bottom:14px;
 }
 
-.describe-meta span{
-    font-size:11px;
+.style-tag{
+    height:34px;
+    padding:0 14px;
+    border:1px solid #e2e6ef;
+    border-radius:999px;
+    background:#fff;
+    font-size:12px;
     font-weight:600;
     color:#3a4256;
-    background:#f5f7fb;
-    border-radius:999px;
-    padding:5px 10px;
-}
-
-.modify-brief-btn,
-.view-all-options-btn{
-    width:100%;
-    height:36px;
-    border:1px solid #e6e9ef;
-    border-radius:8px;
-    background:#fff;
-    font-size:12.5px;
-    font-weight:700;
-    color:#2f6feb;
     cursor:pointer;
+    white-space:nowrap;
 }
 
-.modify-brief-btn:hover,
-.view-all-options-btn:hover{ background:#f5f7fb; }
+.style-tag:hover{ background:#f5f7fb; }
 
-.design-options-list{
+.style-tag.active{
+    background:#eaf1ff;
+    border-color:#bcd2fb;
+    color:#2f6feb;
+}
+
+/* Generated designs card */
+
+.generated-designs-list{
     display:flex;
     flex-direction:column;
     gap:10px;
@@ -158,9 +246,11 @@
     width:100%;
     padding:8px;
     border:2px solid #e6e9ef;
-    border-radius:10px;
+    border-radius:12px;
     background:#fff;
     cursor:pointer;
+    flex-wrap:nowrap;
+    box-sizing:border-box;
 }
 
 .design-option.active{
@@ -169,22 +259,34 @@
 }
 
 .option-thumb{
-    width:42px;
-    height:32px;
-    border-radius:6px;
-    background:#eef1f7 url("https://picsum.photos/seed/design-thumb/80/60") center/cover;
     flex-shrink:0;
+    width:56px;
+    height:42px;
+    border-radius:6px;
+    overflow:hidden;
+    background:#eef1f7;
+    display:flex;
+}
+
+.option-thumb svg{
+    width:100%;
+    height:100%;
 }
 
 .option-label{
     flex:1;
+    min-width:0;
     text-align:left;
     font-size:12.5px;
     font-weight:600;
     color:#22304d;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
 }
 
 .option-check{
+    flex-shrink:0;
     width:18px;
     height:18px;
     border-radius:50%;
@@ -196,26 +298,62 @@
     justify-content:center;
 }
 
+.generate-more-btn{
+    width:100%;
+    height:38px;
+    border:1px solid #e6e9ef;
+    border-radius:9px;
+    background:#fff;
+    font-size:12.5px;
+    font-weight:700;
+    color:#2f6feb;
+    cursor:pointer;
+    white-space:nowrap;
+}
+
+.generate-more-btn:hover{ background:#f5f7fb; }
+
 /* =========================================================
    Floor plan viewer
 ========================================================= */
 
-.ai-floorplan-col{
+.floorplan-title-row{
     display:flex;
-    flex-direction:column;
-
-    background:#fff;
-    border:1px solid #e6e9ef;
-    border-radius:12px;
-    overflow:hidden;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:12px;
+    padding:16px 18px;
+    border-bottom:1px solid #e6e9ef;
+    flex-wrap:nowrap;
 }
 
-.floorplan-toolbar{
+.floorplan-title-block{ min-width:0; }
+
+.floorplan-title-block h3{
+    margin:0;
+    font-size:16px;
+    font-weight:800;
+    color:#18233c;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.floorplan-title-block p{
+    margin:5px 0 0;
+    font-size:12px;
+    color:#8a93a8;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.floorplan-title-tools{
     display:flex;
-    justify-content:space-between;
     align-items:center;
-    padding:10px 14px;
-    border-bottom:1px solid #e6e9ef;
+    gap:10px;
+    flex-shrink:0;
+    flex-wrap:nowrap;
 }
 
 .floorplan-toggle{
@@ -223,6 +361,7 @@
     background:#f5f7fb;
     border-radius:8px;
     padding:3px;
+    flex-shrink:0;
 }
 
 .fp-toggle{
@@ -234,6 +373,7 @@
     font-weight:700;
     color:#5d6778;
     cursor:pointer;
+    white-space:nowrap;
 }
 
 .fp-toggle.active{
@@ -245,6 +385,7 @@
 .floorplan-zoom{
     display:flex;
     gap:8px;
+    flex-shrink:0;
 }
 
 .floorplan-zoom button{
@@ -256,46 +397,44 @@
     cursor:pointer;
     font-size:13px;
     color:#3a4256;
+    flex-shrink:0;
 }
 
 .floorplan-zoom button:hover{ background:#f5f7fb; }
 
 .floorplan-canvas{
     flex:1;
-    min-height:320px;
+    min-height:360px;
     background:#f7f8fb;
 
     display:flex;
     align-items:center;
     justify-content:center;
-    padding:12px;
+    padding:18px;
+    overflow:hidden;
 }
 
 .floorplan-canvas svg{
     width:100%;
-    max-width:560px;
+    max-width:100%;
     height:auto;
 }
 
 .floorplan-caption{
     margin:0;
-    padding:10px 14px;
+    padding:12px 18px;
     font-size:11.5px;
     color:#8a93a8;
     border-top:1px solid #e6e9ef;
     text-align:center;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
 }
 
 /* =========================================================
-   Suggestions + chat column
+   AI Suggestions column
 ========================================================= */
-
-.suggestions-card{
-    background:#fff;
-    border:1px solid #e6e9ef;
-    border-radius:12px;
-    padding:16px;
-}
 
 .card-title-row h5{
     margin:0 0 12px;
@@ -313,44 +452,49 @@
 
 .suggest-row{
     display:flex;
-    align-items:center;
+    align-items:flex-start;
     gap:10px;
 
     width:100%;
-    padding:10px;
+    padding:12px;
     border:1px solid #eef0f5;
-    border-radius:10px;
+    border-radius:12px;
     background:#fff;
     cursor:pointer;
     text-align:left;
+    flex-wrap:nowrap;
+    box-sizing:border-box;
 }
 
 .suggest-row:hover{ background:#f8faff; }
 
 .suggest-icon{
     flex-shrink:0;
-    width:30px;
-    height:30px;
-    border-radius:8px;
+    width:32px;
+    height:32px;
+    border-radius:9px;
     background:#eaf1ff;
 
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:14px;
+    font-size:15px;
 }
 
 .suggest-text{
     flex:1;
     display:flex;
     flex-direction:column;
-    gap:2px;
+    gap:3px;
     min-width:0;
 }
 
 .suggest-text strong{
     font-size:12.5px;
     color:#22304d;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
 }
 
 .suggest-text small{
@@ -359,313 +503,25 @@
     line-height:1.4;
 }
 
-.suggest-chevron{
-    flex-shrink:0;
-    color:#c7cede;
-    font-size:16px;
-}
-
 .see-more-btn{
     width:100%;
-    height:34px;
+    height:36px;
     border:none;
     background:none;
     font-size:12.5px;
     font-weight:700;
     color:#2f6feb;
     cursor:pointer;
-}
-
-/* Chat card (reuses .ai-chat, .chat-body, .ask from before, resized) */
-
-.ai-suggest-chat-col .ai-chat{
-    flex:1;
-    min-height:280px;
-
-    border:1px solid #e6e9ef;
-    border-radius:12px;
-    background:#fff;
-
-    display:flex;
-    flex-direction:column;
-    overflow:hidden;
-}
-
-.chat-title-row{
-    display:flex;
-    align-items:center;
-    gap:8px;
-    padding:12px 14px;
-    border-bottom:1px solid #e6e9ef;
-}
-
-.chat-title-row h5{
-    margin:0;
-    font-size:13px;
-    font-weight:700;
-    color:#18233c;
-}
-
-.chat-bubble{
-    max-width:85%;
-    padding:9px 12px;
-    border-radius:12px;
-    font-size:12px;
-    line-height:1.4;
-    margin-bottom:8px;
-}
-
-.chat-bubble.bot{
-    background:#f5f7fb;
-    color:#3a4256;
-    border-bottom-left-radius:2px;
-}
-
-.chat-bubble.user{
-    margin-left:auto;
-    background:#2f6feb;
-    color:#fff;
-    border-bottom-right-radius:2px;
+    white-space:nowrap;
 }
 
 /* =========================================================
-   Live preview / overview / cost breakdown column
+   LAYOUT NOTES
+   -----------------------------------------------------------
+   Left and right columns hold a fixed, readable width and never
+   wrap onto a new row — they only give up a little width (down
+   to their min-width) if the row is truly out of room. The
+   floor-plan viewer is the single flexible column that absorbs
+   whatever space the sidebar collapse/expand adds or removes, so
+   nothing ever scrolls sideways.
 ========================================================= */
-
-.ai-preview-col .card{
-    background:#fff;
-    border:1px solid #e6e9ef;
-    border-radius:12px;
-    padding:16px;
-}
-
-.Preview-area img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    border-radius:10px;
-}
-
-.ai-tip-box{
-    display:flex;
-    gap:10px;
-    align-items:flex-start;
-
-    background:#fff8e8;
-    border:1px solid #f6e2ad;
-    border-radius:12px;
-    padding:14px;
-}
-
-.ai-tip-box span{
-    font-size:16px;
-    flex-shrink:0;
-}
-
-.ai-tip-box p{
-    margin:0;
-    font-size:12px;
-    line-height:1.5;
-    color:#7a5c0e;
-}
-
-.ai-tip-box strong{
-    color:#5a4308;
-}
-
-/* =========================================================
-   What's Next steps
-========================================================= */
-
-.ai-next-steps{
-    margin:6px 16px 20px;
-    padding:18px;
-    background:#f5f7fb;
-    border-radius:14px;
-}
-
-.next-steps-title h5{
-    margin:0;
-    font-size:14px;
-    font-weight:700;
-    color:#18233c;
-}
-
-.next-steps-title p{
-    margin:4px 0 16px;
-    font-size:12px;
-    color:#8a93a8;
-}
-
-.next-steps-row{
-    display:flex;
-    align-items:stretch;
-    gap:10px;
-    overflow-x:auto;
-}
-
-.next-step{
-    flex:1;
-    min-width:160px;
-
-    background:#fff;
-    border:1px solid #e6e9ef;
-    border-radius:12px;
-    padding:14px;
-
-    display:flex;
-    flex-direction:column;
-    gap:6px;
-}
-
-.next-step .step-icon{
-    width:30px;
-    height:30px;
-    border-radius:8px;
-    background:#eaf1ff;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:14px;
-}
-
-.next-step strong{
-    font-size:12.5px;
-    color:#18233c;
-}
-
-.next-step small{
-    font-size:11px;
-    color:#8a93a8;
-    line-height:1.4;
-}
-
-.step-arrow{
-    flex-shrink:0;
-    align-self:center;
-    font-size:16px;
-    color:#c7cede;
-}
-
-/* =========================================================
-   Shared card / summary / breakdown styling
-   (kept for Live Preview, Project Overview, Cost Breakdown)
-========================================================= */
-
-.card-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:14px;
-}
-
-.card-header h3{
-    font-size:14px;
-    font-weight:700;
-    color:#18233c;
-}
-
-.card-header button{
-    border:1px solid #e6e9ef;
-    background:#fff;
-    padding:6px 12px;
-    border-radius:8px;
-    font-size:11.5px;
-    cursor:pointer;
-}
-
-.Preview-area{
-    width:100%;
-    aspect-ratio:16/9;
-    border-radius:10px;
-    background:#e9eef5;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    color:#888;
-    overflow:hidden;
-}
-
-.summary-grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:10px;
-}
-
-.summary-item{
-    border:1px solid #ececec;
-    border-radius:10px;
-    padding:12px;
-}
-
-.summary-item h4{
-    color:#8a93a8;
-    font-size:11px;
-    margin-bottom:6px;
-}
-
-.summary-item p{
-    font-size:15px;
-    font-weight:700;
-    color:#18233c;
-}
-
-.breakdown{
-    display:flex;
-    gap:16px;
-    align-items:center;
-}
-
-.chart{
-    width:100px;
-    height:100px;
-    flex-shrink:0;
-    border-radius:50%;
-    background:conic-gradient(
-        #4169e1 0% 15%,
-        #00b894 15% 40%,
-        orange 40% 60%,
-        hotpink 60% 83%,
-        violet 83% 100%
-    );
-    position:relative;
-}
-
-.chart::after{
-    content:"";
-    position:absolute;
-    width:56px;
-    height:56px;
-    background:#fff;
-    border-radius:50%;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
-}
-
-.legend{ flex:1; }
-
-.legend p{
-    display:flex;
-    justify-content:space-between;
-    margin-bottom:8px;
-    font-size:12px;
-    color:#3a4256;
-}
-
-/* =========================================================
-   Responsive
-========================================================= */
-
-@media(max-width:1300px){
-    .ai-studio{
-        grid-template-columns:1fr 1fr;
-    }
-}
-
-@media(max-width:800px){
-    .ai-studio{
-        grid-template-columns:1fr;
-    }
-}

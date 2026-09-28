@@ -124,8 +124,74 @@
 
 .status-pill-team.active{ color:#1e9e4d; font-size:12px; font-weight:700; }
 
-.team-actions-cell button{
-    border:none; background:none; font-size:16px; color:#8a93a8; cursor:pointer;
+.team-actions-cell{
+    position:relative;
+    text-align:right;
+}
+
+.row-menu-btn{
+    border:none;
+    background:none;
+    font-size:16px;
+    color:#8a93a8;
+    cursor:pointer;
+    padding:4px 8px;
+}
+
+.row-menu-btn:hover{ color:#3a4256; }
+
+.row-menu{
+    position:absolute;
+    top:34px;
+    right:0;
+
+    min-width:150px;
+
+    background:#fff;
+    border:1px solid #e6e9ef;
+    border-radius:10px;
+
+    box-shadow:0 12px 30px rgba(20,25,40,.14);
+
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(6px);
+    transition:.15s;
+
+    overflow:hidden;
+    z-index:60;
+}
+
+.row-menu.open{
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0);
+}
+
+.row-menu button{
+    display:block;
+    width:100%;
+
+    padding:10px 14px;
+
+    border:none;
+    background:none;
+    text-align:left;
+
+    font-size:13px;
+    color:#333;
+
+    cursor:pointer;
+}
+
+.row-menu button:hover{
+    background:#f3f7ff;
+    color:#2458ff;
+}
+
+.row-menu button.danger:hover{
+    background:#fdeaea;
+    color:#d63a3a;
 }
 
 /* Pending invites + recent activity */

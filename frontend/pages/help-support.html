@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help & Support</title>
+    <link rel="stylesheet" href="../styles/dash.css">
+    <link rel="stylesheet" href="../styles/help-support.css">
+</head>
+<body>
+    <section class="dashboard">
+
+        <aside class="dashboard-navbar">
+            <div class="upper-sidebar">
+                <a href="dashboard.html">
+                    <div id="logo"><span class="sidebar-icon">
+                        <img src="../assets/images/home-hero.png" alt="logo-image" width="30" height="30">
+                    </span>logo</div>
+                </a>
+
+                <a href="dashboard.html" class="nav-link">
+                    <button id="dashboard">
+                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.6"/><rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.6"/><rect x="3" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.6"/><rect x="14" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.6"/></svg>
+                        Dashboard
+                    </button>
+                </a>
+                <a href="projects.html" class="nav-link"><button id="Projects"><img src="../assets/icons/Projects.svg" alt="Projects" width="17" height="17">Projects</button></a>
+                <a href="ai-design.html" class="nav-link"><button id="AI-Design"><img src="../assets/icons/Design.svg" alt="AI Design" width="17" height="17">AI Design</button></a>
+                <a href="materials.html" class="nav-link"><button id="Material"><img src="../assets/icons/Material.svg" alt="Materials" width="17" height="17">Materials</button></a>
+                <a href="estimator.html" class="nav-link"><button id="Cost-Estimator"><img src="../assets/icons/Cost.svg" alt="Cost Estimator" width="17" height="17">Cost Estimator</button></a>
+                <a href="Supplier.html" class="nav-link"><button id="Suppliers"><img src="../assets/icons/Suppliers.svg" alt="Suppliers" width="17" height="17">Suppliers</button></a>
+                <a href="teams.html" class="nav-link"><button id="Teams"><img src="../assets/icons/Teams.svg" alt="Teams" width="17" height="17">Team</button></a>
+                <a href="settings.html" class="nav-link"><button id="Settings"><img src="../assets/icons/settings-icon.svg" alt="Settings" width="17" height="17">Settings</button></a>
+            </div>
+
+            <div class="lower-sidebar">
+                <a href="help-support.html">
+                    <button id="need-help">
+                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none">
+                            <path d="M4 15V12C4 7.58172 7.58172 4 12 4C16.4183 4 20 7.58172 20 12V15" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                            <rect x="2.5" y="13.5" width="4" height="6" rx="1.8" stroke="currentColor" stroke-width="1.6"/>
+                            <rect x="17.5" y="13.5" width="4" height="6" rx="1.8" stroke="currentColor" stroke-width="1.6"/>
+                            <path d="M20 19.5V20.2C20 21.7464 18.7464 23 17.2 23H14.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                            <circle cx="13" cy="23" r="1.4" stroke="currentColor" stroke-width="1.6"/>
+                        </svg>
+                        need help
+                    </button>
+                </a>
+
+                <a href="premium.html">
+                    <button id="Premium-plan">
+                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none">
+                            <path d="M4 9L8 12L12 5L16 12L20 9L18.5 18H5.5L4 9Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                            <path d="M5.5 18H18.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                        </svg>
+                        Premium plan
+                    </button>
+                </a>
+            </div>
+        </aside>
+
+        <div class="sidebar-resizer" id="sidebarResizer"></div>
+
+        <main class="dashboard-overview">
+
+            <header class="dashboard-header">
+                <div class="header-left">
+                    <h2>Help & Support</h2>
+                    <p class="header-subtitle">We're here to help you build better.</p>
+                </div>
+
+                <div class="header-right">
+                    <div class="search-container help-header-search">
+                        <span class="search-icon"><img src="../assets/icons/search.svg" alt="" width="27" height="27"></span>
+                        <input type="search" placeholder="Search for help articles, guides...">
+                    </div>
+
+                    <button class="notification-btn">
+                        <img src="../assets/icons/notification.svg" alt="" width="25" height="25">
+                        <span class="notification-count">5</span>
+                    </button>
+
+                    <div class="profile-menu">
+                        <div class="profile-section">
+                            <img src="images/profile.jpg" alt="Profile Picture">
+                            <div class="user-details"><h4>Arjun Mehta</h4><p>Estimator</p></div>
+                            <span class="dropdown-arrow">▼</span>
+                        </div>
+                        <div class="dropdown">
+                            <a href="#">👤 My Profile</a>
+                            <a href="settings.html">⚙️ Settings</a>
+                            <a href="notifications.html">🔔 Notifications</a>
+                            <a href="projects.html">📁 Projects</a>
+                            <a href="index.html">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>
+                                </svg>
+                                Logout
+                            </a>
+                        </div>
+                    </div>
+
+                    <style>
+                        .dropdown { position:absolute; top:70px; right:24px; width:260px; background:#fff; border-radius:12px; box-shadow:0 12px 35px rgba(0,0,0,.12); opacity:0; visibility:hidden; transform:translateY(10px); transition:.25s; overflow:hidden; z-index:1000; }
+                        .dropdown::before { position:absolute; top:-8px; right:25px; width:16px; height:16px; background:white; transform:rotate(45deg); }
+                        .profile-menu { margin-right:12px; border:#222 solid 2px; }
+                        .profile-menu:hover .dropdown { opacity:1; visibility:visible; transform:translateY(0); }
+                        .profile-menu:hover .dropdown-arrow { transform:rotate(180deg); }
+                        .dropdown a { display:flex; align-items:center; gap:14px; padding:18px 24px; font-size:18px; color:#222; text-decoration:none; border-bottom:1px solid #efefef; transition:.2s; }
+                        .dropdown a:last-child { border:none; }
+                        .dropdown a:hover { background:#f3f7ff; color:#2458ff; }
+                    </style>
+                </div>
+            </header>
+
+            <div class="main-card">
+                <div class="help-page">
+
+                    <div class="help-grid">
+
+                        <!-- ===================== LEFT COLUMN ===================== -->
+                        <div class="help-col help-col-left">
+
+                            <div class="help-card">
+                                <h5>How can we help you?</h5>
+
+                                <div class="help-search-box">
+                                    <span>🔍</span>
+                                    <input type="search" placeholder="Search help articles, guides, and FAQs...">
+                                </div>
+
+                                <p class="help-subheading">Popular Topics</p>
+
+                                <div class="help-topics-grid" id="helpTopicsGrid">
+                                    <button class="help-topic" data-topic="getting-started">
+                                        <span class="help-topic-icon blue">▲</span>
+                                        <span><strong>Getting Started</strong><small>Learn the basics</small></span>
+                                    </button>
+                                    <button class="help-topic" data-topic="ai-design">
+                                        <span class="help-topic-icon purple">◎</span>
+                                        <span><strong>AI Design</strong><small>Generate floor plans</small></span>
+                                    </button>
+                                    <button class="help-topic" data-topic="cost-estimation">
+                                        <span class="help-topic-icon green">📄</span>
+                                        <span><strong>Cost Estimation</strong><small>Understand pricing</small></span>
+                                    </button>
+                                    <button class="help-topic" data-topic="materials">
+                                        <span class="help-topic-icon orange">📦</span>
+                                        <span><strong>Materials</strong><small>Material lists & costs</small></span>
+                                    </button>
+                                    <button class="help-topic" data-topic="suppliers">
+                                        <span class="help-topic-icon teal">🔗</span>
+                                        <span><strong>Suppliers</strong><small>Connect with suppliers</small></span>
+                                    </button>
+                                    <button class="help-topic" data-topic="projects">
+                                        <span class="help-topic-icon red">📁</span>
+                                        <span><strong>Projects</strong><small>Manage your projects</small></span>
+                                    </button>
+                                    <button class="help-topic" data-topic="team">
+                                        <span class="help-topic-icon indigo">👥</span>
+                                        <span><strong>Team & Access</strong><small>Invite & manage team</small></span>
+                                    </button>
+                                    <button class="help-topic" data-topic="billing">
+                                        <span class="help-topic-icon pink">💳</span>
+                                        <span><strong>Billing & Plans</strong><small>Subscriptions & billing</small></span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="help-card">
+                                <h5>Contact Support</h5>
+                                <p class="help-card-sub">Can't find what you're looking for? Our support team is here to help.</p>
+
+                                <div class="help-contact-grid">
+                                    <button class="help-contact-card" id="liveChatBtn">
+                                        <span class="help-contact-icon">💬</span>
+                                        <strong>Live Chat</strong>
+                                        <span>Chat with our team</span>
+                                        <span class="help-contact-note">Available 9AM - 5PM</span>
+                                    </button>
+                                    <a class="help-contact-card" href="mailto:support@buildwise.co.za">
+                                        <span class="help-contact-icon">✉</span>
+                                        <strong>Email Support</strong>
+                                        <span>support@buildwise.co.za</span>
+                                        <span class="help-contact-note">We reply within 24h</span>
+                                    </a>
+                                    <button class="help-contact-card" id="requestCallBtn">
+                                        <span class="help-contact-icon">📞</span>
+                                        <strong>Request a Call</strong>
+                                        <span>Schedule a call back</span>
+                                        <span class="help-contact-note">Available 9AM - 5PM</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- ===================== MIDDLE COLUMN ===================== -->
+                        <div class="help-col help-col-mid">
+                            <div class="help-card">
+                                <h5>Help Center</h5>
+
+                                <div class="help-center-list" id="helpCenterList">
+                                    <button class="help-center-row" data-topic="getting-started">
+                                        <span class="help-center-icon blue">▲</span>
+                                        <span class="help-center-text"><strong>Getting Started</strong><small>Learn how to set up your account and create your first project.</small></span>
+                                        <span class="help-center-count">8 articles</span>
+                                        <span class="chevron">›</span>
+                                    </button>
+                                    <button class="help-center-row" data-topic="ai-design">
+                                        <span class="help-center-icon purple">◎</span>
+                                        <span class="help-center-text"><strong>AI Design & Floor Plans</strong><small>How to generate, customize and download floor plans.</small></span>
+                                        <span class="help-center-count">12 articles</span>
+                                        <span class="chevron">›</span>
+                                    </button>
+                                    <button class="help-center-row" data-topic="cost-estimation">
+                                        <span class="help-center-icon green">📄</span>
+                                        <span class="help-center-text"><strong>Cost Estimation</strong><small>Understand cost breakdowns and material pricing.</small></span>
+                                        <span class="help-center-count">10 articles</span>
+                                        <span class="chevron">›</span>
+                                    </button>
+                                    <button class="help-center-row" data-topic="materials">
+                                        <span class="help-center-icon orange">🔗</span>
+                                        <span class="help-center-text"><strong>Materials & Suppliers</strong><small>Find, compare and manage building materials and suppliers.</small></span>
+                                        <span class="help-center-count">9 articles</span>
+                                        <span class="chevron">›</span>
+                                    </button>
+                                    <button class="help-center-row" data-topic="projects">
+                                        <span class="help-center-icon red">📁</span>
+                                        <span class="help-center-text"><strong>Projects Management</strong><small>Organize and manage all your construction projects.</small></span>
+                                        <span class="help-center-count">7 articles</span>
+                                        <span class="chevron">›</span>
+                                    </button>
+                                    <button class="help-center-row" data-topic="team">
+                                        <span class="help-center-icon indigo">👥</span>
+                                        <span class="help-center-text"><strong>Team & Collaboration</strong><small>Invite team members and manage permissions.</small></span>
+                                        <span class="help-center-count">6 articles</span>
+                                        <span class="chevron">›</span>
+                                    </button>
+                                    <button class="help-center-row" data-topic="billing">
+                                        <span class="help-center-icon pink">💳</span>
+                                        <span class="help-center-text"><strong>Billing & Subscription</strong><small>Manage your plan, payments and billing information.</small></span>
+                                        <span class="help-center-count">6 articles</span>
+                                        <span class="chevron">›</span>
+                                    </button>
+                                    <button class="help-center-row" data-topic="settings">
+                                        <span class="help-center-icon gray">⚙</span>
+                                        <span class="help-center-text"><strong>Account & Settings</strong><small>Update your profile, preferences and app settings.</small></span>
+                                        <span class="help-center-count">5 articles</span>
+                                        <span class="chevron">›</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ===================== RIGHT COLUMN ===================== -->
+                        <div class="help-col help-col-right">
+
+                            <div class="help-card">
+                                <h5>Resources</h5>
+
+                                <div class="help-resource-list">
+                                    <button class="help-resource-row">
+                                        <span class="help-resource-icon blue">▶</span>
+                                        <span><strong>Video Tutorials</strong><small>Step-by-step video guides</small></span>
+                                        <span class="chevron">›</span>
+                                    </button>
+                                    <button class="help-resource-row">
+                                        <span class="help-resource-icon purple">📘</span>
+                                        <span><strong>User Guides</strong><small>Detailed product documentation</small></span>
+                                        <span class="chevron">›</span>
+                                    </button>
+                                    <button class="help-resource-row">
+                                        <span class="help-resource-icon green">?</span>
+                                        <span><strong>FAQ</strong><small>Frequently asked questions</small></span>
+                                        <span class="chevron">›</span>
+                                    </button>
+                                    <button class="help-resource-row">
+                                        <span class="help-resource-icon orange">★</span>
+                                        <span><strong>Best Practices</strong><small>Tips for accurate estimates</small></span>
+                                        <span class="chevron">›</span>
+                                    </button>
+                                    <button class="help-resource-row">
+                                        <span class="help-resource-icon pink">✨</span>
+                                        <span><strong>What's New</strong><small>Latest features and updates</small></span>
+                                        <span class="chevron">›</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="help-card">
+                                <div class="help-status-header">
+                                    <h5>System Status</h5>
+                                    <span class="help-status-updated">Last updated: Today, 09:45 AM</span>
+                                </div>
+
+                                <div class="help-status-list" id="statusList">
+                                    <div class="help-status-row"><span class="status-dot-ok"></span>Website & App<span class="status-pill-ok">Operational</span></div>
+                                    <div class="help-status-row"><span class="status-dot-ok"></span>AI Design Engine<span class="status-pill-ok">Operational</span></div>
+                                    <div class="help-status-row"><span class="status-dot-ok"></span>Cost Estimation Service<span class="status-pill-ok">Operational</span></div>
+                                    <div class="help-status-row"><span class="status-dot-ok"></span>Supplier Integrations<span class="status-pill-ok">Operational</span></div>
+                                    <div class="help-status-row"><span class="status-dot-ok"></span>Data Sync Service<span class="status-pill-ok">Operational</span></div>
+                                </div>
+
+                                <a class="help-status-link" href="#">View System Status Page →</a>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </main>
+    </section>
+
+    <!-- Live Chat modal -->
+    <div class="modal-overlay" id="chatModal">
+        <div class="modal-box">
+            <h3>Start Live Chat</h3>
+            <p class="help-card-sub">Our support team typically responds within a few minutes during business hours (9AM - 5PM).</p>
+            <div class="modal-field">
+                <label>What can we help you with?</label>
+                <textarea rows="3" placeholder="Briefly describe your issue..."></textarea>
+            </div>
+            <div class="modal-actions">
+                <button class="modal-cancel-btn" data-close="chatModal">Cancel</button>
+                <button class="modal-submit-btn" data-close="chatModal">Start Chat</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Request a Call modal -->
+    <div class="modal-overlay" id="callModal">
+        <div class="modal-box">
+            <h3>Request a Call Back</h3>
+            <div class="modal-field">
+                <label>Phone Number</label>
+                <input type="text" placeholder="e.g. 082 123 4567">
+            </div>
+            <div class="modal-field">
+                <label>Best time to call</label>
+                <select>
+                    <option>Morning (9AM - 12PM)</option>
+                    <option>Afternoon (12PM - 3PM)</option>
+                    <option>Late afternoon (3PM - 5PM)</option>
+                </select>
+            </div>
+            <div class="modal-actions">
+                <button class="modal-cancel-btn" data-close="callModal">Cancel</button>
+                <button class="modal-submit-btn" data-close="callModal">Request Call</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ---------------------------------------------------------------
+        // Sidebar resize + collapse, persisted to localStorage (same
+        // keys / limits used across every page)
+        // ---------------------------------------------------------------
+
+        const sidebar = document.querySelector(".dashboard-navbar");
+        const resizer = document.getElementById("sidebarResizer");
+
+        const COLLAPSE_THRESHOLD = 85;
+        const COLLAPSED_WIDTH = 72;
+        const MIN_WIDTH = 70;
+        const MAX_WIDTH = 240;
+        const DEFAULT_WIDTH = 180;
+
+        function applyWidth(width, persist) {
+            const collapsed = width <= COLLAPSE_THRESHOLD;
+            if (collapsed) {
+                sidebar.style.width = COLLAPSED_WIDTH + "px";
+                sidebar.classList.add("collapsed");
+            } else {
+                sidebar.style.width = width + "px";
+                sidebar.classList.remove("collapsed");
+            }
+            if (persist) {
+                localStorage.setItem("kb-sidebar-width", collapsed ? COLLAPSED_WIDTH : width);
+                localStorage.setItem("kb-sidebar-collapsed", collapsed ? "1" : "0");
+            }
+        }
+
+        (function restoreSidebar() {
+            const savedCollapsed = localStorage.getItem("kb-sidebar-collapsed") === "1";
+            const savedWidth = parseInt(localStorage.getItem("kb-sidebar-width"), 10);
+            if (savedCollapsed) applyWidth(COLLAPSED_WIDTH, false);
+            else if (!isNaN(savedWidth)) applyWidth(savedWidth, false);
+            else applyWidth(DEFAULT_WIDTH, false);
+        })();
+
+        let dragging = false;
+
+        resizer.addEventListener("mousedown", () => { dragging = true; document.body.style.cursor = "ew-resize"; });
+        document.addEventListener("mouseup", () => {
+            if (!dragging) return;
+            dragging = false;
+            document.body.style.cursor = "default";
+            applyWidth(parseInt(sidebar.style.width, 10), true);
+        });
+        document.addEventListener("mousemove",(e)=>{
+            if(!dragging) return;
+            let width = e.clientX;
+            if(width < MIN_WIDTH) width = MIN_WIDTH;
+            if(width > MAX_WIDTH) width = MAX_WIDTH;
+            applyWidth(width, false);
+        });
+
+        // Clicking a popular topic scrolls to + opens its Help Center row
+        document.getElementById("helpTopicsGrid").addEventListener("click", (e) => {
+            const topicBtn = e.target.closest(".help-topic");
+            if (!topicBtn) return;
+            const target = document.querySelector(`.help-center-row[data-topic="${topicBtn.dataset.topic}"]`);
+            if (target) {
+                target.scrollIntoView({ behavior:"smooth", block:"center" });
+                target.classList.add("flash");
+                setTimeout(() => target.classList.remove("flash"), 900);
+            }
+        });
+
+        document.getElementById("helpCenterList").addEventListener("click", (e) => {
+            const row = e.target.closest(".help-center-row");
+            if (row) alert("Opening the \"" + row.querySelector("strong").textContent + "\" articles (demo only).");
+        });
+
+        // Modals
+        function openModal(id){ document.getElementById(id).classList.add("open"); }
+        document.querySelectorAll(".modal-overlay").forEach(overlay => {
+            overlay.addEventListener("click", (e) => { if (e.target === overlay) overlay.classList.remove("open"); });
+        });
+        document.querySelectorAll("[data-close]").forEach(btn => {
+            btn.addEventListener("click", () => document.getElementById(btn.dataset.close).classList.remove("open"));
+        });
+
+        document.getElementById("liveChatBtn").addEventListener("click", () => openModal("chatModal"));
+        document.getElementById("requestCallBtn").addEventListener("click", () => openModal("callModal"));
+    </script>
+</body>
+</html>

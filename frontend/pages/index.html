@@ -1,803 +1,406 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kago Build</title>
-    <link rel="stylesheet" href="../styles/global.css">
-    <link rel="stylesheet" href="../styles/landing-page-animate.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Instrument+Serif:ital,wght@0,400;1,400&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
-    <link  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet"/>
-     <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Anton&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>KagoBuild – AI house plans with live material costs</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js');</script>
+<style>
+:root{--ink:#1f1a17;--muted:#6b625a;--bg:#fbf8f3;--card:#f1ebe2;--accent:#b5482f;--sky1:#8a3d24;--sky2:#d9995a;--serif:'Instrument Serif','Times New Roman',Georgia,serif;--sans:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--ink);background:var(--bg);line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,.serif{font-family:var(--serif);font-weight:400;letter-spacing:-.02em;line-height:1.05}
+em{font-style:italic}
+.wrap{max-width:1100px;margin:0 auto;padding:0 24px}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:50;width:min(760px,calc(100% - 24px));display:grid;grid-template-columns:1fr auto 1fr;align-items:center;background:#fff;border-radius:999px;padding:7px 7px 7px 8px;box-shadow:0 6px 24px rgba(60,30,10,.14)}
+.logo{display:flex;align-items:center;gap:8px;font-family:var(--serif);font-size:22px}
+nav .logo{justify-self:start}
+nav .logo span{display:none}
+.logo i{width:34px;height:34px;border-radius:50%;background:#1f1a17;display:grid;place-items:center}
+.logo svg{width:16px;height:16px}
+nav ul{display:flex;align-items:center;gap:24px;list-style:none;font-size:13px;color:#444;justify-self:center}
+nav ul a{display:block;padding:8px 0;white-space:nowrap;transition:color .2s}
+nav ul a:hover{color:#000}
+.login{font-size:13px;color:#444;padding:8px 14px;white-space:nowrap;transition:color .2s}
+.login:hover{color:#000}
+.btn{display:inline-block;border:0;cursor:pointer;font:500 13px var(--sans);padding:11px 20px;border-radius:999px;background:#1f1a17;color:#fff;transition:transform .2s,background .2s;white-space:nowrap}
+.btn:hover{transform:translateY(-1px);background:#3a302a}
+.btn.w{background:#fff;color:#1f1a17}
+.menu{display:none;background:none;border:0;font-size:22px;cursor:pointer;justify-self:end;margin-right:8px}
+.sky{position:relative;overflow:hidden;color:#fff;border-radius:24px;margin:10px;background:linear-gradient(180deg,var(--sky1) 0%,#c46a3a 55%,var(--sky2) 100%)}
+.sky::before,.sky::after{content:"";position:absolute;left:-10%;right:-10%;bottom:-70px;height:230px;background:linear-gradient(to top,#fbf8f3 0,#fbf8f3 38%,rgba(251,248,243,0) 85%),radial-gradient(ellipse 18% 55% at 12% 70%,#fbf8f3 40%,transparent 72%),radial-gradient(ellipse 22% 65% at 34% 85%,#fbf8f3 40%,transparent 72%),radial-gradient(ellipse 20% 55% at 58% 75%,#fbf8f3 40%,transparent 72%),radial-gradient(ellipse 24% 65% at 84% 80%,#fbf8f3 40%,transparent 72%);filter:blur(10px);opacity:.95;animation:drift 40s linear infinite alternate}
+.sky::after{bottom:-110px;opacity:.7;animation-duration:60s;animation-direction:alternate-reverse}
+@keyframes drift{to{transform:translateX(5%)}}
 
+/* Hero: same background image as the previous landing page */
+#top{background:#1a1410}
+#top::before,#top::after{display:block;left:0;right:0;top:0;bottom:0;height:auto;filter:none;opacity:1}
+#top::before{background:url("../assets/images/home-hero.png") center/cover no-repeat;transform-origin:62% 58%;animation:kb 28s ease-in-out infinite alternate}
+#top::after{background:linear-gradient(180deg,rgba(8,10,18,.5) 0%,rgba(8,10,18,.3) 40%,rgba(8,10,18,.65) 100%);animation:none}
+#top .hero{position:relative;z-index:2}
+#top h1,#top p{text-shadow:0 2px 24px rgba(0,0,0,.45)}
 
-    
+.hero{min-height:720px;display:flex;flex-direction:column;align-items:center;text-align:center;padding:150px 24px 0}
+.pill{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.06em;text-transform:uppercase;background:rgba(255,255,255,.22);padding:6px 14px;border-radius:999px;margin-bottom:22px}
+.pill::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.tag{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.06em;text-transform:uppercase;background:#f1e6da;color:#333;padding:6px 14px;border-radius:999px;margin-bottom:20px}
+.tag::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent)}
+.hero h1{font-size:clamp(46px,7vw,84px);max-width:760px}
+.hero p{max-width:470px;margin:22px auto 28px;font-size:15px;opacity:.92}
+.hero .row{display:flex;gap:10px;justify-content:center}
+.float{position:relative;z-index:2;display:flex;justify-content:center;align-items:flex-end;margin-top:64px;gap:0}
+.glass{background:rgba(255,255,255,.72);backdrop-filter:blur(14px);border-radius:22px;color:#1f1a17;padding:20px;box-shadow:0 20px 50px rgba(60,25,10,.28)}
+.glass small{font-size:12px;color:#555;display:flex;justify-content:space-between}
+.glass b{font:400 38px var(--serif);color:var(--accent)}
+.g1{width:210px;transform:rotate(-6deg) translateY(30px);margin-right:-24px}
+.g2{width:320px;height:210px;text-align:center;z-index:2}
+.g3{width:230px;transform:rotate(5deg) translateY(30px);margin-left:-24px}
+.bars{display:flex;align-items:flex-end;gap:6px;height:70px;margin-top:10px}
+.bars span{flex:1;background:linear-gradient(#b5482f,#e2a27f);border-radius:8px 8px 3px 3px}
+.dial{width:100%;height:120px}
+.about{padding:110px 0 70px;text-align:center}
+.about h2{font-size:clamp(30px,4.2vw,52px);max-width:900px;margin:0 auto 54px}
+.chart{width:min(420px,100%);height:220px;margin:0 auto;border-radius:24px;padding:28px 36px 0;display:flex;align-items:flex-end;gap:22px;background:linear-gradient(#a8492b,#e0a878);overflow:hidden}
+.chart span{flex:1;background:rgba(255,255,255,.55);border-radius:16px 16px 0 0;transform-origin:bottom;transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+.chart span:last-child{background:#fff}
+.js .chart.rv span{transform:scaleY(0)}
+.js .chart.rv.in span{transform:none}
+.stats{display:flex;justify-content:center;gap:clamp(24px,7vw,90px);flex-wrap:wrap;padding:30px 0 90px}
+.stat{display:flex;align-items:center;gap:10px;text-align:left}
+.stat b{font:400 58px var(--serif)}
+.stat span{font-size:11px;color:var(--muted);max-width:92px;line-height:1.3}
+.center{text-align:center}
+.center h2{font-size:clamp(36px,5vw,58px);max-width:640px;margin:0 auto 16px}
+.center>p,.lead{color:var(--muted);font-size:14px;max-width:440px;margin:0 auto 22px}
+.bento{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:56px auto 0;max-width:820px}
+.bento .c{background:var(--card);border-radius:22px;padding:22px 22px 20px;text-align:left}
+.c .lab{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);font-weight:600}
+.c h3{font-size:27px;margin:8px 0 16px}
+.c p{font-size:12.5px;color:var(--muted)}
+.mini{background:#fff;border-radius:14px;padding:16px;height:150px;margin:0 auto 16px;width:78%;box-shadow:0 3px 14px rgba(0,0,0,.06);overflow:hidden}
+.mini small{font-size:10px;color:#777;display:flex;justify-content:space-between}
+.mini b{font:400 34px var(--serif);color:var(--accent)}
+.mini ul{list-style:none;font-size:11px;margin-top:6px}
+.mini li{display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid #eee}
+.core{padding:110px 0 20px}
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px}
+.trio .c{background:#f1ebe2;border:1px solid #e6dccd;border-radius:22px;padding:24px;text-align:left;display:flex;flex-direction:column;min-height:290px;box-shadow:0 2px 12px rgba(20,30,50,.05)}
+.trio .ico{margin-bottom:auto}
+.trio h3{margin-top:56px}
+.trio .btn{align-self:flex-start}
+.pricing{margin:110px 10px 0;text-align:center;padding:90px 24px 100px;background:linear-gradient(180deg,#7a3520,#b85a32 60%,#e8b98a)}
+.pricing::before,.pricing::after{display:none}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:860px;margin:44px auto 0;text-align:left}
+.plan{background:#fff;color:#1f1a17;border-radius:22px;padding:22px}
+.plan .st{width:30px;height:30px;border-radius:9px;background:#f6dccd;color:var(--accent);display:inline-grid;place-items:center;margin-right:8px;vertical-align:middle}
+.plan .n{font:400 20px var(--serif)}
+.plan .p{font:400 36px var(--serif);margin:16px 0 14px}
+.plan .p small{font:12px var(--sans);color:var(--muted)}
+.plan h4{font-size:12px;margin-bottom:10px}
+.plan li{list-style:none;font-size:12px;display:flex;gap:9px;margin-bottom:9px;color:#333}
+.plan li::before{content:"✓";flex:none;width:16px;height:16px;border-radius:50%;background:#1f1a17;color:#fff;font-size:9px;display:grid;place-items:center;margin-top:1px}
+.plan .btn{display:block;text-align:center;width:100%;margin-top:18px;padding:13px}
+.testi{padding:110px 0 20px;overflow:hidden}
+.track{display:flex;gap:24px;margin-top:52px;width:max-content;animation:scroll 50s linear infinite}
+.track:hover{animation-play-state:paused}
+@keyframes scroll{to{transform:translateX(-50%)}}
+.t{display:flex;gap:10px;flex:none}
+.t .ph,.t .qc{width:250px;height:300px;border-radius:20px;flex:none}
+.t .ph{position:relative;overflow:hidden}
+.t .ph svg,.t .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.t .qc{background:var(--card);padding:22px;display:flex;flex-direction:column;text-align:left}
+.t q{display:block;font-size:13px;color:#333;quotes:none;line-height:1.55}
+.t q::before{content:"\275E";display:block;font-size:22px;color:#1f1a17;margin-bottom:8px}
+.t cite{font-style:normal;font-size:13px;font-weight:500;display:block;line-height:1.3;margin-top:auto}
+.t cite span{display:block;font-weight:400;font-size:11.5px;color:var(--muted)}
+.faq{padding:20px 24px 100px;display:grid;grid-template-columns:380px 1fr;gap:18px;align-items:stretch}
+.faq-card{margin:0;border-radius:26px;min-height:520px;display:flex;flex-direction:column;justify-content:flex-end;padding:34px;text-align:left}
+.faq-card>*{position:relative;z-index:2}
+.faq-card .mark{position:absolute;top:-10px;right:20px;font:400 320px/1 var(--serif);color:rgba(255,255,255,.16);z-index:1;pointer-events:none}
+.faq-card h2{font-size:clamp(38px,4.2vw,50px);margin-bottom:18px}
+.faq-card p{font-size:14px;max-width:300px;opacity:.95;margin-bottom:26px}
+.faq-card .btn{align-self:flex-start;padding:15px 28px;font-size:14px}
+.faq-panel{border:1px solid #e6dccd;background:#f4eee5;border-radius:26px;padding:28px 18px;display:flex;flex-direction:column;gap:10px;counter-reset:q}
+.faq-item{background:#fff;border-radius:20px;box-shadow:0 2px 12px rgba(20,30,50,.06);counter-increment:q;overflow:hidden}
+.faq-item summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:40px 1fr 30px;align-items:center;gap:16px;padding:22px 24px;font:500 16px var(--sans);text-align:center}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary::before{content:counter(q);width:38px;height:38px;border-radius:50%;background:#f6dccd;color:var(--accent);display:grid;place-items:center;font:600 13px var(--sans)}
+.faq-item summary::after{content:"+";font:400 26px var(--sans);text-align:center;transition:transform .25s;line-height:1}
+.faq-item[open] summary::after{transform:rotate(45deg)}
+.faq-item p{padding:0 70px 24px;font-size:13.5px;color:var(--muted);text-align:center}
+.blog{padding:100px 0 90px}
+.posts{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px;max-width:800px;margin-inline:auto}
+.post{background:var(--card);border-radius:20px;padding:10px 10px 16px;text-align:left}
+.post .img{height:170px;border-radius:14px;margin-bottom:14px;position:relative;overflow:hidden}
+.post h3{font-size:17px;line-height:1.2;padding:0 6px;margin-bottom:8px}
+.post p{font-size:11px;color:var(--muted);padding:0 6px 8px}
+.post .cost{display:block;font-size:12px;font-weight:600;color:var(--accent);padding:0 6px 14px}
+.post .btn{display:block;text-align:center;margin:0 6px}
+.contact{padding:20px 0 100px}
+.quote-form{max-width:640px;margin:40px auto 0;background:var(--card);border-radius:24px;padding:28px;text-align:left;display:grid;gap:14px}
+.quote-form .qrow{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.quote-form label{display:block;font-size:12px;font-weight:500;margin-bottom:6px}
+.quote-form input,.quote-form select,.quote-form textarea{width:100%;border:1px solid #e0d5c5;background:#fff;border-radius:12px;padding:11px 14px;font:13px var(--sans);color:var(--ink)}
+.quote-form textarea{resize:vertical}
+.quote-form .btn{justify-self:start;padding:13px 26px}
+.quote-confirmation{font-size:13px;color:var(--accent);display:none}
+.cta{min-height:460px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:90px 24px 130px;margin-bottom:0}
+.cta h2{font-size:clamp(38px,5.5vw,66px);max-width:640px;position:relative;z-index:2}
+.cta p{position:relative;z-index:2;font-size:13px;max-width:400px;margin:18px 0 24px;opacity:.92}
+.cta .btn{position:relative;z-index:2}
+footer{padding:64px 0 0;overflow:hidden}
+.fgrid{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap}
+.news{display:flex;gap:6px;margin-top:70px;background:#efe8dd;padding:6px;border-radius:999px}
+.news input{border:0;background:none;padding:0 14px;font:13px var(--sans);width:190px}
+.news small{display:block;font-size:11px;font-weight:600;margin-bottom:8px}
+.cols{display:flex;gap:56px;font-size:12px}
+.cols h5{font-size:12px;margin-bottom:12px}
+.cols a{display:block;color:var(--muted);margin-bottom:8px}
+.cols a:hover{color:#000}
+.word{font-family:var(--serif);font-style:italic;font-size:clamp(90px,24vw,330px);line-height:.85;text-align:center;letter-spacing:-.04em;margin-top:30px;height:.65em}
+
+@keyframes kb{from{transform:scale(1.02)}to{transform:scale(1.15) translate(-1.5%,1%)}}
+@keyframes rise{from{opacity:0;translate:0 28px;filter:blur(6px)}to{opacity:1;translate:0 0;filter:blur(0)}}
+@keyframes enter{from{opacity:0;scale:.88}to{opacity:1;scale:1}}
+@keyframes bob{from{translate:0 0}to{translate:0 -10px}}
+@keyframes grow{from{transform:scaleY(0)}}
+@keyframes pop{to{opacity:1}}
+@keyframes navin{from{opacity:0;translate:0 -22px}}
+@keyframes pulse{50%{opacity:.35;scale:1.6}}
+@keyframes fadeIn{from{opacity:0;translate:0 -6px}}
+nav{animation:navin .8s .1s cubic-bezier(.2,.8,.2,1) backwards}
+#top .hero>.pill,#top .hero>h1,#top .hero>p,#top .hero>.row{animation:rise .9s cubic-bezier(.2,.8,.2,1) backwards}
+#top .hero>.pill{animation-delay:.2s}#top .hero>h1{animation-delay:.35s}#top .hero>p{animation-delay:.55s}#top .hero>.row{animation-delay:.7s}
+#top .pill::before{animation:pulse 2.4s ease-in-out infinite}
+.float .glass{animation:enter 1s cubic-bezier(.2,.8,.2,1) var(--d) backwards,bob 6s ease-in-out calc(var(--d) + 1s) infinite alternate}
+.g1{--d:.9s}.g2{--d:1.05s}.g3{--d:1.2s}.g2{animation-duration:1s,7s}.g3{animation-duration:1s,5.5s}
+.bars span{transform-origin:bottom;animation:grow 1s cubic-bezier(.2,.8,.2,1) backwards;animation-delay:calc(var(--i)*80ms + 1.2s)}
+.plan,.post,.t .ph,.t .qc,.c{transition:box-shadow .3s}
+.plan:hover,.post:hover,.bento .c:hover,.trio .c:hover{box-shadow:0 18px 40px rgba(60,30,10,.14)}
+.faq-item[open] p{animation:fadeIn .45s ease}
+/* Reveal-on-scroll only applies once JS is running, so the page is never blank */
+.js .rv{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}
+.js .rv.in{opacity:1;transform:none}
+@media(max-width:820px){
+  nav{gap:14px;width:calc(100% - 20px);justify-content:space-between}
+  nav ul{display:none;position:absolute;top:56px;left:0;right:0;background:#fff;border-radius:22px;flex-direction:column;padding:20px;gap:14px;box-shadow:0 10px 30px rgba(0,0,0,.15)}
+  nav ul.open{display:flex}
+  .menu{display:block;margin-left:auto}
+  .bento,.trio,.plans,.posts{grid-template-columns:1fr}
+  .g1,.g3{display:none}
+  .hero{padding-top:130px}
+  .cols{gap:30px}
+  .faq{grid-template-columns:1fr}
+  .faq-card{min-height:380px}
+  .faq-item summary{padding:18px;gap:10px;font-size:14px;grid-template-columns:34px 1fr 24px}
+  .faq-item p{padding:0 22px 20px}
+  .quote-form .qrow{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.dial rect{opacity:1!important}.js .rv{opacity:1;transform:none}}
+</style>
 </head>
 <body>
-    <!--hero section (UNTOUCHED: background image, layout, positioning) -->
-    <section class="hero-section" id="hero-section">
-        <!--nav-bar-->
-        <nav id="nav-bar">
-                <div id="logo">logo</div>
 
-                <ul class="nav-list">
-                    <li><a href="#hero-section"> Home</a></li>
-                    <li><a href="#services">services</a></li>
-                    <li><a href="#how-it-works">Processes</a></li>
-                    <li><a href="#features">about us</a></li>
-                    <li><a href="#get-quote">Contact</a></li>
-                </ul>
-
-                <div class="nav-btns">
-                    <a class="Log-In-btn" href="signin.html">
-                        Log In 
-                    </a>
-                    <a class="sign-in-btn" href="signin.html#signup">
-                        sign in <span id="code-icon"></span>
-                    </a>
-                </div>
-        </nav>  
-        <!--hero section text-->
-        <div class="hero-content">
-            
-            <h1 class="head-hero">
-                AI-Powered home planning & <span class="italics"> cost estimation </span> 
-                <br>
-                <span class="sub-hero">Create custom house plans, material lists, and real-time cost estimates—all powered by AI.</span>
-                <style>
-                    @font-face 
-                    {    
-                        font-family: 'GeneralSans';
-                        src: url('https://cdn.jsdelivr.net/gh/fonts-archive/GeneralSans/GeneralSans-Regular.woff2') format('woff2');
-                        font-weight: 400;
-                    }
-                    @font-face 
-                    {
-                        font-family: 'GeneralSans';
-                        src: url('https://cdn.jsdelivr.net/gh/fonts-archive/GeneralSans/GeneralSans-Semibold.woff2') format('woff2');
-                        font-weight: 600;
-                    }
-                    @font-face 
-                    {
-                        font-family: 'GeneralSans';
-                        src: url('https://cdn.jsdelivr.net/gh/fonts-archive/GeneralSans/GeneralSans-Semibold.woff2') format('woff2');
-                    }
-
-
-
-                    .head-hero
-                    {
-                        font-family:'GeneralSans',sans-serif;
-                        font-size:45px;
-                        font-weight:600;
-                        line-height:1.0;
-                        letter-spacing:-3px;
-                        margin-bottom:30px;
-                    }
-
-                    .italics
-                    {
-                           font-family:'Cormorant Garamond',serif;
-                           font-style:italic;
-                           font-weight:400;
-                    }
-                    .sub-hero
-                    {
-                        font-family:'GeneralSans',sans-serif;
-                        font-size:20px;
-                        line-height:1.7;
-                        color:#bdbdbd;
-                        max-width:600px;
-                        margin:auto;
-                    }
-                </style>
-            </h1>
-            
-       
-
-            <a class="split-button" href="signin.html#signup">
-                <span class="btn-label">Get Started</span>
-                <span class="btn-icon" aria-label="Go">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="7" y1="17" x2="17" y2="7"/>
-                        <polyline points="7 7 17 7 17 17"/>
-                    </svg>
-                </span>
-            </a>
-
-              <style>
-                /* NAV BUTTON (reference size) */
-                .Get-Started-btn {
-                    height: 52px;
-                    padding: 0 24px;
-                    font-size: 15px;
-                    font-weight: 600;
-                    border-radius: 10px;
-                }
-
-                /* HERO SPLIT BUTTON */
-                .split-button {
-                    display: inline-flex;
-                    align-items: center;
-                    gap: 2px;
-                    border: none;
-                    cursor: pointer;
-                    background: transparent;
-                    margin-top: 450px;
-                }
-
-                /* LABEL = SAME SIZE AS NAV BUTTON */
-                .btn-label {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-
-                    height: 52px;              /* MATCH NAV HEIGHT */
-                    padding: 0 26px;           /* slightly larger width */
-                    
-                    background: #ff5a1f;
-                    color: #fff;
-
-                    font-size: 15px;
-                    font-weight: 600;
-
-                    border-radius: 10px;
-                    white-space: nowrap;
-                }
-
-                /* ICON (DO NOT CHANGE SIZE) */
-                .btn-icon {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-
-                    height: 52px;   /* MATCH HEIGHT ONLY */
-                    width: 52px;    /* keep square */
-                    
-                    background: #ff5a1f;
-                    border-radius: 10px;
-                }
-
-                .btn-icon svg {
-                    width: 16px;
-                    height: 16px;
-                    color: #fff;
-                }
-
-                /* optional hover */
-                .split-button:hover {
-                    filter: brightness(1.1);
-                }
-
-                .split-button:active {
-                    transform: scale(0.97);
-                }
-            </style>
-
-        </div>
-
-    </section>
-
-    <!--services-->
-    <section class="services" id="services">
-
-        <!-- SECTION HEADING -->
-        <h1 id="serv-heading">
-            Our <span id="services-serv">Services</span>
-            <br>
-            <span id="serv-sub-heading">
-                Transform your vision into a build-ready plan with intelligent design,
-                material analysis, and accurate cost estimation.
-            </span>
-        </h1>
-
-        <div class="services-intro">
-            <p>
-                Generate house plans, calculate material requirements, estimate
-                project costs, and create professional reports — all in one
-                intelligent platform.
-            </p>
-            <a class="Explore-Solutions-btn" href="#pricing">Explore Solutions</a>
-        </div>
-
-        <!-- KORA-STYLE PRODUCT GRID WITH PHOTOS -->
-        <div class="services-grid">
-
-            <!-- CARD 01 -->
-            <article class="kora-card">
-                <div class="kora-card-image">
-                    <img src="https://picsum.photos/seed/kago-design/600/500" alt="AI-generated house floor plan concept">
-                </div>
-                <div class="kora-card-info">
-                    <div class="kora-card-title-row">
-                        <h3>AI House Design</h3>
-                        <span class="kora-card-tag">Design</span>
-                    </div>
-                    <p>
-                        Generate intelligent floor plans tailored to your
-                        budget, location, style preferences, and space
-                        requirements.
-                    </p>
-                </div>
-            </article>
-
-            <!-- CARD 02 -->
-            <article class="kora-card">
-                <div class="kora-card-image">
-                    <img src="https://picsum.photos/seed/kago-cost/600/500" alt="Material cost estimation on site">
-                </div>
-                <div class="kora-card-info">
-                    <div class="kora-card-title-row">
-                        <h3>Material & Cost Intelligence</h3>
-                        <span class="kora-card-tag">Estimate</span>
-                    </div>
-                    <p>
-                        Automatically calculate material quantities and
-                        estimate construction costs using current market
-                        pricing.
-                    </p>
-                </div>
-            </article>
-
-            <!-- CARD 03 -->
-            <article class="kora-card">
-                <div class="kora-card-image">
-                    <img src="https://picsum.photos/seed/kago-docs/600/500" alt="Project documentation and reports">
-                </div>
-                <div class="kora-card-info">
-                    <div class="kora-card-title-row">
-                        <h3>Project Documentation</h3>
-                        <span class="kora-card-tag">Reports</span>
-                    </div>
-                    <p>
-                        Export professional reports, compare design
-                        alternatives, and prepare build-ready documents
-                        for contractors and suppliers.
-                    </p>
-                </div>
-            </article>
-
-        </div>
-
-    </section>
-
-    <!--Features (Kora "Natural care" dark-olive style) -->
-    <section class="Features" id="features">
-
-        <div class="features-inner">
-
-            <div class="features-copy">
-                <h1 class="Features-heading">Plan smarter, every step of the way.</h1>
-                <p class="Features-sub-heading">
-                    AI-powered tools for planning, designing, and budgeting your dream home.
-                </p>
-
-                <ul class="features-checklist">
-                    <li><span class="check">✓</span> AI-powered house design in minutes</li>
-                    <li><span class="check">✓</span> Automatic material takeoff</li>
-                    <li><span class="check">✓</span> Real-time cost estimation</li>
-                    <li><span class="check">✓</span> Smart budget forecasting</li>
-                </ul>
-
-                <div class="features-cta-row">
-                    <a class="features-cta-btn" href="#pricing">See all features</a>
-                    <div class="features-rating">
-                        <span class="stars">★★★★★</span> 4.9/5 from 500+ builders
-                    </div>
-                </div>
-            </div>
-
-            <div class="features-visual">
-                <div class="features-arch features-arch-1">
-                    <img src="https://picsum.photos/seed/kago-floorplan/300/380" alt="Homeowner reviewing floor plan">
-                </div>
-                <div class="features-arch features-arch-2">
-                    <img src="https://picsum.photos/seed/kago-costreport/300/380" alt="Printed cost report on site">
-                </div>
-            </div>
-
-        </div>
-
-    </section>
-
-    <!--Testimonials (Kora dark-olive carousel with real photos) -->
-    <section class="Testimonials" id="testimonials">
-
-        <h1 class="testimonials-heading">What builders are saying</h1>
-
-        <div class="testimonials-row" id="testimonials-row">
-
-            <article class="testimonial-card">
-                <img class="testimonial-avatar" src="https://randomuser.me/api/portraits/men/32.jpg" alt="Thabo M.">
-                <p class="testimonial-quote">
-                    KagoBuild cut our planning time in half. The cost estimate matched our final build within 4%.
-                </p>
-                <div class="testimonial-stars">★★★★★</div>
-                <div class="testimonial-name">Thabo M. <span>Property Developer</span></div>
-            </article>
-
-            <article class="testimonial-card">
-                <img class="testimonial-avatar" src="https://randomuser.me/api/portraits/women/44.jpg" alt="Naledi K.">
-                <p class="testimonial-quote">
-                    We used to spend weeks on material lists. Now it takes minutes, and suppliers quote from the report directly.
-                </p>
-                <div class="testimonial-stars">★★★★★</div>
-                <div class="testimonial-name">Naledi K. <span>Site Contractor</span></div>
-            </article>
-
-            <article class="testimonial-card">
-                <img class="testimonial-avatar" src="https://randomuser.me/api/portraits/men/67.jpg" alt="Johan V.">
-                <p class="testimonial-quote">
-                    The AI floor plans gave us a starting point our architect could refine in a single meeting.
-                </p>
-                <div class="testimonial-stars">★★★★★</div>
-                <div class="testimonial-name">Johan V. <span>First-time Homeowner</span></div>
-            </article>
-
-        </div>
-
-        <div class="testimonials-nav">
-            <button class="testi-arrow" id="testi-prev" aria-label="Previous testimonial">&#8249;</button>
-            <button class="testi-arrow" id="testi-next" aria-label="Next testimonial">&#8250;</button>
-        </div>
-
-    </section>
-
-    <!--how it works (Kora-style numbered cards, cream container for consistency) -->
-    <section class="how-it-works" id="how-it-works">
-        <h1>How It Works</h1>
-
-        <div class="process">
-
-            <div class="process-card">
-                <span class="process-number">01</span>
-                <div class="process-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="7" y1="17" x2="17" y2="7"/>
-                        <polyline points="7 7 17 7 17 17"/>
-                    </svg>
-                </div>
-                <p>Describe Your Project</p>
-            </div>
-
-            <div class="process-card">
-                <span class="process-number">02</span>
-                <div class="process-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="7" y1="17" x2="17" y2="7"/>
-                        <polyline points="7 7 17 7 17 17"/>
-                    </svg>
-                </div>
-                <p>Generate Your House Plan</p>
-            </div>
-
-            <div class="process-card">
-                <span class="process-number">03</span>
-                <div class="process-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="7" y1="17" x2="17" y2="7"/>
-                        <polyline points="7 7 17 7 17 17"/>
-                    </svg>
-                </div>
-                <p>Calculate Materials</p>
-            </div>
-
-            <div class="process-card">
-                <span class="process-number">04</span>
-                <div class="process-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="7" y1="17" x2="17" y2="7"/>
-                        <polyline points="7 7 17 7 17 17"/>
-                    </svg>
-                </div>
-                <p>Estimate Costs & Export Reports</p>
-            </div>
-
-        </div>
-    </section>
-
-    <!--Pricing (Kora product-card style, cream palette) -->
-    <section class="Pricing" id="pricing">
-
-        <h1 class="price-heading">Try Go with a special offer</h1>
-
-        <div class="pricing-cards">
-
-            <!-- FREE -->
-            <div class="price-card plan-free">
-                <div class="price-card-icon"><i class="fa-solid fa-box-open"></i></div>
-                <h2>Free</h2>
-                <p class="price">R<span>0</span> <small>ZAR / month</small></p>
-                <p class="subtitle">Unlock the full experience</p>
-
-                <div class="features-list">
-                    <p><i class="fa-solid fa-check"></i> Core model</p>
-                    <p><i class="fa-solid fa-check"></i> More messages and uploads</p>
-                    <p><i class="fa-solid fa-check"></i> Limited image creation</p>
-                    <p><i class="fa-solid fa-check"></i> Limited memory</p>
-                    <p><i class="fa-solid fa-check"></i> Expanded voice mode</p>
-                </div>
-
-                <a class="btn-primary" href="signin.html#signup">
-                    Get Started
-                    <span class="btn-dot"></span>
-                </a>
-
-                <p class="note">Unlimited subject to abuse guardrails.</p>
-            </div>
-
-            <!-- PRO -->
-            <div class="price-card featured plan-pro">
-                <span class="plan-badge">Most Popular</span>
-                <div class="price-card-icon"><i class="fa-solid fa-crown"></i></div>
-                <h2>Pro</h2>
-                <p class="price">R<span>399</span> <small>ZAR / month</small></p>
-                <p class="subtitle">Everything in Free, plus:</p>
-
-                <div class="features-list">
-                    <p><i class="fa-solid fa-check"></i> Unlimited messages</p>
-                    <p><i class="fa-solid fa-check"></i> Advanced AI models</p>
-                    <p><i class="fa-solid fa-check"></i> Unlimited image creation</p>
-                    <p><i class="fa-solid fa-check"></i> Extended memory</p>
-                    <p><i class="fa-solid fa-check"></i> Priority support</p>
-                </div>
-
-                <a class="btn-primary btn-primary-filled" href="signin.html#signup">
-                    Upgrade to Pro
-                    <span class="btn-dot"></span>
-                </a>
-
-                <p class="note">Best for professionals. Cancel anytime.</p>
-            </div>
-
-            <!-- BUSINESS -->
-            <div class="price-card plan-business">
-                <div class="price-card-icon"><i class="fa-solid fa-briefcase"></i></div>
-                <h2>Business</h2>
-                <p class="price">R<span>999</span> <small>ZAR / month</small></p>
-                <p class="subtitle">Built for teams.</p>
-
-                <div class="features-list">
-                    <p><i class="fa-solid fa-check"></i> Team workspace</p>
-                    <p><i class="fa-solid fa-check"></i> Shared memory</p>
-                    <p><i class="fa-solid fa-check"></i> Admin controls</p>
-                    <p><i class="fa-solid fa-check"></i> Premium support</p>
-                    <p><i class="fa-solid fa-check"></i> Advanced security</p>
-                </div>
-
-                <a class="btn-secondary" href="#get-quote">
-                    Contact Sales
-                    <span class="btn-dot btn-dot-dark"></span>
-                </a>
-
-                <p class="note">Scale with confidence. Custom enterprise solutions.</p>
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!--FAQ (Kora split panel, cream container for consistency) -->
- 
-    <section class="FAQ" id="faq">
-
-        <div class="Frequent-div">
-            <!-- LEFT SIDE PANEL -->
-            <div class="FAQ-picture">
-                <img src="https://picsum.photos/seed/kago-faq/700/900" alt="Architect reviewing plans with client">
-                <span class="FAQ-picture-icon">?</span>
-                <div class="FAQ-heading">
-                    <h1>Frequently Asked Questions</h1>
-                    <p>Got questions? We've got answers! Browse our FAQ, or reach out anytime—we're here to help make your journey smooth sailing</p>
-                    <a class="Reach-Out" href="#get-quote">Reach Out</a>
-                </div>
-            </div>
-
-            <!-- RIGHT SIDE FAQ -->
-            <div class="FAQ-content">
-
-                <button class="accordion">
-                    How does KagoBuild generate house plans?
-                    <span class="FAQ-icon">+</span>
-                </button>
-
-                <div class="panel">
-                    <p>
-                        KagoBuild uses artificial intelligence to create custom house plans based on your requirements, including home size, number of rooms, architectural style, location, and budget.
-                    </p>
-                </div>
-
-                <button class="accordion">
-                    Do I need architectural experience to use KagoBuild?
-                    <span class="FAQ-icon">+</span>
-                </button>
-
-                <div class="panel">
-                    <p>
-                        No. KagoBuild is designed for homeowners, builders, and developers. Simply enter your project details, and the platform handles the planning and estimation process for you.
-                    </p>
-                </div>
-
-                <button class="accordion">
-                    How accurate are the material estimates?
-                    <span class="FAQ-icon">+</span>
-                </button>
-
-                <div class="panel">
-                    <p>
-                        Material quantities are calculated directly from the generated design. While estimates provide a strong planning baseline, actual requirements may vary depending on construction methods and site conditions.
-                    </p>
-                </div>
-
-                <button class="accordion">
-                    Can I design multi-story homes?
-                    <span class="FAQ-icon">+</span>
-                </button>
-
-                <div class="panel">
-                    <p>
-                        Yes. Depending on your selected plan, KagoBuild supports both single-story and multi-story residential designs.
-                    </p>
-                </div>
-
-                <button class="accordion">
-                    Is KagoBuild suitable for builders and property developers?
-                    <span class="FAQ-icon">+</span>
-                </button>
-
-                <div class="panel">
-                    <p>
-                        Yes. The platform is designed for homeowners, builders, contractors, and developers who need faster planning and more accurate project budgeting.
-                    </p>
-                </div>
-
-            </div>
-        </div>
-
-        
-
-    </section>
-
-    <!--Get a Quote (destination for Reach Out / Contact Sales / footer CTA) -->
-    <section class="GetQuote" id="get-quote">
-
-        <div class="quote-inner">
-
-            <div class="quote-copy">
-                <h1>Tell us about your project</h1>
-                <p>Fill this in and our team will get back to you with next steps and pricing.</p>
-            </div>
-
-            <form class="quote-form" id="quote-form" onsubmit="return false;">
-
-                <div class="quote-row">
-                    <div class="quote-field">
-                        <label for="q-name">Name</label>
-                        <input type="text" id="q-name" name="name" required>
-                    </div>
-                    <div class="quote-field">
-                        <label for="q-contact">Email or phone</label>
-                        <input type="text" id="q-contact" name="contact" required>
-                    </div>
-                </div>
-
-                <div class="quote-row">
-                    <div class="quote-field">
-                        <label for="q-product">Product or service</label>
-                        <select id="q-product" name="product">
-                            <option value="ai-design">AI House Design</option>
-                            <option value="cost-estimate">Material & Cost Estimate</option>
-                            <option value="documentation">Project Documentation</option>
-                            <option value="business-plan">Business / Team Plan</option>
-                        </select>
-                    </div>
-                    <div class="quote-field">
-                        <label for="q-quantity">Quantity or requirements</label>
-                        <input type="text" id="q-quantity" name="quantity" placeholder="e.g. 1 single-story home, 3 bedrooms">
-                    </div>
-                </div>
-
-                <div class="quote-field quote-field-full">
-                    <label for="q-details">Project details</label>
-                    <textarea id="q-details" name="details" rows="4" placeholder="Tell us about the build, location, timeline..."></textarea>
-                </div>
-
-                <div class="quote-row">
-                    <div class="quote-field">
-                        <label for="q-budget">Budget or timeframe <span>(optional)</span></label>
-                        <input type="text" id="q-budget" name="budget" placeholder="e.g. R500k, ready to start in 3 months">
-                    </div>
-                    <div class="quote-field">
-                        <label for="q-attachment">Attachment / photo <span>(optional)</span></label>
-                        <input type="file" id="q-attachment" name="attachment">
-                    </div>
-                </div>
-
-                <button type="submit" class="quote-submit-btn">
-                    Send Request
-                    <span class="btn-dot"></span>
-                </button>
-
-                <p class="quote-confirmation" id="quote-confirmation" style="display:none;">
-                    Thanks! We've received your request and will be in touch shortly.
-                </p>
-
-            </form>
-
-        </div>
-
-    </section>
-
-
-    <!--Footer (Kora dark-olive footer) -->
-    <section class="Footer" id="footer">
-        <div class="footer-top">
-            <div class="footer-left">
-                <h1 id="footer-logo">
-                Kago <span id="span-build">build</span>
-                </h1>
-            </div>
-
-            <div class="footer-newsletter">
-                <h4>Newsletter</h4>
-                <form class="newsletter-form" id="newsletter-form" onsubmit="return false;">
-                    <input type="email" id="newsletter-email" placeholder="Your email address" required>
-                    <button type="submit" aria-label="Subscribe">→</button>
-                </form>
-                <p class="newsletter-note" id="newsletter-note">By submitting this form you agree with our privacy policy.</p>
-            </div>
-        </div>
-
-        <div class="footer-bottom-content">
-            <div class="footer-text-col">
-                <p>
-                Let's build something great together —
-                whether you have a project in mind or just
-                want to connect, we'd love to hear from you.
-                </p>
-                <a id="footer-btn" href="#get-quote">Get a Quote</a>
-            </div>
-
-            <div class="footer-columns">
-                <div class="footer-col">
-                    <h5>Company</h5>
-                    <ul class="footer-list-items">
-                        <li>Home</li>
-                        <li>About Us</li>
-                        <li>Contact</li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h5>Resources</h5>
-                    <ul class="footer-list-items">
-                        <li>Services</li>
-                        <li>Processes</li>
-                        <li>Pricing</li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h5>Legal</h5>
-                    <ul class="footer-list-items">
-                        <li>Privacy Policy</li>
-                        <li>Terms of Service</li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h5>Contact</h5>
-                    <ul class="footer-list-items">
-                        <li>hello@kagobuild.co</li>
-                        <li>+27 21 000 0000</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <h1 id="kago-built-footer">KAGO BUILD</h1>
-    </section>
-    <!----><!---->
-
-    <script>
-
-    const acc = document.querySelectorAll(".accordion");
-
-    acc.forEach(button => {
-
-        button.addEventListener("click", function(){
-
-            acc.forEach(other => {
-
-                if(other !== this){
-
-                    other.classList.remove("active");
-                    other.nextElementSibling.style.display = "none";
-
-                }
-
-            });
-
-            this.classList.toggle("active");
-
-            const panel = this.nextElementSibling;
-
-            if(panel.style.display === "block"){
-
-                panel.style.display = "none";
-
-            }else{
-
-                panel.style.display = "block";
-
-            }
-
-        });
-
-    });
-
-    </script>
-
-    <script>
-
-    const testiRow = document.getElementById("testimonials-row");
-    const testiPrev = document.getElementById("testi-prev");
-    const testiNext = document.getElementById("testi-next");
-
-    if (testiRow && testiPrev && testiNext) {
-
-        const scrollAmount = 360;
-
-        testiPrev.addEventListener("click", () => {
-            testiRow.scrollBy({ left: -scrollAmount, behavior: "smooth" });
-        });
-
-        testiNext.addEventListener("click", () => {
-            testiRow.scrollBy({ left: scrollAmount, behavior: "smooth" });
-        });
-
-    }
-
-    </script>
-
-    <script>
-
-    const quoteForm = document.getElementById("quote-form");
-    const quoteConfirmation = document.getElementById("quote-confirmation");
-
-    if (quoteForm && quoteConfirmation) {
-
-        quoteForm.addEventListener("submit", function () {
-
-            quoteConfirmation.style.display = "block";
-            quoteForm.querySelectorAll("input, select, textarea").forEach(el => el.value = "");
-
-        });
-
-    }
-
-    </script>
-
-    <script>
-
-    const newsletterForm = document.getElementById("newsletter-form");
-    const newsletterEmail = document.getElementById("newsletter-email");
-    const newsletterNote = document.getElementById("newsletter-note");
-
-    if (newsletterForm && newsletterEmail && newsletterNote) {
-
-        newsletterForm.addEventListener("submit", function () {
-
-            newsletterNote.textContent = "Thanks for subscribing — check your inbox!";
-            newsletterEmail.value = "";
-
-        });
-
-    }
-
-    </script>
-
+<nav>
+  <a href="#top" class="logo" aria-label="KagoBuild home"><i><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4"><path d="M3 11 12 4l9 7M6 10v10h12V10"/></svg></i><span>KagoBuild</span></a>
+  <ul id="links">
+    <li><a href="#top">Home</a></li>
+    <li><a href="#about">About us</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#features">Features</a></li>
+  </ul>
+  <div style="justify-self:end;display:flex;align-items:center">
+    <button class="menu" id="menu" aria-label="Menu">☰</button>
+    <a href="signin.html" class="login">Log In</a>
+    <a href="signin.html#signup" class="btn">Get Started</a>
+  </div>
+</nav>
+
+<header class="sky" id="top">
+  <div class="hero">
+    <span class="pill">From first sketch to final budget</span>
+    <h1>Design and <em>Budget</em> your home with AI</h1>
+    <p>Describe the house you want. KagoBuild draws the floor plan, lists every material and prices it with live supplier data.</p>
+    <div class="row"><a class="btn" href="signin.html#signup">Get Started</a><a class="btn w" href="#features">Learn More</a></div>
+    <div class="float">
+      <div class="glass g1"><small>Materials priced <span>live</span></small><b>85%</b><div class="bars" id="bars1"></div></div>
+      <div class="glass g2"><small><span style="font-size:15px;color:#1f1a17;font-weight:500">Budget used</span><span>3 bed · 142 m²</span></small><svg class="dial" id="dial" viewBox="0 0 200 110"></svg><div style="font:400 30px var(--serif);margin-top:-30px" id="dialtxt">80%</div></div>
+      <div class="glass g3"><small>Roof &amp; structure <span>+ 4%</span></small><b>R340,000</b><div class="bars" id="bars2"></div></div>
+    </div>
+  </div>
+</header>
+
+<section class="about wrap" id="about">
+  <h2>We help families and builders take control of their building budget before the first brick is laid.</h2>
+  <div class="chart rv" role="img" aria-label="Bar chart of rising cost savings"><span style="height:45%;transition-delay:0ms"></span><span style="height:70%;transition-delay:150ms"></span><span style="height:95%;transition-delay:300ms"></span></div>
+</section>
+
+<section class="wrap stats">
+  <div class="stat"><b data-n="80" data-s="%">80%</b><span>Less time spent on planning</span></div>
+  <div class="stat"><b data-n="120" data-s="k" data-p="R">R120k</b><span>Saved per project (approx)</span></div>
+  <div class="stat"><b data-n="99" data-s="%">99%</b><span>Materials matched to suppliers</span></div>
+</section>
+
+<section class="sky" style="border-radius:24px;padding:0">
+  <div class="hero" style="min-height:300px;padding:110px 24px 90px">
+    <span class="pill">Ready</span>
+    <h2 class="serif" style="font-size:clamp(38px,5.5vw,64px);max-width:640px">Make planning easy, simplify your budget</h2>
+    <p style="margin-bottom:0">Tell us the size, style and location. We do the drawing, the counting and the pricing.</p>
+  </div>
+</section>
+
+<section class="wrap center" id="features" style="padding-top:110px">
+  <span class="tag">Features</span>
+  <h2>Empowering and <em>strengthening</em> your building decisions</h2>
+  <p>Every plan comes with a complete material list, priced from suppliers near your site.</p>
+  <a class="btn" href="#core">Learn More</a>
+  <div class="bento">
+    <div class="c rv"><span class="lab">Clean interface</span><h3>Simple design brief</h3>
+      <div class="mini"><small>Home size <span>m²</span></small><b>142</b><ul><li>Bedrooms<span>3</span></li><li>Style<span>Modern</span></li></ul></div><p>Answer a few plain questions. No architecture jargon.</p></div>
+    <div class="c rv"><span class="lab">Faster</span><h3>Automated material lists</h3>
+      <div class="mini"><small>Extracted <span>from plan</span></small><b>1,284</b><ul><li>Bricks<span>9,400</span></li><li>Cement 50kg<span>212</span></li></ul></div><p>The AI reads the plan and counts every item for you.</p></div>
+    <div class="c rv"><span class="lab">Live</span><h3>Supplier pricing</h3>
+      <div class="mini"><small>Roof sheets <span>3 suppliers</span></small><b>R129.00</b><ul><li>Builders Warehouse<span>R132.50</span></li><li>BUCO<span>R129.00</span></li></ul></div><p>Compare prices side by side and pick the cheapest.</p></div>
+    <div class="c rv"><span class="lab">Trusted</span><h3>Code-aware plans</h3>
+      <div class="mini"><small>Checks passed <span>local code</span></small><b>24/24</b><ul><li>Structural<span>OK</span></li><li>Ventilation<span>OK</span></li></ul></div><p>Plans respect room sizes, spans and local building rules.</p></div>
+  </div>
+</section>
+
+<section class="wrap center core" id="core">
+  <h2>Core features that set us apart from the <em>competition</em></h2>
+  <p>Built for people who want a number they can trust before they hire anyone.</p>
+  <div class="trio">
+    <div class="c rv"><div class="ico">▦</div><h3>Instant floor plans</h3><p>Get several layouts in seconds and swap rooms around.</p><a class="btn" href="#pricing">Learn More</a></div>
+    <div class="c rv"><div class="ico">▮</div><h3>Regional prices</h3><p>Costs adjust to your town, delivery distance and supplier stock.</p><a class="btn" href="#pricing">Learn More</a></div>
+    <div class="c rv"><div class="ico">▤</div><h3>Exportable quotations</h3><p>Download a PDF or spreadsheet to share with your bank or builder.</p><a class="btn" href="#pricing">Learn More</a></div>
+  </div>
+</section>
+
+<section class="sky pricing" id="pricing">
+  <span class="pill" style="position:relative;z-index:2">Pricing</span>
+  <h2 class="serif" style="font-size:clamp(40px,5.5vw,64px);position:relative;z-index:2">Simple, transparent <em>pricing</em></h2>
+  <p style="font-size:13px;margin-top:12px;position:relative;z-index:2">Choose a plan that fits your project and your budget. All prices in South African Rand (ZAR).</p>
+  <div class="plans" style="position:relative;z-index:2">
+    <div class="plan"><span class="st">★</span><span class="n">Free</span><div class="p">R0 <small>ZAR / month</small></div><h4>Features:</h4><ul><li>2 AI floor plans per month</li><li>Basic material list</li><li>Estimate with average prices</li><li>Email support</li></ul><a class="btn" href="signin.html#signup">Get Started</a></div>
+    <div class="plan"><span class="st">★</span><span class="n">Pro</span><div class="p">R399 <small>ZAR / month</small></div><h4>Features:</h4><ul><li>Unlimited plans and variations</li><li>Live supplier pricing</li><li>Regional price adjustment</li><li>PDF and Excel export</li></ul><a class="btn" href="signin.html#signup">Upgrade to Pro</a></div>
+    <div class="plan"><span class="st">★</span><span class="n">Business</span><div class="p">R999 <small>ZAR / month</small></div><h4>Features:</h4><ul><li>Everything in Pro</li><li>Up to 10 team members</li><li>Supplier quote requests</li><li>Priority chat support</li></ul><a class="btn" href="#contact">Contact Sales</a></div>
+  </div>
+</section>
+
+<section class="wrap faq" id="faq">
+  <div class="sky faq-card">
+    <span class="mark" aria-hidden="true">?</span>
+    <h2>Frequently Asked Questions</h2>
+    <p>Got questions? Browse our FAQ, or reach out any time. We're here to help you plan with confidence.</p>
+    <a class="btn w" href="#contact">Reach Out</a>
+  </div>
+  <div class="faq-panel">
+    <details class="faq-item" open><summary>How does KagoBuild generate house plans?</summary><p>You describe your home: size, style, rooms, budget and location. Our AI turns that into a floor plan, and you can generate variations until you find one you like.</p></details>
+    <details class="faq-item"><summary>Do I need architectural experience to use KagoBuild?</summary><p>No. The design brief uses plain questions and sensible defaults, so you never need architecture knowledge.</p></details>
+    <details class="faq-item"><summary>How accurate are the material estimates?</summary><p>Estimates come from your plan and current supplier prices. They are a planning budget, not a contractor's quote, so add 10 to 15 percent for waste and price changes.</p></details>
+    <details class="faq-item"><summary>Can I design multi-story homes?</summary><p>Yes. You can set the number of floors in the design brief, and the material list covers every level, including stairs and extra structure.</p></details>
+    <details class="faq-item"><summary>Is KagoBuild suitable for builders and property developers?</summary><p>Yes. The Business plan adds team members, supplier quote requests and exportable quotations, so you can price several projects side by side.</p></details>
+  </div>
+</section>
+
+<section class="testi center">
+  <span class="tag">Testimonials</span>
+  <h2>What our <em>clients</em> are saying</h2>
+  <p>People who budgeted their build with KagoBuild.</p>
+  <div class="track" id="track"></div>
+</section>
+
+<section class="wrap center blog" id="designs">
+  <span class="tag">Popular designs</span>
+  <h2>Start from a <em>ready-made</em> home</h2>
+  <p>Pick a design close to what you want, then change it to suit your needs and see the cost update.</p>
+  <div class="posts">
+    <div class="post">
+      <div class="img" style="background:linear-gradient(#c98a5a,#f1d9bf)"><svg viewBox="0 0 200 170" style="position:absolute;inset:0"><path d="M40 170v-60l60-40 60 40v60z" fill="#fff"/><path d="M30 112 100 62l70 50" stroke="#c0392b" stroke-width="10" fill="none" stroke-linecap="round"/></svg></div>
+      <h3>Compact family home</h3><p>2 bedrooms, 1 bathroom, 78 m²</p><span class="cost">Est. materials from R450,000</span><a class="btn" href="signin.html#signup">View estimate</a>
+    </div>
+    <div class="post">
+      <div class="img" style="background:linear-gradient(#e7c9a0,#f6e6cf)"><svg viewBox="0 0 200 170" style="position:absolute;inset:0"><g fill="#c0392b"><rect x="30" y="100" width="60" height="22" rx="3"/><rect x="96" y="100" width="60" height="22" rx="3"/><rect x="60" y="74" width="60" height="22" rx="3"/><rect x="126" y="74" width="50" height="22" rx="3"/></g></svg></div>
+      <h3>Modern three-bedroom</h3><p>3 bedrooms, 2 bathrooms, 142 m²</p><span class="cost">Est. materials from R950,000</span><a class="btn" href="signin.html#signup">View estimate</a>
+    </div>
+    <div class="post">
+      <div class="img" style="background:linear-gradient(#6f7a5a,#c5cdb0)"><svg viewBox="0 0 200 170" style="position:absolute;inset:0"><rect x="40" y="40" width="120" height="100" fill="none" stroke="#fff" stroke-width="5"/><path d="M40 90h70M110 40v100" stroke="#fff" stroke-width="5"/></svg></div>
+      <h3>Two-storey executive</h3><p>4 bedrooms, 3 bathrooms, 240 m²</p><span class="cost">Est. materials from R1,700,000</span><a class="btn" href="signin.html#signup">View estimate</a>
+    </div>
+  </div>
+</section>
+
+<section class="sky cta">
+  <h2>Achieve <em>budget confidence</em> with KagoBuild</h2>
+  <p>Backed by construction cost data, we turn your ideas into plans and prices you can rely on.</p>
+  <a class="btn" href="signin.html#signup">Get Started</a>
+</section>
+
+<footer class="wrap">
+  <div class="fgrid">
+    <div><a href="#top" class="logo"><i><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4"><path d="M3 11 12 4l9 7M6 10v10h12V10"/></svg></i>KagoBuild</a>
+      <form class="news" id="news" style="flex-direction:column;background:none;padding:0;margin-top:60px"><small>Subscribe to our newsletter</small><div class="news" style="margin:0"><input type="email" required placeholder="Enter your email" aria-label="Email"><button class="btn">Subscribe</button></div></form></div>
+    <div class="cols">
+      <div><h5>Product</h5><a href="#features">Planner</a><a href="#core">Quotations</a><a href="#pricing">Pricing</a></div>
+      <div><h5>Company</h5><a href="#about">About us</a><a href="#designs">Designs</a><a href="#contact">Contact</a></div>
+      <div><h5>Legal</h5><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Licensing</a></div>
+    </div>
+  </div>
+  <div class="word" aria-hidden="true">KagoBuild</div>
+</footer>
+
+<script>
+const links=document.getElementById('links');
+document.getElementById('menu').onclick=()=>links.classList.toggle('open');
+links.addEventListener('click',()=>links.classList.remove('open'));
+
+const mk=(id,v)=>{const el=document.getElementById(id);v.forEach((h,i)=>{const s=document.createElement('span');s.style.height=h+'%';s.style.setProperty('--i',i);el.appendChild(s)})};
+mk('bars1',[30,45,35,60,80,55,90]);mk('bars2',[40,25,55,45,70,85,60]);
+
+(()=>{const d=document.getElementById('dial'),n=15,pct=.8;let h='';
+for(let i=0;i<n;i++){const a=Math.PI+(i/(n-1))*Math.PI,x=100+78*Math.cos(a),y=100+78*Math.sin(a),on=i/(n-1)<=pct;
+h+=`<rect style="opacity:0;animation:pop .35s ${1100+i*70}ms forwards" x="${x-4}" y="${y-13}" width="8" height="${on?26:18}" rx="4" transform="rotate(${a*180/Math.PI+90} ${x} ${y})" fill="${on?'#b5482f':'#e6d6c8'}"/>`}
+d.innerHTML=h;const tx=document.getElementById('dialtxt'),t0=performance.now()+1100;tx.textContent='0%';(function f(n){const k=Math.max(0,Math.min((n-t0)/1100,1));tx.textContent=Math.round(80*(1-Math.pow(1-k,3)))+'%';if(k<1)requestAnimationFrame(f)})(t0)})();
+
+const people=[['Jason Baptista','Homeowner','#b5482f'],['Davis Vetrov','Site manager','#c8955a'],['Jayden Siphiwe','Small builder','#5f6b4a'],['Talia Pressman','First-time builder','#8a5a44'],['Sam Dlamini','Contractor','#3a302a']];
+const quote='KagoBuild changed how I plan my build. The material list caught items I would have missed and the budget matched my quotes closely.';
+const tr=document.getElementById('track');
+const face=c=>`<svg viewBox="0 0 250 300" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="g${c.slice(1)}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${c}"/><stop offset="1" stop-color="#000" stop-opacity=".45"/></linearGradient></defs><rect width="250" height="300" fill="url(#g${c.slice(1)})"/><circle cx="125" cy="118" r="46" fill="#fff" fill-opacity=".88"/><path d="M35 300c0-62 40-98 90-98s90 36 90 98z" fill="#fff" fill-opacity=".88"/></svg>`;
+tr.innerHTML=[...people,...people].map(p=>`<div class="t"><div class="ph" role="img" aria-label="Photo of ${p[0]}">${face(p[2])}</div><div class="qc"><q>${quote}</q>${p[0]}<span>${p[1]}</span></div></div>`).join('');
+
+document.querySelectorAll('.about h2,.chart,.stat,.sky .hero>*,.center>h2,.center>p,.center>.tag,.center>.btn,.plan,.post,.faq-card,.faq-item,.cta>*,.pricing>.pill,.pricing>h2,.pricing>p,.word,.fgrid>*').forEach(el=>{if(!el.closest('#top'))el.classList.add('rv')});
+document.querySelectorAll('.rv').forEach(el=>{const sib=[...el.parentElement.children].filter(c=>c.classList.contains('rv'));el.style.transitionDelay=(sib.indexOf(el)%5)*90+'ms'});
+
+const reveal=el=>{el.classList.add('in');setTimeout(()=>{el.style.transitionDelay='';el.style.transition='opacity .7s,transform .35s cubic-bezier(.2,.8,.2,1)'},1400)};
+if('IntersectionObserver' in window){
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){reveal(e.target);io.unobserve(e.target)}}),{threshold:.1});
+  document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+}else{
+  document.querySelectorAll('.rv').forEach(reveal);
+}
+
+const countUp=el=>{const t=+el.dataset.n,s=el.dataset.s||'',p=el.dataset.p||'',t0=performance.now();
+(function f(now){const k=Math.min((now-t0)/1200,1);el.textContent=p+Math.round(t*(1-Math.pow(1-k,3)))+s;if(k<1)requestAnimationFrame(f)})(t0)};
+if('IntersectionObserver' in window){
+  const co=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;co.unobserve(e.target);countUp(e.target)}),{threshold:.6});
+  document.querySelectorAll('[data-n]').forEach(el=>co.observe(el));
+}
+
+document.getElementById('news').addEventListener('submit',e=>{e.preventDefault();e.target.querySelector('small').textContent='Subscribed. Check your inbox.';e.target.reset()});
+
+const quoteForm=document.getElementById('quote-form');
+const quoteConfirmation=document.getElementById('quote-confirmation');
+if(quoteForm&&quoteConfirmation){
+  quoteForm.addEventListener('submit',function(){
+    quoteConfirmation.style.display='block';
+    quoteForm.reset();
+  });
+}
+</script>
 </body>
 </html>
