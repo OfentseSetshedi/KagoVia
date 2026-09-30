@@ -8,7 +8,8 @@
    sidebar is resized — the floor-plan column is the one flexible
    column that actually grows/shrinks.
 ========================================================= */
-
+/* ADD THIS AS THE VERY FIRST LINE OF dash.css (above the existing comment), everything else stays unchanged: */
+@import url("theme.css");
 .beta-pill{
     display:inline-block;
     margin-left:8px;

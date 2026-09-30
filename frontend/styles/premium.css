@@ -5,7 +5,8 @@
    the dashboard: flexible tracks + clamp()/ellipsis instead of
    fixed widths, so nothing overflows at any sidebar width.
 ========================================================= */
-
+/* ADD THIS AS THE VERY FIRST LINE OF dash.css (above the existing comment), everything else stays unchanged: */
+@import url("theme.css");
 .header-subtitle{ margin:2px 0 0; font-size:12px; color:#8a93a8; }
 
 .premium-page,

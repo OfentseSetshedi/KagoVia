@@ -4,16 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-        <link rel="stylesheet" href="../styles/dash.css">
+    <link rel="stylesheet" href="../styles/dash.css">
+    <link rel="stylesheet" href="../styles/dashboard-page.css">
 </head>
 <body>
     <section class="dashboard">
 
         <aside class="dashboard-navbar">
 
-            
             <div class="upper-sidebar">
-
 
                 <a href="dashboard.html">
                     <div id="logo"><span class="sidebar-icon">
@@ -21,17 +20,15 @@
                         alt="logo-image"
                         width="30"
                         height="30">
-                    </span>logo</div>
+                    </span><span class="logo-text">logo</span></div>
                 </a>
 
-
                 <a href="dashboard.html" class="nav-link active">
-                    <button id="dashboard" >
+                    <button id="dashboard">
                         <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.6"/><rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.6"/><rect x="3" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.6"/><rect x="14" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.6"/></svg>
                         Dashboard
                     </button>
                 </a>
-
 
                 <a href="projects.html" class="nav-link">
                     <button id="Projects">
@@ -39,7 +36,6 @@
                         Projects
                     </button>
                 </a>
-
 
                 <a href="ai-design.html" class="nav-link">
                     <button id="AI-Design">
@@ -54,7 +50,6 @@
                         Material
                     </button>
                 </a>
-
 
                 <a href="estimator.html" class="nav-link">
                     <button id="Cost-Estimator">
@@ -77,7 +72,6 @@
                     </button>
                 </a>
 
-
                 <a href="teams.html" class="nav-link">
                     <button id="Teams">
                         <img src="../assets/icons/Teams.svg" alt="Teams" width="17" height="17">
@@ -85,9 +79,8 @@
                     </button>
                 </a>
 
-
                 <a href="settings.html" class="nav-link">
-                    <button id="Settings"> 
+                    <button id="Settings">
                         <img src="../assets/icons/settings-icon.svg" alt="Settings" width="17" height="17">
                         Settings
                     </button>
@@ -124,121 +117,56 @@
 
         </aside>
 
-        <div class="sidebar-resizer" id="sidebarResizer">
-
-        </div>
+        <div class="sidebar-resizer" id="sidebarResizer"></div>
 
         <main class="dashboard-overview">
 
-            <!-- =========================================================
-                Dashboard Header
-                This is the top navigation bar of the dashboard.
-            ========================================================== -->
-
+            <!-- ================= Header ================= -->
             <header class="dashboard-header">
 
-                <!-- ==========================================
-                    LEFT SIDE
-                    Dashboard Title
-                =========================================== -->
                 <div class="header-left">
                     <h2>Dashboard Overview</h2>
-                    
                 </div>
 
-
-                <!-- ==========================================
-                    RIGHT SIDE
-                    Search + Notification + User Profile
-                =========================================== -->
                 <div class="header-right">
 
-                    <!-- ==========================
-                        Search Container
-                        Holds the search icon and
-                        the search input.
-                    =========================== -->
-
                     <div class="search-container">
-
-                        <!-- Search Icon -->
                         <span class="search-icon">
-                            <img src="../assets/icons/search.svg" alt=""     width="27" height="27">
+                            <img src="../assets/icons/search.svg" alt="" width="27" height="27">
                         </span>
-
-                        <!-- Search Input -->
-                        <input
-                            type="search"
-                            placeholder="Search projects..."
-                        >
-
+                        <input type="search" placeholder="Search projects, materials, suppliers...">
                     </div>
 
+                    <div class="notif-menu">
+                        <button class="notification-btn" id="notifBtn" aria-label="Notifications">
+                            <img src="../assets/icons/notification.svg" alt="" width="25" height="25">
+                            <span class="notification-count">3</span>
+                        </button>
+                        <div class="notif-dropdown" id="notifDropdown">
+                            <div class="notif-dropdown-header">Notifications</div>
+                            <div class="notif-item"><span class="notif-dot"></span><span>Steel Rebar Y12 is up 3.1% this week at Builders Warehouse.</span></div>
+                            <div class="notif-item"><span class="notif-dot"></span><span>AI floor plan options for Modern Villa are ready to review.</span></div>
+                            <div class="notif-item"><span class="notif-dot"></span><span>Beach House estimate is 4.5% above budget.</span></div>
+                        </div>
+                    </div>
 
-                    <!-- ==========================
-                        Notification Button
-                    =========================== -->
-
-                    <button class="notification-btn">
-
-                        <img src="../assets/icons/notification.svg" alt=""     width="25" height="25">
-
-                        <!-- Notification Badge -->
-                        <span class="notification-count">
-                            5
-                        </span>
-
-                    </button>
-
-
-
-                    <!-- ==========================
-                        User Profile Section
-                    =========================== -->
                     <div class="profile-menu">
                         <div class="profile-section">
-
-                        <!-- User Image -->
-                        <img
-                            src="images/profile.jpg"
-                            alt="Profile Picture"
-                        >
-
-                        <!-- User Information -->
-                        <div class="user-details">
-
-                            <h4>Moses</h4>
-
-                            <p>Estimator</p>
-
-                        </div>
-
-
-                        <!-- Dropdown Arrow -->
-                        <span class="dropdown-arrow">
-
-                            ▼
-
-                        </span>
-
+                            <img src="images/profile.jpg" alt="Profile Picture">
+                            <div class="user-details">
+                                <h4>Moses</h4>
+                                <p>Estimator</p>
+                            </div>
+                            <span class="dropdown-arrow">▼</span>
                         </div>
 
                         <div class="dropdown">
-
                             <a href="#">👤 My Profile</a>
                             <a href="settings.html">⚙️ Settings</a>
                             <a href="notifications.html">🔔 Notifications</a>
                             <a href="projects.html">📁 Projects</a>
                             <a href="index.html">
-                                <svg xmlns="http://www.w3.org/2000/svg"
-                                    width="20"
-                                    height="20"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
                                     <polyline points="16 17 21 12 16 7"/>
                                     <line x1="21" y1="12" x2="9" y2="12"/>
@@ -247,718 +175,536 @@
                             </a>
                         </div>
                     </div>
-                    
+
                     <style>
-                        /*===================================================================
-                        dropdown
-                        =================================================================*/
-                        .dropdown
-                        {
-                            position:absolute;
-                            top:70px;
-                            right:24px;
-
-                            width:260px;
-
-                            background:#fff;
-                            border-radius:12px;
-
+                        .dropdown {
+                            position:absolute; top:70px; right:24px; width:260px;
+                            background:#fff; border-radius:12px;
                             box-shadow:0 12px 35px rgba(0,0,0,.12);
-
-                            opacity:0;
-                            visibility:hidden;
-                            transform:translateY(10px);
-
-                            transition:.25s;
-
-                            overflow:hidden;
-                                                }
-
-
-                        /* little triangle */
-                        .dropdown::before
-                        {
-                             position: absolute;
-                             top:-8px; 
-                             right:25px;
-                             width:16px;
-                             height:16px;
-                             background:white;
-                             transform:rotate(45deg);
+                            opacity:0; visibility:hidden; transform:translateY(10px);
+                            transition:.25s; overflow:hidden; z-index:1000;
                         }
-
-                        .profile-menu
-                        {
-                            margin-right: 12px;
-                            border: #222 solid 2px;
+                        .dropdown::before {
+                            position: absolute; top:-8px; right:25px;
+                            width:16px; height:16px; background:white; transform:rotate(45deg);
                         }
-
-                        /* Hover */
-                        .profile-menu:hover .dropdown
-                        {
-                            opacity:1;
-                            visibility:visible;
-                            transform:translateY(0);
-
+                        .profile-menu { margin-right: 12px; border: #222 solid 2px; }
+                        .profile-menu:hover .dropdown { opacity:1; visibility:visible; transform:translateY(0); }
+                        .profile-menu:hover .dropdown-arrow { transform:rotate(180deg); }
+                        .dropdown a {
+                            display:flex; align-items:center; gap:14px;
+                            padding:18px 24px; font-size:18px; color:#222;
+                            text-decoration:none; border-bottom:1px solid #efefef; transition:.2s;
                         }
-
-                        .profile-menu:hover .dropdown-arrow
-                        {
-                            transform:rotate(180deg);
-                        }
-
-                        .dropdown a{
-                            display:flex;
-                            align-items:center;
-                            gap:14px;
-
-                            padding:18px 24px;
-
-                            font-size:18px;
-                            color:#222;
-                            text-decoration:none;
-
-                            border-bottom:1px solid #efefef;
-
-                            transition:.2s;
-                        }
-
-
-                        .dropdown a:last-child
-                        {
-                            border:none;
-                        }
-                        .dropdown a:hover
-                        {
-                            background:#f3f7ff;
-                            color:#2458ff;
-                        }
-
-
+                        .dropdown a:last-child { border:none; }
+                        .dropdown a:hover { background:#f3f7ff; color:#2458ff; }
                     </style>
 
                 </div>
-
             </header>
 
+            <!-- ================= Content ================= -->
             <div class="main-card">
-                <div class="Ongoing-Projects">
-                    <div>Ongoing Projects</div>
-                    <div> View all projects →</div>
+                <div class="d-wrap">
+
+                    <!-- 1. Start a new AI design -->
+                    <section class="d-hero">
+                        <h1>Good to see you, Moses</h1>
+                        <p>Describe your home and get a plan, material list and live-priced budget in one go.</p>
+
+                        <form class="d-gen" id="genForm">
+                            <div class="d-field">
+                                <label for="gSize">Floor area (m²)</label>
+                                <input id="gSize" type="number" min="20" placeholder="e.g. 180" required>
+                            </div>
+                            <div class="d-field">
+                                <label for="gStyle">Style</label>
+                                <select id="gStyle">
+                                    <option>Modern</option>
+                                    <option>Farmhouse</option>
+                                    <option>Luxury</option>
+                                    <option>Minimalist</option>
+                                </select>
+                            </div>
+                            <div class="d-field">
+                                <label for="gRooms">Bedrooms</label>
+                                <select id="gRooms">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option selected>3</option>
+                                    <option>4</option>
+                                    <option>5+</option>
+                                </select>
+                            </div>
+                            <div class="d-field">
+                                <label for="gBudget">Budget (R)</label>
+                                <input id="gBudget" type="text" placeholder="e.g. R2,500,000">
+                            </div>
+                            <div class="d-field">
+                                <label for="gLoc">Location</label>
+                                <input id="gLoc" type="text" placeholder="Suburb or city">
+                            </div>
+                            <button type="submit" class="d-generate">✦ Generate plan</button>
+                        </form>
+                    </section>
+
+                    <!-- 2. KPI strip (values filled from PROJECTS below) -->
+                    <section class="d-kpis">
+                        <div class="d-card d-kpi">
+                            <span class="d-kpi-label">Active projects</span>
+                            <span class="d-kpi-value" id="kActive">0</span>
+                            <span class="d-kpi-sub" id="kActiveSub"></span>
+                        </div>
+                        <div class="d-card d-kpi">
+                            <span class="d-kpi-label">Total estimated cost</span>
+                            <span class="d-kpi-value" id="kTotal">R0</span>
+                            <span class="d-kpi-sub">across all active projects</span>
+                        </div>
+                        <div class="d-card d-kpi">
+                            <span class="d-kpi-label">Variance vs budget</span>
+                            <span class="d-kpi-value" id="kVar">0%</span>
+                            <span class="d-kpi-sub" id="kVarSub"></span>
+                        </div>
+                        <div class="d-card d-kpi">
+                            <span class="d-kpi-label">Supplier prices</span>
+                            <span class="d-kpi-value">Live</span>
+                            <span class="d-kpi-sub"><span class="d-live-dot"></span> Synced 12 min ago · 8 suppliers</span>
+                        </div>
+                    </section>
+
+                    <!-- 3. Ongoing projects -->
+                    <section>
+                        <div class="d-card-head" style="margin-bottom:10px;">
+                            <h3>Ongoing Projects</h3>
+                            <a class="d-link" href="projects.html">View all projects →</a>
+                        </div>
+                        <div class="d-projects-row">
+                            <div class="d-projects" id="projectsTrack"></div>
+                            <button class="d-arrow" id="projectsNext" aria-label="Scroll projects">›</button>
+                        </div>
+                    </section>
+
+                    <!-- 4. Cost row (Modern Villa, same figures as the Cost Estimator) -->
+                    <section class="d-cost">
+
+                        <aside class="d-estimate">
+                            <h3>📋 Cost Estimator</h3>
+                            <div class="lbl">Total Estimate · Modern Villa</div>
+                            <h1 class="d-price">R2,540,000</h1>
+                            <div class="d-budget-line"><span>vs Budget</span><strong>R2,625,000</strong></div>
+
+                            <div class="d-over under">
+                                <strong>−3.2%</strong>
+                                <span>Under budget (R85,000 left)</span>
+                            </div>
+                            <button class="d-edit" type="button" onclick="location.href='estimator.html'">✏ Edit Estimate</button>
+                        </aside>
+
+                        <section class="d-card" style="display:flex;flex-direction:column;">
+                            <div class="d-card-head">
+                                <h3>Cost Breakdown</h3>
+                            </div>
+                            <div class="d-breakdown-body">
+                                <div class="d-donut" id="donut">
+                                    <div class="d-donut-center">
+                                        <span>Total</span>
+                                        <strong>R2.54M</strong>
+                                    </div>
+                                </div>
+                                <div class="d-legend" id="legend"></div>
+                            </div>
+                            <div style="margin-top:14px;text-align:center;">
+                                <a class="d-link" href="estimator.html">View full breakdown →</a>
+                            </div>
+                        </section>
+
+                        <section class="d-card" style="display:flex;flex-direction:column;">
+                            <div class="d-card-head">
+                                <h3>Price Forecast</h3>
+                            </div>
+                            <div class="d-forecast-box">
+                                <span class="t">Expected price movement, next 30 days</span>
+                                <div class="amt">+R16,620<span>(+0.7%)</span></div>
+                                <div class="d-drivers">
+                                    <h5>Primary Drivers</h5>
+                                    <div class="d-driver"><i style="background:var(--color-danger)"></i><span>Steel price increase</span><strong>+R9,300</strong></div>
+                                    <div class="d-driver"><i style="background:#5E1D12"></i><span>Concrete &amp; cement</span><strong>+R5,040</strong></div>
+                                    <div class="d-driver"><i style="background:var(--color-primary)"></i><span>Timber price increase</span><strong>+R3,240</strong></div>
+                                    <div class="d-driver"><i style="background:var(--color-text-muted)"></i><span>Brick price drop</span><strong>−R960</strong></div>
+                                </div>
+                            </div>
+                            <div style="margin-top:14px;text-align:center;">
+                                <a class="d-link" href="reports.html">View details →</a>
+                            </div>
+                        </section>
+
+                    </section>
+
+                    <!-- 5. Design preview + pipeline -->
+                    <section class="d-design">
+
+                        <aside class="d-card d-preview">
+                            <div class="d-preview-nav">
+                                <h3>Design Preview</h3>
+                                <button class="d-tab active" id="tab2d" type="button">2D Floor Plan</button>
+                                <button class="d-tab" id="tab3d" type="button">3D View</button>
+                            </div>
+
+                            <div class="d-viewer">
+                                <aside class="d-floors" id="floorList"></aside>
+
+                                <div class="d-stage" id="stage">
+                                    <div class="d-zoom">
+                                        <button type="button" id="zoomBtn">Zoom</button>
+                                        <button type="button" id="fullBtn">Full</button>
+                                    </div>
+                                    <div id="planHost" style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;"></div>
+                                    <div class="d-3d">
+                                        <strong>3D view is coming soon</strong>
+                                        <span>Generated plans will be rendered as an interactive 3D model here.</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="d-preview-foot">
+                                <span>Modern Villa · v3 · 320 m²</span>
+                                <button class="d-switch" type="button" id="switchView">Switch to 3D View</button>
+                            </div>
+                        </aside>
+
+                        <aside class="d-card">
+                            <div class="d-card-head">
+                                <h3>Project Progress</h3>
+                            </div>
+                            <div class="d-steps">
+                                <div class="d-step done">
+                                    <div class="d-dot">✓</div>
+                                    <div class="d-step-body">
+                                        <div><h4>1. Design &amp; Planning</h4><p>AI floor plans and 3D models</p></div>
+                                        <span class="d-st">Completed</span>
+                                    </div>
+                                </div>
+                                <div class="d-step done">
+                                    <div class="d-dot">✓</div>
+                                    <div class="d-step-body">
+                                        <div><h4>2. Cost Estimation</h4><p>Materials priced from live suppliers</p></div>
+                                        <span class="d-st">Completed</span>
+                                    </div>
+                                </div>
+                                <div class="d-step active">
+                                    <div class="d-dot">3</div>
+                                    <div class="d-step-body">
+                                        <div><h4>3. Review &amp; Approval</h4><p>Review estimates and get approval</p></div>
+                                        <span class="d-st">In progress</span>
+                                    </div>
+                                </div>
+                                <div class="d-step">
+                                    <div class="d-dot">4</div>
+                                    <div class="d-step-body">
+                                        <div><h4>4. Supplier Orders</h4><p>Place orders with suppliers</p></div>
+                                        <span class="d-st">Pending</span>
+                                    </div>
+                                </div>
+                                <div class="d-step">
+                                    <div class="d-dot">5</div>
+                                    <div class="d-step-body">
+                                        <div><h4>5. Construction</h4><p>Track site progress</p></div>
+                                        <span class="d-st">Pending</span>
+                                    </div>
+                                </div>
+                                <div class="d-step">
+                                    <div class="d-dot">6</div>
+                                    <div class="d-step-body">
+                                        <div><h4>6. Project Handover</h4><p>Final inspection and handover</p></div>
+                                        <span class="d-st">Pending</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </aside>
+
+                    </section>
+
+                    <!-- 6. Supplier prices + AI jobs -->
+                    <section class="d-bottom">
+
+                        <section class="d-card">
+                            <div class="d-card-head">
+                                <h3>Live Supplier Price Movers</h3>
+                                <a class="d-link" href="Supplier.html">All suppliers →</a>
+                            </div>
+                            <table class="d-table">
+                                <thead>
+                                    <tr><th>Material</th><th>Supplier</th><th>Unit price</th><th>7-day</th></tr>
+                                </thead>
+                                <tbody id="priceBody"></tbody>
+                            </table>
+                        </section>
+
+                        <section class="d-card">
+                            <div class="d-card-head">
+                                <h3>AI Activity</h3>
+                            </div>
+                            <div class="d-jobs" id="jobList"></div>
+                        </section>
+
+                    </section>
+
                 </div>
-
-            <!--
-             ongoing projects cards will be generated dynamically using JS, so the
-            -->
-                <div class="Ongoing-Projects-cards">
-
-                    <div class="Ongoing-Proj-card">
-
-                        <div class="card-top">
-
-                            <div class="proj-pic"></div>
-
-                            <div class="project-info">
-
-                                <h4>Greenfield Residency</h4>
-
-                                <p>Bangalore, KA</p>
-
-                                <span class="project-status">
-                                    On Track
-                                </span>
-
-                            </div>
-
-                        </div>
-
-                        <div class="progress-card">
-
-                            <span>Budget Progress</span> <span>72%</span> <progress value="72" max="100"></progress>
-
-                        </div>
-
-                    </div>
-
-                    <div class="Ongoing-Proj-card">
-
-                        <div class="card-top">
-
-                            <div class="proj-pic"></div>
-
-                            <div class="project-info">
-
-                                <h4>Greenfield Residency</h4>
-
-                                <p>Bangalore, KA</p>
-
-                                <span class="project-status">
-                                    On Track
-                                </span>
-
-                            </div>
-
-                        </div>
-
-                        <div class="progress-card">
-
-                            <span>Budget Progress</span> <span>72%</span> <progress value="72" max="100"></progress>
-
-                        </div>
-
-                    </div>
-
-                    <div class="Ongoing-Proj-card">
-
-                        <div class="card-top">
-
-                            <div class="proj-pic"></div>
-
-                            <div class="project-info">
-
-                                <h4>Greenfield Residency</h4>
-
-                                <p>Bangalore, KA</p>
-
-                                <span class="project-status">
-                                    On Track
-                                </span>
-
-                            </div>
-
-                        </div>
-
-                        <div class="progress-card">
-
-                            <span>Budget Progress</span> <span>72%</span> <progress value="72" max="100"></progress>
-
-                        </div>
-
-                    </div>
-
-                    <div class="Ongoing-Proj-card">
-
-                        <div class="card-top">
-
-                            <div class="proj-pic"></div>
-
-                            <div class="project-info">
-
-                                <h4>Greenfield Residency</h4>
-
-                                <p>Bangalore, KA</p>
-
-                                <span class="project-status">
-                                    On Track
-                                </span>
-
-                            </div>
-
-                        </div>
-
-                        <div class="progress-card">
-
-                            <span>Budget Progress</span> <span>72%</span> <progress value="72" max="100"></progress>
-
-                        </div>
-
-                    </div>
-
-                    <div class="Ongoing-Proj-card">
-
-                        <div class="card-top">
-
-                            <div class="proj-pic"></div>
-
-                            <div class="project-info">
-
-                                <h4>Greenfield Residency</h4>
-
-                                <p>Bangalore, KA</p>
-
-                                <span class="project-status">
-                                    On Track
-                                </span>
-
-                            </div>
-
-                        </div>
-
-                        <div class="progress-card">
-
-                            <span>Budget Progress</span> <span>72%</span> <progress value="72" max="100"></progress>
-
-                        </div>
-
-                    </div>
-
-                    <button class="scroll-arrow">></button>
-                </div>
-
-               <div class="Projects-Cost">
-
-                <script>
-                        const sidebar = document.querySelector(".dashboard-navbar");
-                        const resizer = document.getElementById("sidebarResizer");
-
-                        let dragging = false;
-
-                        resizer.addEventListener("mousedown", () => {
-                            dragging = true;
-                        });
-
-                        document.addEventListener("mouseup", () => {
-                            dragging = false;
-                        });
-
-                        document.addEventListener("mousemove", (e) => {
-
-                            if (!dragging) return;
-
-                            // Collapse if dragged near the left
-                            if (e.clientX < 120) {
-                                sidebar.classList.add("collapsed");
-                            } else {
-                                sidebar.classList.remove("collapsed");
-                            }
-
-                        });
-                </script>
-    <!-- =====================================
-         Cost Estimator
-    ====================================== -->
-    <aside class="Cost-Estimator">
-
-        <div class="Cost-Estimator-heading">
-
-            <h4>
-                <span class="Cost-icon">📋</span>
-                Cost Estimator
-            </h4>
-
-            <h6>Total Estimate</h6>
-
-            <h1 class="price">
-                ₹ 2,45,80,000
-            </h1>
-
-            <div class="budget-info">
-                <span>vs Budget</span>
-                <strong>₹ 2,30,00,000</strong>
             </div>
 
-        </div>
-
-        <div class="Cost-Estimator-buttons">
-
-            <button id="current-Estimate">
-                <strong>+6.87%</strong>
-                <span>Above Budget</span>
-            </button>
-
-            <button id="edit-Estimate">
-                ✏ Edit Estimate
-            </button>
-
-        </div>
-
-    </aside>
-
-    <!-- =====================================
-         Breakdown by Material Category
-    ====================================== -->
-
-    <section class="Break-of-material">
-
-        <div class="Break-material-heading">
-            <h4>Breakdown by Material Category</h4>
-        </div>
-
-        <div class="Break-material-main">
-
-            <!-- Donut Graph -->
-            <div class="graph">
-
-                <div class="graph-center">
-                    <span>Total</span>
-                    <strong>₹ 2.46 Cr</strong>
-                </div>
-
-            </div>
-
-            <!-- Legend -->
-            <div class="material-list-sum">
-
-                <div class="material-item">
-                    <span class="dot blue"></span>
-                    <span>Concrete & Cement</span>
-                    <strong>₹ 68.20L</strong>
-                    <small>27.7%</small>
-                </div>
-
-                <div class="material-item">
-                    <span class="dot light-blue"></span>
-                    <span>Steel & Reinforcement</span>
-                    <strong>₹ 54.30L</strong>
-                    <small>22.1%</small>
-                </div>
-
-                <div class="material-item">
-                    <span class="dot green"></span>
-                    <span>Bricks & Blocks</span>
-                    <strong>₹ 32.40L</strong>
-                    <small>13.2%</small>
-                </div>
-
-                <div class="material-item">
-                    <span class="dot purple"></span>
-                    <span>Doors & Windows</span>
-                    <strong>₹ 21.60L</strong>
-                    <small>8.8%</small>
-                </div>
-
-                <div class="material-item">
-                    <span class="dot pink"></span>
-                    <span>Finishes</span>
-                    <strong>₹ 38.70L</strong>
-                    <small>15.7%</small>
-                </div>
-
-                <div class="material-item">
-                    <span class="dot orange"></span>
-                    <span>Plumbing</span>
-                    <strong>₹ 14.80L</strong>
-                    <small>6.0%</small>
-                </div>
-
-                <div class="material-item">
-                    <span class="dot yellow"></span>
-                    <span>Electrical</span>
-                    <strong>₹ 15.00L</strong>
-                    <small>6.1%</small>
-                </div>
-
-            </div>
-
-        </div>
-
-        <button class="View-full-breakdown-btn">
-            View full breakdown →
-        </button>
-
-    </section>
-
-    <!-- =====================================
-         Overage Forecast
-    ====================================== -->
-
-    <section class="Overall-Forecast">
-
-        <h4>Overage Forecast</h4>
-
-        <div class="forecast-details">
-
-            <div class="forecast-header">
-
-                <span class="forecast-title">
-                    Forecasted Overages
-                </span>
-
-                <h2 class="forecast-amount">
-                    ₹ 16,90,000
-                    <span>(6.87%)</span>
-                </h2>
-
-            </div>
-
-            <hr>
-
-            <div class="Forecasted-list">
-
-                <h5>Primary Drivers</h5>
-
-                <div class="Forecasted-item">
-                    <span class="driver-icon red"></span>
-                    <span>Steel price escalation</span>
-                    <strong>₹ 6,20,000</strong>
-                </div>
-
-                <div class="Forecasted-item">
-                    <span class="driver-icon purple"></span>
-                    <span>Cement price escalation</span>
-                    <strong>₹ 4,15,000</strong>
-                </div>
-
-                <div class="Forecasted-item">
-                    <span class="driver-icon blue"></span>
-                    <span>Design scope change</span>
-                    <strong>₹ 3,25,000</strong>
-                </div>
-
-                <div class="Forecasted-item">
-                    <span class="driver-icon gray"></span>
-                    <span>Wastage variance</span>
-                    <strong>₹ 3,30,000</strong>
-                </div>
-
-            </div>
-
-        </div>
-
-        <button class="view-details">
-            View details →
-        </button>
-
-    </section>
-
-</div>
-
-                 <div class="Design-Overview">
-
-                    <aside class="Project-2d-3d">
-
-                        <!-- Navigation -->
-                        <header id="p2d-3d-nav">
-                            <div class="Design-Preview">Design Preview</div>
-                            <div class="floor-plan">2D Floor Plan</div>
-                            <div class="threeD-view">3D View</div>
-                        </header>
-
-                        <!-- Main Content -->
-                        <div class="viewer-container">
-
-                            <!-- Floor List -->
-                            <aside class="floors">
-                                <!-- Floor thumbnails go here -->
-                            </aside>
-
-                            <!-- Main Viewer -->
-                            <main class="main-view">
-
-                                <div class="main-zoom-btns">
-                                    <button>Zoom</button>
-                                    <button>Rotate</button>
-                                    <button>Full</button>
-                                </div>
-
-                                <!-- Viewer content goes here -->
-
-                            </main>
-
-                        </div>
-
-                        <!-- Footer -->
-                        <footer class="design-footer">
-
-                            <div class="footer-info">
-                                Scroll to zoom • Drag to pan • Use mouse to rotate (3D View)
-                            </div>
-
-                            <button class="switch-view">
-                                Switch to 3D View
-                            </button>
-
-                        </footer>
-
-                    </aside>
-
-                    <aside class="Proj-progress">
-                        <div class="Proj-progress-header">Project progress</div >
-                        <div class="Proj-progress-main">
-                            <div class="progress-item completed">
-
-                                <div class="progress-icon">
-                                    ✓
-                                </div>
-
-                                <div class="progress-line"></div>
-
-                                <div class="progress-content">
-
-                                    <div class="progress-top">
-
-                                        <div>
-                                            <h3>1. Design & Planning</h3>
-                                            <p>Create floor plans and 3D models</p>
-                                        </div>
-
-                                        <div class="status completed">
-                                            Completed ✓
-                                        </div>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                            <div class="progress-item completed">
-
-                                <div class="progress-icon">
-                                    📄
-                                </div>
-
-                                <div class="progress-line"></div>
-
-                                <div class="progress-content">
-
-                                    <div class="progress-top">
-
-                                        <div>
-                                            <h3>2. Cost Estimation</h3>
-                                            <p>Estimate materials and labor costs</p>
-                                        </div>
-
-                                        <div class="status completed">
-                                            Completed ✓
-                                        </div>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                            <div class="progress-item active">
-
-                                <div class="progress-icon">
-                                    ✎
-                                </div>
-
-                                <div class="progress-line blue"></div>
-
-                                <div class="progress-content">
-
-                                    <div class="progress-top">
-
-                                        <div>
-                                            <h3>3. Review & Approval</h3>
-                                            <p>Review estimates and get approval</p>
-                                        </div>
-
-                                        <div class="status active">
-                                            In Progress
-                                        </div>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                            <div class="progress-item">
-
-                                <div class="progress-icon gray">
-                                    🛒
-                                </div>
-
-                                <div class="progress-line gray"></div>
-
-                                <div class="progress-content">
-
-                                    <div class="progress-top">
-
-                                        <div>
-                                            <h3>4. Supplier Orders</h3>
-                                            <p>Place orders with suppliers</p>
-                                        </div>
-
-                                        <div class="status pending">
-                                            Pending
-                                        </div>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                            <div class="progress-item">
-
-                                <div class="progress-icon gray">
-                                    🏗
-                                </div>
-
-                                <div class="progress-line gray"></div>
-
-                                <div class="progress-content">
-
-                                    <div class="progress-top">
-
-                                        <div>
-                                            <h3>5. Construction</h3>
-                                            <p>Track site progress</p>
-                                        </div>
-
-                                        <div class="status pending">
-                                            Pending
-                                        </div>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                            <div class="progress-item">
-
-                                <div class="progress-icon gray">
-                                    📦
-                                </div>
-
-                                <div class="progress-content">
-
-                                    <div class="progress-top">
-
-                                        <div>
-                                            <h3>6. Project Handover</h3>
-                                            <p>Final inspection and handover</p>
-                                        </div>
-
-                                        <div class="status pending">
-                                            Pending
-                                        </div>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                        </div >
-                    </aside>      
-                </div>
-
-
-            </div> 
-            
         </main>
     </section>
 
-
-
-
-    
-    <section class="Projects"></section>
-    <section class="AI-Design"></section>
-    <section class="Material"></section>
-    <section class="Cost-Estimator"></section>
-    <section class="Reports"></section> 
-    <section class="Suppliers"></section>
-    <section class="Teams"></section>
-    <section class="Settings"></section>
-    <section class="need-help"></section>
-    <section class="Premium-plan"></section>
-
-
     <script>
+    // =====================================================
+    // Sample data. Replace each array with an API response
+    // (projects, cost breakdown, supplier prices, AI jobs).
+    // All money is South African Rand.
+    // =====================================================
 
-    // ---------------------------------------------------------------
-    // Sidebar resize + collapse, with the width/collapsed state saved
-    // to localStorage so it survives a page refresh (and carries over
-    // between pages, since every page shares these same keys) instead
-    // of snapping back to a default every time.
-    // ---------------------------------------------------------------
+    const PROJECTS = [
+        { name:"Modern Villa",    loc:"Cape Town, WC",     status:"ontrack", label:"On Track", pct:72, est:2540000, budget:2625000 },
+        { name:"Family House",    loc:"Johannesburg, GP",  status:"ontrack", label:"On Track", pct:25, est:1780000, budget:1800000 },
+        { name:"Townhouses",      loc:"Durban, KZN",       status:"ontrack", label:"On Track", pct:88, est:8200000, budget:8200000 },
+        { name:"Beach House",     loc:"Cape Town, WC",     status:"risk",    label:"At Risk",  pct:64, est:3450000, budget:3300000 },
+        { name:"Office Building", loc:"Pretoria, GP",      status:"delayed", label:"Delayed",  pct:81, est:5900000, budget:5600000 }
+    ];
+
+    // Same figures as the Cost Estimator page (Modern Villa)
+    const COST = [
+        { name:"Materials",         amt:1250000, color:"#F12823" },
+        { name:"Labour",            amt:720000,  color:"#EC605C" },
+        { name:"Professional Fees", amt:220000,  color:"#EC9F9E" },
+        { name:"VAT (15%)",         amt:150000,  color:"#5E1D12" },
+        { name:"Permits",           amt:120000,  color:"#A9A3A4" },
+        { name:"Transport",         amt:80000,   color:"#171615" }
+    ];
+
+    const PRICES = [
+        { mat:"PPC Cement 50kg",          sup:"Builders Warehouse", price:"R89.50 / bag",     chg:2.4 },
+        { mat:"Steel Rebar Y12",          sup:"Builders Warehouse", price:"R95.00 / length",  chg:3.1 },
+        { mat:"SABS Timber 38x114mm",     sup:"Mica Hardware",      price:"R48.90 / piece",   chg:1.8 },
+        { mat:"Roof Sheeting IBR 0.4mm",  sup:"BUCO",               price:"R129.00 / sheet",  chg:0.8 },
+        { mat:"Clay Bricks (per 1000)",   sup:"Cashbuild",          price:"R2,350 / pack",    chg:-0.6 }
+    ];
+
+    const JOBS = [
+        { title:"Floor plan · Modern Villa v3", sub:"Generated 3 design options",  state:"done",    label:"Completed" },
+        { title:"Material list extraction",     sub:"Reading plan geometry",       state:"running", label:"Running", pct:64 },
+        { title:"Live price lookup",            sub:"8 suppliers queued",          state:"queued",  label:"Queued" }
+    ];
+
+    const FLOORS = {
+        "Ground Floor": `
+            <svg viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg">
+                <rect x="10" y="10" width="380" height="240" fill="#fff" stroke="#171615" stroke-width="4"/>
+                <line x1="200" y1="10" x2="200" y2="140" stroke="#171615" stroke-width="3"/>
+                <line x1="10" y1="140" x2="390" y2="140" stroke="#171615" stroke-width="3"/>
+                <line x1="280" y1="140" x2="280" y2="250" stroke="#171615" stroke-width="3"/>
+                <text x="105" y="80" text-anchor="middle" font-size="13" fill="#5F5C5C">Living</text>
+                <text x="295" y="80" text-anchor="middle" font-size="13" fill="#5F5C5C">Kitchen</text>
+                <text x="145" y="200" text-anchor="middle" font-size="13" fill="#5F5C5C">Bedroom 1</text>
+                <text x="335" y="200" text-anchor="middle" font-size="13" fill="#5F5C5C">Garage</text>
+            </svg>`,
+        "First Floor": `
+            <svg viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg">
+                <rect x="10" y="10" width="380" height="240" fill="#fff" stroke="#171615" stroke-width="4"/>
+                <line x1="150" y1="10" x2="150" y2="250" stroke="#171615" stroke-width="3"/>
+                <line x1="270" y1="10" x2="270" y2="250" stroke="#171615" stroke-width="3"/>
+                <line x1="270" y1="130" x2="390" y2="130" stroke="#171615" stroke-width="3"/>
+                <text x="80" y="135" text-anchor="middle" font-size="13" fill="#5F5C5C">Bedroom 2</text>
+                <text x="210" y="135" text-anchor="middle" font-size="13" fill="#5F5C5C">Lobby</text>
+                <text x="330" y="75" text-anchor="middle" font-size="13" fill="#5F5C5C">Bedroom 3</text>
+                <text x="330" y="195" text-anchor="middle" font-size="13" fill="#5F5C5C">Bathroom</text>
+            </svg>`,
+        "Patio": `
+            <svg viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg">
+                <rect x="10" y="10" width="380" height="240" fill="#fff" stroke="#171615" stroke-width="4"/>
+                <rect x="30" y="30" width="110" height="80" fill="#F5F5F6" stroke="#171615" stroke-width="3" stroke-dasharray="6 4"/>
+                <text x="85" y="76" text-anchor="middle" font-size="13" fill="#5F5C5C">Pool</text>
+                <text x="260" y="140" text-anchor="middle" font-size="13" fill="#5F5C5C">Covered patio</text>
+            </svg>`
+    };
+
+    // =====================================================
+    // Render helpers
+    // =====================================================
+
+    const fmtR = n => {
+        const sign = n < 0 ? "−" : "";
+        n = Math.abs(n);
+        if (n >= 1e6) return sign + "R" + (n / 1e6).toFixed(2).replace(/\.?0+$/, "") + "M";
+        return sign + "R" + Math.round(n).toLocaleString("en-US");
+    };
+    const barClass = s => s === "ontrack" ? "" : s;
+
+    // KPI strip, calculated from PROJECTS so it can't drift out of sync
+    (function renderKpis() {
+        const total  = PROJECTS.reduce((s, p) => s + p.est, 0);
+        const budget = PROJECTS.reduce((s, p) => s + p.budget, 0);
+        const diff   = total - budget;
+        const pct    = budget ? diff / budget * 100 : 0;
+        const count  = st => PROJECTS.filter(p => p.status === st).length;
+
+        document.getElementById("kActive").textContent = PROJECTS.length;
+        document.getElementById("kActiveSub").innerHTML =
+            `<span class="d-down">${count("ontrack")} on track</span> · ${count("risk")} at risk · ${count("delayed")} delayed`;
+        document.getElementById("kTotal").textContent = fmtR(total);
+
+        const v = document.getElementById("kVar");
+        v.textContent = (pct > 0 ? "+" : "−") + Math.abs(pct).toFixed(1) + "%";
+        v.className = "d-kpi-value " + (pct > 0 ? "d-up" : "d-down");
+        document.getElementById("kVarSub").textContent =
+            diff > 0 ? `${fmtR(diff)} over combined budget` : `${fmtR(-diff)} under combined budget`;
+    })();
+
+    // Ongoing projects
+    document.getElementById("projectsTrack").innerHTML = PROJECTS.map((p, i) => `
+        <a class="d-proj ${i === 0 ? "hero" : ""}" href="projects.html">
+            <div class="d-proj-top">
+                <div class="d-proj-pic">
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>
+                </div>
+                <div class="d-proj-info">
+                    <h4>${p.name}</h4>
+                    <p>${p.loc}</p>
+                    <span class="d-badge ${barClass(p.status)}">${p.label}</span>
+                </div>
+            </div>
+            <div class="d-proj-meta"><span>Budget progress</span><strong>${p.pct}%</strong></div>
+            <div class="d-bar ${barClass(p.status)}"><span style="width:${p.pct}%"></span></div>
+            <div class="d-proj-meta"><span>Estimate</span><strong>${fmtR(p.est)}</strong></div>
+        </a>
+    `).join("");
+
+    document.getElementById("projectsNext").addEventListener("click", () => {
+        const track = document.getElementById("projectsTrack");
+        const atEnd = track.scrollLeft + track.clientWidth >= track.scrollWidth - 4;
+        track.scrollBy({ left: atEnd ? -track.scrollWidth : track.clientWidth * 0.8, behavior: "smooth" });
+    });
+
+    // Donut + legend (built from COST so they always match)
+    (function renderBreakdown() {
+        const total = COST.reduce((s, c) => s + c.amt, 0);
+        let acc = 0;
+        const stops = COST.map((c, i) => {
+            const start = acc;
+            acc += c.amt / total * 100;
+            const end = i === COST.length - 1 ? 100 : acc;
+            return `${c.color} ${start}% ${end}%`;
+        });
+        document.getElementById("donut").style.background = `conic-gradient(${stops.join(",")})`;
+
+        document.getElementById("legend").innerHTML = COST.map(c => `
+            <div class="d-legend-item">
+                <span class="sw" style="background:${c.color}"></span>
+                <span class="nm">${c.name}</span>
+                <strong>${fmtR(c.amt)}</strong>
+                <small>${(c.amt / total * 100).toFixed(1)}%</small>
+            </div>
+        `).join("");
+    })();
+
+    // Supplier price movers
+    document.getElementById("priceBody").innerHTML = PRICES.map(p => `
+        <tr>
+            <td><strong>${p.mat}</strong></td>
+            <td class="sup">${p.sup}</td>
+            <td>${p.price}</td>
+            <td class="${p.chg > 0 ? "d-up" : "d-down"}">${p.chg > 0 ? "▲" : "▼"} ${Math.abs(p.chg)}%</td>
+        </tr>
+    `).join("");
+
+    // AI jobs
+    document.getElementById("jobList").innerHTML = JOBS.map(j => `
+        <div class="d-job">
+            <div class="d-job-top">
+                <span>${j.title}</span>
+                <span class="d-badge ${j.state === "done" ? "" : j.state}">${j.label}</span>
+            </div>
+            <small>${j.sub}</small>
+            ${j.state === "running" ? `<div class="d-bar"><span style="width:${j.pct}%"></span></div>` : ""}
+        </div>
+    `).join("");
+
+    // =====================================================
+    // Design preview: floors, 2D/3D toggle, zoom, fullscreen
+    // =====================================================
+
+    const stage = document.getElementById("stage");
+    const planHost = document.getElementById("planHost");
+    const floorList = document.getElementById("floorList");
+    const tab2d = document.getElementById("tab2d");
+    const tab3d = document.getElementById("tab3d");
+    const switchBtn = document.getElementById("switchView");
+
+    let zoomed = false;
+
+    function showFloor(name) {
+        planHost.innerHTML = FLOORS[name];
+        floorList.querySelectorAll(".d-floor").forEach(b => b.classList.toggle("active", b.dataset.floor === name));
+        zoomed = false;
+    }
+
+    floorList.innerHTML = Object.keys(FLOORS).map(n => `<button type="button" class="d-floor" data-floor="${n}">${n}</button>`).join("");
+    floorList.addEventListener("click", e => {
+        const b = e.target.closest(".d-floor");
+        if (b) showFloor(b.dataset.floor);
+    });
+    showFloor("Ground Floor");
+
+    function setMode(is3d) {
+        stage.classList.toggle("is-3d", is3d);
+        tab2d.classList.toggle("active", !is3d);
+        tab3d.classList.toggle("active", is3d);
+        switchBtn.textContent = is3d ? "Switch to 2D Plan" : "Switch to 3D View";
+    }
+    tab2d.addEventListener("click", () => setMode(false));
+    tab3d.addEventListener("click", () => setMode(true));
+    switchBtn.addEventListener("click", () => setMode(!stage.classList.contains("is-3d")));
+
+    document.getElementById("zoomBtn").addEventListener("click", () => {
+        zoomed = !zoomed;
+        const svg = planHost.querySelector("svg");
+        if (svg) svg.style.transform = zoomed ? "scale(1.3)" : "none";
+    });
+    document.getElementById("fullBtn").addEventListener("click", () => stage.classList.toggle("is-full"));
+    document.addEventListener("keydown", e => { if (e.key === "Escape") stage.classList.remove("is-full"); });
+
+    // =====================================================
+    // Generate form -> hand off to the AI Design page,
+    // which reads these values and generates options.
+    // =====================================================
+
+    document.getElementById("genForm").addEventListener("submit", e => {
+        e.preventDefault();
+        const params = new URLSearchParams({
+            size:   document.getElementById("gSize").value,
+            style:  document.getElementById("gStyle").value,
+            rooms:  document.getElementById("gRooms").value,
+            budget: document.getElementById("gBudget").value.trim(),
+            loc:    document.getElementById("gLoc").value.trim()
+        });
+        location.href = "ai-design.html?" + params.toString();
+    });
+
+    // =====================================================
+    // Notification dropdown
+    // =====================================================
+
+    const notifBtn = document.getElementById("notifBtn");
+    const notifDropdown = document.getElementById("notifDropdown");
+    notifBtn.addEventListener("click", e => {
+        e.stopPropagation();
+        notifDropdown.classList.toggle("open");
+    });
+    document.addEventListener("click", () => notifDropdown.classList.remove("open"));
+    notifDropdown.addEventListener("click", e => e.stopPropagation());
+
+    // =====================================================
+    // Sidebar resize + collapse (state persisted in localStorage,
+    // shared with every other page that uses the same keys)
+    // =====================================================
 
     const sidebar = document.querySelector(".dashboard-navbar");
     const resizer = document.getElementById("sidebarResizer");
@@ -970,7 +716,6 @@
     const DEFAULT_WIDTH = 180;
 
     function applyWidth(width, persist) {
-
         const collapsed = width <= COLLAPSE_THRESHOLD;
 
         if (collapsed) {
@@ -987,10 +732,7 @@
         }
     }
 
-    // Restore whatever width/collapsed state was saved last time,
-    // so refreshing the page keeps the sidebar the way it was left.
     (function restoreSidebar() {
-
         const savedCollapsed = localStorage.getItem("kb-sidebar-collapsed") === "1";
         const savedWidth = parseInt(localStorage.getItem("kb-sidebar-width"), 10);
 
@@ -1001,7 +743,6 @@
         } else {
             applyWidth(DEFAULT_WIDTH, false);
         }
-
     })();
 
     let dragging = false;
@@ -1012,31 +753,21 @@
     });
 
     document.addEventListener("mouseup", () => {
-
         if (!dragging) return;
-
         dragging = false;
         document.body.style.cursor = "default";
-
-        // Lock in and save whatever width the drag ended on.
-        const finalWidth = parseInt(sidebar.style.width, 10);
-        applyWidth(finalWidth, true);
-
+        applyWidth(parseInt(sidebar.style.width, 10), true);
     });
 
-    document.addEventListener("mousemove",(e)=>{
-
-        if(!dragging) return;
+    document.addEventListener("mousemove", (e) => {
+        if (!dragging) return;
 
         let width = e.clientX;
-
-        if(width < MIN_WIDTH) width = MIN_WIDTH;
-        if(width > MAX_WIDTH) width = MAX_WIDTH;
+        if (width < MIN_WIDTH) width = MIN_WIDTH;
+        if (width > MAX_WIDTH) width = MAX_WIDTH;
 
         applyWidth(width, false);
-
     });
-
     </script>
 
 </body>

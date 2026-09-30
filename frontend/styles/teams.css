@@ -2,7 +2,8 @@
    Team Management page
    (header + sidebar are styled in dash.css and untouched)
 ========================================================= */
-
+/* ADD THIS AS THE VERY FIRST LINE OF dash.css (above the existing comment), everything else stays unchanged: */
+@import url("theme.css");
 :root{
     --tm-bg:#ffffff;
     --tm-border:#e4e8f0;

@@ -1,0 +1,257 @@
+/* =========================================================
+   Shared theme: Dashboard look + Settings-style restraint
+   -----------------------------------------------------------
+   Plain CSS (no nesting). Every rule starts with
+   "html:root body" so it out-ranks each page's own stylesheet
+   regardless of load order.
+
+   Applies to: Materials, Cost Estimator, Reports, Supplier
+   Marketplace, Team Management, Notifications, Premium,
+   Help & Support (plus the shared header / sidebar shell).
+
+   Red (--color-primary) is used only for: the one primary
+   action per view, the active tab underline, small text links
+   and focus rings. Everything else is charcoal / grey. Status
+   colours (stock, paid, over/under budget) are kept because
+   they carry meaning.
+
+   Link this file directly in every page <head>, AFTER the
+   page's own stylesheet:
+       <link rel="stylesheet" href="../styles/theme.css">
+========================================================= */
+
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap");
+
+/* Team Management reads its colours from these variables */
+html:root{
+    --tm-primary:#F12823;
+    --tm-primary-dark:#DD1F1A;
+    --tm-primary-soft:#F1F1F2;
+    --tm-text:#171615;
+    --tm-border:#ECECEC;
+    --tm-border-soft:#F1F1F2;
+    --tm-shadow-sm:0 1px 2px rgba(23,22,21,.04);
+    --tm-shadow-md:0 6px 18px rgba(23,22,21,.08);
+}
+
+/* =========================================================
+   SHELL: typeface, header, sidebar (same as the Dashboard)
+========================================================= */
+
+html:root body .dashboard,
+html:root body .dashboard :is(button,input,select,textarea){
+    font-family:'DM Sans', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+}
+
+/* Collapsed sidebar: hide the "logo" word, keep only the image */
+html:root body .dashboard-navbar.collapsed #logo{
+    font-size:0;
+    justify-content:center;
+}
+
+/* Scroll area: same canvas + thin scrollbar as the Dashboard */
+html:root body .main-card:has(> :is(.materials-page,.estimator-page,.supplier-page,.team-page,.help-page,.premium-page,.notif-page)){
+    display:block;
+    flex-wrap:nowrap;
+    overflow-x:hidden;
+    overflow-y:auto;
+    background:#EEEDEE;
+    border-top:none;
+    scrollbar-width:thin;
+    scrollbar-color:#c9c6c7 transparent;
+}
+html:root body .main-card-for-reports{
+    background:#EEEDEE;
+    border-top:none;
+    scrollbar-width:thin;
+    scrollbar-color:#c9c6c7 transparent;
+}
+html:root body :is(.main-card,.main-card-for-reports)::-webkit-scrollbar{ width:8px; }
+html:root body :is(.main-card,.main-card-for-reports)::-webkit-scrollbar-thumb{ background:#c9c6c7; border-radius:999px; }
+
+html:root body .dashboard-header .header-subtitle{ color:var(--color-text-secondary); }
+
+/* ---------- Typeface for dialogs / floating bits ---------- */
+html:root body :is(.materials-page,.estimator-page,.main-card-for-reports,.supplier-page,.team-page,.help-page,.premium-page,.notif-page,.modal-box,.em-box,.rm-box,.popover,.toast,.est-toast,.rm-toast),
+html:root body :is(.materials-page,.estimator-page,.main-card-for-reports,.supplier-page,.team-page,.help-page,.premium-page,.notif-page,.modal-box,.em-box,.rm-box,.popover) :is(button,input,select,textarea){
+    font-family:'DM Sans', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+}
+
+/* ---------- Cards (same as Dashboard / Projects) ---------- */
+html:root body :is(.stat-card,.est-card,.report-card,.reports-empty,.team-stat-card,.team-members-card,.team-lower-card,.materials-table-wrap,.reports-table-wrap,.supplier-detail-col,.help-card,.premium-side-card,.premium-includes-card,.pricing-card,.notif-list-col,.notif-side-card){
+    border:none;
+    border-radius:18px;
+    box-shadow:0 1px 2px rgba(23,22,21,.04);
+}
+
+html:root body .est-disclaimer{ background:#F7F7F8; border-radius:14px; }
+
+html:root body :is(.materials-table,.reports-table-v2,.team-table,.est-table) tbody tr:hover{ background:#F8F8F9; }
+html:root body .team-table th{ background:#FAFAFA; }
+
+/* ---------- Secondary buttons: white pill, hairline border ---------- */
+html:root body :is(.est-btn,.est-update-prices-btn,.materials-actions button,.reports-sort-btn,.reports-filter-btn,.reports-filter-dropdown-btn,.supplier-filter-btn,.supp-tab,.supp-follow-btn,.supp-open-btn,.load-more-suppliers-btn,.notif-toolbar-actions button,.clear-all-btn,.change-photo-btn){
+    background:#fff;
+    border:1px solid #ECECEC;
+    border-radius:999px;
+    color:var(--color-text-primary);
+}
+html:root body :is(.est-btn,.est-update-prices-btn,.materials-actions button,.reports-sort-btn,.reports-filter-btn,.reports-filter-dropdown-btn,.supplier-filter-btn,.supp-tab,.supp-follow-btn,.supp-open-btn,.load-more-suppliers-btn,.notif-toolbar-actions button):hover{
+    background:#F4F3F4;
+}
+html:root body .clear-all-btn{ color:var(--color-danger); border-color:#f3c9c9; }
+html:root body .clear-all-btn:hover{ background:var(--color-danger-bg); }
+
+/* ---------- Primary action: one red pill per view ---------- */
+html:root body :is(.Add-Material-btn,.est-btn.primary,.invite-member-btn,.supp-contact-btn,.supp-send-btn,.modal-submit-btn,.rm-btn.primary,.pricing-cta.primary){
+    background:var(--color-primary);
+    border:1px solid var(--color-primary);
+    border-radius:999px;
+    color:#fff;
+    box-shadow:none;
+}
+html:root body :is(.Add-Material-btn,.est-btn.primary,.invite-member-btn,.supp-contact-btn,.supp-send-btn,.modal-submit-btn,.rm-btn.primary,.pricing-cta.primary):hover{
+    background:#DD1F1A;
+    border-color:#DD1F1A;
+    box-shadow:none;
+}
+html:root body .est-risk-btn{ background:var(--color-text-primary); border-radius:999px; }
+html:root body .est-risk-btn:hover{ background:#2b2928; }
+
+html:root body .est-btn.danger,
+html:root body .rm-btn.danger{ background:var(--color-danger); border-color:var(--color-danger); color:#fff; }
+
+/* ---------- Active states ---------- */
+html:root body :is(.supp-tab.active,.view-toggle-btn.active,.mat-tab.active,.mat-pagination button.active,.reports-pagination button.active,.notif-tab.active,.notif-pagination-btns button.active){
+    background:var(--color-text-primary);
+    border-color:var(--color-text-primary);
+    color:#fff;
+    box-shadow:none;
+}
+html:root body .supp-tab.active:hover{ background:var(--color-text-primary); }
+html:root body .materials-actions button.is-active{ background:#F1F1F2; border-color:var(--color-text-primary); color:var(--color-text-primary); }
+html:root body .materials-actions button.is-active [data-icon]{ color:var(--color-text-primary); }
+html:root body :is(.materials-tabs,.notif-tabs){ background:#fff; border-radius:999px; }
+html:root body :is(.mat-tab,.notif-tab){ border-radius:999px; }
+html:root body .view-toggle-btn{ background:#fff; }
+html:root body .view-toggle-btn.active{ background:var(--color-text-primary); color:#fff; }
+
+/* Tab underline is the one place red marks "where you are" (as in Settings) */
+html:root body :is(.est-tab.active,.supp-detail-tab.active){
+    color:var(--color-primary);
+    border-bottom-color:var(--color-primary);
+}
+html:root body :is(.est-tab,.supp-detail-tab):hover{ color:var(--color-text-primary); }
+
+/* ---------- Coloured tiles and pills become neutral ---------- */
+html:root body :is(.stat-icon,.team-stat-icon,.report-icon,.cat-tile,.est-row-icon,.supp-promo-icon,.supp-review-avatar,.supp-verified,.supp-verified-pill,.pending-invite-icon,.invite-review-avatar),
+html:root body :is(.cat-cement,.cat-bricks,.cat-timber,.cat-roofing,.cat-aggregates),
+html:root body :is(.role-pill,.report-type-pill,.invite-step-label,.pending-expires){
+    background:#F1F1F2;
+    color:var(--color-text-secondary);
+}
+html:root body .role-pill.admin{ color:var(--color-text-primary); }
+html:root body .supp-verified,
+html:root body .supp-verified-pill{ color:var(--color-text-primary); }
+html:root body .pending-invite-icon,
+html:root body .invite-review-avatar{ background:#F1F1F2; }
+
+/* Help, Notifications and Premium: coloured icon tiles become neutral */
+html:root body :is(.help-topic-icon,.help-center-icon,.help-resource-icon,.notif-item-icon,.notif-dd-icon,.notif-pref-icon,.premium-include-item > span){
+    background:#F1F1F2;
+    color:var(--color-text-secondary);
+}
+
+/* ---------- Text links: small red, nothing louder ---------- */
+html:root body :is(.est-add-material-btn,.supp-featured-header a,.supp-contact-row a,.supp-map-link,.team-lower-header a,.help-status-link,.notif-item-body a,.notif-dropdown-footer,.notif-dropdown-header a,.modal-text-btn){
+    color:var(--color-primary);
+}
+html:root body .pending-email{ color:var(--color-text-secondary) !important; }
+html:root body .filter-badge{ background:var(--color-primary); }
+html:root body .load-more-suppliers-btn{ color:var(--color-text-primary); }
+html:root body .help-contact-note{ color:var(--color-primary) !important; }
+
+/* ---------- Unread dots / badges ---------- */
+html:root body :is(.notif-unread-dot,.notif-dd-dot){ background:var(--color-primary); }
+html:root body .notif-dropdown-item.unread{ background:var(--color-primary-soft); }
+
+/* ---------- Premium page ---------- */
+html:root body .pricing-card.popular{ border:2px solid var(--color-text-primary); }
+html:root body .pricing-card.featured{ background:#fff; }
+html:root body .pricing-card.featured h3,
+html:root body .pricing-card.enterprise h3{ color:var(--color-text-primary); }
+html:root body .pricing-badge{ background:var(--color-primary); }
+html:root body .toggle-switch{ background:var(--color-primary); }
+html:root body :is(.pricing-cta.primary-dark,.pricing-cta.orange){
+    background:var(--color-text-primary);
+    border-radius:999px;
+    color:#fff;
+}
+html:root body :is(.pricing-cta.primary-dark,.pricing-cta.orange):hover{ background:#2b2928; }
+html:root body .pricing-cta.primary,
+html:root body :is(.pricing-cta.current){ border-radius:999px; }
+html:root body .trusted-count{ color:var(--color-text-primary); }
+html:root body .premium-banner{ background:var(--color-primary-soft); border-color:#f3c9c7; border-radius:18px; }
+html:root body .premium-banner > span{ color:var(--color-text-primary); }
+
+/* ---------- Hover / menu states ---------- */
+html:root body :is(.est-menu button,.pop-item:not(.danger),.row-menu button:not(.danger)):hover{
+    background:#F4F3F4;
+    color:var(--color-text-primary);
+}
+html:root body .pop-item.active{ color:var(--color-text-primary); }
+html:root body :is(.mat-actions-cell button,.report-actions-cell button,.est-arrow,.est-qty-stepper button,.supp-add-btn):hover{
+    background:#F1F1F2;
+    border-color:#DAD7D8;
+    color:var(--color-text-primary);
+}
+html:root body :is(.est-qty-stepper button,.supp-add-btn){ color:var(--color-text-secondary); }
+html:root body .reports-table-v2 thead th.sortable:hover{ color:var(--color-text-primary); }
+html:root body .permission-row:hover{ border-color:#DAD7D8; background:#FAFAFA; }
+html:root body :is(.help-topic,.help-contact-card,.help-center-row,.help-resource-row,.notif-item,.notif-option-row):hover{ background:#F8F8F9; border-color:#DAD7D8; }
+html:root body .help-center-row.flash{ background:var(--color-primary-soft); }
+
+/* ---------- Page-specific details ---------- */
+html:root body .est-sparkline polyline{ stroke:var(--color-text-primary); }
+html:root body .bd-fill{ background:var(--color-text-primary); }
+html:root body .bd-top span .ico{ color:var(--color-text-secondary); }
+html:root body .est-row-active td:first-child{ color:var(--color-text-primary); }
+
+html:root body .supplier-card{ border:2px solid transparent; border-radius:18px; box-shadow:0 1px 2px rgba(23,22,21,.04); }
+html:root body .supplier-card:hover{ border-color:#DAD7D8; }
+html:root body .supplier-card.active{ border-color:var(--color-text-primary); box-shadow:none; }
+html:root body .supplier-card.active .supp-open-btn{ background:var(--color-text-primary); border-color:var(--color-text-primary); color:#fff; }
+html:root body .supp-follow-btn.is-following{ background:#F1F1F2; border-color:#DAD7D8; color:var(--color-text-primary); }
+html:root body .supp-banner-overlay strong{ color:#fff; }
+html:root body .supp-delivery-price{ color:var(--color-text-primary); }
+
+html:root body .activity-dot-icon{ border-color:var(--color-text-primary); box-shadow:0 0 0 4px #F1F1F2; }
+
+/* ---------- Inputs: red focus ring, same as Settings ---------- */
+html:root body :is(.modal-field,.em-field,.rm-field,.rm-linkrow,.supp-form-field) :is(input,select,textarea),
+html:root body .est-notes,
+html:root body .help-search-box{
+    border-radius:10px;
+}
+html:root body :is(.modal-field,.em-field,.rm-field,.rm-linkrow,.supp-form-field) :is(input,select,textarea):focus,
+html:root body .est-notes:focus{
+    border-color:var(--color-primary);
+    box-shadow:0 0 0 3px rgba(241,40,35,.12);
+}
+html:root body .help-search-box:focus-within{ border-color:var(--color-primary); }
+html:root body :is(.estimator-page,.main-card-for-reports,.popover,.rm-box,.em-box,.help-page,.premium-page,.notif-page) :focus-visible{
+    outline-color:var(--color-primary);
+}
+
+/* Toggle switches (notification preferences) */
+html:root body .switch input:checked + .slider{ background:var(--color-primary); }
+
+/* ---------- Dialogs + toasts ---------- */
+html:root body :is(.modal-box,.em-box,.rm-box){ border-radius:20px; }
+html:root body .modal-actions button,
+html:root body .em-foot .est-btn,
+html:root body .rm-footer .rm-btn{ border-radius:999px; }
+html:root body .modal-cancel-btn{ background:#F1F1F2; border:none; color:var(--color-text-primary); }
+html:root body .modal-cancel-btn:hover{ background:#E4E3E4; }
+html:root body .modal-danger-btn{ border-radius:999px; }
+html:root body :is(.est-toast,.rm-toast){ background:var(--color-text-primary); border-radius:999px; }

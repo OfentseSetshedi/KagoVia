@@ -1,0 +1,95 @@
+/* =========================================================
+   AI Design: dashboard look
+   -----------------------------------------------------------
+   Loaded AFTER the page's inline <style>. Every rule starts
+   with "html:root body" so it out-ranks that inline CSS.
+   Same language as the Dashboard: soft grey canvas, white
+   rounded cards, pill buttons, dark active states, red only
+   for the main action.
+========================================================= */
+
+/* Canvas */
+html:root body .main-card.ai-main{
+    background:#EEEDEE;
+    padding:16px 24px 24px;
+    scrollbar-width:thin;
+    scrollbar-color:#c9c6c7 transparent;
+}
+html:root body .agent{
+    background:transparent;
+    height:calc(100vh - 64px - 40px);
+    min-height:520px;
+}
+
+/* Three floating cards instead of flat hairline panels */
+html:root body .a-panel{
+    background:#fff;
+    border:none;
+    border-radius:18px;
+    box-shadow:0 1px 2px rgba(23,22,21,.04);
+}
+html:root body .a-history{ margin-right:8px; }
+html:root body .a-chat{ margin:0 8px; }
+html:root body .a-preview{ margin-left:8px; }
+
+/* Header pill */
+html:root body .beta-pill{ background:#F1F1F2; color:var(--color-text-secondary); }
+
+/* History */
+html:root body .new-chat{
+    border:none;
+    border-radius:999px;
+    background:#F1F1F2;
+    color:var(--color-text-primary);
+    font-weight:600;
+}
+html:root body .new-chat:hover{ background:var(--color-text-primary); color:#fff; }
+html:root body .h-search input{ border:none; border-radius:999px; background:#F5F5F6; padding:0 14px; }
+html:root body .h-search input:focus{ background:#fff; box-shadow:0 0 0 3px rgba(241,40,35,.12); }
+html:root body .h-item{ border-radius:12px; }
+html:root body .h-item:hover{ background:#F5F5F6; }
+html:root body .h-item.active{ background:var(--color-primary-soft); }
+html:root body .h-item.active .h-text strong{ color:var(--color-primary); }
+
+/* Conversation */
+html:root body .bubble{ background:#F1F1F2; border-radius:16px 16px 4px 16px; }
+html:root body .opt{ border:2px solid transparent; background:#F7F7F8; border-radius:16px; }
+html:root body .opt:hover{ border-color:#DAD7D8; }
+html:root body .opt.active{ border-color:var(--color-primary); background:#fff; }
+html:root body .opt-check{ background:var(--color-primary); }
+html:root body .opt-thumb{ background:#fff; border-radius:10px; }
+html:root body .m-act{ border-radius:999px; }
+html:root body .m-act:hover{ background:#F1F1F2; }
+
+/* Composer */
+html:root body .composer-box{ border:none; background:#F5F5F6; border-radius:22px; }
+html:root body .composer-box:focus-within{ background:#fff; box-shadow:0 0 0 2px var(--color-primary); }
+html:root body .style-chip{ border-radius:999px; background:#fff; color:var(--color-text-secondary); }
+html:root body .style-chip:hover{ background:#ECEBEC; color:var(--color-text-primary); }
+html:root body .style-chip.active{ background:var(--color-text-primary); color:#fff; }
+html:root body .send{ background:var(--color-primary); box-shadow:0 6px 16px rgba(241,40,35,.28); }
+html:root body .send:hover{ background:#DD1F1A; }
+html:root body .send:disabled{ box-shadow:none; }
+html:root body .mic.rec{ background:var(--color-primary); }
+
+/* Preview */
+html:root body .seg{ background:#F1F1F2; border-radius:999px; padding:3px; }
+html:root body .seg button{ border-radius:999px; }
+html:root body .seg button.active{ background:var(--color-text-primary); color:#fff; }
+html:root body .p-canvas{ border:none; background:#F5F5F6; border-radius:16px; }
+html:root body .p-btn{ border:none; background:#F1F1F2; border-radius:999px; font-weight:600; }
+html:root body .p-btn:hover{ background:#E4E3E4; }
+html:root body .p-btn.primary{ background:var(--color-primary); color:#fff; box-shadow:0 6px 16px rgba(241,40,35,.28); }
+html:root body .p-btn.primary:hover{ background:#DD1F1A; }
+
+/* Toast + focus */
+html:root body .a-toast{ background:var(--color-text-primary); }
+html:root body .agent button:focus-visible,
+html:root body .agent [role="button"]:focus-visible{ outline:2px solid var(--color-primary); outline-offset:2px; }
+
+@media (max-width:900px){
+    html:root body .agent{ height:auto; }
+    html:root body .a-history,
+    html:root body .a-chat,
+    html:root body .a-preview{ margin:0 0 12px; }
+}

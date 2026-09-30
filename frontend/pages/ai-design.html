@@ -1,12 +1,421 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Design</title>
-        <link rel="stylesheet" href="../styles/dash.css">
-        <link rel="stylesheet" href="../styles/projects.css">
-        <link rel="stylesheet" href="../styles/AI.css">
+        <link rel="stylesheet" href="../styles/dash.css"><link rel="stylesheet" href="../styles/theme.css">
+
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap");
+
+        /* =========================================================
+           AI Design: minimal agent layout
+           [ History ] | [ Conversation + prompt ] | [ Preview ]
+           Flat, neutral, hairline dividers. Side panels resizable.
+           (Sidebar and header are NOT touched here.)
+        ========================================================= */
+
+        :root{
+            /* Height of the work area. Tweak if your header is taller/shorter. */
+            --ai-h: calc(100vh - 170px);
+            --ink:#171615;
+            --muted:#8b8586;
+            --line:#ECECEC;
+            --tint:#FAFAFA;
+            --hover:#F4F4F5;
+        }
+
+        .beta-pill{
+            display:inline-block;
+            margin-left:8px;
+            padding:2px 9px;
+            border-radius:999px;
+            background:#F1F1F2;
+            color:#5F5C5C;
+            font-size:11px;
+            font-weight:600;
+            letter-spacing:.02em;
+            vertical-align:middle;
+        }
+
+        .main-card.ai-main{
+            padding:0;
+            flex-wrap:nowrap;
+            min-height:0;
+            overflow-y:auto;
+            overflow-x:hidden;
+            background:#fff;
+            border-top:none;
+        }
+
+        .ai-main,
+        .ai-main button,
+        .ai-main input,
+        .ai-main textarea{
+            font-family:'DM Sans', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+        }
+
+        .agent{
+            --wl:250px;
+            --wr:380px;
+            flex:1 1 auto;
+            align-self:flex-start;
+            width:100%;
+            height:var(--ai-h);
+            min-height:520px;
+            min-width:0;
+            box-sizing:border-box;
+            display:grid;
+            grid-template-columns:var(--wl) 0 minmax(0,1fr) 0 var(--wr);
+            background:#fff;
+            color:var(--ink);
+        }
+
+        .agent *{ box-sizing:border-box; }
+
+        .a-panel{
+            display:flex;
+            flex-direction:column;
+            min-width:0;
+            min-height:0;
+            height:100%;
+            overflow:hidden;
+            background:#fff;
+        }
+        .a-history{ background:var(--tint); border-right:1px solid var(--line); }
+        .a-preview{ background:var(--tint); border-left:1px solid var(--line); }
+
+        /* ---------- Resize handles (invisible until hover) ---------- */
+
+        .rz{
+            position:relative;
+            width:0;
+            z-index:5;
+            touch-action:none;
+            user-select:none;
+            outline:none;
+        }
+        .rz::after{
+            content:"";
+            position:absolute; top:0; bottom:0; left:-5px; width:10px;
+            cursor:col-resize;
+        }
+        .rz::before{
+            content:"";
+            position:absolute; top:0; bottom:0; left:-1px; width:2px;
+            background:transparent;
+            transition:background .15s;
+            pointer-events:none;
+        }
+        .rz:hover::before,
+        .rz:focus-visible::before{ background:#cfcccc; }
+        .rz.drag::before{ background:var(--ink); }
+
+        body.rz-active{ cursor:col-resize !important; user-select:none; }
+        body.rz-active iframe{ pointer-events:none; }
+
+        /* ---------- History ---------- */
+
+        .h-top{ padding:18px 14px 8px; display:flex; flex-direction:column; gap:10px; }
+
+        .h-title{
+            font-size:13px; font-weight:600; color:var(--ink);
+        }
+
+        .new-chat{
+            display:flex; align-items:center; justify-content:center; gap:6px;
+            height:34px; border:1px solid #E3E3E4; border-radius:8px;
+            background:#fff; color:var(--ink);
+            font-size:13px; font-weight:500; cursor:pointer;
+            transition:background .15s;
+        }
+        .new-chat:hover{ background:var(--hover); }
+
+        .h-search input{
+            width:100%; height:32px; padding:0 10px;
+            border:1px solid var(--line); border-radius:8px; outline:none;
+            background:#fff; font-size:13px; color:var(--ink);
+            transition:border-color .15s;
+        }
+        .h-search input:focus{ border-color:#c9c6c7; }
+        .h-search input::placeholder{ color:#a7a3a4; }
+
+        .h-list{ flex:1; min-height:0; overflow-y:auto; padding:4px 8px 12px; }
+
+        .h-group{
+            padding:14px 8px 6px;
+            font-size:11px; font-weight:500;
+            color:#a7a3a4;
+        }
+
+        .h-item{
+            position:relative;
+            width:100%; display:flex; align-items:center; gap:6px;
+            padding:8px 10px; border:none; border-radius:8px;
+            background:none; text-align:left; cursor:pointer;
+            transition:background .15s;
+        }
+        .h-item:hover{ background:#F1F1F2; }
+        .h-item.active{ background:#ECECED; }
+
+        .h-text{ min-width:0; flex:1; display:flex; flex-direction:column; gap:1px; }
+        .h-text strong{
+            font-size:13px; font-weight:500; color:var(--ink);
+            white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+        }
+        .h-text small{ font-size:11px; color:var(--muted); }
+
+        .h-pin{ flex-shrink:0; color:#a7a3a4; display:flex; }
+        .h-item:hover .h-pin{ display:none; }
+
+        .h-acts{ display:none; flex-shrink:0; gap:2px; }
+        .h-item:hover .h-acts,
+        .h-item:focus-within .h-acts{ display:flex; }
+        .h-act{
+            width:24px; height:24px; border:none; border-radius:6px;
+            background:transparent; color:#6d696a; cursor:pointer;
+            display:flex; align-items:center; justify-content:center;
+        }
+        .h-act:hover{ background:#fff; color:var(--ink); }
+        .h-act.on{ color:var(--ink); }
+
+        .h-empty{ padding:20px 10px; font-size:12.5px; color:var(--muted); text-align:center; }
+
+        /* ---------- Conversation ---------- */
+
+        .c-head{
+            flex-shrink:0;
+            display:flex; align-items:baseline; justify-content:space-between; gap:12px;
+            padding:16px 24px 8px;
+        }
+        .c-head h3{
+            margin:0; font-size:14px; font-weight:600; color:var(--ink);
+            white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+        }
+        .c-head span{ flex-shrink:0; font-size:12px; color:var(--muted); }
+
+        .thread{ flex:1; min-height:0; overflow-y:auto; padding:16px 24px; scroll-behavior:smooth; }
+        .thread-inner{ max-width:720px; margin:0 auto; display:flex; flex-direction:column; gap:26px; }
+
+        .msg-user{ display:flex; justify-content:flex-end; }
+        .bubble{
+            max-width:80%;
+            padding:10px 14px;
+            background:#F3F3F4; color:var(--ink);
+            border-radius:14px 14px 4px 14px;
+            font-size:14px; line-height:1.55;
+        }
+
+        .msg-ai{ display:block; }
+        .ai-body{ min-width:0; }
+        .ai-text{ margin:0 0 14px; font-size:14px; line-height:1.6; color:#2b2928; }
+
+        .opts{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; }
+
+        .opt{
+            position:relative;
+            display:flex; flex-direction:column; gap:8px;
+            padding:8px; border:1px solid var(--line); border-radius:12px;
+            background:#fff; text-align:left; cursor:pointer;
+            transition:border-color .15s;
+        }
+        .opt:hover{ border-color:#cfcccc; }
+        .opt.active{ border-color:var(--ink); }
+
+        .opt-thumb{
+            border-radius:8px; overflow:hidden; background:var(--tint);
+            aspect-ratio:9/7;
+        }
+        .opt-thumb svg{ width:100%; height:100%; display:block; }
+
+        .opt-body{ display:flex; flex-direction:column; gap:1px; padding:0 3px 2px; min-width:0; }
+        .opt-body strong{ font-size:13px; font-weight:600; color:var(--ink); }
+        .opt-body small{
+            font-size:11px; color:var(--muted);
+            white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+        }
+        .opt-body em{ font-style:normal; font-size:12px; font-weight:500; color:var(--ink); margin-top:2px; }
+
+        .opt-check{
+            position:absolute; top:14px; right:14px;
+            width:18px; height:18px; border-radius:50%;
+            background:var(--ink); color:#fff; font-size:10px;
+            display:none; align-items:center; justify-content:center;
+        }
+        .opt.active .opt-check{ display:flex; }
+
+        /* Reply actions: quiet text buttons */
+        .m-acts{ display:flex; gap:2px; margin-top:10px; margin-left:-8px; }
+        .m-act{
+            display:inline-flex; align-items:center; gap:6px;
+            height:26px; padding:0 8px;
+            border:none; border-radius:6px;
+            background:transparent; color:var(--muted);
+            font-size:12px; font-weight:500; cursor:pointer;
+            transition:background .15s, color .15s;
+        }
+        .m-act:hover{ background:var(--hover); color:var(--ink); }
+
+        .typing{ display:inline-flex; gap:5px; padding:6px 2px; }
+        .typing i{
+            width:6px; height:6px; border-radius:50%; background:#c4c0c1;
+            animation:aBlink 1.1s infinite ease-in-out;
+        }
+        .typing i:nth-child(2){ animation-delay:.15s; }
+        .typing i:nth-child(3){ animation-delay:.3s; }
+        @keyframes aBlink{ 0%,80%,100%{ opacity:.25; } 40%{ opacity:1; } }
+
+        .msg-user, .msg-ai{ animation:aRise .3s ease both; }
+        @keyframes aRise{ from{ opacity:0; transform:translateY(6px); } to{ opacity:1; transform:none; } }
+
+        /* Empty state */
+        .empty{
+            max-width:480px; margin:14vh auto 0; text-align:center;
+            display:flex; flex-direction:column; align-items:center; gap:8px;
+        }
+        .empty h2{ margin:0; font-size:26px; font-weight:600; letter-spacing:-.02em; color:var(--ink); }
+        .empty p{ margin:0; font-size:14px; color:var(--muted); }
+
+        /* ---------- Composer ---------- */
+
+        .composer{ flex-shrink:0; padding:0 24px 16px; }
+        .composer-box{
+            max-width:720px; margin:0 auto;
+            padding:10px 12px;
+            background:#fff; border-radius:14px;
+            border:1px solid #E3E3E4;
+            transition:border-color .15s;
+        }
+        .composer-box:focus-within{ border-color:var(--ink); }
+        .composer-box textarea{
+            width:100%; min-height:44px; max-height:140px; resize:none;
+            border:none; outline:none; background:transparent;
+            font-size:14px; line-height:1.5; color:var(--ink);
+        }
+        .composer-box textarea::placeholder{ color:#a7a3a4; }
+        .composer-row{ display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:4px; }
+        .styles{ display:flex; gap:2px; flex-wrap:wrap; min-width:0; }
+        .style-chip{
+            height:26px; padding:0 10px; border:none; border-radius:6px;
+            background:transparent; font-size:12px; font-weight:500; color:var(--muted); cursor:pointer;
+            transition:background .15s, color .15s;
+        }
+        .style-chip:hover{ color:var(--ink); }
+        .style-chip.active{ background:#F1F1F2; color:var(--ink); }
+
+        .send-wrap{ display:flex; align-items:center; gap:6px; flex-shrink:0; }
+        .count{ font-size:11px; color:#a7a3a4; opacity:0; transition:opacity .15s; }
+        .count.on{ opacity:1; }
+
+        .mic{
+            display:none;
+            width:32px; height:32px; border:none; border-radius:50%;
+            background:transparent; color:#6d696a; cursor:pointer;
+            align-items:center; justify-content:center;
+            transition:background .15s, color .15s;
+        }
+        .mic.ok{ display:flex; }
+        .mic:hover{ background:var(--hover); color:var(--ink); }
+        .mic.rec{ background:var(--ink); color:#fff; animation:aPulse 1.2s infinite; }
+        @keyframes aPulse{
+            0%{ box-shadow:0 0 0 0 rgba(23,22,21,.30); }
+            70%{ box-shadow:0 0 0 10px rgba(23,22,21,0); }
+            100%{ box-shadow:0 0 0 0 rgba(23,22,21,0); }
+        }
+
+        .send{
+            width:32px; height:32px; border:none; border-radius:50%;
+            background:var(--ink); color:#fff; cursor:pointer;
+            display:flex; align-items:center; justify-content:center;
+            transition:opacity .15s, background .15s;
+        }
+        .send:hover{ background:#3a3637; }
+        .send:disabled{ opacity:.25; cursor:not-allowed; }
+        .fine{ max-width:720px; margin:8px auto 0; text-align:center; font-size:11px; color:#b0acad; }
+
+        /* ---------- Preview ---------- */
+
+        .p-head{ flex-shrink:0; padding:16px 18px 10px; display:flex; flex-direction:column; gap:10px; }
+        .p-head h3{ margin:0; font-size:14px; font-weight:600; color:var(--ink); }
+        .p-head p{
+            margin:2px 0 0; font-size:12px; color:var(--muted);
+            white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+        }
+        .seg{ display:inline-flex; align-self:flex-start; gap:2px; }
+        .seg button{
+            border:none; background:none; padding:4px 10px; border-radius:6px;
+            font-size:12px; font-weight:500; color:var(--muted); cursor:pointer;
+        }
+        .seg button:hover{ color:var(--ink); }
+        .seg button.active{ background:#ECECED; color:var(--ink); }
+
+        .p-body{ flex:1; min-height:0; overflow-y:auto; padding:0 18px 18px; display:flex; flex-direction:column; gap:12px; }
+
+        .p-canvas{
+            position:relative; flex:1; min-height:250px;
+            border:1px solid var(--line); border-radius:12px; overflow:hidden;
+            background:#fff;
+            display:flex; align-items:center; justify-content:center; padding:14px;
+            perspective:900px;
+        }
+        .p-canvas svg{
+            width:100%; height:auto; max-height:100%; display:block;
+            transition:transform .5s cubic-bezier(.2,.8,.2,1), filter .5s;
+        }
+        .p-canvas.is-3d svg{
+            transform:rotateX(52deg) rotateZ(-22deg) scale(.78);
+            filter:drop-shadow(0 20px 16px rgba(23,22,21,.14));
+        }
+        .p-placeholder{
+            padding:40px 16px; text-align:center; font-size:13px; color:#a7a3a4; line-height:1.6;
+        }
+
+        .p-actions{ display:flex; gap:8px; flex-shrink:0; }
+        .p-btn{
+            flex:1; height:34px; border:1px solid #E3E3E4; border-radius:8px;
+            background:#fff; font-size:12.5px; font-weight:500; color:var(--ink); cursor:pointer;
+            transition:background .15s;
+        }
+        .p-btn:hover{ background:var(--hover); }
+        .p-btn.primary{ background:var(--ink); border-color:var(--ink); color:#fff; }
+        .p-btn.primary:hover{ background:#3a3637; }
+        .p-btn:disabled{ opacity:.4; cursor:not-allowed; }
+
+        .a-toast{
+            position:fixed; left:50%; bottom:28px; z-index:4000;
+            padding:10px 16px; border-radius:999px;
+            background:var(--ink); color:#fff; font-size:13px; font-weight:500;
+            opacity:0; transform:translate(-50%,10px); pointer-events:none;
+            transition:opacity .2s, transform .2s;
+        }
+        .a-toast.show{ opacity:1; transform:translate(-50%,0); }
+
+        .agent button:focus-visible,
+        .agent [role="button"]:focus-visible{ outline:2px solid var(--ink); outline-offset:2px; }
+
+        /* ---------- Responsive ---------- */
+        @media (max-width:1180px){
+            .opts{ grid-template-columns:1fr; }
+        }
+        @media (max-width:900px){
+            .agent{
+                height:auto;
+                grid-template-columns:minmax(0,1fr);
+            }
+            .rz{ display:none; }
+            .a-panel{ height:auto; }
+            .a-history{ max-height:300px; border-right:none; border-bottom:1px solid var(--line); }
+            .a-chat{ height:80vh; min-height:520px; }
+            .a-preview{ min-height:520px; border-left:none; border-top:1px solid var(--line); }
+        }
+        @media (prefers-reduced-motion: reduce){
+            .agent *{ animation:none !important; transition:none !important; }
+            .thread{ scroll-behavior:auto; }
+        }
+    </style>
 </head>
 <body>
     <section class="dashboard">
@@ -190,203 +599,98 @@
                 </div>
             </header>
 
-            <div class="main-card">
-                <div class="ai-design-page">
+            <div class="main-card ai-main" id="aiMain">
+                <div class="agent" id="agent">
 
-                    <div class="ai-toolbar">
-
-                        <div class="ai-toolbar-actions">
-                            <button class="ai-tool-btn">✎ Edit ▾</button>
-                            <button class="ai-tool-btn">💾 Save</button>
-                            <button class="ai-tool-btn">⇄ Compare</button>
-                            <button class="ai-tool-btn primary">⬆ Export ▾</button>
+                    <!-- ============ HISTORY ============ -->
+                    <aside class="a-panel a-history">
+                        <div class="h-top">
+                            <div class="h-title">History</div>
+                            <button type="button" class="new-chat" id="newChat">
+                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+                                New design
+                            </button>
+                            <div class="h-search">
+                                <input type="search" id="histSearch" placeholder="Search designs...">
+                            </div>
                         </div>
-                    </div>
+                        <div class="h-list" id="histList"></div>
+                    </aside>
 
-                    <div class="ai-studio">
+                    <!-- Resize: History <-> Chat -->
+                    <div class="rz" id="rzLeft" role="separator" aria-orientation="vertical" aria-label="Resize history panel" tabindex="0" title="Drag to resize (double-click to reset)"></div>
 
-                        <aside class="ai-left-col">
+                    <!-- ============ CONVERSATION ============ -->
+                    <section class="a-panel a-chat">
+                        <div class="c-head">
+                            <h3 id="chatTitle">New design</h3>
+                            <span id="chatMeta"></span>
+                        </div>
 
-                            <div class="ai-panel describe-card">
-                                <h5>Describe your dream house...</h5>
-                                <textarea maxlength="500" placeholder="Describe your dream house...">A spacious modern villa with 4 bedrooms, open kitchen, double height living room, large windows, and a pool.</textarea>
-                                <span class="char-count">120/500</span>
-                                <button class="ai-generate-btn">✨ Generate</button>
-                            </div>
+                        <div class="thread" id="thread">
+                            <div class="thread-inner" id="threadInner"></div>
+                        </div>
 
-                            <div class="ai-panel suggestions-tags-card">
-                                <h5>Suggestions</h5>
-                                <div class="style-tags">
-                                    <button class="style-tag active">Modern</button>
-                                    <button class="style-tag">Farmhouse</button>
-                                    <button class="style-tag">Luxury</button>
-                                    <button class="style-tag">Minimalist</button>
-                                </div>
-                            </div>
-
-                            <div class="ai-panel generated-designs-card">
-                                <h5>Generated Designs</h5>
-
-                                <div class="generated-designs-list" id="designOptionsList">
-
-                                    <button class="design-option active" data-design="A">
-                                        <span class="option-thumb">
-                                            <svg viewBox="0 0 120 90" xmlns="http://www.w3.org/2000/svg">
-                                                <rect x="4" y="4" width="112" height="82" rx="3" fill="#fff" stroke="#d8cdb8" stroke-width="1.2"/>
-                                                <rect x="10" y="10" width="34" height="26" fill="none" stroke="#2c3550" stroke-width="1"/>
-                                                <rect x="48" y="10" width="40" height="44" fill="none" stroke="#2c3550" stroke-width="1"/>
-                                                <rect x="92" y="10" width="24" height="26" fill="none" stroke="#2c3550" stroke-width="1"/>
-                                                <rect x="10" y="40" width="34" height="26" fill="none" stroke="#2c3550" stroke-width="1"/>
-                                                <rect x="92" y="40" width="24" height="46" fill="none" stroke="#2c3550" stroke-width="1"/>
-                                                <rect x="10" y="70" width="78" height="16" fill="none" stroke="#2c3550" stroke-width="1" stroke-dasharray="3 2"/>
-                                            </svg>
-                                        </span>
-                                        <span class="option-label">Option A</span>
-                                        <span class="option-check">✓</span>
-                                    </button>
-
-                                    <button class="design-option" data-design="B">
-                                        <span class="option-thumb">
-                                            <svg viewBox="0 0 120 90" xmlns="http://www.w3.org/2000/svg">
-                                                <rect x="4" y="4" width="112" height="82" rx="3" fill="#fff" stroke="#d8cdb8" stroke-width="1.2"/>
-                                                <rect x="10" y="10" width="50" height="36" fill="none" stroke="#2c3550" stroke-width="1"/>
-                                                <rect x="64" y="10" width="52" height="20" fill="none" stroke="#2c3550" stroke-width="1"/>
-                                                <rect x="64" y="34" width="52" height="24" fill="none" stroke="#2c3550" stroke-width="1"/>
-                                                <rect x="10" y="50" width="50" height="36" fill="none" stroke="#2c3550" stroke-width="1"/>
-                                                <rect x="64" y="62" width="52" height="24" fill="none" stroke="#2c3550" stroke-width="1"/>
-                                            </svg>
-                                        </span>
-                                        <span class="option-label">Option B</span>
-                                        <span class="option-check"></span>
-                                    </button>
-
-                                    <button class="design-option" data-design="C">
-                                        <span class="option-thumb">
-                                            <svg viewBox="0 0 120 90" xmlns="http://www.w3.org/2000/svg">
-                                                <rect x="4" y="4" width="112" height="82" rx="3" fill="#fff" stroke="#d8cdb8" stroke-width="1.2"/>
-                                                <rect x="10" y="10" width="46" height="30" fill="none" stroke="#2c3550" stroke-width="1"/>
-                                                <rect x="60" y="10" width="56" height="52" fill="none" stroke="#2c3550" stroke-width="1"/>
-                                                <rect x="10" y="44" width="46" height="42" fill="none" stroke="#2c3550" stroke-width="1"/>
-                                                <rect x="60" y="66" width="56" height="20" fill="none" stroke="#2c3550" stroke-width="1" stroke-dasharray="3 2"/>
-                                            </svg>
-                                        </span>
-                                        <span class="option-label">Option C</span>
-                                        <span class="option-check"></span>
-                                    </button>
-
-                                </div>
-
-                                <button class="generate-more-btn">↻ Generate More</button>
-                            </div>
-
-                        </aside>
-
-                        <section class="ai-floorplan-col">
-
-                            <div class="floorplan-title-row">
-                                <div class="floorplan-title-block">
-                                    <h3 id="planTitle">Option A</h3>
-                                    <p id="planMeta">Modern &nbsp;•&nbsp; 4 Beds &nbsp;•&nbsp; 3.5 Baths &nbsp;•&nbsp; 320 m²</p>
-                                </div>
-
-                                <div class="floorplan-title-tools">
-                                    <div class="floorplan-toggle" id="floorplanToggle">
-                                        <button class="fp-toggle active" data-view="2d">2D</button>
-                                        <button class="fp-toggle" data-view="3d">3D</button>
+                        <div class="composer">
+                            <div class="composer-box">
+                                <textarea id="prompt" maxlength="500" rows="2" placeholder="Describe your dream house, or ask for a change..."></textarea>
+                                <div class="composer-row">
+                                    <div class="styles" id="styles">
+                                        <button type="button" class="style-chip active" data-style="Modern">Modern</button>
+                                        <button type="button" class="style-chip" data-style="Farmhouse">Farmhouse</button>
+                                        <button type="button" class="style-chip" data-style="Luxury">Luxury</button>
+                                        <button type="button" class="style-chip" data-style="Minimalist">Minimalist</button>
                                     </div>
-                                    <div class="floorplan-zoom">
-                                        <button title="Zoom in">＋</button>
-                                        <button title="Zoom out">－</button>
-                                        <button title="Fullscreen">⤢</button>
+                                    <div class="send-wrap">
+                                        <span class="count" id="count">0/500</span>
+                                        <button type="button" class="mic" id="mic" aria-label="Dictate with your voice" title="Dictate">
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>
+                                        </button>
+                                        <button type="button" class="send" id="send" aria-label="Generate" disabled>
+                                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
+                            <p class="fine">Basic AI-generated layouts and estimates, not a professional quote. Figures may be inaccurate, so verify dimensions and costs with a qualified architect or quantity surveyor before building.</p>
+                        </div>
+                    </section>
 
-                            <div class="floorplan-canvas">
-                                <svg viewBox="0 0 900 700" xmlns="http://www.w3.org/2000/svg">
-                                    <rect x="15" y="15" width="870" height="670" rx="6" fill="#fbf8f1" stroke="#d8cdb8" stroke-width="2"/>
+                    <!-- Resize: Chat <-> Preview -->
+                    <div class="rz" id="rzRight" role="separator" aria-orientation="vertical" aria-label="Resize preview panel" tabindex="0" title="Drag to resize (double-click to reset)"></div>
 
-                                    <rect x="40" y="40" width="270" height="200" fill="none" stroke="#2c3550" stroke-width="1.6"/>
-                                    <text x="48" y="58" font-size="11" fill="#55606e" font-family="Arial">PRIMARY BEDROOM</text>
-                                    <text x="48" y="230" font-size="10" fill="#8a93a8" font-family="Arial">4.2m x 4.6m</text>
+                    <!-- ============ PREVIEW ONLY ============ -->
+                    <aside class="a-panel a-preview">
+                        <div class="p-head">
+                            <div>
+                                <h3 id="pTitle">Design preview</h3>
+                                <p id="pMeta">Generate a design to see it here</p>
+                            </div>
+                            <div class="seg" id="viewSeg">
+                                <button type="button" class="active" data-view="2d">2D</button>
+                                <button type="button" data-view="3d">3D</button>
+                            </div>
+                        </div>
 
-                                    <rect x="330" y="40" width="290" height="330" fill="none" stroke="#2c3550" stroke-width="1.6"/>
-                                    <text x="338" y="58" font-size="11" fill="#55606e" font-family="Arial">LIVING ROOM</text>
-                                    <text x="338" y="360" font-size="10" fill="#8a93a8" font-family="Arial">6.0m x 6.0m</text>
-
-                                    <rect x="640" y="40" width="220" height="170" fill="none" stroke="#2c3550" stroke-width="1.6"/>
-                                    <text x="648" y="58" font-size="11" fill="#55606e" font-family="Arial">DINING AREA</text>
-
-                                    <rect x="40" y="260" width="130" height="150" fill="none" stroke="#2c3550" stroke-width="1.6"/>
-                                    <text x="46" y="278" font-size="10" fill="#55606e" font-family="Arial">WALK-IN CLOSET</text>
-
-                                    <rect x="180" y="260" width="130" height="150" fill="none" stroke="#2c3550" stroke-width="1.6"/>
-                                    <text x="186" y="278" font-size="10" fill="#55606e" font-family="Arial">ENSUITE</text>
-
-                                    <rect x="640" y="220" width="220" height="190" fill="none" stroke="#2c3550" stroke-width="1.6"/>
-                                    <text x="648" y="238" font-size="11" fill="#55606e" font-family="Arial">KITCHEN</text>
-                                    <text x="648" y="400" font-size="10" fill="#8a93a8" font-family="Arial">4.0m x 4.8m</text>
-
-                                    <rect x="330" y="380" width="290" height="130" fill="none" stroke="#2c3550" stroke-width="1.6"/>
-                                    <text x="338" y="398" font-size="11" fill="#55606e" font-family="Arial">FOYER</text>
-
-                                    <rect x="40" y="420" width="270" height="150" fill="none" stroke="#2c3550" stroke-width="1.6"/>
-                                    <text x="46" y="438" font-size="10" fill="#55606e" font-family="Arial">BEDROOM 2</text>
-
-                                    <rect x="640" y="420" width="220" height="230" fill="none" stroke="#2c3550" stroke-width="1.6"/>
-                                    <text x="648" y="438" font-size="10" fill="#55606e" font-family="Arial">GARAGE</text>
-                                    <circle cx="700" cy="560" r="14" fill="none" stroke="#8a93a8" stroke-width="1.2"/>
-                                    <circle cx="800" cy="560" r="14" fill="none" stroke="#8a93a8" stroke-width="1.2"/>
-
-                                    <rect x="330" y="520" width="290" height="130" fill="none" stroke="#2c3550" stroke-width="1.6"/>
-                                    <text x="338" y="538" font-size="10" fill="#55606e" font-family="Arial">BEDROOM 4 / GUEST</text>
-
-                                    <rect x="40" y="580" width="270" height="90" fill="none" stroke="#2c3550" stroke-width="1.6" stroke-dasharray="5 3"/>
-                                    <text x="46" y="598" font-size="10" fill="#55606e" font-family="Arial">COVERED PATIO / POOL</text>
-                                    <circle cx="100" cy="630" r="26" fill="#e7f1ff" stroke="#8fb7ef"/>
-                                </svg>
+                        <div class="p-body">
+                            <div class="p-canvas" id="pCanvas">
+                                <div class="p-placeholder">Your floor plan will appear here.</div>
                             </div>
 
-                            <p class="floorplan-caption">AI-generated design. Verify dimensions and consult professionals before building.</p>
-                        </section>
-
-                        <aside class="ai-suggest-col">
-                            <div class="ai-panel suggestions-card">
-                                <div class="card-title-row"><h5>✨ AI Suggestions</h5></div>
-
-                                <div class="suggest-list">
-                                    <button class="suggest-row">
-                                        <span class="suggest-icon">🏠</span>
-                                        <span class="suggest-text"><strong>Move Kitchen</strong><small>Relocate the kitchen closer to the dining area for better flow.</small></span>
-                                    </button>
-                                    <button class="suggest-row">
-                                        <span class="suggest-icon">🚗</span>
-                                        <span class="suggest-text"><strong>Increase Garage</strong><small>Expand the garage to accommodate 3 cars.</small></span>
-                                    </button>
-                                    <button class="suggest-row">
-                                        <span class="suggest-icon">🛏</span>
-                                        <span class="suggest-text"><strong>Add Guest Bedroom</strong><small>Convert the study into a guest bedroom.</small></span>
-                                    </button>
-                                    <button class="suggest-row">
-                                        <span class="suggest-icon">💰</span>
-                                        <span class="suggest-text"><strong>Reduce Cost</strong><small>Use cost-effective materials for flooring to save approx. R120,000.</small></span>
-                                    </button>
-                                    <button class="suggest-row">
-                                        <span class="suggest-icon">💡</span>
-                                        <span class="suggest-text"><strong>Improve Lighting</strong><small>Add skylights in the living room to improve natural lighting.</small></span>
-                                    </button>
-                                </div>
-
-                                <button class="see-more-btn">See More Suggestions ›</button>
+                            <div class="p-actions">
+                                <button type="button" class="p-btn" id="saveBtn" disabled>Save</button>
+                                <button type="button" class="p-btn" id="compareBtn" disabled>Compare</button>
+                                <button type="button" class="p-btn primary" id="exportBtn" disabled>Export</button>
                             </div>
-                        </aside>
-
-                    </div>
+                        </div>
+                    </aside>
 
                 </div>
             </div>
         </main>
     </section>
+
+    <div class="a-toast" id="toast" role="status" aria-live="polite"></div>
 
     <script>
         // ---------------------------------------------------------------
@@ -456,42 +760,547 @@
             applyWidth(width, false);
         });
 
-        // 2D / 3D toggle
-        document.querySelectorAll(".fp-toggle").forEach(btn => {
-            btn.addEventListener("click", () => {
-                document.querySelectorAll(".fp-toggle").forEach(b => b.classList.remove("active"));
-                btn.classList.add("active");
+        // ---------------------------------------------------------------
+        // AI Design agent (client-side demo, no backend yet)
+        // ---------------------------------------------------------------
+
+        const $ = id => document.getElementById(id);
+        const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+        const money = n => "R" + Math.round(n).toLocaleString("en-US");
+
+        // ---------------------------------------------------------------
+        // Resizable side panels (History | Chat | Preview)
+        // ---------------------------------------------------------------
+
+        const agent = $("agent");
+        const PANEL = {
+            left:  { min:200, max:380, def:250, key:"ai-design-left"  },
+            right: { min:300, max:560, def:380, key:"ai-design-right" }
+        };
+        const MIN_CHAT = 380;      // chat panel never gets narrower than this
+
+        function panelW(side){ return parseInt(getComputedStyle(agent).getPropertyValue(side === "left" ? "--wl" : "--wr"), 10); }
+
+        function setPanel(side, w, persist){
+            const cfg = PANEL[side];
+            const other = panelW(side === "left" ? "right" : "left");
+            const total = agent.clientWidth;
+            const roomMax = total - other - MIN_CHAT;
+            w = Math.max(cfg.min, Math.min(Math.min(cfg.max, roomMax), w));
+            agent.style.setProperty(side === "left" ? "--wl" : "--wr", w + "px");
+            if (persist) { try { localStorage.setItem(cfg.key, String(Math.round(w))); } catch(_){} }
+        }
+
+        (function restorePanels(){
+            ["left","right"].forEach(side => {
+                let v = NaN;
+                try { v = parseInt(localStorage.getItem(PANEL[side].key), 10); } catch(_){}
+                agent.style.setProperty(side === "left" ? "--wl" : "--wr", (isNaN(v) ? PANEL[side].def : v) + "px");
             });
+        })();
+
+        function bindHandle(handle, side){
+            let start = 0, startW = 0;
+
+            handle.addEventListener("pointerdown", e => {
+                start = e.clientX;
+                startW = panelW(side);
+                handle.setPointerCapture(e.pointerId);
+                handle.classList.add("drag");
+                document.body.classList.add("rz-active");
+            });
+
+            handle.addEventListener("pointermove", e => {
+                if (!handle.hasPointerCapture(e.pointerId)) return;
+                const dx = e.clientX - start;
+                setPanel(side, side === "left" ? startW + dx : startW - dx, false);
+            });
+
+            const end = e => {
+                if (!handle.hasPointerCapture(e.pointerId)) return;
+                handle.releasePointerCapture(e.pointerId);
+                handle.classList.remove("drag");
+                document.body.classList.remove("rz-active");
+                setPanel(side, panelW(side), true);
+            };
+            handle.addEventListener("pointerup", end);
+            handle.addEventListener("pointercancel", end);
+
+            handle.addEventListener("dblclick", () => setPanel(side, PANEL[side].def, true));
+
+            handle.addEventListener("keydown", e => {
+                if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
+                e.preventDefault();
+                const step = e.shiftKey ? 40 : 16;
+                const dir = e.key === "ArrowRight" ? 1 : -1;
+                setPanel(side, panelW(side) + (side === "left" ? dir : -dir) * step, true);
+            });
+        }
+
+        bindHandle($("rzLeft"), "left");
+        bindHandle($("rzRight"), "right");
+        window.addEventListener("resize", () => { setPanel("left", panelW("left"), false); setPanel("right", panelW("right"), false); });
+
+        // ---------------------------------------------------------------
+        // Chat scrolling: the thread scrolls inside its own panel
+        // ---------------------------------------------------------------
+
+        const threadEl = $("thread");
+        function scrollToBottom(smooth){ threadEl.scrollTo({ top: threadEl.scrollHeight, behavior: smooth ? "smooth" : "auto" }); }
+        function scrollToTop(){ threadEl.scrollTo({ top: 0, behavior: "auto" }); }
+
+        // Floor plans (900 x 700 space)
+        const PLANS = {
+            A: [
+                {x:40,y:40,w:270,h:200,l:"PRIMARY BEDROOM"}, {x:330,y:40,w:290,h:330,l:"LIVING ROOM"},
+                {x:640,y:40,w:220,h:170,l:"DINING AREA"}, {x:40,y:260,w:130,h:150,l:"WALK-IN CLOSET"},
+                {x:180,y:260,w:130,h:150,l:"ENSUITE"}, {x:640,y:220,w:220,h:190,l:"KITCHEN"},
+                {x:330,y:380,w:290,h:130,l:"FOYER"}, {x:40,y:420,w:270,h:150,l:"BEDROOM 2"},
+                {x:640,y:420,w:220,h:230,l:"GARAGE"}, {x:330,y:520,w:290,h:130,l:"BEDROOM 4 / GUEST"},
+                {x:40,y:580,w:270,h:90,l:"COVERED PATIO / POOL",d:1}
+            ],
+            B: [
+                {x:40,y:40,w:380,h:280,l:"LIVING ROOM"}, {x:440,y:40,w:420,h:150,l:"KITCHEN"},
+                {x:440,y:210,w:420,h:170,l:"DINING AREA"}, {x:40,y:340,w:380,h:300,l:"PRIMARY BEDROOM"},
+                {x:440,y:400,w:200,h:240,l:"BEDROOM 2"}, {x:660,y:400,w:200,h:240,l:"BATHROOM"}
+            ],
+            C: [
+                {x:40,y:40,w:340,h:230,l:"PRIMARY BEDROOM"}, {x:400,y:40,w:460,h:380,l:"LIVING + DINING"},
+                {x:40,y:290,w:340,h:350,l:"BEDROOM 2"}, {x:400,y:440,w:460,h:200,l:"COVERED PATIO / POOL",d:1}
+            ]
+        };
+
+        function planSvg(key, labels){
+            let s = '<svg viewBox="0 0 900 700" xmlns="http://www.w3.org/2000/svg">';
+            s += '<rect x="15" y="15" width="870" height="670" rx="6" fill="#fff" stroke="#e3e1e1" stroke-width="2"/>';
+            PLANS[key].forEach(r => {
+                s += `<rect x="${r.x}" y="${r.y}" width="${r.w}" height="${r.h}" fill="none" stroke="#171615" stroke-width="${labels ? 1.4 : 6}"${r.d ? ` stroke-dasharray="${labels ? "5 3" : "18 10"}"` : ""}/>`;
+                if (labels) s += `<text x="${r.x + 8}" y="${r.y + 18}" font-size="11" fill="#6d696a" font-family="Arial">${r.l}</text>`;
+            });
+            return s + "</svg>";
+        }
+
+        // Builds an AI reply (3 options) from a prompt
+        const RATES = [13800, 14900, 15900];
+        function makeReply(prompt, style, first, shift){
+            const bm = /(\d+)\s*(?:-)?\s*bed/i.exec(prompt);
+            const am = /(\d{2,4})\s*(?:m²|m2|sqm|square)/i.exec(prompt);
+            const beds = bm ? Math.min(8, +bm[1]) : 4;
+            const area = am ? +am[1] : 320;
+            const baths = Math.max(1, beds - 0.5);
+            const order = ["A","B","C"].map((_, i) => ["A","B","C"][(i + shift) % 3]);
+            const names = ["Option A","Option B","Option C"];
+            const options = order.map((plan, i) => ({
+                key:"ABC"[i], name:names[i], plan,
+                meta:`${style} • ${beds} Beds • ${baths} Baths • ${area} m²`,
+                cost:Math.round(area * RATES[i] / 1000) * 1000
+            }));
+            return {
+                role:"ai",
+                text: first
+                    ? `Here are 3 ${style.toLowerCase()} layouts for your brief (${beds} bedrooms, about ${area} m²). Pick one to preview it, or tell me what to change.`
+                    : `Done. I updated the layouts using your feedback and re-priced them. Compare the options below or keep refining.`,
+                options
+            };
+        }
+
+        // Seed history
+        function seedConv(id, title, group, when, brief, style){
+            const reply = makeReply(brief, style, true, id.length % 3);
+            return { id, title, group, when, style, pinned:false, messages:[{role:"user", text:brief}, reply], selected:reply.options[0] };
+        }
+
+        const convs = [
+            seedConv("c1","Modern 4-bed villa with pool","Today","10:24","A spacious modern villa with 4 bedrooms, open kitchen, double height living room, large windows, and a pool.","Modern"),
+            seedConv("c22","Compact 3-bed family home","Today","08:52","A compact family home with 3 bedrooms, about 180 m², one garage and a small garden.","Minimalist"),
+            seedConv("c333","Farmhouse with wraparound patio","Yesterday","16:40","A 3 bedroom farmhouse, about 240 m², with a big covered patio and a country kitchen.","Farmhouse"),
+            seedConv("c4444","Two-storey townhouse","Previous 7 days","Mon","A two-storey townhouse with 3 bedrooms, roughly 210 m², with a rooftop entertainment area.","Modern")
+        ];
+
+        let activeId = convs[0].id;
+        let style = "Modern";
+        let view = "2d";
+        let pending = false;
+        let histQuery = "";
+        const saved = new Set();
+
+        const active = () => convs.find(c => c.id === activeId);
+
+        // ----- History -----
+        const ICON_PIN = '<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M14 3l7 7-3 1-3 3v4l-2 2-3-6-6 6-1-1 6-6-6-3 2-2h4l3-3z"/></svg>';
+        const ICON_EDIT = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>';
+        const ICON_TRASH = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14"/></svg>';
+        const ICON_COPY = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg>';
+        const ICON_REDO = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7"/></svg>';
+
+        function renderHistory(){
+            const q = histQuery.trim().toLowerCase();
+            const list = convs
+                .filter(c => !q || c.title.toLowerCase().includes(q))
+                .map((c, i) => ({ c, i }))
+                .sort((a, b) => (b.c.pinned - a.c.pinned) || (a.i - b.i))
+                .map(x => x.c);
+            if (!list.length){ $("histList").innerHTML = `<div class="h-empty">No designs found.</div>`; return; }
+            let html = "", last = "";
+            list.forEach(c => {
+                const group = c.pinned ? "Pinned" : c.group;
+                if (group !== last){ html += `<div class="h-group">${esc(group)}</div>`; last = group; }
+                html += `<div class="h-item${c.id === activeId ? " active" : ""}" role="button" tabindex="0" data-id="${c.id}">
+                    <span class="h-text"><strong>${esc(c.title)}</strong><small>${esc(c.when)}${c.messages.length ? " · " + c.style : ""}</small></span>
+                    ${c.pinned ? `<span class="h-pin" aria-label="Pinned">${ICON_PIN}</span>` : ""}
+                    <span class="h-acts">
+                        <button type="button" class="h-act${c.pinned ? " on" : ""}" data-act="pin" aria-label="${c.pinned ? "Unpin" : "Pin"}" title="${c.pinned ? "Unpin" : "Pin"}">${ICON_PIN}</button>
+                        <button type="button" class="h-act" data-act="rename" aria-label="Rename" title="Rename">${ICON_EDIT}</button>
+                        <button type="button" class="h-act" data-act="delete" aria-label="Delete" title="Delete">${ICON_TRASH}</button>
+                    </span>
+                </div>`;
+            });
+            $("histList").innerHTML = html;
+        }
+
+        // ----- Thread -----
+        function optionCards(msgIdx, opts, sel){
+            return `<div class="opts">${opts.map(o => `
+                <button type="button" class="opt${sel && sel === o ? " active" : ""}" data-m="${msgIdx}" data-k="${o.key}">
+                    <div class="opt-thumb">${planSvg(o.plan, false)}</div>
+                    <div class="opt-body"><strong>${o.name}</strong><small>${esc(o.meta)}</small><em>Est. ${money(o.cost)}</em></div>
+                    <span class="opt-check">✓</span>
+                </button>`).join("")}</div>`;
+        }
+
+        // scroll: "bottom" (new message), "top" (switching design) or undefined (keep position)
+        function renderThread(scroll){
+            const c = active();
+            $("chatTitle").textContent = c.title;
+            $("chatMeta").textContent = c.messages.length ? c.style + " · " + c.when : "";
+            const inner = $("threadInner");
+            const keep = threadEl.scrollTop;
+
+            if (!c.messages.length && !pending){
+                inner.innerHTML = `<div class="empty">
+                    <h2>What are we building today?</h2>
+                    <p>Describe your home and I'll draw floor plans, then price the materials.</p>
+                </div>`;
+                if (scroll === "top") scrollToTop();
+                return;
+            }
+
+            let html = "";
+            const lastAi = (() => { for (let i = c.messages.length - 1; i >= 0; i--) if (c.messages[i].role === "ai") return i; return -1; })();
+
+            c.messages.forEach((m, i) => {
+                if (m.role === "user"){
+                    html += `<div class="msg-user"><div class="bubble">${esc(m.text)}</div></div>`;
+                } else {
+                    html += `<div class="msg-ai"><div class="ai-body">
+                        <p class="ai-text">${esc(m.text)}</p>
+                        ${optionCards(i, m.options, c.selected)}
+                        ${pending ? "" : `<div class="m-acts">
+                            <button type="button" class="m-act" data-act="copy" data-m="${i}">${ICON_COPY} Copy</button>
+                            ${i === lastAi ? `<button type="button" class="m-act" data-act="regen" data-m="${i}">${ICON_REDO} Regenerate</button>` : ""}
+                        </div>`}
+                    </div></div>`;
+                }
+            });
+
+            if (pending){
+                html += `<div class="msg-ai"><div class="ai-body"><div class="typing"><i></i><i></i><i></i></div></div></div>`;
+            }
+            inner.innerHTML = html;
+
+            if (scroll === "bottom") scrollToBottom(true);
+            else if (scroll === "top") scrollToTop();
+            else threadEl.scrollTop = keep;
+        }
+
+        // ----- Preview -----
+        function renderPreview(){
+            const c = active(), o = c.selected;
+            const has = !!o;
+            $("pTitle").textContent = has ? o.name : "Design preview";
+            $("pMeta").textContent = has ? `${o.meta} • Est. ${money(o.cost)}` : "Generate a design to see it here";
+            $("pCanvas").classList.toggle("is-3d", has && view === "3d");
+            $("pCanvas").innerHTML = has ? planSvg(o.plan, true) : `<div class="p-placeholder">Your floor plan will appear here.</div>`;
+            ["saveBtn","compareBtn","exportBtn"].forEach(id => { $(id).disabled = !has; });
+            $("saveBtn").textContent = has && saved.has(c.id + o.key + o.plan) ? "Saved ✓" : "Save";
+            document.querySelectorAll("#viewSeg button").forEach(b => b.classList.toggle("active", b.dataset.view === view));
+        }
+
+        function renderAll(scroll){ renderHistory(); renderThread(scroll); renderPreview(); }
+
+        // ----- Composer -----
+        const promptEl = $("prompt");
+
+        function syncComposer(){
+            const len = promptEl.value.length;
+            $("count").textContent = len + "/500";
+            $("count").classList.toggle("on", len > 0);
+            $("send").disabled = pending || !promptEl.value.trim();
+            promptEl.style.height = "auto";
+            promptEl.style.height = Math.min(promptEl.scrollHeight, 140) + "px";
+        }
+
+        function setStyle(s){
+            style = s;
+            document.querySelectorAll(".style-chip").forEach(b => b.classList.toggle("active", b.dataset.style === s));
+        }
+
+        function reply(c, text, first){
+            setTimeout(() => {
+                const r = makeReply(text, c.style, first, c.messages.length);
+                c.messages.push(r);
+                c.selected = r.options[0];
+                pending = false;
+                syncComposer();
+                if (c.id === activeId) renderAll("bottom"); else renderHistory();
+            }, 1200);
+        }
+
+        function send(){
+            const text = promptEl.value.trim();
+            if (!text || pending) return;
+            stopVoice();
+            const c = active();
+            const first = !c.messages.length;
+            if (first){
+                c.title = text.length > 38 ? text.slice(0, 38).trim() + "…" : text;
+                c.group = "Today"; c.when = "Just now";
+            }
+            c.style = style;
+            c.messages.push({ role:"user", text });
+            promptEl.value = "";
+            pending = true;
+            syncComposer();
+            renderAll("bottom");
+            reply(c, text, first);
+        }
+
+        function regenerate(){
+            if (pending) return;
+            const c = active();
+            if (c.messages.length < 2 || c.messages[c.messages.length - 1].role !== "ai") return;
+            const lastUser = [...c.messages].reverse().find(m => m.role === "user");
+            c.messages.pop();
+            c.selected = null;
+            pending = true;
+            syncComposer();
+            renderAll("bottom");
+            reply(c, lastUser ? lastUser.text : "", false);
+        }
+
+        function newDesign(){
+            if (pending) return;
+            const existing = convs.find(c => !c.messages.length);
+            if (existing){ activeId = existing.id; }
+            else {
+                const c = { id:"n" + Date.now(), title:"New design", group:"Today", when:"Just now", style:"Modern", pinned:false, messages:[], selected:null };
+                convs.unshift(c);
+                activeId = c.id;
+            }
+            setStyle("Modern");
+            renderAll("top");
+            promptEl.focus({ preventScroll:true });
+        }
+
+        // ----- Toast + export -----
+        let toastTimer;
+        function toast(msg){
+            const t = $("toast");
+            t.textContent = msg;
+            t.classList.add("show");
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => t.classList.remove("show"), 2400);
+        }
+
+        function exportPlan(){
+            const o = active().selected;
+            if (!o) return;
+            const url = URL.createObjectURL(new Blob([planSvg(o.plan, true)], { type:"image/svg+xml" }));
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = "floor-plan-" + o.name.toLowerCase().replace(/\s+/g, "-") + ".svg";
+            document.body.appendChild(a); a.click(); a.remove();
+            setTimeout(() => URL.revokeObjectURL(url), 800);
+            toast("Floor plan downloaded");
+        }
+
+        function copyReply(i){
+            const m = active().messages[i];
+            if (!m) return;
+            const text = m.text + "\n\n" + m.options.map(o => `${o.name}: ${o.meta} - Est. ${money(o.cost)}`).join("\n");
+            const done = () => toast("Reply copied");
+            if (navigator.clipboard && navigator.clipboard.writeText){
+                navigator.clipboard.writeText(text).then(done, () => toast("Couldn't copy"));
+            } else {
+                const ta = document.createElement("textarea");
+                ta.value = text; document.body.appendChild(ta); ta.select();
+                try { document.execCommand("copy"); done(); } catch(_) { toast("Couldn't copy"); }
+                ta.remove();
+            }
+        }
+
+        // ----- Voice input (speech to text) -----
+        const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+        const micBtn = $("mic");
+        let rec = null, listening = false, voiceBase = "";
+
+        function stopVoice(){
+            if (rec && listening){ try { rec.stop(); } catch(_){} }
+            listening = false;
+            micBtn.classList.remove("rec");
+        }
+
+        if (SR){
+            micBtn.classList.add("ok");
+            rec = new SR();
+            rec.lang = "en-ZA";
+            rec.interimResults = true;
+            rec.continuous = true;
+
+            rec.onresult = e => {
+                let t = "";
+                for (let i = 0; i < e.results.length; i++) t += e.results[i][0].transcript;
+                promptEl.value = (voiceBase ? voiceBase + " " : "") + t.trim();
+                syncComposer();
+            };
+            rec.onend = () => { listening = false; micBtn.classList.remove("rec"); };
+            rec.onerror = ev => {
+                listening = false; micBtn.classList.remove("rec");
+                if (ev.error === "not-allowed" || ev.error === "service-not-allowed") toast("Microphone access was blocked");
+            };
+
+            micBtn.addEventListener("click", () => {
+                if (pending) return;
+                if (listening){ stopVoice(); return; }
+                voiceBase = promptEl.value.trim();
+                try { rec.start(); listening = true; micBtn.classList.add("rec"); toast("Listening..."); }
+                catch(_){ /* already started */ }
+            });
+        }
+
+        // ----- Events -----
+        $("newChat").addEventListener("click", newDesign);
+
+        $("histSearch").addEventListener("input", e => { histQuery = e.target.value; renderHistory(); });
+
+        function historyClick(e){
+            const item = e.target.closest(".h-item");
+            if (!item) return;
+            const c = convs.find(x => x.id === item.dataset.id);
+            if (!c) return;
+
+            const actBtn = e.target.closest(".h-act");
+            if (actBtn){
+                e.stopPropagation();
+                const act = actBtn.dataset.act;
+                if (act === "pin"){
+                    c.pinned = !c.pinned;
+                    toast(c.pinned ? "Design pinned" : "Design unpinned");
+                    renderHistory();
+                } else if (act === "rename"){
+                    const name = window.prompt("Rename design", c.title);
+                    if (name && name.trim()){ c.title = name.trim().slice(0, 60); renderHistory(); if (c.id === activeId) $("chatTitle").textContent = c.title; }
+                } else if (act === "delete"){
+                    if (pending) return;
+                    if (!window.confirm("Delete \"" + c.title + "\"?")) return;
+                    const idx = convs.indexOf(c);
+                    convs.splice(idx, 1);
+                    if (!convs.length){
+                        convs.push({ id:"n" + Date.now(), title:"New design", group:"Today", when:"Just now", style:"Modern", pinned:false, messages:[], selected:null });
+                    }
+                    if (c.id === activeId){
+                        activeId = convs[Math.min(idx, convs.length - 1)].id;
+                        setStyle(active().style || "Modern");
+                        renderAll("top");
+                    } else renderHistory();
+                    toast("Design deleted");
+                }
+                return;
+            }
+
+            if (pending) return;
+            activeId = c.id;
+            setStyle(active().style || "Modern");
+            renderAll("top");
+        }
+        $("histList").addEventListener("click", historyClick);
+        $("histList").addEventListener("keydown", e => {
+            if ((e.key === "Enter" || e.key === " ") && e.target.classList.contains("h-item")){
+                e.preventDefault();
+                historyClick(e);
+            }
         });
 
-        // Style tag selection
-        document.querySelectorAll(".style-tag").forEach(tag => {
-            tag.addEventListener("click", () => {
-                document.querySelectorAll(".style-tag").forEach(t => t.classList.remove("active"));
-                tag.classList.add("active");
-            });
+        $("threadInner").addEventListener("click", e => {
+            const act = e.target.closest(".m-act");
+            if (act){
+                if (act.dataset.act === "copy") copyReply(+act.dataset.m);
+                else if (act.dataset.act === "regen") regenerate();
+                return;
+            }
+            const opt = e.target.closest(".opt");
+            if (opt){
+                const c = active();
+                const o = c.messages[+opt.dataset.m].options.find(x => x.key === opt.dataset.k);
+                if (o){ c.selected = o; renderThread(); renderPreview(); }
+            }
         });
 
-        // Design option selection
-        const planTitle = document.getElementById("planTitle");
-        document.querySelectorAll(".design-option").forEach(opt => {
-            opt.addEventListener("click", () => {
-                document.querySelectorAll(".design-option").forEach(o => {
-                    o.classList.remove("active");
-                    o.querySelector(".option-check").textContent = "";
-                });
-                opt.classList.add("active");
-                opt.querySelector(".option-check").textContent = "✓";
-                planTitle.textContent = "Option " + opt.dataset.design;
-            });
+        $("styles").addEventListener("click", e => {
+            const b = e.target.closest(".style-chip");
+            if (b) setStyle(b.dataset.style);
         });
 
-        // Live char counter for the brief textarea
-        const briefInput = document.querySelector(".describe-card textarea");
-        const charCount = document.querySelector(".describe-card .char-count");
-        briefInput.addEventListener("input", () => {
-            charCount.textContent = briefInput.value.length + "/500";
+        $("viewSeg").addEventListener("click", e => {
+            const b = e.target.closest("button");
+            if (!b) return;
+            view = b.dataset.view;
+            renderPreview();
         });
+
+        $("saveBtn").addEventListener("click", () => {
+            const c = active(), o = c.selected;
+            if (!o) return;
+            const k = c.id + o.key + o.plan;
+            if (saved.has(k)){ saved.delete(k); toast("Removed from saved designs"); }
+            else { saved.add(k); toast(o.name + " saved"); }
+            renderPreview();
+        });
+
+        $("compareBtn").addEventListener("click", () => toast("Comparing all options in this chat"));
+        $("exportBtn").addEventListener("click", exportPlan);
+
+        promptEl.addEventListener("input", syncComposer);
+        promptEl.addEventListener("keydown", e => {
+            if (e.key === "Enter" && !e.shiftKey){ e.preventDefault(); send(); }
+        });
+        $("send").addEventListener("click", send);
+
+        // Init
+        setStyle(active().style);
+        syncComposer();
+        renderAll();
+        scrollToBottom(false);
     </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

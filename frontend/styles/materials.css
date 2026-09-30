@@ -1,7 +1,8 @@
 /* =========================================================
    Materials page
 ========================================================= */
-
+/* ADD THIS AS THE VERY FIRST LINE OF dash.css (above the existing comment), everything else stays unchanged: */
+@import url("theme.css");
 .materials-page{
     width:100%;
     container-type: inline-size;
