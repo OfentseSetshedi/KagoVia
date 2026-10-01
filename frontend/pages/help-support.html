@@ -3,114 +3,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Help & Support</title>
+    <title>Help & support | KagoBuild</title>
+    <link rel="stylesheet" href="../styles/variables.css">
     <link rel="stylesheet" href="../styles/dash.css">
-    <link rel="stylesheet" href="../styles/help-support.css"><link rel="stylesheet" href="../styles/theme.css">
+    <link rel="stylesheet" href="../styles/help-support.css">
 </head>
 <body>
     <section class="dashboard">
 
-        <aside class="dashboard-navbar">
+        <aside class="dashboard-navbar" aria-label="Main navigation">
+
             <div class="upper-sidebar">
-                <a href="dashboard.html">
-                    <div id="logo"><span class="sidebar-icon">
-                        <img src="../assets/images/home-hero.png" alt="logo-image" width="30" height="30">
-                    </span>logo</div>
+                <a href="dashboard.html" id="logo" aria-label="KagoBuild dashboard">
+                    <span class="logo-mark"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 20V10l4-3 4 3v10M12 20V6l4-3 4 3v14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                    <span class="logo-text">KagoBuild</span>
                 </a>
 
-                <a href="dashboard.html" class="nav-link">
-                    <button id="dashboard">
-                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.6"/><rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.6"/><rect x="3" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.6"/><rect x="14" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.6"/></svg>
-                        Dashboard
-                    </button>
+                <nav class="nav-list">
+                <a href="dashboard.html" class="nav-link" title="Dashboard">
+                    <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>
+                    <span class="nav-label">Dashboard</span>
                 </a>
-                <a href="projects.html" class="nav-link"><button id="Projects"><img src="../assets/icons/Projects.svg" alt="Projects" width="17" height="17">Projects</button></a>
-                <a href="ai-design.html" class="nav-link"><button id="AI-Design"><img src="../assets/icons/Design.svg" alt="AI Design" width="17" height="17">AI Design</button></a>
-                <a href="materials.html" class="nav-link"><button id="Material"><img src="../assets/icons/Material.svg" alt="Materials" width="17" height="17">Materials</button></a>
-                <a href="estimator.html" class="nav-link"><button id="Cost-Estimator"><img src="../assets/icons/Cost.svg" alt="Cost Estimator" width="17" height="17">Cost Estimator</button></a>
-                <a href="Supplier.html" class="nav-link"><button id="Suppliers"><img src="../assets/icons/Suppliers.svg" alt="Suppliers" width="17" height="17">Suppliers</button></a>
-                <a href="teams.html" class="nav-link"><button id="Teams"><img src="../assets/icons/Teams.svg" alt="Teams" width="17" height="17">Team</button></a>
-                <a href="settings.html" class="nav-link"><button id="Settings"><img src="../assets/icons/settings-icon.svg" alt="Settings" width="17" height="17">Settings</button></a>
+                <a href="projects.html" class="nav-link" title="Projects">
+                    <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/><path d="M8 10v4"/><path d="M12 10v2"/><path d="M16 10v6"/></svg>
+                    <span class="nav-label">Projects</span>
+                </a>
+                <a href="ai-design.html" class="nav-link" title="AI Design">
+                    <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21.64 3.64-1.28-1.28a1.21 1.21 0 0 0-1.72 0L2.36 18.64a1.21 1.21 0 0 0 0 1.72l1.28 1.28a1.2 1.2 0 0 0 1.72 0L21.64 5.36a1.2 1.2 0 0 0 0-1.72"/><path d="m14 7 3 3"/><path d="M5 6v4"/><path d="M19 14v4"/><path d="M10 2v2"/><path d="M7 8H3"/><path d="M21 16h-4"/><path d="M11 3H9"/></svg>
+                    <span class="nav-label">AI Design</span>
+                </a>
+                <a href="materials.html" class="nav-link" title="Materials">
+                    <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.97 12.92A2 2 0 0 0 2 14.63v3.24a2 2 0 0 0 .97 1.71l3 1.8a2 2 0 0 0 2.06 0L12 19v-5.5l-5-3-4.03 2.42Z"/><path d="m7 16.5-4.74-2.85"/><path d="m7 16.5 5-3"/><path d="M7 16.5v5.17"/><path d="M12 13.5V19l3.97 2.38a2 2 0 0 0 2.06 0l3-1.8a2 2 0 0 0 .97-1.71v-3.24a2 2 0 0 0-.97-1.71L17 10.5l-5 3Z"/><path d="m17 16.5-5-3"/><path d="m17 16.5 4.74-2.85"/><path d="M17 16.5v5.17"/><path d="M7.97 4.42A2 2 0 0 0 7 6.13v4.37l5 3 5-3V6.13a2 2 0 0 0-.97-1.71l-3-1.8a2 2 0 0 0-2.06 0l-3 1.8Z"/><path d="M12 8 7.26 5.15"/><path d="m12 8 4.74-2.85"/><path d="M12 13.5V8"/></svg>
+                    <span class="nav-label">Materials</span>
+                </a>
+                <a href="estimator.html" class="nav-link" title="Cost Estimator">
+                    <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="16" height="20" x="4" y="2" rx="2"/><line x1="8" x2="16" y1="6" y2="6"/><line x1="16" x2="16" y1="14" y2="18"/><path d="M16 10h.01"/><path d="M12 10h.01"/><path d="M8 10h.01"/><path d="M12 14h.01"/><path d="M8 14h.01"/><path d="M12 18h.01"/><path d="M8 18h.01"/></svg>
+                    <span class="nav-label">Cost Estimator</span>
+                </a>
+                <a href="reports.html" class="nav-link" title="Reports">
+                    <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M8 18v-2"/><path d="M12 18v-4"/><path d="M16 18v-6"/></svg>
+                    <span class="nav-label">Reports</span>
+                </a>
+                <a href="Supplier.html" class="nav-link" title="Suppliers">
+                    <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></svg>
+                    <span class="nav-label">Suppliers</span>
+                </a>
+                <a href="teams.html" class="nav-link" title="Teams">
+                    <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><path d="M16 3.128a4 4 0 0 1 0 7.744"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><circle cx="9" cy="7" r="4"/></svg>
+                    <span class="nav-label">Teams</span>
+                </a>
+                <a href="settings.html" class="nav-link" title="Settings">
+                    <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915"/><circle cx="12" cy="12" r="3"/></svg>
+                    <span class="nav-label">Settings</span>
+                </a>
+                </nav>
             </div>
 
             <div class="lower-sidebar">
-                <a href="help-support.html">
-                    <button id="need-help">
-                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none">
-                            <path d="M4 15V12C4 7.58172 7.58172 4 12 4C16.4183 4 20 7.58172 20 12V15" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-                            <rect x="2.5" y="13.5" width="4" height="6" rx="1.8" stroke="currentColor" stroke-width="1.6"/>
-                            <rect x="17.5" y="13.5" width="4" height="6" rx="1.8" stroke="currentColor" stroke-width="1.6"/>
-                            <path d="M20 19.5V20.2C20 21.7464 18.7464 23 17.2 23H14.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-                            <circle cx="13" cy="23" r="1.4" stroke="currentColor" stroke-width="1.6"/>
-                        </svg>
-                        need help
-                    </button>
+                <a href="help-support.html" class="nav-link nav-link--soft active" title="Help & support" aria-current="page">
+                    <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="m9.17 14.83-4.24 4.24"/><circle cx="12" cy="12" r="4"/></svg>
+                    <span class="nav-label">Help & support</span>
                 </a>
-
-                <a href="premium.html">
-                    <button id="Premium-plan">
-                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none">
-                            <path d="M4 9L8 12L12 5L16 12L20 9L18.5 18H5.5L4 9Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
-                            <path d="M5.5 18H18.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-                        </svg>
-                        Premium plan
-                    </button>
+                <a href="premium.html" class="nav-link nav-link--premium" title="Premium plan">
+                    <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11.562 3.266a.5.5 0 0 1 .876 0L15.39 8.87a1 1 0 0 0 1.516.294L21.183 5.5a.5.5 0 0 1 .798.519l-2.834 10.246a1 1 0 0 1-.956.734H5.81a1 1 0 0 1-.957-.734L2.02 6.02a.5.5 0 0 1 .798-.519l4.276 3.664a1 1 0 0 0 1.516-.294z"/><path d="M5 21h14"/></svg>
+                    <span class="nav-label">Premium plan</span>
                 </a>
             </div>
+
         </aside>
 
-        <div class="sidebar-resizer" id="sidebarResizer"></div>
+        <div class="sidebar-resizer" id="sidebarResizer" title="Drag to resize, double-click to collapse"></div>
+        <script src="../scripts/main.js"></script>
 
         <main class="dashboard-overview">
 
             <header class="dashboard-header">
+
                 <div class="header-left">
-                    <h2>Help & Support</h2>
-                    <p class="header-subtitle">We're here to help you build better.</p>
+                    <div class="header-titles">
+                        <h2>Help & Support</h2>
+                        <p class="header-subtitle">We're here to help you build better.</p>
+                    </div>
                 </div>
 
                 <div class="header-right">
-                    <div class="search-container help-header-search">
-                        <span class="search-icon"><img src="../assets/icons/search.svg" alt="" width="27" height="27"></span>
-                        <input type="search" placeholder="Search for help articles, guides...">
+                    <div class="search-container help-header-search"><span class="search-icon"><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg></span><input aria-label="Search for help articles, guides" type="search" placeholder="Search for help articles, guides..."></div>
+                    <div class="notif-menu">
+                        <button type="button" class="notification-btn" id="bellBtn" aria-label="Notifications" aria-haspopup="true" aria-expanded="false" aria-controls="notifDropdown">
+                            <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.268 21a2 2 0 0 0 3.464 0"/><path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"/></svg>
+                            <span class="notification-count" id="bellCount">5</span>
+                        </button>
+                        <div class="notif-dropdown" id="notifDropdown">
+                            <div class="notif-dropdown-header">
+                                <span>Notifications</span>
+                                <button type="button" class="link-btn" id="markAllRead">Mark all as read</button>
+                            </div>
+                            <a class="notif-dd-item" href="notifications.html"><span class="notif-dd-dot" aria-hidden="true"></span><span class="notif-dd-text"><strong>Sarah Parker invited you</strong><small>Modern Family Home project, 5m ago</small></span></a>
+                            <a class="notif-dd-item" href="notifications.html"><span class="notif-dd-dot" aria-hidden="true"></span><span class="notif-dd-text"><strong>New estimate completed</strong><small>Beach House Project, 1h ago</small></span></a>
+                            <a class="notif-dd-item" href="notifications.html"><span class="notif-dd-dot" aria-hidden="true"></span><span class="notif-dd-text"><strong>Material price updated</strong><small>Cement (32.5N) up 5.2%, 2h ago</small></span></a>
+                            <a class="notif-dd-item" href="notifications.html"><span class="notif-dd-dot" aria-hidden="true"></span><span class="notif-dd-text"><strong>Michael Johnson mentioned you</strong><small>Please review the updated plan, 3h ago</small></span></a>
+                            <a class="notif-dd-item" href="notifications.html"><span class="notif-dd-dot" aria-hidden="true"></span><span class="notif-dd-text"><strong>Office Building is now In Progress</strong><small>Project status changed, 5h ago</small></span></a>
+                            <a class="notif-dropdown-footer" href="notifications.html">View all notifications</a>
+                        </div>
                     </div>
 
-                    <button class="notification-btn">
-                        <img src="../assets/icons/notification.svg" alt="" width="25" height="25">
-                        <span class="notification-count">5</span>
-                    </button>
+                    <span class="header-divider" aria-hidden="true"></span>
 
                     <div class="profile-menu">
-                        <div class="profile-section">
-                            <img src="images/profile.jpg" alt="Profile Picture">
-                            <div class="user-details"><h4>Arjun Mehta</h4><p>Estimator</p></div>
-                            <span class="dropdown-arrow">▼</span>
-                        </div>
-                        <div class="dropdown">
-                            <a href="#">👤 My Profile</a>
-                            <a href="settings.html">⚙️ Settings</a>
-                            <a href="notifications.html">🔔 Notifications</a>
-                            <a href="projects.html">📁 Projects</a>
-                            <a href="index.html">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>
-                                </svg>
-                                Logout
-                            </a>
+                        <button type="button" class="profile-section" id="profileBtn" aria-haspopup="true" aria-expanded="false" aria-controls="profileDropdown">
+                            <span class="profile-avatar">
+                                <span class="profile-initials" id="hdrInitials">M</span>
+                                <img id="hdrAvatar" alt="">
+                            </span>
+                            <span class="user-details">
+                                <span class="user-name" id="hdrName">Moses</span>
+                                <span class="user-role">Estimator</span>
+                            </span>
+                            <svg class="ico dropdown-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+                        </button>
+                        <div class="dropdown" id="profileDropdown">
+                            <a href="settings.html#account"><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>My profile</a>
+                            <a href="settings.html"><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915"/><circle cx="12" cy="12" r="3"/></svg>Settings</a>
+                            <a href="notifications.html"><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.268 21a2 2 0 0 0 3.464 0"/><path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"/></svg>Notifications</a>
+                            <a href="projects.html"><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/><path d="M8 10v4"/><path d="M12 10v2"/><path d="M16 10v6"/></svg>Projects</a>
+                            <a href="index.html" class="dropdown-logout"><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/></svg>Log out</a>
                         </div>
                     </div>
 
-                    <style>
-                        .dropdown { position:absolute; top:70px; right:24px; width:260px; background:#fff; border-radius:12px; box-shadow:0 12px 35px rgba(0,0,0,.12); opacity:0; visibility:hidden; transform:translateY(10px); transition:.25s; overflow:hidden; z-index:1000; }
-                        .dropdown::before { position:absolute; top:-8px; right:25px; width:16px; height:16px; background:white; transform:rotate(45deg); }
-                        .profile-menu { margin-right:12px; border:#222 solid 2px; }
-                        .profile-menu:hover .dropdown { opacity:1; visibility:visible; transform:translateY(0); }
-                        .profile-menu:hover .dropdown-arrow { transform:rotate(180deg); }
-                        .dropdown a { display:flex; align-items:center; gap:14px; padding:18px 24px; font-size:18px; color:#222; text-decoration:none; border-bottom:1px solid #efefef; transition:.2s; }
-                        .dropdown a:last-child { border:none; }
-                        .dropdown a:hover { background:#f3f7ff; color:#2458ff; }
-                    </style>
                 </div>
+
             </header>
 
             <div class="main-card">
@@ -125,7 +146,7 @@
                                 <h5>How can we help you?</h5>
 
                                 <div class="help-search-box">
-                                    <span>🔍</span>
+                                    <span><svg class='ico-inline' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='m21 21-4.34-4.34'/><circle cx='11' cy='11' r='8'/></svg></span>
                                     <input type="search" placeholder="Search help articles, guides, and FAQs...">
                                 </div>
 
@@ -133,35 +154,35 @@
 
                                 <div class="help-topics-grid" id="helpTopicsGrid">
                                     <button class="help-topic" data-topic="getting-started">
-                                        <span class="help-topic-icon blue">▲</span>
+                                        <span class="help-topic-icon"><svg class='ico-inline' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5'/><path d='M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09'/><path d='M9 12a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.4 22.4 0 0 1-4 2z'/><path d='M9 12H4s.55-3.03 2-4c1.62-1.08 5 .05 5 .05'/></svg></span>
                                         <span><strong>Getting Started</strong><small>Learn the basics</small></span>
                                     </button>
                                     <button class="help-topic" data-topic="ai-design">
-                                        <span class="help-topic-icon purple">◎</span>
+                                        <span class="help-topic-icon"><svg class='ico-inline' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='m21.64 3.64-1.28-1.28a1.21 1.21 0 0 0-1.72 0L2.36 18.64a1.21 1.21 0 0 0 0 1.72l1.28 1.28a1.2 1.2 0 0 0 1.72 0L21.64 5.36a1.2 1.2 0 0 0 0-1.72'/><path d='m14 7 3 3'/><path d='M5 6v4'/><path d='M19 14v4'/><path d='M10 2v2'/><path d='M7 8H3'/><path d='M21 16h-4'/><path d='M11 3H9'/></svg></span>
                                         <span><strong>AI Design</strong><small>Generate floor plans</small></span>
                                     </button>
                                     <button class="help-topic" data-topic="cost-estimation">
-                                        <span class="help-topic-icon green">📄</span>
+                                        <span class="help-topic-icon"><svg class='ico-inline' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z'/><path d='M14 2v5a1 1 0 0 0 1 1h5'/><path d='M10 9H8'/><path d='M16 13H8'/><path d='M16 17H8'/></svg></span>
                                         <span><strong>Cost Estimation</strong><small>Understand pricing</small></span>
                                     </button>
                                     <button class="help-topic" data-topic="materials">
-                                        <span class="help-topic-icon orange">📦</span>
+                                        <span class="help-topic-icon"><svg class='ico-inline' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z'/><path d='M12 22V12'/><polyline points='3.29 7 12 12 20.71 7'/><path d='m7.5 4.27 9 5.15'/></svg></span>
                                         <span><strong>Materials</strong><small>Material lists & costs</small></span>
                                     </button>
                                     <button class="help-topic" data-topic="suppliers">
-                                        <span class="help-topic-icon teal">🔗</span>
+                                        <span class="help-topic-icon"><svg class='ico-inline' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'/><path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'/></svg></span>
                                         <span><strong>Suppliers</strong><small>Connect with suppliers</small></span>
                                     </button>
                                     <button class="help-topic" data-topic="projects">
-                                        <span class="help-topic-icon red">📁</span>
+                                        <span class="help-topic-icon"><svg class='ico-inline' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z'/></svg></span>
                                         <span><strong>Projects</strong><small>Manage your projects</small></span>
                                     </button>
                                     <button class="help-topic" data-topic="team">
-                                        <span class="help-topic-icon indigo">👥</span>
+                                        <span class="help-topic-icon"><svg class='ico-inline' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2'/><path d='M16 3.128a4 4 0 0 1 0 7.744'/><path d='M22 21v-2a4 4 0 0 0-3-3.87'/><circle cx='9' cy='7' r='4'/></svg></span>
                                         <span><strong>Team & Access</strong><small>Invite & manage team</small></span>
                                     </button>
                                     <button class="help-topic" data-topic="billing">
-                                        <span class="help-topic-icon pink">💳</span>
+                                        <span class="help-topic-icon"><svg class='ico-inline' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><rect width='20' height='14' x='2' y='5' rx='2'/><line x1='2' x2='22' y1='10' y2='10'/><path d='M6 14h2'/></svg></span>
                                         <span><strong>Billing & Plans</strong><small>Subscriptions & billing</small></span>
                                     </button>
                                 </div>
@@ -173,19 +194,19 @@
 
                                 <div class="help-contact-grid">
                                     <button class="help-contact-card" id="liveChatBtn">
-                                        <span class="help-contact-icon">💬</span>
+                                        <span class="help-contact-icon"><svg class='ico-inline' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719'/></svg></span>
                                         <strong>Live Chat</strong>
                                         <span>Chat with our team</span>
                                         <span class="help-contact-note">Available 9AM - 5PM</span>
                                     </button>
                                     <a class="help-contact-card" href="mailto:support@buildwise.co.za">
-                                        <span class="help-contact-icon">✉</span>
+                                        <span class="help-contact-icon"><svg class='ico-inline' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7'/><rect x='2' y='4' width='20' height='16' rx='2'/></svg></span>
                                         <strong>Email Support</strong>
                                         <span>support@buildwise.co.za</span>
                                         <span class="help-contact-note">We reply within 24h</span>
                                     </a>
                                     <button class="help-contact-card" id="requestCallBtn">
-                                        <span class="help-contact-icon">📞</span>
+                                        <span class="help-contact-icon"><svg class='ico-inline' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384'/></svg></span>
                                         <strong>Request a Call</strong>
                                         <span>Schedule a call back</span>
                                         <span class="help-contact-note">Available 9AM - 5PM</span>
@@ -202,49 +223,49 @@
 
                                 <div class="help-center-list" id="helpCenterList">
                                     <button class="help-center-row" data-topic="getting-started">
-                                        <span class="help-center-icon blue">▲</span>
+                                        <span class="help-center-icon"><svg class='ico-inline' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5'/><path d='M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09'/><path d='M9 12a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.4 22.4 0 0 1-4 2z'/><path d='M9 12H4s.55-3.03 2-4c1.62-1.08 5 .05 5 .05'/></svg></span>
                                         <span class="help-center-text"><strong>Getting Started</strong><small>Learn how to set up your account and create your first project.</small></span>
                                         <span class="help-center-count">8 articles</span>
                                         <span class="chevron">›</span>
                                     </button>
                                     <button class="help-center-row" data-topic="ai-design">
-                                        <span class="help-center-icon purple">◎</span>
+                                        <span class="help-center-icon"><svg class='ico-inline' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='m21.64 3.64-1.28-1.28a1.21 1.21 0 0 0-1.72 0L2.36 18.64a1.21 1.21 0 0 0 0 1.72l1.28 1.28a1.2 1.2 0 0 0 1.72 0L21.64 5.36a1.2 1.2 0 0 0 0-1.72'/><path d='m14 7 3 3'/><path d='M5 6v4'/><path d='M19 14v4'/><path d='M10 2v2'/><path d='M7 8H3'/><path d='M21 16h-4'/><path d='M11 3H9'/></svg></span>
                                         <span class="help-center-text"><strong>AI Design & Floor Plans</strong><small>How to generate, customize and download floor plans.</small></span>
                                         <span class="help-center-count">12 articles</span>
                                         <span class="chevron">›</span>
                                     </button>
                                     <button class="help-center-row" data-topic="cost-estimation">
-                                        <span class="help-center-icon green">📄</span>
+                                        <span class="help-center-icon"><svg class='ico-inline' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z'/><path d='M14 2v5a1 1 0 0 0 1 1h5'/><path d='M10 9H8'/><path d='M16 13H8'/><path d='M16 17H8'/></svg></span>
                                         <span class="help-center-text"><strong>Cost Estimation</strong><small>Understand cost breakdowns and material pricing.</small></span>
                                         <span class="help-center-count">10 articles</span>
                                         <span class="chevron">›</span>
                                     </button>
                                     <button class="help-center-row" data-topic="materials">
-                                        <span class="help-center-icon orange">🔗</span>
+                                        <span class="help-center-icon"><svg class='ico-inline' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'/><path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'/></svg></span>
                                         <span class="help-center-text"><strong>Materials & Suppliers</strong><small>Find, compare and manage building materials and suppliers.</small></span>
                                         <span class="help-center-count">9 articles</span>
                                         <span class="chevron">›</span>
                                     </button>
                                     <button class="help-center-row" data-topic="projects">
-                                        <span class="help-center-icon red">📁</span>
+                                        <span class="help-center-icon"><svg class='ico-inline' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z'/></svg></span>
                                         <span class="help-center-text"><strong>Projects Management</strong><small>Organize and manage all your construction projects.</small></span>
                                         <span class="help-center-count">7 articles</span>
                                         <span class="chevron">›</span>
                                     </button>
                                     <button class="help-center-row" data-topic="team">
-                                        <span class="help-center-icon indigo">👥</span>
+                                        <span class="help-center-icon"><svg class='ico-inline' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2'/><path d='M16 3.128a4 4 0 0 1 0 7.744'/><path d='M22 21v-2a4 4 0 0 0-3-3.87'/><circle cx='9' cy='7' r='4'/></svg></span>
                                         <span class="help-center-text"><strong>Team & Collaboration</strong><small>Invite team members and manage permissions.</small></span>
                                         <span class="help-center-count">6 articles</span>
                                         <span class="chevron">›</span>
                                     </button>
                                     <button class="help-center-row" data-topic="billing">
-                                        <span class="help-center-icon pink">💳</span>
+                                        <span class="help-center-icon"><svg class='ico-inline' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><rect width='20' height='14' x='2' y='5' rx='2'/><line x1='2' x2='22' y1='10' y2='10'/><path d='M6 14h2'/></svg></span>
                                         <span class="help-center-text"><strong>Billing & Subscription</strong><small>Manage your plan, payments and billing information.</small></span>
                                         <span class="help-center-count">6 articles</span>
                                         <span class="chevron">›</span>
                                     </button>
                                     <button class="help-center-row" data-topic="settings">
-                                        <span class="help-center-icon gray">⚙</span>
+                                        <span class="help-center-icon"><svg class='ico-inline' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915'/><circle cx='12' cy='12' r='3'/></svg></span>
                                         <span class="help-center-text"><strong>Account & Settings</strong><small>Update your profile, preferences and app settings.</small></span>
                                         <span class="help-center-count">5 articles</span>
                                         <span class="chevron">›</span>
@@ -261,27 +282,27 @@
 
                                 <div class="help-resource-list">
                                     <button class="help-resource-row">
-                                        <span class="help-resource-icon blue">▶</span>
+                                        <span class="help-resource-icon"><svg class='ico-inline' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M9 9.003a1 1 0 0 1 1.517-.859l4.997 2.997a1 1 0 0 1 0 1.718l-4.997 2.997A1 1 0 0 1 9 14.996z'/><circle cx='12' cy='12' r='10'/></svg></span>
                                         <span><strong>Video Tutorials</strong><small>Step-by-step video guides</small></span>
                                         <span class="chevron">›</span>
                                     </button>
                                     <button class="help-resource-row">
-                                        <span class="help-resource-icon purple">📘</span>
+                                        <span class="help-resource-icon"><svg class='ico-inline' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M12 5v16'/><path d='M20.001 19A2 2 0 0022 17V5a2 2 0 00-1.999-2L16 3.002A5 5 0 0012 5a5 5 0 00-4-2H4a2 2 0 00-2 2v12a2 2 0 001.999 2H8a5 5 0 014 2 5 5 0 014-2z'/></svg></span>
                                         <span><strong>User Guides</strong><small>Detailed product documentation</small></span>
                                         <span class="chevron">›</span>
                                     </button>
                                     <button class="help-resource-row">
-                                        <span class="help-resource-icon green">?</span>
+                                        <span class="help-resource-icon"><svg class='ico-inline' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><circle cx='12' cy='12' r='10'/><path d='M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3'/><path d='M12 17h.01'/></svg></span>
                                         <span><strong>FAQ</strong><small>Frequently asked questions</small></span>
                                         <span class="chevron">›</span>
                                     </button>
                                     <button class="help-resource-row">
-                                        <span class="help-resource-icon orange">★</span>
+                                        <span class="help-resource-icon"><svg class='ico-inline' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5'/><path d='M9 18h6'/><path d='M10 22h4'/></svg></span>
                                         <span><strong>Best Practices</strong><small>Tips for accurate estimates</small></span>
                                         <span class="chevron">›</span>
                                     </button>
                                     <button class="help-resource-row">
-                                        <span class="help-resource-icon pink">✨</span>
+                                        <span class="help-resource-icon"><svg class='ico-inline' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='m21.64 3.64-1.28-1.28a1.21 1.21 0 0 0-1.72 0L2.36 18.64a1.21 1.21 0 0 0 0 1.72l1.28 1.28a1.2 1.2 0 0 0 1.72 0L21.64 5.36a1.2 1.2 0 0 0 0-1.72'/><path d='m14 7 3 3'/><path d='M5 6v4'/><path d='M19 14v4'/><path d='M10 2v2'/><path d='M7 8H3'/><path d='M21 16h-4'/><path d='M11 3H9'/></svg></span>
                                         <span><strong>What's New</strong><small>Latest features and updates</small></span>
                                         <span class="chevron">›</span>
                                     </button>
@@ -354,59 +375,6 @@
     </div>
 
     <script>
-        // ---------------------------------------------------------------
-        // Sidebar resize + collapse, persisted to localStorage (same
-        // keys / limits used across every page)
-        // ---------------------------------------------------------------
-
-        const sidebar = document.querySelector(".dashboard-navbar");
-        const resizer = document.getElementById("sidebarResizer");
-
-        const COLLAPSE_THRESHOLD = 85;
-        const COLLAPSED_WIDTH = 72;
-        const MIN_WIDTH = 70;
-        const MAX_WIDTH = 240;
-        const DEFAULT_WIDTH = 180;
-
-        function applyWidth(width, persist) {
-            const collapsed = width <= COLLAPSE_THRESHOLD;
-            if (collapsed) {
-                sidebar.style.width = COLLAPSED_WIDTH + "px";
-                sidebar.classList.add("collapsed");
-            } else {
-                sidebar.style.width = width + "px";
-                sidebar.classList.remove("collapsed");
-            }
-            if (persist) {
-                localStorage.setItem("kb-sidebar-width", collapsed ? COLLAPSED_WIDTH : width);
-                localStorage.setItem("kb-sidebar-collapsed", collapsed ? "1" : "0");
-            }
-        }
-
-        (function restoreSidebar() {
-            const savedCollapsed = localStorage.getItem("kb-sidebar-collapsed") === "1";
-            const savedWidth = parseInt(localStorage.getItem("kb-sidebar-width"), 10);
-            if (savedCollapsed) applyWidth(COLLAPSED_WIDTH, false);
-            else if (!isNaN(savedWidth)) applyWidth(savedWidth, false);
-            else applyWidth(DEFAULT_WIDTH, false);
-        })();
-
-        let dragging = false;
-
-        resizer.addEventListener("mousedown", () => { dragging = true; document.body.style.cursor = "ew-resize"; });
-        document.addEventListener("mouseup", () => {
-            if (!dragging) return;
-            dragging = false;
-            document.body.style.cursor = "default";
-            applyWidth(parseInt(sidebar.style.width, 10), true);
-        });
-        document.addEventListener("mousemove",(e)=>{
-            if(!dragging) return;
-            let width = e.clientX;
-            if(width < MIN_WIDTH) width = MIN_WIDTH;
-            if(width > MAX_WIDTH) width = MAX_WIDTH;
-            applyWidth(width, false);
-        });
 
         // Clicking a popular topic scrolls to + opens its Help Center row
         document.getElementById("helpTopicsGrid").addEventListener("click", (e) => {

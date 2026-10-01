@@ -3,121 +3,142 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Premium Plans & Pricing</title>
+    <title>Premium plans | KagoBuild</title>
+    <link rel="stylesheet" href="../styles/variables.css">
     <link rel="stylesheet" href="../styles/dash.css">
-    <link rel="stylesheet" href="../styles/premium.css"><link rel="stylesheet" href="../styles/theme.css">
+    <link rel="stylesheet" href="../styles/premium.css">
 </head>
 <body>
     <section class="dashboard">
 
-        <aside class="dashboard-navbar">
+        <aside class="dashboard-navbar" aria-label="Main navigation">
+
             <div class="upper-sidebar">
-                <a href="dashboard.html">
-                    <div id="logo"><span class="sidebar-icon">
-                        <img src="../assets/images/home-hero.png" alt="logo-image" width="30" height="30">
-                    </span>logo</div>
+                <a href="dashboard.html" id="logo" aria-label="KagoBuild dashboard">
+                    <span class="logo-mark"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 20V10l4-3 4 3v10M12 20V6l4-3 4 3v14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                    <span class="logo-text">KagoBuild</span>
                 </a>
 
-                <a href="dashboard.html" class="nav-link">
-                    <button id="dashboard">
-                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.6"/><rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.6"/><rect x="3" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.6"/><rect x="14" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.6"/></svg>
-                        Dashboard
-                    </button>
+                <nav class="nav-list">
+                <a href="dashboard.html" class="nav-link" title="Dashboard">
+                    <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>
+                    <span class="nav-label">Dashboard</span>
                 </a>
-                <a href="projects.html" class="nav-link"><button id="Projects"><img src="../assets/icons/Projects.svg" alt="Projects" width="17" height="17">Projects</button></a>
-                <a href="ai-design.html" class="nav-link"><button id="AI-Design"><img src="../assets/icons/Design.svg" alt="AI Design" width="17" height="17">AI Design</button></a>
-                <a href="materials.html" class="nav-link"><button id="Material"><img src="../assets/icons/Material.svg" alt="Materials" width="17" height="17">Materials</button></a>
-                <a href="estimator.html" class="nav-link"><button id="Cost-Estimator"><img src="../assets/icons/Cost.svg" alt="Cost Estimator" width="17" height="17">Cost Estimator</button></a>
-                <a href="Supplier.html" class="nav-link"><button id="Suppliers"><img src="../assets/icons/Suppliers.svg" alt="Suppliers" width="17" height="17">Suppliers</button></a>
-                <a href="teams.html" class="nav-link"><button id="Teams"><img src="../assets/icons/Teams.svg" alt="Teams" width="17" height="17">Team</button></a>
-                <a href="settings.html" class="nav-link"><button id="Settings"><img src="../assets/icons/settings-icon.svg" alt="Settings" width="17" height="17">Settings</button></a>
+                <a href="projects.html" class="nav-link" title="Projects">
+                    <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/><path d="M8 10v4"/><path d="M12 10v2"/><path d="M16 10v6"/></svg>
+                    <span class="nav-label">Projects</span>
+                </a>
+                <a href="ai-design.html" class="nav-link" title="AI Design">
+                    <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21.64 3.64-1.28-1.28a1.21 1.21 0 0 0-1.72 0L2.36 18.64a1.21 1.21 0 0 0 0 1.72l1.28 1.28a1.2 1.2 0 0 0 1.72 0L21.64 5.36a1.2 1.2 0 0 0 0-1.72"/><path d="m14 7 3 3"/><path d="M5 6v4"/><path d="M19 14v4"/><path d="M10 2v2"/><path d="M7 8H3"/><path d="M21 16h-4"/><path d="M11 3H9"/></svg>
+                    <span class="nav-label">AI Design</span>
+                </a>
+                <a href="materials.html" class="nav-link" title="Materials">
+                    <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.97 12.92A2 2 0 0 0 2 14.63v3.24a2 2 0 0 0 .97 1.71l3 1.8a2 2 0 0 0 2.06 0L12 19v-5.5l-5-3-4.03 2.42Z"/><path d="m7 16.5-4.74-2.85"/><path d="m7 16.5 5-3"/><path d="M7 16.5v5.17"/><path d="M12 13.5V19l3.97 2.38a2 2 0 0 0 2.06 0l3-1.8a2 2 0 0 0 .97-1.71v-3.24a2 2 0 0 0-.97-1.71L17 10.5l-5 3Z"/><path d="m17 16.5-5-3"/><path d="m17 16.5 4.74-2.85"/><path d="M17 16.5v5.17"/><path d="M7.97 4.42A2 2 0 0 0 7 6.13v4.37l5 3 5-3V6.13a2 2 0 0 0-.97-1.71l-3-1.8a2 2 0 0 0-2.06 0l-3 1.8Z"/><path d="M12 8 7.26 5.15"/><path d="m12 8 4.74-2.85"/><path d="M12 13.5V8"/></svg>
+                    <span class="nav-label">Materials</span>
+                </a>
+                <a href="estimator.html" class="nav-link" title="Cost Estimator">
+                    <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="16" height="20" x="4" y="2" rx="2"/><line x1="8" x2="16" y1="6" y2="6"/><line x1="16" x2="16" y1="14" y2="18"/><path d="M16 10h.01"/><path d="M12 10h.01"/><path d="M8 10h.01"/><path d="M12 14h.01"/><path d="M8 14h.01"/><path d="M12 18h.01"/><path d="M8 18h.01"/></svg>
+                    <span class="nav-label">Cost Estimator</span>
+                </a>
+                <a href="reports.html" class="nav-link" title="Reports">
+                    <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M8 18v-2"/><path d="M12 18v-4"/><path d="M16 18v-6"/></svg>
+                    <span class="nav-label">Reports</span>
+                </a>
+                <a href="Supplier.html" class="nav-link" title="Suppliers">
+                    <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></svg>
+                    <span class="nav-label">Suppliers</span>
+                </a>
+                <a href="teams.html" class="nav-link" title="Teams">
+                    <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><path d="M16 3.128a4 4 0 0 1 0 7.744"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><circle cx="9" cy="7" r="4"/></svg>
+                    <span class="nav-label">Teams</span>
+                </a>
+                <a href="settings.html" class="nav-link" title="Settings">
+                    <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915"/><circle cx="12" cy="12" r="3"/></svg>
+                    <span class="nav-label">Settings</span>
+                </a>
+                </nav>
             </div>
 
             <div class="lower-sidebar">
-                <a href="help-support.html">
-                    <button id="need-help">
-                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none">
-                            <path d="M4 15V12C4 7.58172 7.58172 4 12 4C16.4183 4 20 7.58172 20 12V15" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-                            <rect x="2.5" y="13.5" width="4" height="6" rx="1.8" stroke="currentColor" stroke-width="1.6"/>
-                            <rect x="17.5" y="13.5" width="4" height="6" rx="1.8" stroke="currentColor" stroke-width="1.6"/>
-                            <path d="M20 19.5V20.2C20 21.7464 18.7464 23 17.2 23H14.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-                            <circle cx="13" cy="23" r="1.4" stroke="currentColor" stroke-width="1.6"/>
-                        </svg>
-                        need help
-                    </button>
+                <a href="help-support.html" class="nav-link nav-link--soft" title="Help & support">
+                    <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="m9.17 14.83-4.24 4.24"/><circle cx="12" cy="12" r="4"/></svg>
+                    <span class="nav-label">Help & support</span>
                 </a>
-
-                <a href="premium.html">
-                    <button id="Premium-plan">
-                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none">
-                            <path d="M4 9L8 12L12 5L16 12L20 9L18.5 18H5.5L4 9Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
-                            <path d="M5.5 18H18.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-                        </svg>
-                        Premium plan
-                    </button>
+                <a href="premium.html" class="nav-link nav-link--premium active" title="Premium plan" aria-current="page">
+                    <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11.562 3.266a.5.5 0 0 1 .876 0L15.39 8.87a1 1 0 0 0 1.516.294L21.183 5.5a.5.5 0 0 1 .798.519l-2.834 10.246a1 1 0 0 1-.956.734H5.81a1 1 0 0 1-.957-.734L2.02 6.02a.5.5 0 0 1 .798-.519l4.276 3.664a1 1 0 0 0 1.516-.294z"/><path d="M5 21h14"/></svg>
+                    <span class="nav-label">Premium plan</span>
                 </a>
             </div>
+
         </aside>
 
-        <div class="sidebar-resizer" id="sidebarResizer"></div>
+        <div class="sidebar-resizer" id="sidebarResizer" title="Drag to resize, double-click to collapse"></div>
+        <script src="../scripts/main.js"></script>
 
         <main class="dashboard-overview">
 
             <header class="dashboard-header">
+
                 <div class="header-left">
-                    <h2>Premium Plans & Pricing</h2>
-                    <p class="header-subtitle">Choose the perfect plan to build better and save more.</p>
+                    <div class="header-titles">
+                        <h2>Premium Plans & Pricing</h2>
+                        <p class="header-subtitle">Choose the perfect plan to build better and save more.</p>
+                    </div>
                 </div>
 
                 <div class="header-right">
-                    <div class="search-container">
-                        <span class="search-icon"><img src="../assets/icons/search.svg" alt="" width="27" height="27"></span>
-                        <input type="search" placeholder="Search plans...">
+                    <div class="search-container"><span class="search-icon"><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg></span><input aria-label="Search plans" type="search" placeholder="Search plans..."></div>
+                    <div class="notif-menu">
+                        <button type="button" class="notification-btn" id="bellBtn" aria-label="Notifications" aria-haspopup="true" aria-expanded="false" aria-controls="notifDropdown">
+                            <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.268 21a2 2 0 0 0 3.464 0"/><path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"/></svg>
+                            <span class="notification-count" id="bellCount">5</span>
+                        </button>
+                        <div class="notif-dropdown" id="notifDropdown">
+                            <div class="notif-dropdown-header">
+                                <span>Notifications</span>
+                                <button type="button" class="link-btn" id="markAllRead">Mark all as read</button>
+                            </div>
+                            <a class="notif-dd-item" href="notifications.html"><span class="notif-dd-dot" aria-hidden="true"></span><span class="notif-dd-text"><strong>Sarah Parker invited you</strong><small>Modern Family Home project, 5m ago</small></span></a>
+                            <a class="notif-dd-item" href="notifications.html"><span class="notif-dd-dot" aria-hidden="true"></span><span class="notif-dd-text"><strong>New estimate completed</strong><small>Beach House Project, 1h ago</small></span></a>
+                            <a class="notif-dd-item" href="notifications.html"><span class="notif-dd-dot" aria-hidden="true"></span><span class="notif-dd-text"><strong>Material price updated</strong><small>Cement (32.5N) up 5.2%, 2h ago</small></span></a>
+                            <a class="notif-dd-item" href="notifications.html"><span class="notif-dd-dot" aria-hidden="true"></span><span class="notif-dd-text"><strong>Michael Johnson mentioned you</strong><small>Please review the updated plan, 3h ago</small></span></a>
+                            <a class="notif-dd-item" href="notifications.html"><span class="notif-dd-dot" aria-hidden="true"></span><span class="notif-dd-text"><strong>Office Building is now In Progress</strong><small>Project status changed, 5h ago</small></span></a>
+                            <a class="notif-dropdown-footer" href="notifications.html">View all notifications</a>
+                        </div>
                     </div>
 
-                    <button class="notification-btn">
-                        <img src="../assets/icons/notification.svg" alt="" width="25" height="25">
-                        <span class="notification-count">5</span>
-                    </button>
+                    <span class="header-divider" aria-hidden="true"></span>
 
                     <div class="profile-menu">
-                        <div class="profile-section">
-                            <img src="images/profile.jpg" alt="Profile Picture">
-                            <div class="user-details"><h4>Arjun Mehta</h4><p>Estimator</p></div>
-                            <span class="dropdown-arrow">▼</span>
-                        </div>
-                        <div class="dropdown">
-                            <a href="#">👤 My Profile</a>
-                            <a href="settings.html">⚙️ Settings</a>
-                            <a href="notifications.html">🔔 Notifications</a>
-                            <a href="projects.html">📁 Projects</a>
-                            <a href="index.html">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>
-                                </svg>
-                                Logout
-                            </a>
+                        <button type="button" class="profile-section" id="profileBtn" aria-haspopup="true" aria-expanded="false" aria-controls="profileDropdown">
+                            <span class="profile-avatar">
+                                <span class="profile-initials" id="hdrInitials">M</span>
+                                <img id="hdrAvatar" alt="">
+                            </span>
+                            <span class="user-details">
+                                <span class="user-name" id="hdrName">Moses</span>
+                                <span class="user-role">Estimator</span>
+                            </span>
+                            <svg class="ico dropdown-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+                        </button>
+                        <div class="dropdown" id="profileDropdown">
+                            <a href="settings.html#account"><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>My profile</a>
+                            <a href="settings.html"><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915"/><circle cx="12" cy="12" r="3"/></svg>Settings</a>
+                            <a href="notifications.html"><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.268 21a2 2 0 0 0 3.464 0"/><path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"/></svg>Notifications</a>
+                            <a href="projects.html"><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/><path d="M8 10v4"/><path d="M12 10v2"/><path d="M16 10v6"/></svg>Projects</a>
+                            <a href="index.html" class="dropdown-logout"><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/></svg>Log out</a>
                         </div>
                     </div>
 
-                    <style>
-                        .dropdown { position:absolute; top:70px; right:24px; width:260px; background:#fff; border-radius:12px; box-shadow:0 12px 35px rgba(0,0,0,.12); opacity:0; visibility:hidden; transform:translateY(10px); transition:.25s; overflow:hidden; z-index:1000; }
-                        .dropdown::before { position:absolute; top:-8px; right:25px; width:16px; height:16px; background:white; transform:rotate(45deg); }
-                        .profile-menu { margin-right:12px; border:#222 solid 2px; }
-                        .profile-menu:hover .dropdown { opacity:1; visibility:visible; transform:translateY(0); }
-                        .profile-menu:hover .dropdown-arrow { transform:rotate(180deg); }
-                        .dropdown a { display:flex; align-items:center; gap:14px; padding:18px 24px; font-size:18px; color:#222; text-decoration:none; border-bottom:1px solid #efefef; transition:.2s; }
-                        .dropdown a:last-child { border:none; }
-                        .dropdown a:hover { background:#f3f7ff; color:#2458ff; }
-                    </style>
                 </div>
+
             </header>
 
             <div class="main-card">
                 <div class="premium-page">
 
                     <div class="premium-banner">
-                        <span>🏆 Unlock advanced features, more projects and better insights with BuildWise Premium.</span>
+                        <span><svg class='ico-inline' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M11.562 3.266a.5.5 0 0 1 .876 0L15.39 8.87a1 1 0 0 0 1.516.294L21.183 5.5a.5.5 0 0 1 .798.519l-2.834 10.246a1 1 0 0 1-.956.734H5.81a1 1 0 0 1-.957-.734L2.02 6.02a.5.5 0 0 1 .798-.519l4.276 3.664a1 1 0 0 0 1.516-.294z'/><path d='M5 21h14'/></svg> Unlock advanced features, more projects and better insights with KagoBuild Premium.</span>
 
                         <div class="billing-toggle" id="billingToggle">
                             <span class="toggle-label active" data-mode="monthly">Monthly</span>
@@ -252,12 +273,12 @@
                     <div class="premium-includes-card">
                         <h5>All Premium Plans Include</h5>
                         <div class="premium-includes-grid">
-                            <div class="premium-include-item"><span>☁</span><div><strong>Secure Cloud Storage</strong><small>Your data is always safe</small></div></div>
-                            <div class="premium-include-item"><span>🔄</span><div><strong>Regular Updates</strong><small>New features & improvements</small></div></div>
-                            <div class="premium-include-item"><span>📱</span><div><strong>Mobile Access</strong><small>Access on any device</small></div></div>
-                            <div class="premium-include-item"><span>📤</span><div><strong>Data Export</strong><small>Multiple export formats</small></div></div>
-                            <div class="premium-include-item"><span>🔓</span><div><strong>No Long-term Contracts</strong><small>Cancel anytime</small></div></div>
-                            <div class="premium-include-item"><span>💰</span><div><strong>Money Back Guarantee</strong><small>7-day money back promise</small></div></div>
+                            <div class="premium-include-item"><span><svg class='ico-inline' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z'/></svg></span><div><strong>Secure Cloud Storage</strong><small>Your data is always safe</small></div></div>
+                            <div class="premium-include-item"><span><svg class='ico-inline' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8'/><path d='M21 3v5h-5'/><path d='M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16'/><path d='M8 16H3v5'/></svg></span><div><strong>Regular Updates</strong><small>New features & improvements</small></div></div>
+                            <div class="premium-include-item"><span><svg class='ico-inline' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><rect width='14' height='20' x='5' y='2' rx='2' ry='2'/><path d='M12 18h.01'/></svg></span><div><strong>Mobile Access</strong><small>Access on any device</small></div></div>
+                            <div class="premium-include-item"><span><svg class='ico-inline' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4'/><polyline points='17 8 12 3 7 8'/><line x1='12' x2='12' y1='3' y2='15'/></svg></span><div><strong>Data Export</strong><small>Multiple export formats</small></div></div>
+                            <div class="premium-include-item"><span><svg class='ico-inline' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><rect width='18' height='11' x='3' y='11' rx='2' ry='2'/><path d='M7 11V7a5 5 0 0 1 9.9-1'/></svg></span><div><strong>No Long-term Contracts</strong><small>Cancel anytime</small></div></div>
+                            <div class="premium-include-item"><span><svg class='ico-inline' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><line x1='12' x2='12' y1='2' y2='22'/><path d='M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6'/></svg></span><div><strong>Money Back Guarantee</strong><small>7-day money back promise</small></div></div>
                         </div>
                     </div>
 
@@ -267,59 +288,6 @@
     </section>
 
     <script>
-        // ---------------------------------------------------------------
-        // Sidebar resize + collapse, persisted to localStorage (same
-        // keys / limits used across every page)
-        // ---------------------------------------------------------------
-
-        const sidebar = document.querySelector(".dashboard-navbar");
-        const resizer = document.getElementById("sidebarResizer");
-
-        const COLLAPSE_THRESHOLD = 85;
-        const COLLAPSED_WIDTH = 72;
-        const MIN_WIDTH = 70;
-        const MAX_WIDTH = 240;
-        const DEFAULT_WIDTH = 180;
-
-        function applyWidth(width, persist) {
-            const collapsed = width <= COLLAPSE_THRESHOLD;
-            if (collapsed) {
-                sidebar.style.width = COLLAPSED_WIDTH + "px";
-                sidebar.classList.add("collapsed");
-            } else {
-                sidebar.style.width = width + "px";
-                sidebar.classList.remove("collapsed");
-            }
-            if (persist) {
-                localStorage.setItem("kb-sidebar-width", collapsed ? COLLAPSED_WIDTH : width);
-                localStorage.setItem("kb-sidebar-collapsed", collapsed ? "1" : "0");
-            }
-        }
-
-        (function restoreSidebar() {
-            const savedCollapsed = localStorage.getItem("kb-sidebar-collapsed") === "1";
-            const savedWidth = parseInt(localStorage.getItem("kb-sidebar-width"), 10);
-            if (savedCollapsed) applyWidth(COLLAPSED_WIDTH, false);
-            else if (!isNaN(savedWidth)) applyWidth(savedWidth, false);
-            else applyWidth(DEFAULT_WIDTH, false);
-        })();
-
-        let dragging = false;
-
-        resizer.addEventListener("mousedown", () => { dragging = true; document.body.style.cursor = "ew-resize"; });
-        document.addEventListener("mouseup", () => {
-            if (!dragging) return;
-            dragging = false;
-            document.body.style.cursor = "default";
-            applyWidth(parseInt(sidebar.style.width, 10), true);
-        });
-        document.addEventListener("mousemove",(e)=>{
-            if(!dragging) return;
-            let width = e.clientX;
-            if(width < MIN_WIDTH) width = MIN_WIDTH;
-            if(width > MAX_WIDTH) width = MAX_WIDTH;
-            applyWidth(width, false);
-        });
 
         // Monthly / Yearly billing toggle
         const toggleSwitch = document.getElementById("toggleSwitch");

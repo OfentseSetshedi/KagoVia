@@ -1,42 +1,75 @@
 /* =========================================================
-   KagoBuild Design Tokens
+   KagoBuild design tokens
    -----------------------------------------------------------
-   Minimal white + charcoal + vibrant red palette.
-   dash.css also defines these same tokens at :root so every
-   dashboard page (which loads dash.css) works standalone.
-   Link this file too on any page that does NOT load dash.css
-   (e.g. index.html, signin.html) if you want the same tokens
-   there.
+   The single source of colour for every dashboard page.
+   Link it first, before dash.css and the page stylesheet:
+
+     <link rel="stylesheet" href="../styles/variables.css">
+     <link rel="stylesheet" href="../styles/dash.css">
+     <link rel="stylesheet" href="../styles/<page>.css">
+
+   Palette: soft white + charcoal + one brand red. Green,
+   amber and red are kept for status only (done / at risk /
+   delayed) so a warning never looks like a brand button.
+   Please use these variables instead of new hex values.
 ========================================================= */
 
 :root{
-    /* Backgrounds */
-    --color-bg: #F4F3F4;            /* Soft White — main background */
-    --color-surface: #EAE9EB;       /* Light Gray — cards / containers */
-    --color-surface-hover: #E0DEDF; /* slightly darker gray for hover states */
+    /* Type */
+    --font-sans: Arial, Helvetica, sans-serif;
+
+    /* Surfaces */
+    --color-bg: #F4F3F4;             /* page background */
+    --color-card: #FFFFFF;           /* cards, header, menus, inputs */
+    --color-surface: #EAE9EB;        /* chips, tracks, inactive fills */
+    --color-surface-hover: #E0DEDF;  /* hover on surface */
 
     /* Text */
-    --color-text-primary: #171615;   /* Charcoal Black — primary text / dark widgets */
-    --color-text-secondary: #5F5C5C; /* Dark Gray — secondary text / icons */
-    --color-text-muted: #A9A3A4;     /* Medium Gray — borders / muted labels */
+    --color-text-primary: #171615;   /* headings, body text */
+    --color-text-secondary: #5F5C5C; /* supporting text, icons */
+    --color-text-tertiary: #8C8788;  /* captions, placeholders, meta */
+    --color-text-muted: #A9A3A4;     /* disabled text, faint marks */
 
-    /* Borders */
-    --color-border: #DAD7D8;         /* soft border derived from Medium Gray */
-    --color-border-strong: #A9A3A4;  /* Medium Gray — stronger borders */
+    /* Lines */
+    --color-border: #DAD7D8;
+    --color-border-strong: #A9A3A4;
 
     /* Brand red */
-    --color-primary: #F12823;        /* Primary Red — buttons / highlights / active charts */
-    --color-primary-hover: #EC605C;  /* Soft Coral Red — gradients / hover states */
-    --color-primary-soft: #FCE9E8;   /* light tint of primary, for active/selected backgrounds */
-    --color-primary-glow: #EC9F9E;   /* Light Blush — glow / background accent */
-    --color-shadow-deep: #5E1D12;    /* Deep Burgundy — gradient shadow / dark red */
+    --color-primary: #F12823;        /* primary buttons, active states, key chart series */
+    --color-primary-strong: #D11F1A; /* hover / pressed on red buttons */
+    --color-primary-hover: #EC605C;  /* lighter red for secondary chart series */
+    --color-primary-glow: #EC9F9E;   /* soft red accents */
+    --color-primary-border: #F6C8C6; /* borders on red-tinted surfaces */
+    --color-primary-soft: #FCE9E8;   /* selected rows, tinted backgrounds */
+    --color-primary-ring: rgba(241, 40, 35, .14); /* focus ring */
+    --color-on-primary: #FFFFFF;     /* text/icons on red */
+    --color-shadow-deep: #5E1D12;    /* deep red for gradients */
 
-    /* Status colors (kept distinct from brand red so "delayed/error"
-       states don't visually collide with primary action red) */
+    /* Sidebar */
+    --color-sidebar: #171615;
+    --color-sidebar-text: rgba(244, 243, 244, .68);
+    --color-sidebar-hover: rgba(244, 243, 244, .10);
+    --color-sidebar-line: rgba(244, 243, 244, .10);
+
+    /* Status */
     --color-success: #1E9E4D;
     --color-success-bg: #E9F9EF;
     --color-warning: #C9770C;
     --color-warning-bg: #FFF3DE;
     --color-danger: #D63A3A;
     --color-danger-bg: #FDEAEA;
+
+    /* Charts: brand-led categorical series, in order of use */
+    --chart-1: #F12823;
+    --chart-2: #EC605C;
+    --chart-3: #EC9F9E;
+    --chart-4: #5E1D12;
+    --chart-5: #A9A3A4;
+    --chart-6: #5F5C5C;
+    --chart-7: #171615;
+
+    /* Elevation */
+    --shadow-card: 0 1px 2px rgba(23, 22, 21, .06);
+    --shadow-pop: 0 14px 36px rgba(23, 22, 21, .16);
+    --color-overlay: rgba(23, 22, 21, .45);
 }

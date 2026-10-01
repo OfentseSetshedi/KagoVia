@@ -1,378 +1,652 @@
-@import url("theme.css");
-
 /* =========================================================
-   Design tokens (also mirrored in variables.css). Defined here
-   too so every page that loads dash.css gets the palette even
-   without separately linking variables.css.
+   KagoBuild dashboard shell
+   -----------------------------------------------------------
+   Layout, sidebar and header shared by every dashboard page.
+   Colours come from variables.css (linked before this file).
+   Page-specific styles live in each page's own stylesheet;
+   the dashboard page's own cards start further down.
 ========================================================= */
 
-:root{
-    --color-bg: #F4F3F4;
-    --color-surface: #EAE9EB;
-    --color-surface-hover: #E0DEDF;
-
-    --color-text-primary: #171615;
-    --color-text-secondary: #5F5C5C;
-    --color-text-muted: #A9A3A4;
-
-    --color-border: #DAD7D8;
-    --color-border-strong: #A9A3A4;
-
-    --color-primary: #F12823;
-    --color-primary-hover: #EC605C;
-    --color-primary-soft: #FCE9E8;
-    --color-primary-glow: #EC9F9E;
-    --color-shadow-deep: #5E1D12;
-
-    --color-success: #1E9E4D;
-    --color-success-bg: #E9F9EF;
-    --color-warning: #C9770C;
-    --color-warning-bg: #FFF3DE;
-    --color-danger: #D63A3A;
-    --color-danger-bg: #FDEAEA;
+html, body{
+    height:100%;
+    margin:0;
+    overflow:hidden;
+    font-family:var(--font-sans);
+    background:var(--color-bg);
+    color:var(--color-text-primary);
 }
 
-html, body
-{
-    height: 100%;
-    margin: 0;
-    overflow: hidden;
-    font-family: Arial, Helvetica, sans-serif;
-    background: var(--color-bg);
-    color: var(--color-text-primary);
+body.is-resizing{
+    cursor:ew-resize;
+    user-select:none;
 }
 
-.dashboard
-{
-     height:100vh;
+.dashboard{
+    height:100vh;
     display:grid;
     grid-template-columns:auto 6px 1fr;
     overflow:hidden;
-     
-     overflow: hidden;
 }
 
-/*=======================================
-dashboard-navbar sidebar
-=========================================*/
+/* =========================================================
+   Sidebar
+========================================================= */
 
 .dashboard-navbar,
-.dashboard-navbar *
-{
+.dashboard-navbar *{
     box-sizing:border-box;
 }
 
-.dashboard-navbar
-{
-    width:180px;
+.dashboard-navbar{
+    width:200px;
     min-width:70px;
     max-width:240px;
-
     height:100%;
-
-    transition:width .25s ease;
 
     display:flex;
     flex-direction:column;
 
     padding:16px 10px;
-
     overflow:hidden;
-    background-color: var(--color-text-primary);
+
+    background:var(--color-sidebar);
+    color:var(--color-sidebar-text);
+    transition:width .2s ease;
 }
 
-.dashboard-navbar a
-{
-    display:block;
-    color:inherit;
-    text-decoration:none;
+.upper-sidebar{
+    display:flex;
+    flex-direction:column;
+    flex:1;
+    min-height:0;
+    overflow:hidden;
 }
 
-.dashboard-navbar button
-{
-    width:100%;
-    height:36px;
+.nav-list{
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+}
 
-    padding:0 10px;
-
+#logo{
     display:flex;
     align-items:center;
     gap:10px;
-    flex-wrap:nowrap;
 
-    border:none;
-    border-radius:9px;
+    padding:0 4px 14px;
+    margin-bottom:10px;
+    border-bottom:1px solid var(--color-sidebar-line);
 
-    background-color: transparent;
-    color: rgba(244,243,244,0.68);
-
-    font-size:13px;
-    font-weight:500;
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis;
-
-    cursor:pointer;
-
-    transition:background .15s ease, color .15s ease;
-}
-
-.dashboard-navbar button svg,
-.dashboard-navbar button img
-{
-    flex-shrink:0;
-    width:16px;
-    height:16px;
-}
-
-/*=======================================
-nav link states (active page / hover)
-=========================================*/
-
-.nav-link{
-    margin-bottom:2px;
-}
-
-.nav-link:hover button{
-    background:rgba(244,243,244,0.10);
-    color:#fff;
-}
-
-.nav-link.active button{
-    background:var(--color-primary);
-    color:#fff;
-}
-
-/*=======================================
-dashboard-navbar sidebar dragable effect
-=========================================*/
-.sidebar-resizer
-{
-    width:6px;
-    background:var(--color-border-strong);
-    cursor: ew-resize;
-}
-
-.sidebar-resizer:hover{
-    background:var(--color-primary);
-}
-
-/*=======================================
-collapsed state
-
-NOTE: collapsed buttons hide their text via font-size:0 (cheap and
-works fine for plain text nodes and <img> icons, since <img> is sized
-by its width/height HTML attributes, not by font-size). The one thing
-that trick breaks is an inline <svg width="1em" height="1em"> icon,
-since "1em" resolves against that element's own font-size. Explicitly
-resetting font-size on the icons themselves (below) fixes that without
-needing to touch any page's markup.
-=========================================*/
-
-.dashboard-navbar.collapsed{
-    width:72px;
-    padding:16px 8px;
-}
-
-.dashboard-navbar.collapsed button{
-    justify-content:center;
-    padding:0;
-    gap:0;
-    font-size:0;
-}
-
-.dashboard-navbar.collapsed button img,
-.dashboard-navbar.collapsed button svg
-{
-    margin:0;
-    width:16px;
-    height:16px;
-    font-size:16px;
-}
-
-/*=
-======================================
-dashboard button layout
-=========================================*/
-.upper-sidebar
-{
-    display:flex;
-    flex-direction:column;
-
-    /* Takes all the space it can. NOTE: no overflow-y:auto here —
-       the sidebar must never scroll. Button/logo sizing above is
-       tuned to fit the full nav list within a normal viewport
-       height; if it ever doesn't fit, items should be shrunk
-       further rather than reintroducing scroll. */
-    flex:1;
-    min-height:0;
-
-    overflow-y:hidden;
-    overflow-x:hidden;
-}
-
-.lower-sidebar
-{
-    display:flex;
-    flex-direction:column;
-    gap:6px;
-    width:100%;
-    min-width:0;
-
-    /* Never shrinks and never scrolls away — always pinned
-       to the bottom of the sidebar, visually separated from
-       the nav links above it. */
-    flex-shrink:0;
-    margin-top:16px;
-    padding-top:14px;
-    border-top:1px solid rgba(244,243,244,0.10);
-}
-
-.lower-sidebar > a{
-    display:block;
-    min-width:0;
-}
-
-/*=======================================
-Logo
-=========================================*/
-
-#logo
-{
-    height:auto;
-    display:flex;
-    align-items:center;
-    gap:8px;
-
-    padding:0 4px 12px;
-    margin-bottom:8px;
-
-    border-bottom:1px solid rgba(244,243,244,0.08);
-
-    color:#fff;
-    font-weight:700;
+    color:var(--color-card);
     font-size:15px;
+    font-weight:700;
+    text-decoration:none;
+    white-space:nowrap;
 }
 
 .logo-mark{
     flex-shrink:0;
-    width:28px;
-    height:28px;
+    width:30px;
+    height:30px;
     border-radius:8px;
-    background:var(--color-primary);
 
     display:flex;
     align-items:center;
     justify-content:center;
+
+    background:var(--color-primary);
+    color:var(--color-on-primary);
 }
 
-.dashboard-navbar.collapsed #logo{
+.nav-link{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    height:38px;
+    padding:0 10px;
+    border-radius:9px;
+
+    color:var(--color-sidebar-text);
+    font-size:13px;
+    font-weight:500;
+    text-decoration:none;
+    white-space:nowrap;
+    overflow:hidden;
+
+    transition:background .15s ease, color .15s ease;
+}
+
+.nav-link .ico{
+    flex-shrink:0;
+    width:18px;
+    height:18px;
+}
+
+.nav-label{
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.nav-link:hover{
+    background:var(--color-sidebar-hover);
+    color:var(--color-card);
+}
+
+.nav-link.active{
+    background:var(--color-primary);
+    color:var(--color-on-primary);
+}
+
+.nav-link:focus-visible,
+#logo:focus-visible{
+    outline:2px solid var(--color-primary-glow);
+    outline-offset:2px;
+}
+
+.lower-sidebar{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+    flex-shrink:0;
+
+    margin-top:16px;
+    padding-top:14px;
+    border-top:1px solid var(--color-sidebar-line);
+}
+
+.nav-link--soft,
+.nav-link--premium{
+    background:var(--color-sidebar-hover);
+}
+
+.nav-link--premium .ico{
+    color:var(--color-primary-glow);
+}
+
+.nav-link--premium.active .ico{
+    color:var(--color-on-primary);
+}
+
+/* Collapsed sidebar: icons only */
+
+.dashboard-navbar.collapsed{
+    padding:16px 8px;
+}
+
+.dashboard-navbar.collapsed #logo,
+.dashboard-navbar.collapsed .nav-link{
     justify-content:center;
-    padding-bottom:12px;
+    padding-left:0;
+    padding-right:0;
 }
 
-.dashboard-navbar.collapsed .logo-text{
+.dashboard-navbar.collapsed .logo-text,
+.dashboard-navbar.collapsed .nav-label{
     display:none;
 }
 
-/*=======================================
-"need help" / "Premium plan" — the two
-bottom sidebar buttons.
-
-STANDARDIZED across every page to the same
-simple single-line markup:
-
-    <a href="...">
-        <button id="need-help"> <svg/img/> need help </button>
-    </a>
-
-No title/subtitle/chevron "card" variant anymore — every page
-now renders these identically. Sized and spaced to line up with
-the regular nav buttons above, and guaranteed single-line via
-white-space:nowrap + text-overflow:ellipsis (inherited from the
-base ".dashboard-navbar button" rule), so long labels or a
-narrow sidebar truncate instead of wrapping to a second line.
-=========================================*/
-
-.lower-sidebar button#need-help,
-.lower-sidebar button#Premium-plan{
-    background:rgba(244,243,244,0.06);
-    border-radius:10px;
-    height:38px;
+.sidebar-resizer{
+    width:6px;
+    background:var(--color-border);
+    cursor:ew-resize;
+    transition:background .15s ease;
 }
 
-.lower-sidebar button#need-help:hover,
-.lower-sidebar button#Premium-plan:hover{
-    background:rgba(244,243,244,0.14);
-    color:#fff;
+.sidebar-resizer:hover,
+body.is-resizing .sidebar-resizer{
+    background:var(--color-primary);
 }
 
-.dashboard-navbar.collapsed .lower-sidebar button#need-help,
-.dashboard-navbar.collapsed .lower-sidebar button#Premium-plan{
-    justify-content:center;
-    padding:0;
-    gap:0;
-    font-size:0;
+/* =========================================================
+   Main column
+========================================================= */
+
+.dashboard-overview{
+    display:flex;
+    flex-direction:column;
+    height:100vh;
+    min-width:0;
+    overflow:hidden;
 }
 
-/*=======================================
-dashboard main content
-=========================================*/
-.dashboard-overview
-{
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    overflow: hidden;
-}
-
-/*==========================================================
-                DASHBOARD HEADER
-==========================================================*/
+/* =========================================================
+   Header
+========================================================= */
 
 .dashboard-header{
-
+    flex-shrink:0;
     display:flex;
-
+    align-items:center;
     justify-content:space-between;
-
-    align-items:stretch;
+    gap:16px;
 
     height:64px;
-
     padding:0 20px;
 
-    background:#fff;
-
+    background:var(--color-card);
     border-bottom:1px solid var(--color-border);
 }
 
-
-/*==========================================================
-                    LEFT SIDE
-==========================================================*/
-
 .header-left{
-
     display:flex;
-
     align-items:center;
+    min-width:0;
+}
 
-    height:100%;
+.header-titles{
+    min-width:0;
 }
 
 .header-left h2{
-
-    font-size:16px;
-
-    font-weight:600;
-
+    margin:0;
+    font-size:17px;
+    font-weight:700;
+    line-height:1.2;
+    letter-spacing:-.01em;
     color:var(--color-text-primary);
 }
 
-/*==========================================================
-                    HEADER TABS
-==========================================================*/
+.header-subtitle{
+    margin:2px 0 0;
+    font-size:12px;
+    line-height:1.3;
+    color:var(--color-text-secondary);
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.header-right{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    flex-shrink:0;
+}
+
+/* Search */
+
+.search-container{
+    position:relative;
+    display:flex;
+    align-items:center;
+
+    width:300px;
+    height:38px;
+    padding:0 12px 0 14px;
+
+    background:var(--color-bg);
+    border:1px solid var(--color-border);
+    border-radius:999px;
+
+    transition:border-color .15s ease, box-shadow .15s ease, background .15s ease;
+}
+
+.search-container:focus-within{
+    background:var(--color-card);
+    border-color:var(--color-primary);
+    box-shadow:0 0 0 3px var(--color-primary-ring);
+}
+
+.search-icon{
+    display:flex;
+    align-items:center;
+    margin-right:8px;
+    color:var(--color-text-tertiary);
+}
+
+.search-icon .ico{
+    width:16px;
+    height:16px;
+}
+
+.search-container input{
+    flex:1;
+    min-width:0;
+    border:none;
+    outline:none;
+    background:transparent;
+    font:inherit;
+    font-size:13px;
+    color:var(--color-text-primary);
+}
+
+.search-container input::placeholder{
+    color:var(--color-text-tertiary);
+}
+
+/* Notification bell + dropdown */
+
+.notif-menu{
+    position:relative;
+}
+
+.notification-btn{
+    position:relative;
+    width:38px;
+    height:38px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:var(--color-card);
+    border:1px solid var(--color-border);
+    border-radius:50%;
+    color:var(--color-text-secondary);
+    cursor:pointer;
+
+    transition:background .15s ease, border-color .15s ease;
+}
+
+.notification-btn .ico{
+    width:18px;
+    height:18px;
+}
+
+.notification-btn:hover,
+.notification-btn[aria-expanded="true"]{
+    background:var(--color-bg);
+    border-color:var(--color-border-strong);
+}
+
+.notification-count{
+    position:absolute;
+    top:-5px;
+    right:-5px;
+
+    min-width:18px;
+    height:18px;
+    padding:0 4px;
+    box-sizing:border-box;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border:2px solid var(--color-card);
+    border-radius:999px;
+    background:var(--color-primary);
+    color:var(--color-on-primary);
+    font-size:10px;
+    font-weight:700;
+    line-height:1;
+}
+
+.notification-count[hidden]{ display:none; }
+
+.notif-dropdown,
+.dropdown{
+    position:absolute;
+    top:calc(100% + 10px);
+    right:0;
+    z-index:1000;
+
+    background:var(--color-card);
+    border:1px solid var(--color-border);
+    border-radius:12px;
+    box-shadow:var(--shadow-pop);
+    overflow:hidden;
+
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(6px);
+    transition:opacity .18s ease, transform .18s ease, visibility .18s;
+}
+
+.notif-dropdown{ width:320px; }
+.dropdown{ width:220px; }
+
+.notif-dropdown.open,
+.dropdown.open{
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0);
+}
+
+.notif-dropdown-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:12px 16px;
+    border-bottom:1px solid var(--color-border);
+    font-size:14px;
+    font-weight:700;
+    color:var(--color-text-primary);
+}
+
+.link-btn{
+    padding:0;
+    border:none;
+    background:none;
+    font:inherit;
+    font-size:12px;
+    font-weight:600;
+    color:var(--color-primary);
+    cursor:pointer;
+}
+
+.link-btn:hover{ text-decoration:underline; }
+
+.notif-dd-item{
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+    padding:11px 16px;
+    border-bottom:1px solid var(--color-border);
+    color:var(--color-text-primary);
+    text-decoration:none;
+}
+
+.notif-dd-item:hover{ background:var(--color-bg); }
+
+.notif-dd-dot{
+    flex-shrink:0;
+    width:8px;
+    height:8px;
+    margin-top:5px;
+    border-radius:50%;
+    background:var(--color-primary);
+}
+
+.notif-dd-item.read .notif-dd-dot{ background:transparent; }
+
+.notif-dd-text{
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+    min-width:0;
+}
+
+.notif-dd-text strong{
+    font-size:12.5px;
+    font-weight:600;
+}
+
+.notif-dd-text small{
+    font-size:11px;
+    color:var(--color-text-secondary);
+}
+
+.notif-dropdown-footer{
+    display:block;
+    padding:12px;
+    text-align:center;
+    font-size:12.5px;
+    font-weight:700;
+    color:var(--color-primary);
+    text-decoration:none;
+}
+
+.notif-dropdown-footer:hover{ background:var(--color-bg); }
+
+/* Divider between bell and profile */
+
+.header-divider{
+    flex-shrink:0;
+    width:1px;
+    height:26px;
+    background:var(--color-border);
+}
+
+/* Profile chip + menu */
+
+.profile-menu{
+    position:relative;
+}
+
+.profile-section{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    padding:4px 10px 4px 4px;
+    background:var(--color-card);
+    border:1px solid var(--color-border);
+    border-radius:999px;
+
+    font:inherit;
+    color:var(--color-text-primary);
+    text-align:left;
+    cursor:pointer;
+
+    transition:background .15s ease, border-color .15s ease;
+}
+
+.profile-section:hover,
+.profile-section[aria-expanded="true"]{
+    background:var(--color-bg);
+    border-color:var(--color-border-strong);
+}
+
+.profile-avatar{
+    position:relative;
+    flex-shrink:0;
+    width:32px;
+    height:32px;
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:var(--color-sidebar);
+    color:var(--color-card);
+}
+
+.profile-initials{
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:.02em;
+}
+
+.profile-avatar img{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    border-radius:50%;
+    object-fit:cover;
+}
+
+.profile-avatar img:not([src]),
+.profile-avatar img[src=""]{
+    display:none;
+}
+
+.user-details{
+    display:flex;
+    flex-direction:column;
+    min-width:0;
+}
+
+.user-name{
+    font-size:13px;
+    font-weight:700;
+    line-height:1.2;
+}
+
+.user-role{
+    font-size:11px;
+    line-height:1.2;
+    color:var(--color-text-secondary);
+}
+
+.profile-section .dropdown-arrow{
+    width:14px;
+    height:14px;
+    color:var(--color-text-secondary);
+    transition:transform .2s ease;
+}
+
+.profile-section[aria-expanded="true"] .dropdown-arrow{
+    transform:rotate(180deg);
+}
+
+.dropdown a{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:11px 16px;
+    border-bottom:1px solid var(--color-border);
+
+    font-size:13.5px;
+    color:var(--color-text-primary);
+    text-decoration:none;
+}
+
+.dropdown a .ico{
+    width:16px;
+    height:16px;
+    color:var(--color-text-secondary);
+}
+
+.dropdown a:last-child{ border-bottom:none; }
+
+.dropdown a:hover{
+    background:var(--color-primary-soft);
+    color:var(--color-primary);
+}
+
+.dropdown a:hover .ico{ color:var(--color-primary); }
+
+.notification-btn:focus-visible,
+.profile-section:focus-visible,
+.link-btn:focus-visible,
+.dropdown a:focus-visible,
+.notif-dd-item:focus-visible,
+.notif-dropdown-footer:focus-visible{
+    outline:2px solid var(--color-primary);
+    outline-offset:2px;
+}
+
+/* Let the search and name give way before anything wraps */
+
+@media (max-width:1100px){
+    .search-container{ width:200px; }
+    .user-details{ display:none; }
+    .profile-section{ padding-right:8px; }
+}
+
+@media (max-width:820px){
+    .search-container,
+    .header-subtitle,
+    .header-divider{ display:none; }
+}
+
+/* Inline line icons that sit in running text (buttons, labels, icon tiles).
+   Sized from the surrounding font-size so they slot in where emoji used to be. */
+
+.ico-inline{
+    width:1.1em;
+    height:1.1em;
+    flex-shrink:0;
+    vertical-align:-0.18em;
+}
+
+/* =========================================================
+   Header tabs (used inside the Projects page)
+========================================================= */
 
 .header-tabs{
     display:flex;
@@ -389,16 +663,13 @@ dashboard main content
     font-size:15px;
     font-weight:600;
     color:var(--color-text-secondary);
-
     text-decoration:none;
 
     border-bottom:2px solid transparent;
     white-space:nowrap;
 }
 
-.tab-link:hover{
-    color:var(--color-text-primary);
-}
+.tab-link:hover{ color:var(--color-text-primary); }
 
 .tab-link.active{
     color:var(--color-primary);
@@ -406,300 +677,11 @@ dashboard main content
 }
 
 
-/*==========================================================
-                    RIGHT SIDE
-==========================================================*/
-
-.header-right{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:18px;
-}
-
-
-
-/*==========================================================
-                    SEARCH CONTAINER
-==========================================================*/
-
-.search-container{
-
-    display:flex;
-
-    align-items:center;
-
-    width:280px;
-
-    height:38px;
-
-    background:var(--color-surface);
-
-    border:1px solid var(--color-border);
-
-    border-radius:999px;
-
-    padding:0 15px;
-}
-
-
-/* Search Icon */
-
-.search-icon{
-
-    color:var(--color-text-secondary);
-
-    margin-right:10px;
-
-    display:flex;
-    align-items:center;
-}
-
-
-/* Search Input */
-
-.search-container input{
-
-    width:100%;
-
-    border:none;
-
-    outline:none;
-
-    font-size:14px;
-
-    background:transparent;
-
-    color:var(--color-text-primary);
-}
-
-
-/*==========================================================
-                    NOTIFICATION BUTTON + DROPDOWN
-==========================================================*/
-
-.notif-menu{
-    position:relative;
-}
-
-.notification-btn{
-
-    position:relative;
-
-    width:40px;
-    height:40px;
-
-    border:none;
-    border-radius:50%;
-
-    background:var(--color-surface);
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    color:var(--color-text-secondary);
-
-    cursor:pointer;
-}
-
-.notification-btn:hover{
-    background:var(--color-surface-hover);
-}
-
-
-/* Small red circle */
-
-.notification-count{
-
-    position:absolute;
-
-    top:-2px;
-
-    right:-2px;
-
-    width:18px;
-
-    height:18px;
-
-    border-radius:50%;
-
-    background:var(--color-primary);
-
-    color:white;
-
-    font-size:11px;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-}
-
-.notif-dropdown{
-    position:absolute;
-    top:52px;
-    right:0;
-
-    width:300px;
-
-    background:#fff;
-    border-radius:12px;
-
-    box-shadow:0 12px 35px rgba(23,22,21,.16);
-
-    opacity:0;
-    visibility:hidden;
-    transform:translateY(8px);
-
-    transition:.2s;
-
-    overflow:hidden;
-    z-index:1000;
-}
-
-.notif-dropdown.open{
-    opacity:1;
-    visibility:visible;
-    transform:translateY(0);
-}
-
-.notif-dropdown-header{
-    padding:14px 18px;
-    font-weight:700;
-    font-size:14px;
-    color:var(--color-text-primary);
-    border-bottom:1px solid var(--color-border);
-}
-
-.notif-item{
-    display:flex;
-    gap:10px;
-    align-items:flex-start;
-
-    padding:12px 18px;
-
-    border-bottom:1px solid var(--color-border);
-
-    font-size:13px;
-    color:var(--color-text-primary);
-    line-height:1.4;
-}
-
-.notif-item:last-child{
-    border-bottom:none;
-}
-
-.notif-dot{
-    flex-shrink:0;
-    width:8px;
-    height:8px;
-    margin-top:5px;
-    border-radius:50%;
-    background:var(--color-primary);
-}
-
-
-/*==========================================================
-                    PROFILE SECTION
-==========================================================*/
-
-.profile-section{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:10px;
-
-    cursor:pointer;
-}
-
-
-/* Avatar */
-
-.avatar{
-
-    width:36px;
-    height:36px;
-
-    border-radius:50%;
-
-    overflow:hidden;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    background:var(--color-surface);
-
-    flex-shrink:0;
-}
-
-.avatar svg{
-    width:100%;
-    height:100%;
-}
-
-
-
-/*==========================================================
-                USER DETAILS
-==========================================================*/
-
-.user-details{
-
-    display:flex;
-
-    flex-direction:column;
-}
-
-
-/* User Name */
-
-.user-details h4{
-
-    font-size:14px;
-
-    margin:0;
-
-    color:var(--color-text-primary);
-}
-
-
-/* User Role */
-
-.user-details p{
-
-    margin:0;
-
-    font-size:12px;
-
-    color:var(--color-text-secondary);
-}
-
-
-/*==========================================================
-                DROPDOWN ARROW
-==========================================================*/
-
-.dropdown-arrow{
-
-    font-size:12px;
-
-    color:var(--color-text-secondary);
-}
-
-
-
-
-
-
-
- /*=======================================
+/* =========================================================
+   Dashboard page
+========================================================= */
+
+/*=======================================
 Dashboard overview of every Projects
 =========================================*/
 .main-card
@@ -911,7 +893,7 @@ align-items:flex-start;
 
     border-radius:8px;
     border:1px solid var(--color-border);
-    background:#fff;
+    background:var(--color-card);
 }
 
 .progress-card
@@ -1000,7 +982,7 @@ align-items:flex-start;
     border:none;
     border-radius:50%;
 
-    background:#fff;
+    background:var(--color-card);
 
     box-shadow:0 2px 8px rgba(23,22,21,.15);
 
@@ -1223,13 +1205,13 @@ align-items:flex-start;
 
     background:
     conic-gradient(
-        #F12823 0% 28%,
-        #EC605C 28% 50%,
-        #EC9F9E 50% 63%,
-        #5E1D12 63% 72%,
-        #A9A3A4 72% 88%,
-        #5F5C5C 88% 94%,
-        #171615 94% 100%
+        var(--chart-1) 0% 28%,
+        var(--chart-2) 28% 50%,
+        var(--chart-3) 50% 63%,
+        var(--chart-4) 63% 72%,
+        var(--chart-5) 72% 88%,
+        var(--chart-6) 88% 94%,
+        var(--chart-7) 94% 100%
     );
 
     display:flex;
@@ -1245,7 +1227,7 @@ align-items:flex-start;
 
     border-radius:50%;
 
-    background:#fff;
+    background:var(--color-card);
 
     display:flex;
     flex-direction:column;
@@ -1323,13 +1305,13 @@ align-items:flex-start;
     border-radius:50%;
 }
 
-.blue{background:#F12823;}
-.light-blue{background:#EC605C;}
-.green{background:#EC9F9E;}
-.purple{background:#5E1D12;}
-.pink{background:#A9A3A4;}
-.orange{background:#5F5C5C;}
-.yellow{background:#171615;}
+.dot.blue{background:var(--chart-1);}
+.dot.light-blue{background:var(--chart-2);}
+.dot.green{background:var(--chart-3);}
+.dot.purple{background:var(--chart-4);}
+.dot.pink{background:var(--chart-5);}
+.dot.orange{background:var(--chart-6);}
+.dot.yellow{background:var(--chart-7);}
 
 /*=======================================
     BUTTON
@@ -1419,10 +1401,10 @@ align-items:flex-start;
     border-radius:50%;
 }
 
-.red{background:var(--color-danger);}
-.purple{background:#5E1D12;}
-.blue{background:var(--color-primary);}
-.gray{background:var(--color-text-muted);}
+.driver-icon.red{background:var(--color-danger);}
+.driver-icon.purple{background:var(--color-shadow-deep);}
+.driver-icon.blue{background:var(--color-primary);}
+.driver-icon.gray{background:var(--color-text-muted);}
 
 .view-details
 {
@@ -1560,7 +1542,7 @@ align-items:flex-start;
 
 .floor-select{
     border:1px solid var(--color-border);
-    background:#fff;
+    background:var(--color-card);
     border-radius:8px;
     padding:6px 12px;
     font-size:13px;
@@ -1715,7 +1697,7 @@ align-items:flex-start;
     border:1px solid var(--color-border);
     border-radius:6px;
 
-    background:#fff;
+    background:var(--color-card);
     color:var(--color-text-primary);
     font-size:12px;
     font-weight:600;
@@ -1768,7 +1750,7 @@ align-items:flex-start;
     border:1px solid var(--color-primary);
     border-radius:6px;
 
-    background:#fff;
+    background:var(--color-card);
     color:var(--color-primary);
     font-size:13px;
     font-weight:600;
@@ -1856,7 +1838,7 @@ align-items:flex-start;
     border-radius: 50%;
 
     background: var(--color-success);
-    color: #fff;
+    color: var(--color-on-primary);
 
     display: flex;
     justify-content: center;
@@ -1870,7 +1852,7 @@ align-items:flex-start;
 
 .progress-icon.gray
 {
-    background: #fff;
+    background: var(--color-card);
     border: 2px solid var(--color-border);
     color: var(--color-text-secondary);
 }

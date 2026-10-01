@@ -5,9 +5,6 @@
    the dashboard: flexible tracks + clamp()/ellipsis instead of
    fixed widths, so nothing overflows at any sidebar width.
 ========================================================= */
-/* ADD THIS AS THE VERY FIRST LINE OF dash.css (above the existing comment), everything else stays unchanged: */
-@import url("theme.css");
-.header-subtitle{ margin:2px 0 0; font-size:12px; color:#8a93a8; }
 
 .premium-page,
 .premium-page *{ box-sizing:border-box; }
@@ -16,10 +13,6 @@
     width:100%;
     padding:18px 20px;
     container-type: inline-size;
-}
-
-.sidebar-card.premium-card.active-card{
-    background:#2f6feb;
 }
 
 /* Top banner + billing toggle */
@@ -31,8 +24,8 @@
     flex-wrap:nowrap;
     gap:14px;
 
-    background:#fff8e6;
-    border:1px solid #f5e2a8;
+    background:var(--color-primary-soft);
+    border:1px solid var(--color-primary-border);
     border-radius:12px;
     padding:14px 18px;
     margin-bottom:18px;
@@ -41,7 +34,7 @@
 .premium-banner > span{
     font-size:13px;
     font-weight:600;
-    color:#7a5c00;
+    color:var(--color-text-primary);
     min-width:0;
     overflow:hidden;
     text-overflow:ellipsis;
@@ -58,12 +51,12 @@
 .toggle-label{
     font-size:12.5px;
     font-weight:600;
-    color:#8a93a8;
+    color:var(--color-text-tertiary);
     cursor:pointer;
     white-space:nowrap;
 }
 
-.toggle-label.active{ color:#18233c; }
+.toggle-label.active{ color:var(--color-text-primary); }
 
 .toggle-switch{
     position:relative;
@@ -71,7 +64,7 @@
     height:24px;
     border:none;
     border-radius:999px;
-    background:#2f6feb;
+    background:var(--color-primary);
     cursor:pointer;
     flex-shrink:0;
 }
@@ -83,7 +76,7 @@
     width:18px;
     height:18px;
     border-radius:50%;
-    background:#fff;
+    background:var(--color-card);
     transition:transform .18s ease;
 }
 
@@ -93,8 +86,8 @@
     flex-shrink:0;
     font-size:10.5px;
     font-weight:700;
-    color:#1e9e4d;
-    background:#e9f9ef;
+    color:var(--color-success);
+    background:var(--color-success-bg);
     padding:4px 10px;
     border-radius:999px;
     white-space:nowrap;
@@ -122,28 +115,28 @@
     display:flex;
     flex-direction:column;
 
-    background:#fff;
-    border:1px solid #e6e9ef;
+    background:var(--color-card);
+    border:1px solid var(--color-border);
     border-radius:14px;
     padding:20px 16px;
     min-width:0;
 }
 
 .pricing-card.popular{
-    border:2px solid #2f6feb;
+    border:2px solid var(--color-primary);
 }
 
 .pricing-card.featured{
-    background:#faf7ff;
-    border:1px solid #e6dcfb;
+    background:var(--color-surface);
+    border:1px solid var(--color-surface);
 }
 
 .pricing-badge{
     position:absolute;
     top:-11px;
     left:16px;
-    background:#2f6feb;
-    color:#fff;
+    background:var(--color-primary);
+    color:var(--color-on-primary);
     font-size:10.5px;
     font-weight:700;
     padding:4px 12px;
@@ -155,19 +148,17 @@
     margin:4px 0 4px;
     font-size:clamp(14px, 2.2cqw, 17px);
     font-weight:800;
-    color:#18233c;
+    color:var(--color-text-primary);
     white-space:nowrap;
     overflow:hidden;
     text-overflow:ellipsis;
 }
 
-.pricing-card.featured h3{ color:#8a3ff0; }
-.pricing-card.enterprise h3{ color:#e08a2c; }
 
 .pricing-plan-sub{
     margin:0 0 14px;
     font-size:11px;
-    color:#8a93a8;
+    color:var(--color-text-tertiary);
     white-space:nowrap;
     overflow:hidden;
     text-overflow:ellipsis;
@@ -185,13 +176,13 @@
 .pricing-amount .currency{
     font-size:clamp(14px, 2cqw, 17px);
     font-weight:700;
-    color:#18233c;
+    color:var(--color-text-primary);
 }
 
 .pricing-amount .amount{
     font-size:clamp(22px, 4cqw, 32px);
     font-weight:800;
-    color:#18233c;
+    color:var(--color-text-primary);
     white-space:nowrap;
     overflow:hidden;
     text-overflow:ellipsis;
@@ -199,7 +190,7 @@
 
 .pricing-amount .period{
     font-size:11.5px;
-    color:#8a93a8;
+    color:var(--color-text-tertiary);
     white-space:nowrap;
     flex-shrink:0;
 }
@@ -208,7 +199,7 @@
     display:inline-block;
     font-size:10.5px;
     font-weight:700;
-    color:#1e9e4d;
+    color:var(--color-success);
     margin-bottom:14px;
 }
 
@@ -231,7 +222,7 @@
 
 .pricing-feature-list li{
     font-size:11.5px;
-    color:#3a4256;
+    color:var(--color-text-secondary);
     white-space:nowrap;
     overflow:hidden;
     text-overflow:ellipsis;
@@ -249,29 +240,26 @@
 }
 
 .pricing-cta.current{
-    background:#f5f7fb;
-    color:#8a93a8;
-    border:1px solid #e6e9ef;
+    background:var(--color-bg);
+    color:var(--color-text-tertiary);
+    border:1px solid var(--color-border);
     cursor:default;
 }
 
 .pricing-cta.primary{
-    background:#2f6feb;
-    color:#fff;
+    background:var(--color-primary);
+    color:var(--color-on-primary);
 }
-.pricing-cta.primary:hover{ background:#255fd1; }
+.pricing-cta.primary:hover{ background:var(--color-primary-strong); }
 
-.pricing-cta.primary-dark{
-    background:#6d28d9;
-    color:#fff;
-}
-.pricing-cta.primary-dark:hover{ background:#5b21b6; }
-
+/* Secondary plans share one dark button; only the popular plan is red */
+.pricing-cta.primary-dark,
 .pricing-cta.orange{
-    background:#e08a2c;
-    color:#fff;
+    background:var(--color-text-primary);
+    color:var(--color-on-primary);
 }
-.pricing-cta.orange:hover{ background:#c9770c; }
+.pricing-cta.primary-dark:hover,
+.pricing-cta.orange:hover{ background:var(--color-text-secondary); }
 
 /* Side column */
 
@@ -283,8 +271,8 @@
 }
 
 .premium-side-card{
-    background:#fff;
-    border:1px solid #e6e9ef;
+    background:var(--color-card);
+    border:1px solid var(--color-border);
     border-radius:14px;
     padding:18px;
     min-width:0;
@@ -294,7 +282,7 @@
     margin:0 0 14px;
     font-size:13.5px;
     font-weight:700;
-    color:#18233c;
+    color:var(--color-text-primary);
     white-space:nowrap;
 }
 
@@ -309,20 +297,20 @@
 
 .why-premium-list li{
     font-size:12px;
-    color:#3a4256;
+    color:var(--color-text-secondary);
     line-height:1.4;
 }
 
 .trusted-count{
     font-size:24px;
     font-weight:800;
-    color:#2f6feb;
+    color:var(--color-primary);
 }
 
 .trusted-sub{
     margin:2px 0 14px;
     font-size:11.5px;
-    color:#8a93a8;
+    color:var(--color-text-tertiary);
     white-space:nowrap;
     overflow:hidden;
     text-overflow:ellipsis;
@@ -338,14 +326,14 @@
     height:32px;
     border-radius:50%;
     object-fit:cover;
-    border:2px solid #fff;
+    border:2px solid var(--color-card);
     margin-left:-8px;
 }
 
 .trusted-avatars img:first-child{ margin-left:0; }
 
 .trusted-stars{
-    color:#f5b301;
+    color:var(--color-warning);
     font-size:14px;
     margin-bottom:4px;
 }
@@ -353,15 +341,15 @@
 .trusted-reviews{
     margin:0;
     font-size:11px;
-    color:#8a93a8;
+    color:var(--color-text-tertiary);
     white-space:nowrap;
 }
 
 /* Bottom "All Premium Plans Include" strip */
 
 .premium-includes-card{
-    background:#fff;
-    border:1px solid #e6e9ef;
+    background:var(--color-card);
+    border:1px solid var(--color-border);
     border-radius:14px;
     padding:20px;
 }
@@ -370,7 +358,7 @@
     margin:0 0 16px;
     font-size:14px;
     font-weight:700;
-    color:#18233c;
+    color:var(--color-text-primary);
 }
 
 .premium-includes-grid{
@@ -391,7 +379,7 @@
     width:34px;
     height:34px;
     border-radius:9px;
-    background:#f5f7fb;
+    background:var(--color-bg);
     display:flex;
     align-items:center;
     justify-content:center;
@@ -403,7 +391,7 @@
 .premium-include-item strong{
     display:block;
     font-size:11.5px;
-    color:#22304d;
+    color:var(--color-text-primary);
     white-space:nowrap;
     overflow:hidden;
     text-overflow:ellipsis;
@@ -411,7 +399,7 @@
 
 .premium-include-item small{
     font-size:10px;
-    color:#8a93a8;
+    color:var(--color-text-tertiary);
     white-space:nowrap;
     overflow:hidden;
     text-overflow:ellipsis;
@@ -430,3 +418,4 @@
     .pricing-cards-grid{ grid-template-columns:1fr; }
     .premium-includes-grid{ grid-template-columns:repeat(2, minmax(0,1fr)); }
 }
+.premium-banner > span .ico-inline{ color:var(--color-primary); }

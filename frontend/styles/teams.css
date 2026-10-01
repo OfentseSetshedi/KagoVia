@@ -1,26 +1,24 @@
 /* =========================================================
    Team Management page
-   (header + sidebar are styled in dash.css and untouched)
+   (header + sidebar are shared, in dash.css)
 ========================================================= */
-/* ADD THIS AS THE VERY FIRST LINE OF dash.css (above the existing comment), everything else stays unchanged: */
-@import url("theme.css");
-:root{
-    --tm-bg:#ffffff;
-    --tm-border:#e4e8f0;
-    --tm-border-soft:#eef1f6;
-    --tm-text:#18233c;
-    --tm-text-2:#465069;
-    --tm-muted:#7b869c;
-    --tm-primary:#2f6feb;
-    --tm-primary-dark:#2159cf;
-    --tm-primary-soft:#eaf1ff;
-    --tm-success:#16a34a;
-    --tm-danger:#e5484d;
-    --tm-shadow-sm:0 1px 2px rgba(20,30,60,.05), 0 1px 3px rgba(20,30,60,.04);
-    --tm-shadow-md:0 8px 24px rgba(20,30,60,.08);
-}
 
-.header-subtitle{ margin:2px 0 0; font-size:12px; color:var(--tm-muted); }
+:root{
+    /* Page aliases onto the shared tokens in variables.css */
+    --tm-bg:var(--color-card);
+    --tm-border:var(--color-border);
+    --tm-border-soft:var(--color-surface);
+    --tm-text:var(--color-text-primary);
+    --tm-text-2:var(--color-text-secondary);
+    --tm-muted:var(--color-text-tertiary);
+    --tm-primary:var(--color-primary);
+    --tm-primary-dark:var(--color-primary-strong);
+    --tm-primary-soft:var(--color-primary-soft);
+    --tm-success:var(--color-success);
+    --tm-danger:var(--color-danger);
+    --tm-shadow-sm:var(--shadow-card);
+    --tm-shadow-md:0 8px 24px rgba(23,22,21,.08);
+}
 
 .team-page{
     width:100%;
@@ -59,20 +57,20 @@
     padding:0 20px;
     border:none;
     border-radius:10px;
-    background:linear-gradient(180deg,#3b7bf5 0%,var(--tm-primary) 100%);
-    color:#fff;
+    background:linear-gradient(180deg,var(--color-primary) 0%,var(--tm-primary) 100%);
+    color:var(--color-on-primary);
     font-size:13.5px;
     font-weight:700;
     letter-spacing:.01em;
     cursor:pointer;
     white-space:nowrap;
-    box-shadow:0 4px 12px rgba(47,111,235,.28);
+    box-shadow:0 4px 12px rgba(241,40,35,.28);
     transition:transform .15s, box-shadow .15s, background .15s;
 }
 
 .invite-member-btn:hover{
     background:linear-gradient(180deg,var(--tm-primary) 0%,var(--tm-primary-dark) 100%);
-    box-shadow:0 6px 16px rgba(47,111,235,.36);
+    box-shadow:0 6px 16px rgba(241,40,35,.36);
     transform:translateY(-1px);
 }
 
@@ -102,7 +100,7 @@
 .team-stat-card:hover{
     transform:translateY(-2px);
     box-shadow:var(--tm-shadow-md);
-    border-color:#d5dbe8;
+    border-color:var(--color-border);
 }
 
 .team-stat-icon{
@@ -113,18 +111,15 @@
     font-size:20px;
 }
 
-/* icon images dropped into the coloured tile */
-.team-stat-icon img{
+.team-stat-icon .ico-inline{
     width:22px;
     height:22px;
-    object-fit:contain;
-    display:block;
 }
 
-.team-stat-icon.blue{ background:#e6efff; }
-.team-stat-icon.green{ background:#e3f7ea; }
-.team-stat-icon.orange{ background:#fff0d6; }
-.team-stat-icon.purple{ background:#f0e6ff; }
+.team-stat-icon.blue{ background:var(--color-primary-soft); color:var(--color-primary); }
+.team-stat-icon.green{ background:var(--color-success-bg); color:var(--color-success); }
+.team-stat-icon.orange{ background:var(--color-warning-bg); color:var(--color-warning); }
+.team-stat-icon.purple{ background:var(--color-surface); color:var(--color-text-primary); }
 
 .team-stat-card h4{
     margin:0;
@@ -178,7 +173,7 @@
     text-transform:uppercase;
     letter-spacing:.05em;
     color:var(--tm-muted);
-    background:#f8f9fc;
+    background:var(--color-bg);
     border-bottom:1px solid var(--tm-border-soft);
 }
 
@@ -196,7 +191,7 @@
 .team-table tbody tr:last-child td{ border-bottom:none; }
 .team-table tbody tr:last-child td:first-child{ border-bottom-left-radius:14px; }
 .team-table tbody tr:last-child td:last-child{ border-bottom-right-radius:14px; }
-.team-table tbody tr:hover{ background:#f5f8ff; }
+.team-table tbody tr:hover{ background:var(--color-primary-soft); }
 
 .team-member-cell{ display:flex; align-items:center; gap:12px; }
 
@@ -204,7 +199,7 @@
     width:42px; height:42px;
     border-radius:50%;
     object-fit:cover;
-    border:2px solid #fff;
+    border:2px solid var(--color-card);
     box-shadow:0 0 0 1px var(--tm-border);
 }
 
@@ -220,16 +215,16 @@
     letter-spacing:.01em;
 }
 
-.role-pill.admin{ background:#f0e6ff; color:#7c3aed; }
-.role-pill.manager{ background:#e6efff; color:#2159cf; }
-.role-pill.estimator{ background:#fff0d6; color:#b96a08; }
-.role-pill.designer{ background:#ddf7f1; color:#0b8a7a; }
+.role-pill.admin{ background:var(--color-surface); color:var(--color-shadow-deep); }
+.role-pill.manager{ background:var(--color-primary-soft); color:var(--color-primary-strong); }
+.role-pill.estimator{ background:var(--color-warning-bg); color:var(--color-warning); }
+.role-pill.designer{ background:var(--color-success-bg); color:var(--color-success); }
 
 .status-pill-team.active{
     display:inline-block;
     padding:4px 10px;
     border-radius:999px;
-    background:#e3f7ea;
+    background:var(--color-success-bg);
     color:var(--tm-success);
     font-size:12px;
     font-weight:700;
@@ -252,7 +247,7 @@
     transition:background .15s, color .15s;
 }
 
-.row-menu-btn:hover{ background:#eef1f7; color:var(--tm-text); }
+.row-menu-btn:hover{ background:var(--color-surface); color:var(--tm-text); }
 
 .row-menu{
     position:absolute;
@@ -261,12 +256,12 @@
 
     min-width:170px;
 
-    background:#fff;
+    background:var(--color-card);
     border:1px solid var(--tm-border);
     border-radius:12px;
     padding:6px;
 
-    box-shadow:0 14px 34px rgba(20,25,40,.16);
+    box-shadow:0 14px 34px rgba(23,22,21,.16);
 
     opacity:0;
     visibility:hidden;
@@ -302,15 +297,15 @@
 }
 
 .row-menu button:hover{
-    background:#f0f5ff;
-    color:#2458ff;
+    background:var(--color-primary-soft);
+    color:var(--color-primary);
 }
 
 .row-menu button.danger{ color:var(--tm-danger); }
 
 .row-menu button.danger:hover{
-    background:#fdeaea;
-    color:#d63a3a;
+    background:var(--color-danger-bg);
+    color:var(--color-danger);
 }
 
 /* ---------- Pending invites + recent activity ---------- */
@@ -363,7 +358,7 @@
     flex-shrink:0;
     width:40px; height:40px;
     border-radius:50%;
-    background:linear-gradient(135deg,#dbe8ff,#c7dbff);
+    background:linear-gradient(135deg,var(--color-primary-soft),var(--color-primary-border));
     color:var(--tm-primary-dark);
     font-size:12.5px;
     font-weight:800;
@@ -388,7 +383,7 @@
 .pending-expires{
     padding:2px 8px;
     border-radius:999px;
-    background:#fdecec;
+    background:var(--color-danger-bg);
     color:var(--tm-danger);
     font-weight:700;
 }
@@ -408,7 +403,7 @@
     width:10px; height:10px;
     margin-top:5px;
     border-radius:50%;
-    background:#fff;
+    background:var(--color-card);
     border:2.5px solid var(--tm-primary);
     box-shadow:0 0 0 4px var(--tm-primary-soft);
 }
@@ -424,7 +419,7 @@
 
 .modal-overlay{
     position:fixed; inset:0;
-    background:rgba(15,20,35,.5);
+    background:rgba(23,22,21,.5);
     backdrop-filter:blur(3px);
     display:none; align-items:center; justify-content:center;
     z-index:3000;
@@ -433,7 +428,7 @@
 
 .modal-box{
     width:500px; max-width:92vw; max-height:90vh; overflow-y:auto;
-    background:#fff; border-radius:16px; padding:28px;
+    background:var(--color-card); border-radius:16px; padding:28px;
     box-shadow:0 30px 70px rgba(0,0,0,.28);
 }
 
@@ -464,8 +459,8 @@
 .modal-field select,
 .modal-field textarea{
     width:100%; padding:0 14px;
-    border:1px solid #dde2ec; border-radius:10px;
-    background:#fff;
+    border:1px solid var(--color-border); border-radius:10px;
+    background:var(--color-card);
     font-size:13.5px; font-family:inherit; color:var(--tm-text); outline:none;
     transition:border-color .15s, box-shadow .15s;
 }
@@ -473,14 +468,14 @@
 .modal-field textarea{ padding:12px 14px; resize:vertical; }
 .modal-field input:focus, .modal-field select:focus, .modal-field textarea:focus{
     border-color:var(--tm-primary);
-    box-shadow:0 0 0 3px rgba(47,111,235,.15);
+    box-shadow:0 0 0 3px rgba(241,40,35,.15);
 }
 
 .modal-actions{ display:flex; justify-content:flex-end; gap:10px; margin-top:10px; }
 .modal-actions button{ height:42px; padding:0 22px; border-radius:10px; font-size:13.5px; font-weight:700; cursor:pointer; transition:background .15s, box-shadow .15s; }
-.modal-cancel-btn{ border:1px solid #dde2ec; background:#fff; color:var(--tm-text-2); }
-.modal-cancel-btn:hover{ background:#f5f7fb; }
-.modal-submit-btn{ border:none; background:var(--tm-primary); color:#fff; box-shadow:0 4px 10px rgba(47,111,235,.25); }
+.modal-cancel-btn{ border:1px solid var(--color-border); background:var(--color-card); color:var(--tm-text-2); }
+.modal-cancel-btn:hover{ background:var(--color-bg); }
+.modal-submit-btn{ border:none; background:var(--tm-primary); color:var(--color-on-primary); box-shadow:0 4px 10px rgba(241,40,35,.25); }
 .modal-submit-btn:hover{ background:var(--tm-primary-dark); }
 
 .invite-step.is-hidden{ display:none; }
@@ -500,7 +495,7 @@
     transition:border-color .15s, background .15s;
 }
 
-.permission-row:hover{ border-color:#b9cdf8; background:#f8fbff; }
+.permission-row:hover{ border-color:var(--color-primary-border); background:var(--color-bg); }
 .permission-row input{ margin-top:3px; accent-color:var(--tm-primary); width:16px; height:16px; }
 .permission-row strong{ display:block; font-size:13.5px; color:var(--tm-text); }
 .permission-row span{ font-size:12px; color:var(--tm-muted); }
@@ -512,7 +507,7 @@
     border-radius:14px;
     padding:20px;
     margin-bottom:8px;
-    background:#fbfcfe;
+    background:var(--color-bg);
 }
 
 .invite-review-top{
@@ -526,7 +521,7 @@
 
 .invite-review-avatar{
     width:42px; height:42px; border-radius:50%;
-    background:linear-gradient(135deg,#dbe8ff,#c7dbff); color:var(--tm-primary-dark);
+    background:linear-gradient(135deg,var(--color-primary-soft),var(--color-primary-border)); color:var(--tm-primary-dark);
     font-size:13px; font-weight:800;
     display:flex; align-items:center; justify-content:center;
 }
@@ -543,7 +538,7 @@
 .invite-review-permissions ul{ list-style:none; margin:10px 0 0; padding:0; display:flex; flex-direction:column; gap:7px; }
 .invite-review-permissions li{ font-size:13px; font-weight:600; }
 .perm-on{ color:var(--tm-success); }
-.perm-off{ color:#bcc4d6; font-weight:500 !important; }
+.perm-off{ color:var(--color-text-muted); font-weight:500 !important; }
 
 .invite-review-message{ margin-top:16px; padding-top:16px; border-top:1px solid var(--tm-border-soft); }
 .invite-review-message span{ font-size:12.5px; color:var(--tm-muted); }
@@ -555,10 +550,10 @@
 
 .invite-done-check{
     width:68px; height:68px; margin:0 auto 18px;
-    border-radius:50%; background:#e3f7ea; color:var(--tm-success);
+    border-radius:50%; background:var(--color-success-bg); color:var(--tm-success);
     font-size:30px; font-weight:700;
     display:flex; align-items:center; justify-content:center;
-    box-shadow:0 0 0 8px #f1fbf5;
+    box-shadow:0 0 0 8px var(--color-success-bg);
 }
 
 .invite-done h3{ margin:0 0 10px; font-size:20px; color:var(--tm-text); }
