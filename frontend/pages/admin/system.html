@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>System Settings | KagoBuild Admin</title>
+    <link rel="stylesheet" href="../../styles/variables.css">
+    <link rel="stylesheet" href="../../styles/dash.css">
+    <link rel="stylesheet" href="../../styles/admin.css">
+    <link rel="stylesheet" href="../../styles/admin-extra.css">
+</head>
+<body data-title="System settings">
+    <main class="admin-page" id="app"></main>
+
+    <script src="../../scripts/admin-shell.js"></script>
+    <script src="../../scripts/admin-ui.js"></script>
+    <script>
+        var app = document.getElementById('app');
+        app.innerHTML = AdminUI.kpis([
+            { icon: '🟢', color: 'green', label: 'Status', value: 'Operational', sub: 'All core services up' },
+            { icon: '⏱', color: 'dark', label: 'API uptime (30d)', value: '99.98%', sub: '1 incident' },
+            { icon: '💾', color: 'amber', label: 'Storage used', value: '64%', sub: '320 GB of 500 GB' },
+            { icon: '🗄', color: 'red', label: 'Last backup', value: '02:00', sub: 'Today, successful' }
+        ]) +
+        '<section class="admin-row">' +
+            '<div class="admin-card"><div class="admin-card-head"><h5>Application settings</h5></div>' +
+                '<div class="form-grid">' +
+                    '<label class="field"><span>Application name</span><input class="admin-input" id="sName" value="KagoBuild"></label>' +
+                    '<label class="field"><span>Support email</span><input class="admin-input" id="sMail" value="support@kagobuild.com"></label>' +
+                    '<label class="field"><span>Default region</span><select class="admin-select"><option>Gauteng</option><option>Western Cape</option><option>KwaZulu-Natal</option></select></label>' +
+                    '<label class="field"><span>Default currency</span><select class="admin-select"><option>ZAR</option><option>USD</option></select></label>' +
+                '</div>' +
+                '<div class="admin-toolbar" style="margin:14px 0 0"><span class="spacer"></span><button class="btn primary" id="sSave">Save settings</button></div></div>' +
+            '<div class="admin-card"><div class="admin-card-head"><h5>Platform switches</h5></div>' +
+                '<div class="setting-row"><div><strong>Maintenance mode</strong><small>Shows a maintenance page to all non-admin users.</small></div><label class="switch"><input type="checkbox" data-sw="Maintenance mode"><span></span></label></div>' +
+                '<div class="setting-row"><div><strong>Open registration</strong><small>Allow new users to sign up.</small></div><label class="switch"><input type="checkbox" checked data-sw="Open registration"><span></span></label></div>' +
+                '<div class="setting-row"><div><strong>AI plan generation</strong><small>Turn off to pause all AI requests.</small></div><label class="switch"><input type="checkbox" checked data-sw="AI plan generation"><span></span></label></div>' +
+                '<div class="setting-row"><div><strong>Require 2FA for admins</strong><small>Admins without 2FA must set it up at next login.</small></div><label class="switch"><input type="checkbox" checked data-sw="Require 2FA for admins"><span></span></label></div>' +
+            '</div>' +
+        '</section>' +
+        '<section class="admin-row">' +
+            '<div class="admin-card"><div class="admin-card-head"><h5>System health</h5></div><ul class="health-list">' +
+                '<li><span class="dot ok"></span>API server <em>99.98% uptime</em></li>' +
+                '<li><span class="dot ok"></span>Database <em>12 ms</em></li>' +
+                '<li><span class="dot ok"></span>AI service <em>2.4 s avg</em></li>' +
+                '<li><span class="dot warn"></span>Email service <em>Delayed</em></li>' +
+            '</ul></div>' +
+            '<div class="admin-card"><div class="admin-card-head"><h5>Storage</h5><span class="muted">320 GB of 500 GB</span></div>' +
+                '<div class="progress"><i style="width:64%"></i></div>' +
+                '<ul class="health-list" style="margin-top:12px"><li>House plan files <em>180 GB</em></li><li>Project exports <em>96 GB</em></li><li>User uploads <em>44 GB</em></li></ul></div>' +
+        '</section>' +
+        '<div id="backups"></div><div id="errors"></div><div id="keys"></div>';
+
+        document.getElementById('sSave').onclick = function () { AdminUI.toast('Settings saved (demo only)'); };
+        document.querySelectorAll('[data-sw]').forEach(function (s) {
+            s.onchange = function () {
+                AdminUI.toast(s.getAttribute('data-sw') + ' ' + (s.checked ? 'enabled' : 'disabled'));
+            };
+        });
+
+        AdminUI.crud(document.getElementById('backups'), {
+            title: 'Backups',
+            readOnly: true,
+            toolbar: [
+                { label: 'Run backup now', run: function (api) {
+                      api.add({ name: 'backup-manual-' + (api.rows.length + 1), size: '41.8 GB', date: 'Just now', type: 'Manual', status: 'Complete' });
+                      api.toast('Backup completed');
+                  } }
+            ],
+            columns: [
+                { key: 'name', label: 'Backup' },
+                { key: 'size', label: 'Size', type: 'num' },
+                { key: 'date', label: 'Created' },
+                { key: 'type', label: 'Type', filter: true },
+                { key: 'status', label: 'Status', type: 'status', options: [['Complete', 'ok'], ['Failed', 'bad']] }
+            ],
+            rows: [
+                { name: 'backup-2026-10-01', size: '41.2 GB', date: 'Today 02:00', type: 'Automatic', status: 'Complete' },
+                { name: 'backup-2026-09-30', size: '41.0 GB', date: 'Yesterday 02:00', type: 'Automatic', status: 'Complete' },
+                { name: 'backup-2026-09-29', size: '40.7 GB', date: '29 Sep 02:00', type: 'Automatic', status: 'Failed' }
+            ],
+            actions: [
+                { label: 'Restore', show: function (r) { return r.status === 'Complete'; },
+                  run: function (r, api) {
+                      if (confirm('Restore ' + r.name + '? Current data will be replaced.')) api.toast('Restore started for ' + r.name);
+                  } }
+            ]
+        });
+
+        AdminUI.crud(document.getElementById('errors'), {
+            title: 'System errors',
+            readOnly: true,
+            columns: [
+                { key: 'time', label: 'Time' },
+                { key: 'service', label: 'Service', filter: true },
+                { key: 'msg', label: 'Message' },
+                { key: 'sev', label: 'Severity', type: 'status', options: [['Info', 'neutral'], ['Warning', 'warn'], ['Error', 'bad']] }
+            ],
+            rows: [
+                { time: 'Today 09:02', service: 'Email', msg: 'Queue delay over 10 minutes', sev: 'Warning' },
+                { time: 'Today 06:44', service: 'Supplier sync', msg: 'SteelWorks API timeout', sev: 'Error' },
+                { time: 'Yesterday', service: 'Storage', msg: 'Usage passed 60%', sev: 'Info' }
+            ]
+        });
+
+        AdminUI.crud(document.getElementById('keys'), {
+            title: 'API keys & integrations',
+            addLabel: 'Add key',
+            columns: [
+                { key: 'name', label: 'Integration' },
+                { key: 'key', label: 'Key' },
+                { key: 'created', label: 'Created' },
+                { key: 'status', label: 'Status', type: 'status', options: [['Active', 'ok'], ['Revoked', 'bad']] }
+            ],
+            rows: [
+                { name: 'BuildMart pricing API', key: 'bm_live_••••9f2a', created: '12 May 2026', status: 'Active' },
+                { name: 'Payment gateway', key: 'pg_live_••••41c7', created: '03 Mar 2026', status: 'Active' },
+                { name: 'Email provider', key: 'em_live_••••b80e', created: '03 Mar 2026', status: 'Active' }
+            ],
+            actions: [
+                { label: 'Revoke', show: function (r) { return r.status === 'Active'; },
+                  run: function (r, api) {
+                      if (confirm('Revoke the key for ' + r.name + '?')) { r.status = 'Revoked'; api.toast('Key revoked'); }
+                  } }
+            ]
+        });
+    </script>
+</body>
+</html>

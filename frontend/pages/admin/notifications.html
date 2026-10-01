@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Notifications | KagoBuild Admin</title>
+    <link rel="stylesheet" href="../../styles/variables.css">
+    <link rel="stylesheet" href="../../styles/dash.css">
+    <link rel="stylesheet" href="../../styles/admin.css">
+    <link rel="stylesheet" href="../../styles/admin-extra.css">
+</head>
+<body data-title="Notifications">
+    <main class="admin-page" id="app"></main>
+
+    <script src="../../scripts/admin-shell.js"></script>
+    <script src="../../scripts/admin-ui.js"></script>
+    <script>
+        var app = document.getElementById('app');
+        app.innerHTML =
+            '<section class="admin-card"><div class="admin-card-head"><h5>Send a notification</h5></div>' +
+            '<div class="form-grid">' +
+                '<label class="field"><span>Title</span><input class="admin-input" id="nTitle" placeholder="e.g. New house styles available"></label>' +
+                '<label class="field"><span>Audience</span><select class="admin-select" id="nAud"><option>All users</option><option>Homeowners</option><option>Builders</option><option>Architects</option><option>Admins</option></select></label>' +
+                '<label class="field full"><span>Message</span><textarea class="admin-input" id="nMsg" rows="3"></textarea></label>' +
+                '<label class="field"><span>Channel</span><select class="admin-select" id="nCh"><option>In-app</option><option>Email</option><option>Push</option><option>Email + Push</option></select></label>' +
+            '</div>' +
+            '<div class="admin-toolbar" style="margin:14px 0 0"><span class="spacer"></span><button class="btn primary" id="nSend">Send now</button></div></section>' +
+            '<div id="hist"></div><div id="auto"></div>';
+
+        var hist = AdminUI.crud(document.getElementById('hist'), {
+            title: 'Sent notifications & announcements',
+            readOnly: true,
+            export: true,
+            columns: [
+                { key: 'time', label: 'Sent' },
+                { key: 'title', label: 'Title' },
+                { key: 'audience', label: 'Audience', filter: true },
+                { key: 'channel', label: 'Channel', filter: true },
+                { key: 'status', label: 'Status', type: 'status', options: [['Sent', 'ok'], ['Scheduled', 'info'], ['Failed', 'bad']] }
+            ],
+            rows: [
+                { time: '28 Sep 2026', title: 'Scheduled maintenance this Sunday', audience: 'All users', channel: 'Email + Push', status: 'Sent' },
+                { time: '20 Sep 2026', title: 'New Karoo Cottage template', audience: 'Homeowners', channel: 'In-app', status: 'Sent' },
+                { time: '05 Oct 2026', title: 'Pricing update notice', audience: 'Builders', channel: 'Email', status: 'Scheduled' }
+            ]
+        });
+
+        document.getElementById('nSend').onclick = function () {
+            var t = document.getElementById('nTitle').value.trim();
+            if (!t) { AdminUI.toast('Add a title first'); return; }
+            hist.add({
+                time: 'Just now',
+                title: t,
+                audience: document.getElementById('nAud').value,
+                channel: document.getElementById('nCh').value,
+                status: 'Sent'
+            });
+            document.getElementById('nTitle').value = '';
+            document.getElementById('nMsg').value = '';
+            AdminUI.toast('Notification sent');
+        };
+
+        AdminUI.crud(document.getElementById('auto'), {
+            title: 'Automated notifications',
+            addLabel: 'Add rule',
+            columns: [
+                { key: 'name', label: 'Notification' },
+                { key: 'trigger', label: 'Trigger' },
+                { key: 'channel', label: 'Channel', type: 'select', options: ['In-app', 'Email', 'Push', 'Email + Push'] },
+                { key: 'status', label: 'Status', type: 'status', options: [['Enabled', 'ok'], ['Disabled', 'neutral']] }
+            ],
+            rows: [
+                { name: 'Welcome email', trigger: 'User signs up', channel: 'Email', status: 'Enabled' },
+                { name: 'Plan ready', trigger: 'AI finishes generating a plan', channel: 'Email + Push', status: 'Enabled' },
+                { name: 'Price change alert', trigger: 'Material price moves > 10%', channel: 'In-app', status: 'Enabled' },
+                { name: 'Subscription expiring', trigger: '7 days before renewal', channel: 'Email', status: 'Disabled' }
+            ],
+            actions: [
+                { label: function (r) { return r.status === 'Enabled' ? 'Disable' : 'Enable'; },
+                  run: function (r) { r.status = r.status === 'Enabled' ? 'Disabled' : 'Enabled'; } }
+            ]
+        });
+    </script>
+</body>
+</html>

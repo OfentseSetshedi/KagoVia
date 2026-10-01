@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AI Management | KagoBuild Admin</title>
+    <link rel="stylesheet" href="../../styles/variables.css">
+    <link rel="stylesheet" href="../../styles/dash.css">
+    <link rel="stylesheet" href="../../styles/admin.css">
+    <link rel="stylesheet" href="../../styles/admin-extra.css">
+</head>
+<body data-title="AI management">
+    <main class="admin-page" id="app"></main>
+
+    <script src="../../scripts/admin-shell.js"></script>
+    <script src="../../scripts/admin-ui.js"></script>
+    <script>
+        var app = document.getElementById('app');
+        app.innerHTML = AdminUI.kpis([
+            { icon: '🤖', color: 'red', label: 'Generations today', value: '1,126', sub: '▲ 9% vs yesterday', up: true },
+            { icon: '⏱', color: 'dark', label: 'Avg. response time', value: '2.4 s', sub: 'Last 24 hours' },
+            { icon: '🎯', color: 'green', label: 'Accepted first time', value: '88%', sub: 'Accuracy proxy', up: true },
+            { icon: '⚠️', color: 'amber', label: 'Errors (24h)', value: '14', sub: '1.2% of requests' }
+        ]) + '<div id="models"></div><div id="prompts"></div><div id="errors"></div><div id="constraints"></div>';
+
+        AdminUI.crud(document.getElementById('models'), {
+            title: 'AI models & settings',
+            addLabel: 'Add model',
+            columns: [
+                { key: 'name', label: 'Model' },
+                { key: 'purpose', label: 'Purpose', filter: true },
+                { key: 'version', label: 'Version' },
+                { key: 'temp', label: 'Temperature', type: 'num' },
+                { key: 'status', label: 'Status', type: 'status', filter: true, options: [['Active', 'ok'], ['Testing', 'warn'], ['Disabled', 'neutral']] }
+            ],
+            rows: [
+                { name: 'PlanGen', purpose: 'House plan generation', version: '2.3', temp: '0.4', status: 'Active' },
+                { name: 'PlanGen', purpose: 'House plan generation', version: '2.4-beta', temp: '0.3', status: 'Testing' },
+                { name: 'EstimateAssist', purpose: 'Quantity take-off', version: '1.8', temp: '0.1', status: 'Active' },
+                { name: 'GuideBot', purpose: 'User help', version: '1.2', temp: '0.6', status: 'Disabled' }
+            ],
+            actions: [
+                { label: function (r) { return r.status === 'Active' ? 'Disable' : 'Activate'; },
+                  run: function (r, api) { r.status = r.status === 'Active' ? 'Disabled' : 'Active'; api.toast(r.name + ' ' + r.version + ' is ' + r.status.toLowerCase()); } }
+            ]
+        });
+
+        AdminUI.crud(document.getElementById('prompts'), {
+            title: 'AI prompts',
+            addLabel: 'Add prompt',
+            columns: [
+                { key: 'name', label: 'Prompt' },
+                { key: 'model', label: 'Model', filter: true },
+                { key: 'text', label: 'Instruction', type: 'textarea' },
+                { key: 'updated', label: 'Updated' },
+                { key: 'status', label: 'Status', type: 'status', options: [['Live', 'ok'], ['Draft', 'neutral']] }
+            ],
+            rows: [
+                { name: 'Floor-plan layout', model: 'PlanGen', text: 'Generate a floor plan that fits the plot size, bedrooms and style provided.', updated: '20 Sep 2026', status: 'Live' },
+                { name: 'Material quantities', model: 'EstimateAssist', text: 'List materials and quantities for the approved plan using the regional rules.', updated: '11 Sep 2026', status: 'Live' },
+                { name: 'Style suggestions', model: 'PlanGen', text: 'Suggest three style variations for the chosen template.', updated: '02 Sep 2026', status: 'Draft' }
+            ]
+        });
+
+        AdminUI.crud(document.getElementById('errors'), {
+            title: 'Generation errors',
+            readOnly: true,
+            export: true,
+            columns: [
+                { key: 'time', label: 'Time' },
+                { key: 'ref', label: 'Request' },
+                { key: 'model', label: 'Model', filter: true },
+                { key: 'error', label: 'Error' },
+                { key: 'sev', label: 'Severity', type: 'status', filter: true, options: [['Low', 'neutral'], ['Medium', 'warn'], ['High', 'bad']] }
+            ],
+            rows: [
+                { time: 'Today 09:41', ref: 'REQ-88231', model: 'PlanGen 2.3', error: 'Plot dimensions out of range', sev: 'Low' },
+                { time: 'Today 08:15', ref: 'REQ-88190', model: 'EstimateAssist 1.8', error: 'Missing regional price', sev: 'Medium' },
+                { time: 'Yesterday', ref: 'REQ-87702', model: 'PlanGen 2.3', error: 'Timeout after 30 s', sev: 'High' }
+            ]
+        });
+
+        AdminUI.crud(document.getElementById('constraints'), {
+            title: 'AI design constraints',
+            addLabel: 'Add constraint',
+            columns: [
+                { key: 'name', label: 'Constraint' },
+                { key: 'value', label: 'Value' },
+                { key: 'status', label: 'Status', type: 'status', options: [['Enforced', 'ok'], ['Warn only', 'warn'], ['Off', 'neutral']] }
+            ],
+            rows: [
+                { name: 'Minimum bedroom size', value: '9 m²', status: 'Enforced' },
+                { name: 'Maximum storeys', value: '2', status: 'Enforced' },
+                { name: 'Plot coverage limit', value: '60%', status: 'Warn only' }
+            ]
+        });
+    </script>
+</body>
+</html>

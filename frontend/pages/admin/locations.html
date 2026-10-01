@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Locations &amp; Regions | KagoBuild Admin</title>
+    <link rel="stylesheet" href="../../styles/variables.css">
+    <link rel="stylesheet" href="../../styles/dash.css">
+    <link rel="stylesheet" href="../../styles/admin.css">
+    <link rel="stylesheet" href="../../styles/admin-extra.css">
+</head>
+<body data-title="Locations & regions">
+    <main class="admin-page" id="app"></main>
+
+    <script src="../../scripts/admin-shell.js"></script>
+    <script src="../../scripts/admin-ui.js"></script>
+    <script>
+        var app = document.getElementById('app');
+        app.innerHTML = AdminUI.kpis([
+            { icon: '📍', color: 'red', label: 'Supported regions', value: '5', sub: '1 country' },
+            { icon: '💱', color: 'green', label: 'Currencies', value: '1', sub: 'ZAR' },
+            { icon: '📏', color: 'dark', label: 'Measurement systems', value: '1', sub: 'Metric' },
+            { icon: '🧱', color: 'amber', label: 'Availability gaps', value: '6', sub: 'Materials not stocked' }
+        ]) + '<div id="regions"></div><div id="avail"></div>';
+
+        AdminUI.crud(document.getElementById('regions'), {
+            title: 'Supported regions',
+            addLabel: 'Add region',
+            columns: [
+                { key: 'region', label: 'Region' },
+                { key: 'country', label: 'Country', filter: true },
+                { key: 'currency', label: 'Currency', type: 'select', options: ['ZAR', 'USD', 'EUR', 'GBP'] },
+                { key: 'system', label: 'Measurement', type: 'select', options: ['Metric', 'Imperial'] },
+                { key: 'labour', label: 'Labour factor', type: 'num' },
+                { key: 'status', label: 'Status', type: 'status', options: [['Active', 'ok'], ['Inactive', 'neutral']] }
+            ],
+            rows: [
+                { region: 'Gauteng', country: 'South Africa', currency: 'ZAR', system: 'Metric', labour: '1.00', status: 'Active' },
+                { region: 'Western Cape', country: 'South Africa', currency: 'ZAR', system: 'Metric', labour: '1.08', status: 'Active' },
+                { region: 'KwaZulu-Natal', country: 'South Africa', currency: 'ZAR', system: 'Metric', labour: '0.95', status: 'Active' },
+                { region: 'Eastern Cape', country: 'South Africa', currency: 'ZAR', system: 'Metric', labour: '0.90', status: 'Active' },
+                { region: 'Limpopo', country: 'South Africa', currency: 'ZAR', system: 'Metric', labour: '0.88', status: 'Inactive' }
+            ]
+        });
+
+        AdminUI.crud(document.getElementById('avail'), {
+            title: 'Regional material availability',
+            addLabel: 'Add rule',
+            columns: [
+                { key: 'material', label: 'Material' },
+                { key: 'region', label: 'Region', filter: true },
+                { key: 'lead', label: 'Lead time' },
+                { key: 'status', label: 'Availability', type: 'status', filter: true, options: [['Available', 'ok'], ['Limited', 'warn'], ['Unavailable', 'bad']] }
+            ],
+            rows: [
+                { material: 'Rebar Y12', region: 'KwaZulu-Natal', lead: '10 days', status: 'Limited' },
+                { material: 'Concrete roof tile', region: 'Western Cape', lead: '5 days', status: 'Available' },
+                { material: 'SA pine 38x114', region: 'Limpopo', lead: '-', status: 'Unavailable' }
+            ]
+        });
+    </script>
+</body>
+</html>

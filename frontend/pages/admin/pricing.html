@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pricing | KagoBuild Admin</title>
+    <link rel="stylesheet" href="../../styles/variables.css">
+    <link rel="stylesheet" href="../../styles/dash.css">
+    <link rel="stylesheet" href="../../styles/admin.css">
+    <link rel="stylesheet" href="../../styles/admin-extra.css">
+</head>
+<body data-title="Pricing">
+    <main class="admin-page" id="app"></main>
+
+    <script src="../../scripts/admin-shell.js"></script>
+    <script src="../../scripts/admin-ui.js"></script>
+    <script>
+        var app = document.getElementById('app');
+        app.innerHTML = AdminUI.kpis([
+            { icon: '💲', color: 'green', label: 'Prices tracked', value: '1,860', sub: '5 regions' },
+            { icon: '🔄', color: 'dark', label: 'Update frequency', value: 'Daily', sub: 'Next run 02:00' },
+            { icon: '⚠️', color: 'amber', label: 'Discrepancies', value: '12', sub: 'Needs review' },
+            { icon: '📉', color: 'red', label: 'Stale prices', value: '31', sub: 'Older than 7 days' }
+        ]) + '<div id="prices"></div><div class="admin-row"><div id="freq"></div><div id="hist"></div></div>';
+
+        AdminUI.crud(document.getElementById('prices'), {
+            title: 'Material prices',
+            addLabel: 'Add price',
+            export: true,
+            columns: [
+                { key: 'material', label: 'Material' },
+                { key: 'region', label: 'Region', filter: true },
+                { key: 'supplier', label: 'Supplier' },
+                { key: 'price', label: 'Price', type: 'num' },
+                { key: 'change', label: 'Change', type: 'num' },
+                { key: 'status', label: 'Status', type: 'status', filter: true, options: [['Current', 'ok'], ['Review', 'warn'], ['Discrepancy', 'bad']] }
+            ],
+            rows: [
+                { material: 'Cement 50 kg', region: 'Gauteng', supplier: 'BuildMart', price: 'R 112.00', change: '+2.1%', status: 'Current' },
+                { material: 'Face brick (1000)', region: 'Gauteng', supplier: 'Brick & Block Co.', price: 'R 2,450.00', change: '0%', status: 'Current' },
+                { material: 'Roof tile (m²)', region: 'Western Cape', supplier: 'Cape Roofing', price: 'R 185.00', change: '+9.4%', status: 'Review' },
+                { material: 'Rebar Y12', region: 'KwaZulu-Natal', supplier: 'SteelWorks SA', price: 'R 98.00', change: '-12.0%', status: 'Discrepancy' }
+            ],
+            toolbar: [
+                { label: 'Import supplier prices', run: function (api) { api.toast('Import started. 0 new prices found in this demo.'); } },
+                { label: 'Run update now', run: function (api) { api.toast('Price update queued'); } }
+            ],
+            actions: [
+                { label: 'Approve', show: function (r) { return r.status !== 'Current'; },
+                  run: function (r, api) { r.status = 'Current'; api.toast('Price approved for ' + r.material); } }
+            ]
+        });
+
+        AdminUI.crud(document.getElementById('freq'), {
+            title: 'Update frequency by source',
+            addLabel: 'Add schedule',
+            columns: [
+                { key: 'source', label: 'Source' },
+                { key: 'freq', label: 'Frequency', type: 'select', options: ['Hourly', 'Daily', 'Weekly', 'Manual'] },
+                { key: 'status', label: 'Status', type: 'status', options: [['On', 'ok'], ['Paused', 'neutral']] }
+            ],
+            rows: [
+                { source: 'BuildMart API', freq: 'Hourly', status: 'On' },
+                { source: 'Cape Roofing API', freq: 'Daily', status: 'On' },
+                { source: 'Brick & Block CSV', freq: 'Weekly', status: 'On' },
+                { source: 'SteelWorks API', freq: 'Daily', status: 'Paused' }
+            ]
+        });
+
+        AdminUI.crud(document.getElementById('hist'), {
+            title: 'Historical pricing',
+            readOnly: true,
+            export: true,
+            columns: [
+                { key: 'material', label: 'Material' },
+                { key: 'sep', label: 'Sep 2026', type: 'num' },
+                { key: 'aug', label: 'Aug 2026', type: 'num' },
+                { key: 'jul', label: 'Jul 2026', type: 'num' }
+            ],
+            rows: [
+                { material: 'Cement 50 kg', sep: 'R 112', aug: 'R 110', jul: 'R 108' },
+                { material: 'Face brick (1000)', sep: 'R 2,450', aug: 'R 2,450', jul: 'R 2,390' },
+                { material: 'Roof tile (m²)', sep: 'R 185', aug: 'R 169', jul: 'R 168' }
+            ]
+        });
+    </script>
+</body>
+</html>

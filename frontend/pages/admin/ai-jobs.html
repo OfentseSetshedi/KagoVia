@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AI Jobs | KagoBuild Admin</title>
+    <link rel="stylesheet" href="../../styles/variables.css">
+    <link rel="stylesheet" href="../../styles/dash.css">
+    <link rel="stylesheet" href="../../styles/admin.css">
+    <link rel="stylesheet" href="../../styles/admin-extra.css">
+</head>
+<body data-title="AI jobs">
+    <main class="admin-page" id="app"></main>
+
+    <script src="../../scripts/admin-shell.js"></script>
+    <script src="../../scripts/admin-ui.js"></script>
+    <script>
+        var app = document.getElementById('app');
+        app.innerHTML = AdminUI.kpis([
+            { icon: '⏳', color: 'amber', label: 'Queued', value: '42', sub: 'Avg. wait 2m 10s' },
+            { icon: '⚙️', color: 'dark', label: 'Running', value: '6', sub: 'Across 3 workers' },
+            { icon: '✅', color: 'green', label: 'Completed today', value: '1,126', sub: '97.4% success', up: true },
+            { icon: '⚠️', color: 'red', label: 'Failed today', value: '29', sub: 'Retry from the table' }
+        ]) + '<div id="jobs"></div>';
+
+        AdminUI.crud(document.getElementById('jobs'), {
+            title: 'AI job queue',
+            readOnly: true,
+            export: true,
+            columns: [
+                { key: 'id', label: 'Job' },
+                { key: 'user', label: 'User' },
+                { key: 'type', label: 'Type', filter: true },
+                { key: 'time', label: 'Time', type: 'num' },
+                { key: 'status', label: 'Status', type: 'status', filter: true, options: [['Done', 'ok'], ['Running', 'info'], ['Queued', 'neutral'], ['Failed', 'bad']] }
+            ],
+            rows: [
+                { id: '#A-48213', user: 'Sarah Parker', type: 'Floor plan', time: '34s', status: 'Done' },
+                { id: '#A-48212', user: 'Thabo M.', type: 'Material list', time: '12s', status: 'Done' },
+                { id: '#A-48211', user: 'Lisa Wang', type: 'Floor plan', time: '51s', status: 'Running' },
+                { id: '#A-48210', user: 'Johan V.', type: 'Variations', time: '1m 02s', status: 'Failed' },
+                { id: '#A-48209', user: 'Priya S.', type: 'Floor plan', time: '29s', status: 'Done' },
+                { id: '#A-48214', user: 'Naledi S.', type: 'Floor plan', time: '-', status: 'Queued' }
+            ],
+            toolbar: [
+                { label: 'Pause queue', run: function (api) { api.toast('Queue paused (demo only)'); } }
+            ],
+            actions: [
+                { label: 'Retry', show: function (r) { return r.status === 'Failed'; },
+                  run: function (r, api) { r.status = 'Queued'; r.time = '-'; api.toast(r.id + ' queued again'); } },
+                { label: 'Cancel', show: function (r) { return r.status === 'Queued' || r.status === 'Running'; },
+                  run: function (r, api) {
+                      if (confirm('Cancel job ' + r.id + '?')) {
+                          api.rows.splice(api.rows.indexOf(r), 1);
+                          api.toast(r.id + ' cancelled');
+                      }
+                  } }
+            ]
+        });
+    </script>
+</body>
+</html>

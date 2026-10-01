@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Building Rules | KagoBuild Admin</title>
+    <link rel="stylesheet" href="../../styles/variables.css">
+    <link rel="stylesheet" href="../../styles/dash.css">
+    <link rel="stylesheet" href="../../styles/admin.css">
+    <link rel="stylesheet" href="../../styles/admin-extra.css">
+</head>
+<body data-title="Building rules & constraints">
+    <main class="admin-page" id="app"></main>
+
+    <script src="../../scripts/admin-shell.js"></script>
+    <script src="../../scripts/admin-ui.js"></script>
+    <script>
+        var app = document.getElementById('app');
+        app.innerHTML = AdminUI.kpis([
+            { icon: '📐', color: 'red', label: 'Active rules', value: '48', sub: '5 categories' },
+            { icon: '🏛', color: 'dark', label: 'Code sources', value: '6', sub: 'SANS and municipal' },
+            { icon: '🔍', color: 'amber', label: 'Due for review', value: '4', sub: 'Older than 12 months' },
+            { icon: '🔒', color: 'green', label: 'Locked rules', value: '21', sub: 'Structural / legal' }
+        ]) + '<div id="t"></div>';
+
+        AdminUI.crud(document.getElementById('t'), {
+            title: 'Building rules & constraints',
+            addLabel: 'Add rule',
+            export: true,
+            note: 'This is controlled reference data. Structural and legal requirements should only change when the source regulation changes, and locked rules should need Super Admin approval.',
+            columns: [
+                { key: 'rule', label: 'Rule' },
+                { key: 'category', label: 'Category', type: 'select', options: ['Structural', 'Foundations', 'Roofing', 'Electrical', 'Zoning', 'Material restriction'], filter: true },
+                { key: 'region', label: 'Region', filter: true },
+                { key: 'source', label: 'Source' },
+                { key: 'status', label: 'Status', type: 'status', filter: true, options: [['Locked', 'info'], ['Active', 'ok'], ['Under review', 'warn']] }
+            ],
+            rows: [
+                { rule: 'Minimum foundation depth 600 mm', category: 'Foundations', region: 'All regions', source: 'SANS 10400-H', status: 'Locked' },
+                { rule: 'Maximum plot coverage 60%', category: 'Zoning', region: 'Gauteng', source: 'Municipal bylaw', status: 'Active' },
+                { rule: 'Roof truss design by engineer', category: 'Structural', region: 'All regions', source: 'SANS 10400-L', status: 'Locked' },
+                { rule: 'Asbestos products prohibited', category: 'Material restriction', region: 'All regions', source: 'National regulation', status: 'Locked' },
+                { rule: 'Fire-rated boundary walls', category: 'Structural', region: 'Western Cape', source: 'SANS 10400-T', status: 'Under review' }
+            ],
+            actions: [
+                { label: function (r) { return r.status === 'Locked' ? 'Request unlock' : 'Lock'; },
+                  run: function (r, api) {
+                      if (r.status === 'Locked') { api.toast('Unlock request sent to a Super Admin'); return; }
+                      r.status = 'Locked';
+                  } }
+            ]
+        });
+    </script>
+</body>
+</html>

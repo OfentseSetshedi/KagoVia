@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | KagoBuild</title>
+    <link rel="stylesheet" href="../../styles/variables.css">
+    <link rel="stylesheet" href="../../styles/dash.css">
+    <link rel="stylesheet" href="../../styles/admin.css">
+</head>
+<body>
+    <section class="dashboard">
+
+        <aside class="dashboard-navbar" aria-label="Admin navigation">
+
+            <div class="upper-sidebar">
+                <a href="dashboard.html" id="logo" aria-label="KagoBuild admin dashboard">
+                    <span class="logo-mark"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 20V10l4-3 4 3v10M12 20V6l4-3 4 3v14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                    <span class="logo-text">KagoBuild <em class="admin-tag">Admin</em></span>
+                </a>
+
+                <nav class="nav-list">
+                <a href="dashboard.html" class="nav-link active" title="Dashboard" aria-current="page">
+                    <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>
+                    <span class="nav-label">Dashboard</span>
+                </a>
+                <a href="users.html" class="nav-link" title="Users">
+                    <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><path d="M16 3.128a4 4 0 0 1 0 7.744"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><circle cx="9" cy="7" r="4"/></svg>
+                    <span class="nav-label">Users</span>
+                </a>
+                <a href="projects.html" class="nav-link" title="Projects">
+                    <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/><path d="M8 10v4"/><path d="M12 10v2"/><path d="M16 10v6"/></svg>
+                    <span class="nav-label">Projects</span>
+                </a>
+                <a href="materials.html" class="nav-link" title="Materials">
+                    <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z"/><path d="M12 22V12"/><polyline points="3.29 7 12 12 20.71 7"/><path d="m7.5 4.27 9 5.15"/></svg>
+                    <span class="nav-label">Materials</span>
+                </a>
+                <a href="suppliers.html" class="nav-link" title="Suppliers">
+                    <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></svg>
+                    <span class="nav-label">Suppliers</span>
+                </a>
+                <a href="ai-jobs.html" class="nav-link" title="AI Jobs">
+                    <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M15 2v2M15 20v2M2 15h2M2 9h2M20 15h2M20 9h2M9 2v2M9 20v2"/></svg>
+                    <span class="nav-label">AI Jobs</span>
+                </a>
+                <a href="analytics.html" class="nav-link" title="Analytics">
+                    <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg>
+                    <span class="nav-label">Analytics</span>
+                </a>
+                <a href="settings.html" class="nav-link" title="Settings">
+                    <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915"/><circle cx="12" cy="12" r="3"/></svg>
+                    <span class="nav-label">Settings</span>
+                </a>
+                </nav>
+            </div>
+
+            <div class="lower-sidebar">
+                <a href="../dashboard.html" class="nav-link nav-link--soft" title="Back to app">
+                    <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+                    <span class="nav-label">Back to app</span>
+                </a>
+            </div>
+
+        </aside>
+
+        <div class="sidebar-resizer" id="sidebarResizer" title="Drag to resize, double-click to collapse"></div>
+        <script src="../../scripts/main.js"></script>
+
+        <main class="dashboard-overview">
+
+            <header class="dashboard-header">
+
+                <div class="header-left">
+                    <div class="header-titles">
+                        <h2>Admin Dashboard</h2>
+                        <p class="header-subtitle">Platform health, users and supplier data at a glance.</p>
+                    </div>
+                </div>
+
+                <div class="header-right">
+                    <div class="search-container"><span class="search-icon"><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg></span><input aria-label="Search users, projects, suppliers" type="search" placeholder="Search users, projects, suppliers..."></div>
+                    <div class="notif-menu">
+                        <button type="button" class="notification-btn" id="bellBtn" aria-label="Notifications" aria-haspopup="true" aria-expanded="false" aria-controls="notifDropdown">
+                            <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.268 21a2 2 0 0 0 3.464 0"/><path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"/></svg>
+                            <span class="notification-count" id="bellCount">3</span>
+                        </button>
+                        <div class="notif-dropdown" id="notifDropdown">
+                            <div class="notif-dropdown-header">
+                                <span>Alerts</span>
+                                <button type="button" class="link-btn" id="markAllRead">Mark all as read</button>
+                            </div>
+                            <a class="notif-dd-item" href="suppliers.html"><span class="notif-dd-dot" aria-hidden="true"></span><span class="notif-dd-text"><strong>Cashbuild price sync failed</strong><small>3 retries exhausted, 12m ago</small></span></a>
+                            <a class="notif-dd-item" href="ai-jobs.html"><span class="notif-dd-dot" aria-hidden="true"></span><span class="notif-dd-text"><strong>AI queue above 40 jobs</strong><small>Average wait 2m 10s, 25m ago</small></span></a>
+                            <a class="notif-dd-item" href="users.html"><span class="notif-dd-dot" aria-hidden="true"></span><span class="notif-dd-text"><strong>2 accounts flagged for review</strong><small>Unusual plan generation volume, 1h ago</small></span></a>
+                            <a class="notif-dropdown-footer" href="analytics.html">View all activity</a>
+                        </div>
+                    </div>
+
+                    <span class="header-divider" aria-hidden="true"></span>
+
+                    <div class="profile-menu">
+                        <button type="button" class="profile-section" id="profileBtn" aria-haspopup="true" aria-expanded="false" aria-controls="profileDropdown">
+                            <span class="profile-avatar">
+                                <span class="profile-initials" id="hdrInitials">M</span>
+                                <img id="hdrAvatar" alt="">
+                            </span>
+                            <span class="user-details">
+                                <span class="user-name" id="hdrName">Moses</span>
+                                <span class="user-role">Admin</span>
+                            </span>
+                            <svg class="ico dropdown-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+                        </button>
+                        <div class="dropdown" id="profileDropdown">
+                            <a href="../settings.html#account"><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>My profile</a>
+                            <a href="settings.html"><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915"/><circle cx="12" cy="12" r="3"/></svg>Admin settings</a>
+                            <a href="../dashboard.html"><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>Back to app</a>
+                            <a href="../index.html" class="dropdown-logout"><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/></svg>Log out</a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </header>
+
+            <div class="main-card">
+                <div class="admin-page">
+
+                    <!-- KPI cards -->
+                    <div class="admin-kpis">
+                        <div class="kpi-card">
+                            <span class="kpi-icon red"><svg class="ico-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.128a4 4 0 0 1 0 7.744"/></svg></span>
+                            <div><h4>Total users</h4><h2>4,286</h2><p class="up">+312 this month</p></div>
+                        </div>
+                        <div class="kpi-card">
+                            <span class="kpi-icon dark"><svg class="ico-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/></svg></span>
+                            <div><h4>Active projects</h4><h2>1,942</h2><p class="up">+8.4% vs last month</p></div>
+                        </div>
+                        <div class="kpi-card">
+                            <span class="kpi-icon amber"><svg class="ico-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/></svg></span>
+                            <div><h4>AI plans generated</h4><h2>18,630</h2><p class="up">+1,204 this week</p></div>
+                        </div>
+                        <div class="kpi-card">
+                            <span class="kpi-icon green"><svg class="ico-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" x2="12" y1="2" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span>
+                            <div><h4>Monthly revenue</h4><h2>R428,500</h2><p class="up">+11.2% vs last month</p></div>
+                        </div>
+                    </div>
+
+                    <!-- Activity chart + system health -->
+                    <div class="admin-row admin-row--wide">
+
+                        <section class="admin-card">
+                            <div class="admin-card-head">
+                                <h5>AI plans generated</h5>
+                                <div class="range-tabs" id="rangeTabs" role="tablist">
+                                    <button type="button" class="range-tab active" data-range="7d">7 days</button>
+                                    <button type="button" class="range-tab" data-range="30d">30 days</button>
+                                    <button type="button" class="range-tab" data-range="90d">90 days</button>
+                                </div>
+                            </div>
+                            <div class="bar-chart" id="barChart" role="img" aria-label="Bar chart of AI plans generated per period"></div>
+                            <div class="chart-foot">
+                                <span>Total <strong id="chartTotal">0</strong></span>
+                                <span>Success rate <strong>97.4%</strong></span>
+                                <span>Avg. generation time <strong>38s</strong></span>
+                            </div>
+                        </section>
+
+                        <section class="admin-card">
+                            <div class="admin-card-head"><h5>System health</h5><span class="pill ok">All systems normal</span></div>
+                            <ul class="health-list">
+                                <li><span class="dot ok"></span>Web app &amp; API<em>99.98% uptime</em></li>
+                                <li><span class="dot ok"></span>AI design engine<em>38s avg</em></li>
+                                <li><span class="dot warn"></span>Supplier price sync<em>1 feed failing</em></li>
+                                <li><span class="dot ok"></span>Database<em>12 ms avg</em></li>
+                                <li><span class="dot ok"></span>File storage<em>64% used</em></li>
+                            </ul>
+                        </section>
+
+                    </div>
+
+                    <!-- Supplier feeds + AI jobs -->
+                    <div class="admin-row">
+
+                        <section class="admin-card">
+                            <div class="admin-card-head"><h5>Supplier price feeds</h5><a class="admin-link" href="suppliers.html">Manage →</a></div>
+                            <table class="admin-table">
+                                <thead><tr><th>Supplier</th><th>Last sync</th><th class="r">Items</th><th>Status</th></tr></thead>
+                                <tbody>
+                                    <tr><td>Builders Warehouse</td><td>4 min ago</td><td class="r">15,204</td><td><span class="pill ok">Live</span></td></tr>
+                                    <tr><td>BUCO</td><td>18 min ago</td><td class="r">10,512</td><td><span class="pill ok">Live</span></td></tr>
+                                    <tr><td>Cashbuild</td><td>6 h ago</td><td class="r">12,038</td><td><span class="pill bad">Failed</span></td></tr>
+                                    <tr><td>Mica Hardware</td><td>Yesterday</td><td class="r">8,120</td><td><span class="pill warn">Batch upload</span></td></tr>
+                                    <tr><td>CTM</td><td>2 h ago</td><td class="r">11,046</td><td><span class="pill ok">Live</span></td></tr>
+                                </tbody>
+                            </table>
+                        </section>
+
+                        <section class="admin-card">
+                            <div class="admin-card-head"><h5>Recent AI jobs</h5><a class="admin-link" href="ai-jobs.html">View queue →</a></div>
+                            <table class="admin-table">
+                                <thead><tr><th>Job</th><th>User</th><th>Type</th><th class="r">Time</th><th>Status</th></tr></thead>
+                                <tbody>
+                                    <tr><td>#A-48213</td><td>Sarah Parker</td><td>Floor plan</td><td class="r">34s</td><td><span class="pill ok">Done</span></td></tr>
+                                    <tr><td>#A-48212</td><td>Thabo M.</td><td>Material list</td><td class="r">12s</td><td><span class="pill ok">Done</span></td></tr>
+                                    <tr><td>#A-48211</td><td>Lisa Wang</td><td>Floor plan</td><td class="r">51s</td><td><span class="pill info">Running</span></td></tr>
+                                    <tr><td>#A-48210</td><td>Johan V.</td><td>Variations</td><td class="r">1m 02s</td><td><span class="pill bad">Failed</span></td></tr>
+                                    <tr><td>#A-48209</td><td>Priya S.</td><td>Floor plan</td><td class="r">29s</td><td><span class="pill ok">Done</span></td></tr>
+                                </tbody>
+                            </table>
+                        </section>
+
+                    </div>
+
+                    <!-- New users + alerts -->
+                    <div class="admin-row">
+
+                        <section class="admin-card">
+                            <div class="admin-card-head"><h5>New sign-ups</h5><a class="admin-link" href="users.html">All users →</a></div>
+                            <ul class="user-list">
+                                <li><span class="avatar">NK</span><div><strong>Naledi Khumalo</strong><small>naledi@email.co.za</small></div><span class="pill neutral">Free</span><time>Today</time></li>
+                                <li><span class="avatar">PB</span><div><strong>Pieter Botha</strong><small>pieter@botha-build.co.za</small></div><span class="pill info">Pro</span><time>Today</time></li>
+                                <li><span class="avatar">ZD</span><div><strong>Zanele Dube</strong><small>zanele@email.co.za</small></div><span class="pill neutral">Free</span><time>Yesterday</time></li>
+                                <li><span class="avatar">AR</span><div><strong>Ahmed Rahman</strong><small>ahmed@rahmanprojects.co.za</small></div><span class="pill info">Business</span><time>Yesterday</time></li>
+                            </ul>
+                        </section>
+
+                        <section class="admin-card">
+                            <div class="admin-card-head"><h5>Needs attention</h5><span class="pill bad">3 open</span></div>
+                            <ul class="alert-list">
+                                <li class="bad"><strong>Cashbuild price sync failing</strong><small>API key rejected since 03:10. Prices are 6 hours stale.</small></li>
+                                <li class="warn"><strong>AI queue backlog</strong><small>42 jobs waiting, average wait 2m 10s.</small></li>
+                                <li class="warn"><strong>2 accounts flagged</strong><small>Plan generation volume 10x above normal for their tier.</small></li>
+                            </ul>
+                        </section>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </main>
+    </section>
+
+    <script>
+    (function () {
+        // Demo data. Replace with calls to the backend admin endpoints.
+        const DATA = {
+            "7d":  { labels: ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"], values: [182,214,198,247,263,171,129] },
+            "30d": { labels: ["W1","W2","W3","W4"], values: [1020,1184,1236,1204] },
+            "90d": { labels: ["Jul","Aug","Sep"], values: [4310,4890,5240] }
+        };
+        const chart = document.getElementById("barChart");
+        const total = document.getElementById("chartTotal");
+
+        function draw(range) {
+            const d = DATA[range];
+            const max = Math.max.apply(null, d.values);
+            chart.innerHTML = d.values.map(function (v, i) {
+                return '<div class="bar-col"><span class="bar-val">' + v.toLocaleString("en-US") + '</span>' +
+                       '<span class="bar" style="height:' + Math.round(v / max * 100) + '%"></span>' +
+                       '<span class="bar-lbl">' + d.labels[i] + '</span></div>';
+            }).join("");
+            total.textContent = d.values.reduce(function (a, b) { return a + b; }, 0).toLocaleString("en-US");
+        }
+
+        document.getElementById("rangeTabs").addEventListener("click", function (e) {
+            const b = e.target.closest(".range-tab");
+            if (!b) return;
+            document.querySelectorAll(".range-tab").forEach(function (t) { t.classList.toggle("active", t === b); });
+            draw(b.dataset.range);
+        });
+
+        draw("7d");
+    })();
+    </script>
+</body>
+</html>

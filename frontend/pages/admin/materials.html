@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Materials | KagoBuild Admin</title>
+    <link rel="stylesheet" href="../../styles/variables.css">
+    <link rel="stylesheet" href="../../styles/dash.css">
+    <link rel="stylesheet" href="../../styles/admin.css">
+    <link rel="stylesheet" href="../../styles/admin-extra.css">
+</head>
+<body data-title="Materials">
+    <main class="admin-page" id="app"></main>
+
+    <script src="../../scripts/admin-shell.js"></script>
+    <script src="../../scripts/admin-ui.js"></script>
+    <script>
+        var app = document.getElementById('app');
+        app.innerHTML = AdminUI.kpis([
+            { icon: '🧱', color: 'red', label: 'Materials', value: '412', sub: '4 categories shown' },
+            { icon: '✅', color: 'green', label: 'In stock', value: '371', sub: '90% available' },
+            { icon: '⚠️', color: 'amber', label: 'Limited / out', value: '41', sub: 'Check suppliers' },
+            { icon: '📏', color: 'dark', label: 'Units', value: '9', sub: 'Measurement units' }
+        ]) + '<div id="mats"></div><div class="admin-row"><div id="cats"></div><div id="units"></div></div>';
+
+        var CATS = ['Cement & concrete', 'Bricks & blocks', 'Roofing', 'Steel', 'Timber', 'Plumbing', 'Electrical'];
+
+        AdminUI.crud(document.getElementById('mats'), {
+            title: 'Materials',
+            addLabel: 'Add material',
+            export: true,
+            columns: [
+                { key: 'name', label: 'Material' },
+                { key: 'category', label: 'Category', type: 'select', options: CATS, filter: true },
+                { key: 'unit', label: 'Unit' },
+                { key: 'spec', label: 'Specification' },
+                { key: 'avail', label: 'Availability', type: 'status', filter: true, options: [['In stock', 'ok'], ['Limited', 'warn'], ['Out of stock', 'bad']] }
+            ],
+            rows: [
+                { name: 'Cement 50 kg (CEM II)', category: 'Cement & concrete', unit: 'bag', spec: 'SANS 50197-1', avail: 'In stock' },
+                { name: 'Face brick', category: 'Bricks & blocks', unit: '1000', spec: 'SANS 227', avail: 'In stock' },
+                { name: 'Concrete roof tile', category: 'Roofing', unit: 'm²', spec: 'SANS 542', avail: 'Limited' },
+                { name: 'Rebar Y12', category: 'Steel', unit: '6 m length', spec: 'SANS 920', avail: 'Out of stock' },
+                { name: 'SA pine 38x114', category: 'Timber', unit: 'm', spec: 'SANS 1783 (S5)', avail: 'In stock' }
+            ]
+        });
+
+        AdminUI.crud(document.getElementById('cats'), {
+            title: 'Material categories',
+            addLabel: 'Add category',
+            columns: [
+                { key: 'name', label: 'Category' },
+                { key: 'items', label: 'Items', type: 'num' }
+            ],
+            rows: CATS.map(function (c, i) { return { name: c, items: String([14, 9, 17, 11, 22, 31, 26][i]) }; })
+        });
+
+        AdminUI.crud(document.getElementById('units'), {
+            title: 'Units of measurement',
+            addLabel: 'Add unit',
+            columns: [
+                { key: 'name', label: 'Unit' },
+                { key: 'symbol', label: 'Symbol' },
+                { key: 'system', label: 'System', type: 'select', options: ['Metric', 'Imperial'] }
+            ],
+            rows: [
+                { name: 'Square metre', symbol: 'm²', system: 'Metric' },
+                { name: 'Cubic metre', symbol: 'm³', system: 'Metric' },
+                { name: 'Kilogram', symbol: 'kg', system: 'Metric' },
+                { name: 'Square foot', symbol: 'ft²', system: 'Imperial' }
+            ]
+        });
+    </script>
+</body>
+</html>

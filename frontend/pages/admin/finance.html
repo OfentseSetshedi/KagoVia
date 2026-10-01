@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Finance | KagoBuild Admin</title>
+    <link rel="stylesheet" href="../../styles/variables.css">
+    <link rel="stylesheet" href="../../styles/dash.css">
+    <link rel="stylesheet" href="../../styles/admin.css">
+    <link rel="stylesheet" href="../../styles/admin-extra.css">
+</head>
+<body data-title="Finance">
+    <main class="admin-page" id="app"></main>
+
+    <script src="../../scripts/admin-shell.js"></script>
+    <script src="../../scripts/admin-ui.js"></script>
+    <script>
+        var app = document.getElementById('app');
+        app.innerHTML = AdminUI.kpis([
+            { icon: '💰', color: 'green', label: 'Revenue (month)', value: 'R 245,900', sub: '▲ 8.1%', up: true },
+            { icon: '🔁', color: 'dark', label: 'Active subscriptions', value: '1,284', sub: '▲ 3.4%', up: true },
+            { icon: '↩️', color: 'amber', label: 'Refunds (month)', value: 'R 6,450', sub: '11 refunds' },
+            { icon: '🤝', color: 'red', label: 'Supplier commissions', value: 'R 18,320', sub: 'This month' }
+        ]) + '<div id="plans"></div><div id="tx"></div>';
+
+        AdminUI.crud(document.getElementById('plans'), {
+            title: 'Subscription plans',
+            addLabel: 'Add plan',
+            columns: [
+                { key: 'name', label: 'Plan' },
+                { key: 'price', label: 'Price', type: 'num' },
+                { key: 'billing', label: 'Billing', type: 'select', options: ['Monthly', 'Yearly', 'One-off'] },
+                { key: 'subs', label: 'Subscribers', type: 'num' },
+                { key: 'status', label: 'Status', type: 'status', options: [['Live', 'ok'], ['Hidden', 'neutral']] }
+            ],
+            rows: [
+                { name: 'Free', price: 'R 0', billing: 'Monthly', subs: '9,870', status: 'Live' },
+                { name: 'Homeowner', price: 'R 149', billing: 'Monthly', subs: '842', status: 'Live' },
+                { name: 'Builder Pro', price: 'R 499', billing: 'Monthly', subs: '312', status: 'Live' },
+                { name: 'Architect Yearly', price: 'R 4,990', billing: 'Yearly', subs: '130', status: 'Hidden' }
+            ]
+        });
+
+        AdminUI.crud(document.getElementById('tx'), {
+            title: 'Transactions',
+            addLabel: 'Add transaction',
+            export: true,
+            columns: [
+                { key: 'id', label: 'Transaction' },
+                { key: 'customer', label: 'Customer' },
+                { key: 'plan', label: 'Plan', filter: true },
+                { key: 'amount', label: 'Amount', type: 'num' },
+                { key: 'date', label: 'Date' },
+                { key: 'status', label: 'Status', type: 'status', filter: true, options: [['Paid', 'ok'], ['Pending', 'warn'], ['Refunded', 'neutral'], ['Failed', 'bad']] }
+            ],
+            rows: [
+                { id: 'TX-90412', customer: 'Thabo M.', plan: 'Homeowner', amount: 'R 149', date: '28 Sep 2026', status: 'Paid' },
+                { id: 'TX-90411', customer: 'Liam P.', plan: 'Builder Pro', amount: 'R 499', date: '28 Sep 2026', status: 'Failed' },
+                { id: 'TX-90410', customer: 'Aisha K.', plan: 'Architect Yearly', amount: 'R 4,990', date: '27 Sep 2026', status: 'Paid' },
+                { id: 'TX-90409', customer: 'Naledi S.', plan: 'Homeowner', amount: 'R 149', date: '27 Sep 2026', status: 'Pending' }
+            ],
+            actions: [
+                { label: 'Refund', show: function (r) { return r.status === 'Paid'; },
+                  run: function (r, api) {
+                      if (confirm('Refund ' + r.amount + ' to ' + r.customer + '?')) {
+                          r.status = 'Refunded';
+                          api.toast('Refund issued for ' + r.id);
+                      }
+                  } }
+            ]
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Roles &amp; Permissions | KagoBuild Admin</title>
+    <link rel="stylesheet" href="../../styles/variables.css">
+    <link rel="stylesheet" href="../../styles/dash.css">
+    <link rel="stylesheet" href="../../styles/admin.css">
+    <link rel="stylesheet" href="../../styles/admin-extra.css">
+</head>
+<body data-title="Roles & permissions">
+    <main class="admin-page" id="app"></main>
+
+    <script src="../../scripts/admin-shell.js"></script>
+    <script src="../../scripts/admin-ui.js"></script>
+    <script>
+        var ROLES = [
+            ['Super Admin', 'Full platform control'],
+            ['Platform Admin', 'Users, projects, system configuration'],
+            ['AI Admin', 'AI models, prompts, AI performance'],
+            ['Supplier Admin', 'Suppliers, APIs, inventory, pricing'],
+            ['Content Admin', 'Guides, FAQs, announcements'],
+            ['Finance Admin', 'Subscriptions, payments, commissions'],
+            ['Support Admin', 'Users, projects, troubleshooting'],
+            ['Analyst', 'Read-only analytics and reports']
+        ];
+        var MODS = ['User management', 'House plans', 'AI management', 'Materials', 'Suppliers', 'Pricing',
+            'Projects & estimates', 'Locations & regions', 'Building rules', 'Content', 'Analytics',
+            'Finance', 'Notifications', 'Security & access', 'System'];
+        var LEVELS = ['None', 'View', 'Manage'];
+
+        var perms = {};
+        ROLES.forEach(function (r) { perms[r[0]] = MODS.map(function () { return 'None'; }); });
+        function grant(role, manage, view) {
+            manage.forEach(function (i) { perms[role][i] = 'Manage'; });
+            view.forEach(function (i) { perms[role][i] = 'View'; });
+        }
+        perms['Super Admin'] = MODS.map(function () { return 'Manage'; });
+        grant('Platform Admin', [0, 1, 6, 7, 12], [2, 3, 4, 5, 8, 10, 14]);
+        grant('AI Admin', [2], [1, 6, 10]);
+        grant('Supplier Admin', [3, 4, 5, 7], [6, 10]);
+        grant('Content Admin', [9, 12], [10]);
+        grant('Finance Admin', [11], [0, 5, 6, 10]);
+        grant('Support Admin', [0, 6], [1, 3, 5, 12]);
+        grant('Analyst', [], [0, 1, 2, 4, 6, 10, 11]);
+
+        var app = document.getElementById('app');
+        app.innerHTML = AdminUI.kpis([
+            { icon: '🔐', color: 'red', label: 'Roles', value: String(ROLES.length), sub: 'Super Admin is locked' },
+            { icon: '🧑‍💼', color: 'dark', label: 'Admin accounts', value: '9', sub: '2 Super Admins' },
+            { icon: '🛡', color: 'green', label: '2FA enabled', value: '8 / 9', sub: 'Require for all' },
+            { icon: '🕒', color: 'amber', label: 'Active sessions', value: '6', sub: 'Right now' }
+        ]) + '<section class="admin-card" id="matrixCard"></section><div id="admins"></div>';
+
+        var card = document.getElementById('matrixCard');
+        card.innerHTML = '<div class="admin-card-head"><h5>Permission matrix</h5>' +
+            '<span><button class="btn sm" id="resetM">Reset</button> <button class="btn sm primary" id="saveM">Save changes</button></span></div>' +
+            '<div class="table-wrap"><table class="admin-table matrix"><thead><tr><th>Module</th>' +
+            ROLES.map(function (r) { return '<th title="' + AdminUI.esc(r[1]) + '">' + AdminUI.esc(r[0]) + '</th>'; }).join('') +
+            '</tr></thead><tbody>' +
+            MODS.map(function (m, mi) {
+                return '<tr><td>' + AdminUI.esc(m) + '</td>' + ROLES.map(function (r) {
+                    var locked = r[0] === 'Super Admin';
+                    return '<td><select class="admin-select" data-r="' + AdminUI.esc(r[0]) + '" data-m="' + mi + '"' + (locked ? ' disabled' : '') + '>' +
+                        LEVELS.map(function (l) { return '<option' + (perms[r[0]][mi] === l ? ' selected' : '') + '>' + l + '</option>'; }).join('') +
+                        '</select></td>';
+                }).join('') + '</tr>';
+            }).join('') + '</tbody></table></div>' +
+            '<p class="muted" style="margin:12px 0 0">View = read only. Manage = create, edit and delete. Hover a role name to see its responsibility.</p>';
+
+        card.addEventListener('change', function (e) {
+            var s = e.target.closest('select[data-r]');
+            if (s) perms[s.getAttribute('data-r')][+s.getAttribute('data-m')] = s.value;
+        });
+        document.getElementById('saveM').onclick = function () { AdminUI.toast('Permissions saved (demo only, not sent to a server)'); };
+        document.getElementById('resetM').onclick = function () { location.reload(); };
+
+        AdminUI.crud(document.getElementById('admins'), {
+            title: 'Admin accounts',
+            addLabel: 'Add admin',
+            columns: [
+                { key: 'name', label: 'Name' },
+                { key: 'email', label: 'Email' },
+                { key: 'role', label: 'Role', type: 'select', options: ROLES.map(function (r) { return r[0]; }), filter: true },
+                { key: 'tfa', label: '2FA', type: 'status', options: [['On', 'ok'], ['Off', 'warn']] },
+                { key: 'last', label: 'Last login' },
+                { key: 'status', label: 'Status', type: 'status', options: [['Active', 'ok'], ['Suspended', 'bad']] }
+            ],
+            rows: [
+                { name: 'Sipho Dlamini', email: 'sipho@kagobuild.com', role: 'Super Admin', tfa: 'On', last: 'Today 08:02', status: 'Active' },
+                { name: 'Anika Botha', email: 'anika@kagobuild.com', role: 'AI Admin', tfa: 'On', last: 'Today 07:40', status: 'Active' },
+                { name: 'Kabelo Nkosi', email: 'kabelo@kagobuild.com', role: 'Supplier Admin', tfa: 'On', last: 'Yesterday', status: 'Active' },
+                { name: 'Megan Smith', email: 'megan@kagobuild.com', role: 'Support Admin', tfa: 'Off', last: '4 days ago', status: 'Active' }
+            ],
+            actions: [
+                { label: 'Force logout', run: function (r, api) { api.toast(r.name + ' was signed out of all sessions'); } },
+                { label: function (r) { return r.status === 'Active' ? 'Suspend' : 'Activate'; },
+                  run: function (r) { r.status = r.status === 'Active' ? 'Suspended' : 'Active'; } }
+            ]
+        });
+    </script>
+</body>
+</html>

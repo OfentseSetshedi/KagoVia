@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My Settings | KagoBuild Admin</title>
+    <link rel="stylesheet" href="../../styles/variables.css">
+    <link rel="stylesheet" href="../../styles/dash.css">
+    <link rel="stylesheet" href="../../styles/admin.css">
+    <link rel="stylesheet" href="../../styles/admin-extra.css">
+</head>
+<body data-title="My settings">
+    <main class="admin-page" id="app"></main>
+
+    <script src="../../scripts/admin-shell.js"></script>
+    <script src="../../scripts/admin-ui.js"></script>
+    <script>
+        var app = document.getElementById('app');
+        var saved = AdminShell.getSettings();
+        var E = AdminUI.esc;
+
+        app.innerHTML =
+            '<div class="settings-stack">' +
+
+            /* ---------- Profile ---------- */
+            '<section class="admin-card" id="profile"><div class="admin-card-head"><h5>My profile</h5><span class="pill info">' + E(AdminShell.role) + '</span></div>' +
+                '<div class="profile-photo-block">' +
+                    '<div class="photo-preview"><span id="pInitials"></span><img id="pImg" alt="Profile photo"></div>' +
+                    '<div class="photo-actions">' +
+                        '<button class="btn" id="pChange" type="button">Change photo</button>' +
+                        '<button class="btn danger" id="pRemove" type="button">Remove</button>' +
+                        '<input type="file" id="pFile" accept="image/*" hidden>' +
+                    '</div>' +
+                '</div>' +
+                '<div class="form-grid">' +
+                    '<label class="field"><span>Full name</span><input class="admin-input" id="pName" value="' + E(saved['profile.name'] || 'Moses') + '"></label>' +
+                    '<label class="field"><span>Role</span><input class="admin-input" value="' + E(AdminShell.role) + '" disabled></label>' +
+                    '<label class="field"><span>Email</span><input class="admin-input" id="pEmail" type="email" value="' + E(saved['profile.email'] || 'admin@kagobuild.com') + '"></label>' +
+                    '<label class="field"><span>Phone</span><input class="admin-input" id="pPhone" value="' + E(saved['profile.phone'] || '') + '" placeholder="+27 ..."></label>' +
+                '</div>' +
+                '<div class="field-error-msg" id="pErr" style="margin-top:10px"></div>' +
+                '<div class="admin-toolbar" style="margin:10px 0 0"><span class="spacer"></span><button class="btn primary" id="pSave" type="button">Save profile</button></div>' +
+            '</section>' +
+
+            /* ---------- Security ---------- */
+            '<section class="admin-card" id="security"><div class="admin-card-head"><h5>Security</h5></div>' +
+                '<div class="setting-row"><div><strong>Two-factor authentication</strong><small>Ask for a code from your authenticator app at sign-in.</small></div>' +
+                    '<label class="switch"><input type="checkbox" id="tfa" ' + (saved['security.tfa'] === false ? '' : 'checked') + '><span></span></label></div>' +
+                '<div class="form-grid" style="margin-top:16px">' +
+                    '<label class="field full"><span>Current password</span><input class="admin-input" id="pwOld" type="password" autocomplete="current-password"></label>' +
+                    '<label class="field"><span>New password</span><input class="admin-input" id="pwNew" type="password" autocomplete="new-password"></label>' +
+                    '<label class="field"><span>Confirm new password</span><input class="admin-input" id="pwConf" type="password" autocomplete="new-password"></label>' +
+                '</div>' +
+                '<div class="field-error-msg" id="pwErr" style="margin-top:10px"></div>' +
+                '<div class="admin-toolbar" style="margin:10px 0 0"><span class="spacer"></span><button class="btn primary" id="pwSave" type="button">Update password</button></div>' +
+            '</section>' +
+
+            /* ---------- Preferences ---------- */
+            '<section class="admin-card" id="preferences"><div class="admin-card-head"><h5>Preferences</h5></div>' +
+                '<div class="form-grid">' +
+                    '<label class="field"><span>Theme</span><select class="admin-select" id="prefTheme"><option value="light">Light</option><option value="dark">Dark</option></select></label>' +
+                    '<label class="field"><span>Time zone</span><select class="admin-select" id="prefTz"><option>Africa/Johannesburg (SAST)</option><option>UTC</option><option>Europe/London</option></select></label>' +
+                '</div>' +
+                '<div class="setting-row"><div><strong>Email alerts</strong><small>Supplier sync failures and AI queue backlogs.</small></div><label class="switch"><input type="checkbox" data-pref="pref.emailAlerts" ' + (saved['pref.emailAlerts'] === false ? '' : 'checked') + '><span></span></label></div>' +
+                '<div class="setting-row"><div><strong>Security notices</strong><small>New sign-ins and permission changes.</small></div><label class="switch"><input type="checkbox" data-pref="pref.securityNotices" ' + (saved['pref.securityNotices'] === false ? '' : 'checked') + '><span></span></label></div>' +
+            '</section>' +
+
+            '<div id="sessions"></div>' +
+            '</div>';
+
+        /* ---------- Profile ---------- */
+        var pName = document.getElementById('pName');
+        var pImg = document.getElementById('pImg');
+        var pInitials = document.getElementById('pInitials');
+        var pErr = document.getElementById('pErr');
+
+        function initials(n) {
+            var p = n.trim().split(/\s+/);
+            return (((p[0] || '')[0] || '') + ((p[1] || '')[0] || '')).toUpperCase();
+        }
+        function paintPreview() {
+            pInitials.textContent = initials(pName.value || 'M');
+            var photo = AdminShell.getSettings()['profile.photo'];
+            if (photo) pImg.src = photo; else pImg.removeAttribute('src');
+        }
+        paintPreview();
+        pName.oninput = function () { pInitials.textContent = initials(pName.value || 'M'); };
+
+        document.getElementById('pChange').onclick = function () { document.getElementById('pFile').click(); };
+
+        document.getElementById('pFile').onchange = function (e) {
+            var file = e.target.files && e.target.files[0];
+            if (!file) return;
+            if (file.type.indexOf('image/') !== 0) { AdminUI.toast('Please choose an image file'); return; }
+            var reader = new FileReader();
+            reader.onload = function () {
+                var img = new Image();
+                img.onload = function () {
+                    /* Shrink to 256px so it fits comfortably in localStorage */
+                    var size = 256, c = document.createElement('canvas');
+                    var s = Math.min(img.width, img.height);
+                    c.width = c.height = size;
+                    c.getContext('2d').drawImage(img, (img.width - s) / 2, (img.height - s) / 2, s, s, 0, 0, size, size);
+                    AdminShell.saveSettings({ 'profile.photo': c.toDataURL('image/jpeg', 0.85) });
+                    paintPreview();
+                    AdminUI.toast('Photo updated');
+                };
+                img.src = reader.result;
+            };
+            reader.readAsDataURL(file);
+            e.target.value = '';
+        };
+
+        document.getElementById('pRemove').onclick = function () {
+            AdminShell.saveSettings({ 'profile.photo': null });
+            paintPreview();
+            AdminUI.toast('Photo removed');
+        };
+
+        document.getElementById('pSave').onclick = function () {
+            var name = pName.value.trim();
+            var email = document.getElementById('pEmail').value.trim();
+            if (!name) { pErr.textContent = 'Please enter your name.'; return; }
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { pErr.textContent = 'Please enter a valid email address.'; return; }
+            pErr.textContent = '';
+            AdminShell.saveSettings({
+                'profile.name': name,
+                'profile.email': email,
+                'profile.phone': document.getElementById('pPhone').value.trim()
+            });
+            paintPreview();
+            AdminUI.toast('Profile saved');
+        };
+
+        /* ---------- Security ---------- */
+        document.getElementById('tfa').onchange = function (e) {
+            AdminShell.saveSettings({ 'security.tfa': e.target.checked });
+            AdminUI.toast('Two-factor authentication ' + (e.target.checked ? 'enabled' : 'disabled'));
+        };
+
+        document.getElementById('pwSave').onclick = function () {
+            var o = document.getElementById('pwOld').value;
+            var n = document.getElementById('pwNew').value;
+            var c = document.getElementById('pwConf').value;
+            var err = document.getElementById('pwErr');
+            if (!o) { err.textContent = 'Enter your current password.'; return; }
+            if (n.length < 8) { err.textContent = 'New password must be at least 8 characters.'; return; }
+            if (n !== c) { err.textContent = 'The new passwords do not match.'; return; }
+            err.textContent = '';
+            ['pwOld', 'pwNew', 'pwConf'].forEach(function (id) { document.getElementById(id).value = ''; });
+            AdminUI.toast('Password updated (demo only, not sent to a server)');
+        };
+
+        /* ---------- Preferences ---------- */
+        var themeSel = document.getElementById('prefTheme');
+        themeSel.value = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+        themeSel.onchange = function () {
+            document.documentElement.setAttribute('data-theme', themeSel.value);
+            try { localStorage.setItem('kb-theme', themeSel.value); } catch (e) {}
+            AdminUI.toast('Theme set to ' + themeSel.value);
+        };
+
+        var tzSel = document.getElementById('prefTz');
+        if (saved['pref.tz']) tzSel.value = saved['pref.tz'];
+        tzSel.onchange = function () { AdminShell.saveSettings({ 'pref.tz': tzSel.value }); AdminUI.toast('Time zone saved'); };
+
+        document.querySelectorAll('[data-pref]').forEach(function (s) {
+            s.onchange = function () {
+                var patch = {};
+                patch[s.getAttribute('data-pref')] = s.checked;
+                AdminShell.saveSettings(patch);
+                AdminUI.toast('Preference saved');
+            };
+        });
+
+        /* ---------- Active sessions ---------- */
+        AdminUI.crud(document.getElementById('sessions'), {
+            title: 'Active sessions',
+            readOnly: true,
+            columns: [
+                { key: 'device', label: 'Device' },
+                { key: 'ip', label: 'IP address' },
+                { key: 'last', label: 'Last active' },
+                { key: 'status', label: 'Status', type: 'status', options: [['This device', 'ok'], ['Other', 'neutral']] }
+            ],
+            rows: [
+                { device: 'Chrome on Windows', ip: '102.132.4.18', last: 'Now', status: 'This device' },
+                { device: 'Safari on iPhone', ip: '102.132.7.41', last: '2 hours ago', status: 'Other' },
+                { device: 'Firefox on macOS', ip: '41.76.12.200', last: 'Yesterday', status: 'Other' }
+            ],
+            actions: [
+                { label: 'Sign out', show: function (r) { return r.status !== 'This device'; },
+                  run: function (r, api) {
+                      api.rows.splice(api.rows.indexOf(r), 1);
+                      api.toast('Signed out of ' + r.device);
+                  } }
+            ]
+        });
+
+        /* Scroll to a section when opened with #profile / #security / #preferences */
+        if (location.hash) {
+            var target = document.querySelector(location.hash);
+            if (target) target.scrollIntoView();
+        }
+    </script>
+</body>
+</html>

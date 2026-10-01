@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>House Plans | KagoBuild Admin</title>
+    <link rel="stylesheet" href="../../styles/variables.css">
+    <link rel="stylesheet" href="../../styles/dash.css">
+    <link rel="stylesheet" href="../../styles/admin.css">
+    <link rel="stylesheet" href="../../styles/admin-extra.css">
+</head>
+<body data-title="House plans">
+    <main class="admin-page" id="app"></main>
+
+    <script src="../../scripts/admin-shell.js"></script>
+    <script src="../../scripts/admin-ui.js"></script>
+    <script>
+        var app = document.getElementById('app');
+        app.innerHTML = AdminUI.kpis([
+            { icon: '🏠', color: 'red', label: 'Generated plans', value: '3,204', sub: '▲ 6% this week', up: true },
+            { icon: '🔎', color: 'amber', label: 'Awaiting review', value: '18', sub: 'Flagged by AI' },
+            { icon: '📐', color: 'dark', label: 'Templates', value: '24', sub: '6 house styles' },
+            { icon: '✅', color: 'green', label: 'Approval rate', value: '96%', sub: '▲ 1.2%', up: true }
+        ]) + '<div id="plans"></div><div id="templates"></div><div id="styles"></div>';
+
+        AdminUI.crud(document.getElementById('plans'), {
+            title: 'Generated house plans',
+            addLabel: 'Add plan',
+            export: true,
+            columns: [
+                { key: 'id', label: 'Plan' },
+                { key: 'owner', label: 'Owner' },
+                { key: 'style', label: 'Style', type: 'select', options: ['Modern', 'Cottage', 'Double storey', 'Farmhouse'], filter: true },
+                { key: 'beds', label: 'Bedrooms', type: 'num' },
+                { key: 'area', label: 'Area' },
+                { key: 'status', label: 'Status', type: 'status', filter: true, options: [['Approved', 'ok'], ['In review', 'warn'], ['Rejected', 'bad']] }
+            ],
+            rows: [
+                { id: 'PLN-2087', owner: 'Thabo M.', style: 'Modern', beds: '3', area: '148 m²', status: 'Approved' },
+                { id: 'PLN-2086', owner: 'Aisha K.', style: 'Cottage', beds: '2', area: '92 m²', status: 'In review' },
+                { id: 'PLN-2085', owner: 'Naledi S.', style: 'Double storey', beds: '4', area: '230 m²', status: 'Approved' },
+                { id: 'PLN-2084', owner: 'Pieter V.', style: 'Farmhouse', beds: '3', area: '175 m²', status: 'Rejected' }
+            ],
+            actions: [
+                { label: 'Approve', show: function (r) { return r.status !== 'Approved'; },
+                  run: function (r, api) { r.status = 'Approved'; api.toast(r.id + ' approved'); } },
+                { label: 'Reject', show: function (r) { return r.status === 'In review'; },
+                  run: function (r, api) { r.status = 'Rejected'; api.toast(r.id + ' rejected'); } }
+            ]
+        });
+
+        AdminUI.crud(document.getElementById('templates'), {
+            title: 'House-plan templates',
+            addLabel: 'Add template',
+            columns: [
+                { key: 'name', label: 'Template' },
+                { key: 'style', label: 'Style', type: 'select', options: ['Modern', 'Cottage', 'Double storey', 'Farmhouse'], filter: true },
+                { key: 'beds', label: 'Bedrooms', type: 'num' },
+                { key: 'area', label: 'Base area' },
+                { key: 'status', label: 'Status', type: 'status', options: [['Live', 'ok'], ['Draft', 'neutral']] }
+            ],
+            rows: [
+                { name: 'Compact Modern 2-bed', style: 'Modern', beds: '2', area: '85 m²', status: 'Live' },
+                { name: 'Family Modern 3-bed', style: 'Modern', beds: '3', area: '140 m²', status: 'Live' },
+                { name: 'Karoo Cottage', style: 'Cottage', beds: '2', area: '90 m²', status: 'Live' },
+                { name: 'Executive Double', style: 'Double storey', beds: '4', area: '230 m²', status: 'Draft' }
+            ]
+        });
+
+        AdminUI.crud(document.getElementById('styles'), {
+            title: 'Supported styles & design options',
+            addLabel: 'Add option',
+            columns: [
+                { key: 'name', label: 'Option' },
+                { key: 'group', label: 'Group', type: 'select', options: ['House style', 'Roof type', 'Floor layout', 'Finish level'], filter: true },
+                { key: 'status', label: 'Status', type: 'status', options: [['Enabled', 'ok'], ['Disabled', 'neutral']] }
+            ],
+            rows: [
+                { name: 'Modern', group: 'House style', status: 'Enabled' },
+                { name: 'Pitched roof', group: 'Roof type', status: 'Enabled' },
+                { name: 'Flat roof', group: 'Roof type', status: 'Enabled' },
+                { name: 'Open plan', group: 'Floor layout', status: 'Enabled' },
+                { name: 'Premium finish', group: 'Finish level', status: 'Disabled' }
+            ],
+            actions: [
+                { label: function (r) { return r.status === 'Enabled' ? 'Disable' : 'Enable'; },
+                  run: function (r) { r.status = r.status === 'Enabled' ? 'Disabled' : 'Enabled'; } }
+            ]
+        });
+    </script>
+</body>
+</html>

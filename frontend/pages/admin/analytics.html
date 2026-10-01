@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Analytics | KagoBuild Admin</title>
+    <link rel="stylesheet" href="../../styles/variables.css">
+    <link rel="stylesheet" href="../../styles/dash.css">
+    <link rel="stylesheet" href="../../styles/admin.css">
+    <link rel="stylesheet" href="../../styles/admin-extra.css">
+</head>
+<body data-title="Analytics">
+    <main class="admin-page" id="app"></main>
+
+    <script src="../../scripts/admin-shell.js"></script>
+    <script src="../../scripts/admin-ui.js"></script>
+    <script>
+        var app = document.getElementById('app');
+        app.innerHTML = AdminUI.kpis([
+            { icon: '👥', color: 'red', label: 'Monthly active users', value: '7,940', sub: '▲ 5.6%', up: true },
+            { icon: '🏠', color: 'dark', label: 'Plans generated', value: '3,204', sub: '▲ 6%', up: true },
+            { icon: '🧮', color: 'amber', label: 'Estimates created', value: '5,402', sub: '▲ 4%', up: true },
+            { icon: '🤖', color: 'green', label: 'AI requests', value: '27,310', sub: '1.2% error rate' }
+        ]) +
+        '<section class="admin-row"><div id="c1"></div><div id="c2"></div></section>' +
+        '<section class="admin-row"><div id="c3"></div><div id="sup"></div></section>';
+
+        AdminUI.chart(document.getElementById('c1'), { title: 'New users', series: {
+            Week: { labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'], values: [42, 55, 48, 63, 71, 38, 29] },
+            Month: { labels: ['W1', 'W2', 'W3', 'W4'], values: [255, 310, 342, 398] } } });
+
+        AdminUI.chart(document.getElementById('c2'), { title: 'AI generations', series: {
+            Week: { labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'], values: [980, 1120, 1050, 1210, 1340, 860, 720] },
+            Month: { labels: ['W1', 'W2', 'W3', 'W4'], values: [6200, 6900, 7300, 6910] } } });
+
+        AdminUI.chart(document.getElementById('c3'), { title: 'Estimates created', series: {
+            Week: { labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'], values: [140, 175, 160, 205, 230, 120, 95] },
+            Month: { labels: ['W1', 'W2', 'W3', 'W4'], values: [1100, 1250, 1380, 1672] } } });
+
+        AdminUI.crud(document.getElementById('sup'), {
+            title: 'Supplier performance',
+            readOnly: true,
+            export: true,
+            columns: [
+                { key: 'name', label: 'Supplier' },
+                { key: 'uptime', label: 'API uptime', type: 'num' },
+                { key: 'fresh', label: 'Price freshness', type: 'num' },
+                { key: 'status', label: 'Rating', type: 'status', options: [['Good', 'ok'], ['Fair', 'warn'], ['Poor', 'bad']] }
+            ],
+            rows: [
+                { name: 'BuildMart', uptime: '99.9%', fresh: '1 hour', status: 'Good' },
+                { name: 'Cape Roofing', uptime: '96.2%', fresh: '2 days', status: 'Fair' },
+                { name: 'SteelWorks SA', uptime: '71.0%', fresh: '5 days', status: 'Poor' }
+            ]
+        });
+    </script>
+</body>
+</html>

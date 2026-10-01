@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Users | KagoBuild Admin</title>
+    <link rel="stylesheet" href="../../styles/variables.css">
+    <link rel="stylesheet" href="../../styles/dash.css">
+    <link rel="stylesheet" href="../../styles/admin.css">
+    <link rel="stylesheet" href="../../styles/admin-extra.css">
+</head>
+<body data-title="Users">
+    <main class="admin-page" id="app"></main>
+
+    <script src="../../scripts/admin-shell.js"></script>
+    <script src="../../scripts/admin-ui.js"></script>
+    <script>
+        var app = document.getElementById('app');
+        app.innerHTML = AdminUI.kpis([
+            { icon: '👥', color: 'red', label: 'Total users', value: '12,480', sub: '▲ 4.2% this month', up: true },
+            { icon: '✅', color: 'green', label: 'Active', value: '11,902', sub: '95% of users' },
+            { icon: '⏸', color: 'amber', label: 'Suspended', value: '64', sub: 'Needs follow-up' },
+            { icon: '✉️', color: 'dark', label: 'Unverified', value: '514', sub: 'Email not confirmed' }
+        ]) + '<div id="t"></div>';
+
+        AdminUI.crud(document.getElementById('t'), {
+            title: 'Users',
+            addLabel: 'Add user',
+            export: true,
+            columns: [
+                { key: 'name', label: 'Name' },
+                { key: 'email', label: 'Email' },
+                { key: 'type', label: 'Type', type: 'select', options: ['Homeowner', 'Builder', 'Architect'], filter: true },
+                { key: 'projects', label: 'Projects', type: 'num' },
+                { key: 'last', label: 'Last active' },
+                { key: 'status', label: 'Status', type: 'status', filter: true, options: [['Active', 'ok'], ['Suspended', 'bad'], ['Unverified', 'warn']] }
+            ],
+            rows: [
+                { name: 'Thabo Mokoena', email: 'thabo@example.com', type: 'Homeowner', projects: '4', last: '2m ago', status: 'Active' },
+                { name: 'Aisha Khan', email: 'aisha@example.com', type: 'Architect', projects: '9', last: '1h ago', status: 'Active' },
+                { name: 'Liam Pretorius', email: 'liam@example.com', type: 'Builder', projects: '0', last: '12 days ago', status: 'Suspended' },
+                { name: 'Naledi Sithole', email: 'naledi@example.com', type: 'Homeowner', projects: '7', last: 'Yesterday', status: 'Active' },
+                { name: 'Pieter van Wyk', email: 'pieter@example.com', type: 'Builder', projects: '1', last: '3 days ago', status: 'Unverified' }
+            ],
+            actions: [
+                { label: function (r) { return r.status === 'Suspended' ? 'Activate' : 'Suspend'; },
+                  run: function (r, api) {
+                      r.status = r.status === 'Suspended' ? 'Active' : 'Suspended';
+                      api.toast(r.name + ' is now ' + r.status.toLowerCase());
+                  } },
+                { label: 'Reset', run: function (r, api) { api.toast('Password reset email sent to ' + r.email); } },
+                { label: 'Activity', run: function (r) {
+                      AdminUI.info('Activity: ' + r.name,
+                          '<ul class="health-list"><li>Generated a house plan <em>Today 09:12</em></li>' +
+                          '<li>Updated project estimate <em>Yesterday</em></li>' +
+                          '<li>Logged in <em>Yesterday</em></li>' +
+                          '<li>Created account <em>14 Aug 2026</em></li></ul>');
+                  } }
+            ]
+        });
+    </script>
+</body>
+</html>

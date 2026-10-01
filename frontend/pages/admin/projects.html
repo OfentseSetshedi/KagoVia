@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Projects &amp; Estimates | KagoBuild Admin</title>
+    <link rel="stylesheet" href="../../styles/variables.css">
+    <link rel="stylesheet" href="../../styles/dash.css">
+    <link rel="stylesheet" href="../../styles/admin.css">
+    <link rel="stylesheet" href="../../styles/admin-extra.css">
+</head>
+<body data-title="Projects & estimates">
+    <main class="admin-page" id="app"></main>
+
+    <script src="../../scripts/admin-shell.js"></script>
+    <script src="../../scripts/admin-ui.js"></script>
+    <script>
+        var app = document.getElementById('app');
+        app.innerHTML = AdminUI.kpis([
+            { icon: '📁', color: 'red', label: 'Total projects', value: '2,918', sub: '▲ 5% this month', up: true },
+            { icon: '🧮', color: 'dark', label: 'Estimates generated', value: '5,402', sub: 'All time' },
+            { icon: '💰', color: 'green', label: 'Average estimate', value: 'R 685,000', sub: 'Per project' },
+            { icon: '🚩', color: 'amber', label: 'Flagged', value: '9', sub: 'Unusual totals' }
+        ]) + '<div id="t"></div><div id="rules"></div>';
+
+        var fmt = function (n) { return 'R ' + Math.round(n).toLocaleString('en-US'); };
+
+        AdminUI.crud(document.getElementById('t'), {
+            title: 'Projects & estimates',
+            addLabel: 'Add project',
+            export: true,
+            columns: [
+                { key: 'id', label: 'Project' },
+                { key: 'owner', label: 'Owner' },
+                { key: 'category', label: 'Category', type: 'select', options: ['New build', 'Extension', 'Renovation'], filter: true },
+                { key: 'region', label: 'Region', filter: true },
+                { key: 'estimate', label: 'Estimate', type: 'num' },
+                { key: 'status', label: 'Status', type: 'status', filter: true, options: [['Complete', 'ok'], ['Estimated', 'info'], ['Flagged', 'warn'], ['Draft', 'neutral']] }
+            ],
+            rows: [
+                { id: 'PRJ-3301', owner: 'Thabo M.', category: 'New build', region: 'Gauteng', estimate: 'R 842,300', status: 'Estimated' },
+                { id: 'PRJ-3300', owner: 'Aisha K.', category: 'Extension', region: 'Western Cape', estimate: 'R 215,600', status: 'Complete' },
+                { id: 'PRJ-3299', owner: 'Naledi S.', category: 'New build', region: 'Gauteng', estimate: 'R 1,980,000', status: 'Flagged' },
+                { id: 'PRJ-3298', owner: 'Pieter V.', category: 'Renovation', region: 'KwaZulu-Natal', estimate: 'R 98,400', status: 'Draft' }
+            ],
+            actions: [
+                { label: 'Breakdown', run: function (r) {
+                      var n = Number(String(r.estimate).replace(/[^\d]/g, '')) || 0;
+                      AdminUI.info(r.id + ' cost breakdown',
+                          '<table class="admin-table"><tbody>' +
+                          '<tr><td>Materials</td><td class="r">' + fmt(n * 0.55) + '</td></tr>' +
+                          '<tr><td>Labour</td><td class="r">' + fmt(n * 0.30) + '</td></tr>' +
+                          '<tr><td>Transport & site costs</td><td class="r">' + fmt(n * 0.08) + '</td></tr>' +
+                          '<tr><td>Contingency</td><td class="r">' + fmt(n * 0.07) + '</td></tr>' +
+                          '<tr><td>Total</td><td class="r">' + fmt(n) + '</td></tr></tbody></table>');
+                  } },
+                { label: function (r) { return r.status === 'Flagged' ? 'Clear flag' : 'Flag'; },
+                  run: function (r) { r.status = r.status === 'Flagged' ? 'Estimated' : 'Flagged'; } }
+            ]
+        });
+
+        AdminUI.crud(document.getElementById('rules'), {
+            title: 'Estimation rules & project categories',
+            addLabel: 'Add rule',
+            columns: [
+                { key: 'name', label: 'Rule' },
+                { key: 'value', label: 'Value', type: 'num' },
+                { key: 'applies', label: 'Applies to', filter: true },
+                { key: 'status', label: 'Status', type: 'status', options: [['Active', 'ok'], ['Off', 'neutral']] }
+            ],
+            rows: [
+                { name: 'Contingency allowance', value: '7%', applies: 'All categories', status: 'Active' },
+                { name: 'Wastage - bricks', value: '5%', applies: 'New build', status: 'Active' },
+                { name: 'Wastage - roofing', value: '8%', applies: 'New build', status: 'Active' },
+                { name: 'Flag estimates above', value: 'R 1,500,000', applies: 'All categories', status: 'Active' }
+            ]
+        });
+    </script>
+</body>
+</html>

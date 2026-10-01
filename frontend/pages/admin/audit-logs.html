@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Audit Logs | KagoBuild Admin</title>
+    <link rel="stylesheet" href="../../styles/variables.css">
+    <link rel="stylesheet" href="../../styles/dash.css">
+    <link rel="stylesheet" href="../../styles/admin.css">
+    <link rel="stylesheet" href="../../styles/admin-extra.css">
+</head>
+<body data-title="Audit logs">
+    <main class="admin-page" id="app"></main>
+
+    <script src="../../scripts/admin-shell.js"></script>
+    <script src="../../scripts/admin-ui.js"></script>
+    <script>
+        var app = document.getElementById('app');
+        app.innerHTML = AdminUI.kpis([
+            { icon: '🧾', color: 'dark', label: 'Events (24h)', value: '1,482', sub: 'All admin actions' },
+            { icon: '🔑', color: 'green', label: 'Logins', value: '37', sub: 'Admin sign-ins' },
+            { icon: '⚠️', color: 'amber', label: 'Failed actions', value: '5', sub: 'Last 24 hours' },
+            { icon: '🚨', color: 'red', label: 'Security events', value: '2', sub: 'Needs review' }
+        ]) + '<div id="logs"></div><div id="sec"></div>';
+
+        AdminUI.crud(document.getElementById('logs'), {
+            title: 'Audit log',
+            readOnly: true,
+            export: true,
+            columns: [
+                { key: 'time', label: 'Time' },
+                { key: 'admin', label: 'Admin', filter: true },
+                { key: 'action', label: 'Action' },
+                { key: 'target', label: 'Target' },
+                { key: 'ip', label: 'IP address' },
+                { key: 'result', label: 'Result', type: 'status', filter: true, options: [['Success', 'ok'], ['Failed', 'bad']] }
+            ],
+            rows: [
+                { time: 'Today 09:20', admin: 'Sipho Dlamini', action: 'Changed role permissions', target: 'Support Admin', ip: '102.132.4.18', result: 'Success' },
+                { time: 'Today 08:55', admin: 'Kabelo Nkosi', action: 'Updated material price', target: 'Cement 50 kg', ip: '102.132.7.41', result: 'Success' },
+                { time: 'Today 08:31', admin: 'Anika Botha', action: 'Activated AI model', target: 'PlanGen 2.4-beta', ip: '102.132.4.77', result: 'Failed' },
+                { time: 'Yesterday 17:12', admin: 'Megan Smith', action: 'Reset user password', target: 'liam@example.com', ip: '41.76.12.200', result: 'Success' },
+                { time: 'Yesterday 15:03', admin: 'Sipho Dlamini', action: 'Deleted house plan', target: 'PLN-2079', ip: '102.132.4.18', result: 'Success' }
+            ]
+        });
+
+        AdminUI.crud(document.getElementById('sec'), {
+            title: 'Security events',
+            readOnly: true,
+            columns: [
+                { key: 'time', label: 'Time' },
+                { key: 'event', label: 'Event' },
+                { key: 'who', label: 'Account' },
+                { key: 'ip', label: 'IP address' },
+                { key: 'sev', label: 'Severity', type: 'status', filter: true, options: [['Info', 'neutral'], ['Warning', 'warn'], ['Critical', 'bad']] }
+            ],
+            rows: [
+                { time: 'Today 03:12', event: '5 failed logins', who: 'megan@kagobuild.com', ip: '196.25.1.9', sev: 'Warning' },
+                { time: 'Yesterday 22:40', event: 'Login from new country', who: 'anika@kagobuild.com', ip: '81.2.69.142', sev: 'Critical' },
+                { time: 'Yesterday 09:00', event: '2FA disabled', who: 'megan@kagobuild.com', ip: '41.76.12.200', sev: 'Info' }
+            ]
+        });
+    </script>
+</body>
+</html>

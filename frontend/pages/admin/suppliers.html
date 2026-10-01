@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Suppliers | KagoBuild Admin</title>
+    <link rel="stylesheet" href="../../styles/variables.css">
+    <link rel="stylesheet" href="../../styles/dash.css">
+    <link rel="stylesheet" href="../../styles/admin.css">
+    <link rel="stylesheet" href="../../styles/admin-extra.css">
+</head>
+<body data-title="Suppliers">
+    <main class="admin-page" id="app"></main>
+
+    <script src="../../scripts/admin-shell.js"></script>
+    <script src="../../scripts/admin-ui.js"></script>
+    <script>
+        var app = document.getElementById('app');
+        app.innerHTML = AdminUI.kpis([
+            { icon: '🚚', color: 'red', label: 'Suppliers', value: '38', sub: '5 regions' },
+            { icon: '🔌', color: 'green', label: 'Connected APIs', value: '22', sub: '58% of suppliers' },
+            { icon: '⚠️', color: 'amber', label: 'Slow / delayed', value: '3', sub: 'Over 1.5 s' },
+            { icon: '⛔', color: 'dark', label: 'Disconnected', value: '1', sub: 'Needs attention' }
+        ]) + '<section class="admin-row admin-row--wide"><div id="t"></div>' +
+        '<div class="admin-card"><div class="admin-card-head"><h5>Connection status</h5></div>' +
+        '<ul class="health-list">' +
+            '<li><span class="dot ok"></span>BuildMart API <em>240 ms</em></li>' +
+            '<li><span class="dot ok"></span>Brick & Block feed <em>Manual</em></li>' +
+            '<li><span class="dot warn"></span>Cape Roofing API <em>1.9 s</em></li>' +
+            '<li><span class="dot bad"></span>SteelWorks API <em>Timeout</em></li>' +
+        '</ul></div></section>';
+
+        AdminUI.crud(document.getElementById('t'), {
+            title: 'Suppliers',
+            addLabel: 'Add supplier',
+            export: true,
+            columns: [
+                { key: 'name', label: 'Supplier' },
+                { key: 'region', label: 'Region', filter: true },
+                { key: 'source', label: 'Price source', type: 'select', options: ['API', 'CSV import', 'Manual'] },
+                { key: 'sync', label: 'Last sync' },
+                { key: 'status', label: 'Connection', type: 'status', filter: true, options: [['Connected', 'ok'], ['Manual', 'neutral'], ['Slow', 'warn'], ['Disconnected', 'bad']] }
+            ],
+            rows: [
+                { name: 'BuildMart', region: 'Gauteng', source: 'API', sync: '10 min ago', status: 'Connected' },
+                { name: 'Brick & Block Co.', region: 'Gauteng', source: 'CSV import', sync: 'Yesterday', status: 'Manual' },
+                { name: 'Cape Roofing', region: 'Western Cape', source: 'API', sync: '2 days ago', status: 'Slow' },
+                { name: 'SteelWorks SA', region: 'KwaZulu-Natal', source: 'API', sync: '5 days ago', status: 'Disconnected' }
+            ],
+            actions: [
+                { label: 'Sync', show: function (r) { return r.source === 'API'; },
+                  run: function (r, api) {
+                      if (r.status === 'Disconnected') { api.toast('Reconnect ' + r.name + ' first'); return; }
+                      r.sync = 'Just now';
+                      api.toast(r.name + ' synced');
+                  } },
+                { label: 'Reconnect', show: function (r) { return r.status === 'Disconnected'; },
+                  run: function (r, api) { r.status = 'Connected'; r.sync = 'Just now'; api.toast(r.name + ' reconnected'); } }
+            ]
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Content | KagoBuild Admin</title>
+    <link rel="stylesheet" href="../../styles/variables.css">
+    <link rel="stylesheet" href="../../styles/dash.css">
+    <link rel="stylesheet" href="../../styles/admin.css">
+    <link rel="stylesheet" href="../../styles/admin-extra.css">
+</head>
+<body data-title="Content">
+    <main class="admin-page" id="app"></main>
+
+    <script src="../../scripts/admin-shell.js"></script>
+    <script src="../../scripts/admin-ui.js"></script>
+    <script>
+        var app = document.getElementById('app');
+        app.innerHTML = AdminUI.kpis([
+            { icon: '📝', color: 'red', label: 'Articles', value: '64', sub: 'All types' },
+            { icon: '🌐', color: 'green', label: 'Published', value: '52', sub: '81%' },
+            { icon: '✏️', color: 'amber', label: 'Drafts', value: '9', sub: 'Unpublished' },
+            { icon: '📣', color: 'dark', label: 'Announcements', value: '3', sub: 'Live now' }
+        ]) + '<div id="t"></div>';
+
+        AdminUI.crud(document.getElementById('t'), {
+            title: 'Content library',
+            addLabel: 'Add content',
+            columns: [
+                { key: 'title', label: 'Title' },
+                { key: 'type', label: 'Type', type: 'select', options: ['FAQ', 'Guide', 'Educational', 'Announcement', 'Help article', 'Onboarding'], filter: true },
+                { key: 'body', label: 'Content', type: 'textarea', noTable: true },
+                { key: 'author', label: 'Author' },
+                { key: 'updated', label: 'Updated' },
+                { key: 'status', label: 'Status', type: 'status', filter: true, options: [['Published', 'ok'], ['Draft', 'warn'], ['Archived', 'neutral']] }
+            ],
+            rows: [
+                { title: 'How the cost estimate works', type: 'Guide', body: '', author: 'Content team', updated: '22 Sep 2026', status: 'Published' },
+                { title: 'What is a building plan approval?', type: 'Educational', body: '', author: 'Content team', updated: '18 Sep 2026', status: 'Published' },
+                { title: 'Why did my price change?', type: 'FAQ', body: '', author: 'Support', updated: '12 Sep 2026', status: 'Published' },
+                { title: 'Getting started with KagoBuild', type: 'Onboarding', body: '', author: 'Content team', updated: '01 Sep 2026', status: 'Draft' },
+                { title: 'Scheduled maintenance', type: 'Announcement', body: '', author: 'Platform', updated: '28 Sep 2026', status: 'Published' }
+            ],
+            actions: [
+                { label: function (r) { return r.status === 'Published' ? 'Unpublish' : 'Publish'; },
+                  run: function (r, api) { r.status = r.status === 'Published' ? 'Draft' : 'Published'; api.toast(r.title + ' is now ' + r.status.toLowerCase()); } }
+            ]
+        });
+    </script>
+</body>
+</html>
