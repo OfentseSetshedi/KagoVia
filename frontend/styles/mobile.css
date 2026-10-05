@@ -1,0 +1,584 @@
+/* =========================================================
+   Mobile + tablet layer for every dashboard page
+   -----------------------------------------------------------
+   Link it LAST, after dash.css and the page's own stylesheet:
+
+     <link rel="stylesheet" href="../styles/mobile.css">
+
+   Everything is inside media queries, so the desktop layout
+   is untouched. On small screens the sidebar becomes a slim
+   icon-only rail (no labels, no drawer).
+========================================================= */
+
+/* Hidden everywhere: the icon rail replaces the hamburger drawer */
+.mobile-menu-btn,
+.mobile-backdrop{ display:none !important; }
+
+/* =========================================================
+   Tablet and phone: sidebar becomes an icon-only rail
+========================================================= */
+
+@media (max-width:900px){
+
+    html, body{ height:100%; }
+
+    .dashboard{
+        height:100vh;
+        height:100dvh;
+        grid-template-columns:auto minmax(0, 1fr);
+    }
+
+    .sidebar-resizer{ display:none; }
+
+    .dashboard-overview{
+        height:100vh;
+        height:100dvh;
+    }
+
+    /* ---------- Icon rail ---------- */
+
+    .dashboard-navbar,
+    .dashboard-navbar.collapsed{
+        position:relative;
+        transform:none;
+        height:100%;
+        width:60px !important;        /* beats the inline width set by main.js */
+        min-width:60px;
+        max-width:60px;
+        padding:12px 6px calc(12px + env(safe-area-inset-bottom, 0px));
+        overflow-x:hidden;
+        overflow-y:auto;
+        scrollbar-width:none;
+        box-shadow:none;
+    }
+
+    .dashboard-navbar::-webkit-scrollbar{ display:none; }
+
+    /* Hide every text label, keep the icons */
+    .dashboard-navbar .logo-text,
+    .dashboard-navbar .nav-label{
+        display:none !important;
+    }
+
+    .dashboard-navbar #logo,
+    .dashboard-navbar .nav-link{
+        justify-content:center;
+        gap:0;
+        padding-left:0;
+        padding-right:0;
+    }
+
+    .dashboard-navbar #logo{
+        padding:0 0 12px;
+        margin-bottom:8px;
+    }
+
+    .nav-link{
+        height:44px;
+        border-radius:10px;
+    }
+
+    .nav-link .ico{
+        width:20px;
+        height:20px;
+    }
+
+    .lower-sidebar{
+        margin-top:12px;
+        padding-top:12px;
+    }
+
+    /* ---------- Header ---------- */
+
+    .dashboard-header{
+        height:60px;
+        padding:0 12px;
+        gap:10px;
+    }
+
+    .header-left{
+        flex:1;
+        gap:10px;
+        min-width:0;
+    }
+
+    .header-titles{ min-width:0; }
+
+    .header-left h2{
+        font-size:16px;
+        white-space:nowrap;
+        overflow:hidden;
+        text-overflow:ellipsis;
+    }
+
+    .search-container,
+    .header-subtitle,
+    .header-divider,
+    .user-details,
+    .profile-section .dropdown-arrow,
+    .help-header-search{ display:none !important; }
+
+    .header-right{ gap:8px; }
+
+    .profile-section{ padding:3px; }
+
+    /* Notification list spans the content area instead of overflowing it */
+    .notif-dropdown{
+        position:fixed;
+        top:66px;
+        left:72px;
+        right:12px;
+        width:auto;
+    }
+
+    /* The header tabs on the Projects page scroll instead of overflowing */
+    .header-tabs{
+        gap:18px;
+        overflow-x:auto;
+        scrollbar-width:none;
+    }
+    .header-tabs::-webkit-scrollbar{ display:none; }
+    .tab-link{ font-size:14px; }
+
+    /* ---------- Inputs: 16px stops iOS zooming in on focus ---------- */
+
+    input, select, textarea{ font-size:16px !important; }
+
+    /* ---------- Overlays ---------- */
+
+    .modal-box,
+    .em-box,
+    .rm-box,
+    .wizard-modal-box,
+    .edit-modal-box,
+    .checklist-modal-box{
+        width:100% !important;
+        max-width:calc(100vw - 24px);
+        padding:18px;
+    }
+
+    .modal-overlay,
+    .em-overlay,
+    .rm-overlay{ padding:12px; }
+
+    .toast{ max-width:calc(100vw - 24px); }
+
+    .popover{ max-width:calc(100vw - 24px); }
+
+    /* =====================================================
+       Dashboard page
+    ===================================================== */
+
+    .main-card{
+        overflow-y:auto;
+        overflow-x:hidden;
+        -webkit-overflow-scrolling:touch;
+    }
+
+    .Ongoing-Projects{ padding:14px 12px 4px; }
+
+    .Ongoing-Proj-card{
+        flex:0 0 78%;
+        min-width:240px;
+    }
+
+    .Ongoing-Projects-cards{
+        margin-left:12px;
+        margin-right:12px;
+        padding-bottom:4px;
+    }
+
+    .scroll-arrow{ display:none; }
+
+    .Projects-cost,
+    .Projects-Cost{
+        min-height:0;
+        margin-left:12px;
+        margin-right:12px;
+    }
+
+    .price{ font-size:34px; }
+
+    .graph{ width:120px; height:120px; }
+
+    .Design-Overview{
+        flex-direction:column;
+        height:auto;
+        gap:12px;
+        padding:12px;
+    }
+
+    .Project-2d-3d{
+        width:100%;
+        height:400px;
+    }
+
+    .Proj-progress{ width:100%; flex:none; }
+
+    #p2d-3d-nav{ padding:0 10px; }
+    .preview-tabs{ gap:12px; }
+    .floors{ width:72px; }
+    .design-footer{ height:auto; min-height:45px; padding:6px 10px; gap:8px; flex-wrap:wrap; }
+    .switch-view{ min-width:0; }
+
+    .main-view.is-fullscreen{ inset:8px; }
+
+    /* =====================================================
+       Cost Estimator
+    ===================================================== */
+
+    .estimator-page{ padding:14px 12px; }
+
+    .estimator-toolbar{
+        flex-wrap:wrap;
+        row-gap:10px;
+    }
+
+    .estimator-tabs{
+        width:100%;
+        gap:18px;
+        overflow-x:auto;
+        scrollbar-width:none;
+    }
+    .estimator-tabs::-webkit-scrollbar{ display:none; }
+
+    .est-tab{ font-size:13.5px; flex-shrink:0; }
+
+    .estimator-actions{ flex-wrap:wrap; width:100%; }
+
+    .estimator-grid{ flex-direction:column; }
+
+    .estimator-col-left,
+    .estimator-col-mid,
+    .estimator-col-right{
+        flex:none;
+        width:100%;
+    }
+
+    .est-cost-row{ flex-wrap:wrap; }
+    .est-total-cost{ font-size:28px; }
+    .est-material-total h2{ font-size:22px; }
+    .est-stat-value{ font-size:22px; }
+    .est-gauge-wrap svg{ width:160px; }
+
+    .est-card{ overflow-x:auto; }
+
+    .est-breakdown-table{ min-width:460px; }
+    .est-breakdown-table thead th{ font-size:10px; }
+    .est-breakdown-table tbody td,
+    .est-breakdown-table tfoot td{ font-size:12.5px; }
+
+    .est-material-row{ flex-wrap:wrap; }
+    .est-material-footer{ flex-wrap:wrap; }
+
+    .est-two{ flex-direction:column; }
+    .est-grow, .est-grow2{ flex:1 1 auto; width:100%; }
+    .em-row2{ grid-template-columns:1fr; }
+
+    /* =====================================================
+       Materials
+    ===================================================== */
+
+    .materials-heading{
+        flex-wrap:wrap;
+        padding:14px 12px 0;
+    }
+    .materials-heading h1{ font-size:20px; white-space:normal; }
+    .materials-heading p{ white-space:normal; }
+
+    .materials-stats{
+        grid-template-columns:repeat(2, minmax(0, 1fr));
+        padding:14px 12px 0;
+    }
+    .stat-card h4{ font-size:11px; }
+    .stat-card h2{ font-size:18px; }
+    .stat-card p{ font-size:10.5px; }
+
+    .materials-toolbar{
+        flex-direction:column;
+        align-items:stretch;
+        padding:14px 12px 0;
+    }
+
+    .materials-tabs{ overflow-x:auto; scrollbar-width:none; }
+    .materials-tabs::-webkit-scrollbar{ display:none; }
+    .mat-tab{ font-size:13px; flex-shrink:0; }
+
+    .materials-actions{ flex-wrap:wrap; }
+
+    .materials-table-wrap{
+        margin:14px 12px;
+        overflow-x:auto;
+        -webkit-overflow-scrolling:touch;
+    }
+    .materials-table{ min-width:820px; }
+    .materials-table th{ font-size:11px; }
+
+    .materials-footer{
+        flex-wrap:wrap;
+        padding:0 12px 16px;
+        white-space:normal;
+    }
+
+    .modal-field-row{ grid-template-columns:1fr; }
+
+    /* =====================================================
+       Reports
+    ===================================================== */
+
+    .main-card-for-reports{ padding:14px 12px; }
+
+    .reports-toolbar{ flex-direction:column; align-items:stretch; }
+    .reports-toolbar-right{ justify-content:space-between; }
+
+    .reports-grid{ grid-template-columns:1fr; }
+
+    /* =====================================================
+       Suppliers
+    ===================================================== */
+
+    .supplier-page{ padding:14px 12px; }
+
+    .supplier-filter-bar{ flex-wrap:wrap; row-gap:10px; }
+
+    .supplier-tabs{
+        width:100%;
+        overflow-x:auto;
+        scrollbar-width:none;
+    }
+    .supplier-tabs::-webkit-scrollbar{ display:none; }
+    .supp-tab{ flex-shrink:0; font-size:13px; padding:0 14px; }
+
+    .supplier-filter-panel{
+        position:fixed;
+        top:auto;
+        left:72px;
+        right:12px;
+        bottom:12px;
+        width:auto;
+        max-height:70vh;
+    }
+
+    .supp-banner{ height:130px; }
+    .supp-banner-overlay span{ font-size:12px; }
+    .supp-banner-overlay strong{ font-size:17px; }
+
+    .supp-detail-header{ flex-wrap:wrap; }
+    .supp-detail-logo{ margin-top:0; }
+    .supp-detail-actions{ width:100%; }
+    .supp-follow-btn,
+    .supp-contact-btn{ flex:1; font-size:13px; }
+    .supp-detail-name-row{ flex-wrap:wrap; }
+    .supp-detail-name-row h3{ white-space:normal; font-size:18px; }
+    .supp-detail-sub{ white-space:normal; font-size:12.5px; }
+    .supp-detail-desc{ font-size:12.5px; }
+
+    .supp-detail-tabs{
+        gap:18px;
+        overflow-x:auto;
+        scrollbar-width:none;
+    }
+    .supp-detail-tabs::-webkit-scrollbar{ display:none; }
+    .supp-detail-tab{ font-size:13px; flex-shrink:0; }
+
+    .supp-featured-grid{ grid-template-columns:repeat(2, minmax(0, 1fr)); gap:10px; }
+    .supp-product-card img{ height:90px; }
+    .supp-product-info h6{ font-size:12px; }
+    .supp-product-info p{ font-size:12.5px; }
+
+    .supp-reviews-layout{ flex-direction:column; }
+    .supp-review-summary{
+        flex:none;
+        width:100%;
+        padding-right:0;
+        padding-bottom:14px;
+        border-right:none;
+        border-bottom:1px solid var(--color-border);
+    }
+
+    .supp-promo-grid,
+    .supp-delivery-layout,
+    .supp-contact-grid{ grid-template-columns:minmax(0, 1fr); }
+
+    .supp-inventory-row{
+        grid-template-columns:minmax(80px, 1fr) minmax(0, 1fr) 36px;
+        font-size:12px;
+    }
+    .supp-inventory-row .supp-inventory-status-pill{ display:none; }
+
+    .supp-delivery-row strong,
+    .supp-delivery-zone-row{ font-size:12px; }
+
+    /* =====================================================
+       Help & Support
+    ===================================================== */
+
+    .help-page{ padding:14px 12px; }
+    .help-grid{ grid-template-columns:minmax(0, 1fr); }
+    .help-col-right{ grid-column:auto; }
+    .help-topics-grid,
+    .help-contact-grid{ grid-template-columns:repeat(2, minmax(0, 1fr)); }
+    .help-card{ padding:16px; }
+
+    /* =====================================================
+       Premium
+    ===================================================== */
+
+    .premium-page{ padding:14px 12px; }
+    .premium-banner{ flex-wrap:wrap; }
+    .premium-banner > span{ white-space:normal; }
+    .premium-main-grid{ grid-template-columns:minmax(0, 1fr); }
+    .pricing-cards-grid{ grid-template-columns:minmax(0, 1fr); gap:20px; }
+    .pricing-card{ padding:22px 18px; }
+    .pricing-card h3{ font-size:18px; }
+    .pricing-amount .amount{ font-size:34px; }
+    .pricing-feature-list li{ font-size:13px; white-space:normal; }
+    .premium-includes-grid{ grid-template-columns:repeat(2, minmax(0, 1fr)); }
+
+    /* =====================================================
+       Projects
+    ===================================================== */
+
+    .projects-page{ padding:12px; }
+
+    .Projects-filter-bar{ flex-direction:column; align-items:stretch; }
+    .Projects-filters{ width:100%; }
+    .New-Project-btn{ justify-content:center; }
+
+    .Projects-current-list{
+        overflow-x:auto;
+        -webkit-overflow-scrolling:touch;
+    }
+    .project-table{ min-width:760px; }
+
+    .filter-menu{ max-width:calc(100vw - 24px); }
+
+    .Projects-details-header{ flex-wrap:wrap; padding:16px 14px 12px; }
+    .detail-header-actions{ width:100%; flex-wrap:wrap; }
+    .detail-title-row h3{ font-size:17px; }
+
+    .project-nav{ padding:0 14px; gap:20px; }
+    #project-contents{ padding:16px 14px 22px; }
+
+    .overview-grid{ grid-template-columns:minmax(0, 1fr); }
+    .design-checklist-row{ flex-direction:column; }
+    .Project-checklist{ width:100%; }
+    .preview-panes{ flex-direction:column; height:auto; }
+    .preview-pane.pane-2d{ width:100%; height:220px; border-right:none; border-bottom:1px solid var(--color-border); }
+    .preview-pane.pane-3d{ height:240px; flex:none; }
+    .ov-progress-body{ flex-wrap:wrap; justify-content:center; }
+
+    .edit-modal-tabs{ overflow-x:auto; }
+    .checklist-modal-toolbar{ flex-wrap:wrap; }
+    .checklist-modal-footer{ flex-wrap:wrap; gap:10px; }
+
+    /* =====================================================
+       Settings
+    ===================================================== */
+
+    .settings-page{ padding:14px 12px 24px; }
+    .settings-fields-grid{ grid-template-columns:minmax(0, 1fr); }
+    .settings-card{ padding:16px; }
+    .settings-tabs{ scrollbar-width:none; }
+    .settings-tabs::-webkit-scrollbar{ display:none; }
+    .settings-cards-row{ max-width:100%; }
+    .profile-photo-block{ flex-wrap:wrap; }
+
+    .integration-row,
+    .security-row,
+    .billing-row{ flex-wrap:wrap; }
+
+    .m-table{ display:block; overflow-x:auto; }
+    .modal-actions{ flex-wrap:wrap; }
+
+    /* =====================================================
+       Teams
+    ===================================================== */
+
+    .team-page{ padding:14px 12px 24px; }
+    .team-stats{ grid-template-columns:repeat(2, minmax(0, 1fr)); gap:12px; }
+    .team-stat-card{ padding:14px; gap:10px; }
+    .team-stat-card h2{ font-size:22px; }
+    .team-stat-icon{ width:40px; height:40px; }
+    .team-lower-grid{ grid-template-columns:minmax(0, 1fr); gap:16px; }
+    .team-members-card{ overflow-x:auto; }
+    .team-table{ min-width:700px; }
+    .invite-member-btn{ justify-content:center; }
+    .modal-box{ padding:20px; }
+
+    /* =====================================================
+       Notifications
+    ===================================================== */
+
+    .notif-page{ padding:14px 12px; }
+    .notif-toolbar{ flex-direction:column; align-items:stretch; }
+    .notif-tabs{ overflow-x:auto; flex-wrap:nowrap; scrollbar-width:none; }
+    .notif-tabs::-webkit-scrollbar{ display:none; }
+    .notif-tab{ flex-shrink:0; }
+    .notif-toolbar-actions{ flex-wrap:wrap; }
+    .notif-content-grid{ grid-template-columns:minmax(0, 1fr); }
+    .notif-item{ padding:14px; }
+    .notif-item-meta{ flex-direction:column; align-items:flex-end; gap:4px; }
+    .notif-pagination{ flex-wrap:wrap; gap:10px; }
+
+    /* =====================================================
+       AI Design
+    ===================================================== */
+
+    .ai-canvas{ padding:12px; }
+    .ai-canvas-bar{ flex-wrap:wrap; }
+    .ai-canvas-tools{ flex-wrap:wrap; width:100%; }
+    .floorplan-canvas{ min-height:320px; padding:8px; }
+    .ai-chat{ min-height:480px; }
+    .ai-chat-messages{ padding:14px; }
+    .ai-composer{ padding:10px 12px calc(12px + env(safe-area-inset-bottom, 0px)); }
+    .design-tab{ height:38px; }
+}
+
+/* =========================================================
+   Small phones
+========================================================= */
+
+@media (max-width:480px){
+
+    .dashboard-header{ padding:0 10px; }
+
+    .dashboard-navbar,
+    .dashboard-navbar.collapsed{
+        width:52px !important;
+        min-width:52px;
+        max-width:52px;
+        padding-left:4px;
+        padding-right:4px;
+    }
+
+    .notif-dropdown{ left:64px; }
+
+    .notification-btn{ width:36px; height:36px; }
+    .profile-avatar{ width:30px; height:30px; }
+
+    .Ongoing-Proj-card{ flex-basis:86%; }
+
+    .Cost-Estimator,
+    .Break-of-material,
+    .Overall-Forecast{ padding:14px; }
+
+    .price{ font-size:30px; }
+
+    .material-item{ grid-template-columns:12px 1fr auto; }
+    .material-item small{ display:none; }
+
+    .materials-stats{ gap:8px; }
+    .stat-card{ padding:10px; gap:8px; }
+    .stat-icon{ width:30px; height:30px; font-size:15px; }
+
+    .team-stats{ grid-template-columns:minmax(0, 1fr); }
+
+    .supp-featured-grid{ grid-template-columns:minmax(0, 1fr); }
+
+    .help-topics-grid,
+    .help-contact-grid,
+    .premium-includes-grid{ grid-template-columns:minmax(0, 1fr); }
+
+    .settings-tab{ padding:0 10px; }
+}

@@ -1,11 +1,14 @@
-/* =========================================================
-   KagoBuild dashboard shell
+ /* =========================================================
+   KagoBuild dashboard shell  (kb-main v4)
    -----------------------------------------------------------
    Shared by every dashboard page. Handles:
-     1. Sidebar resize + collapse (state saved in localStorage)
+     1. Sidebar resize + collapse (mouse AND touch). Touch
+        devices always start icons-only; tap or drag the line
+        to change it.
      2. Notification dropdown in the header
      3. Profile menu in the header
      4. Showing the saved profile name/photo from Settings
+     5. Loading the mobile layer (mobile.css + mobile.js)
 
    Include it right after the sidebar resizer so the saved
    sidebar width is applied before the page paints:
@@ -16,6 +19,9 @@
 
 (function () {
     "use strict";
+
+    document.documentElement.dataset.kbMain = "v4";
+    if (window.console) console.log("kb-main v4 loaded");
 
     /* ---------------------------------------------------------
        1. Sidebar resize + collapse
@@ -33,6 +39,31 @@
     const sidebar = document.querySelector(".dashboard-navbar");
     const resizer = document.getElementById("sidebarResizer");
 
+    /* True on phones and tablets, even when the browser is in
+       "Desktop site" mode (which makes innerWidth look huge). */
+    const isTouchDevice =
+        (window.matchMedia && window.matchMedia("(pointer: coarse)").matches) ||
+        "ontouchstart" in window ||
+        (navigator.maxTouchPoints || 0) > 0 ||
+        Math.min(window.screen.width, window.screen.height) <= 820;
+
+    /* Touch-friendly handle: wider, visible grip, no page scroll
+       while dragging, no width animation lagging behind the finger. */
+    (function injectResizerStyles() {
+        const css =
+            ".sidebar-resizer{position:relative;touch-action:none;-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none}" +
+            ".sidebar-resizer::before{content:'';position:absolute;top:0;bottom:0;left:-14px;right:-14px}" +
+            ".sidebar-resizer::after{content:'';position:absolute;top:50%;left:50%;width:2px;height:36px;margin:-18px 0 0 -1px;border-radius:2px;background:var(--color-text-muted,#A9A3A4)}" +
+            "body.is-resizing .sidebar-resizer::after{background:#fff}" +
+            ".touch-device .sidebar-resizer{width:16px}" +
+            "body.is-resizing .dashboard-navbar{transition:none}" +
+            "body.is-resizing{touch-action:none;user-select:none;-webkit-user-select:none}";
+        const style = document.createElement("style");
+        style.textContent = css;
+        document.head.appendChild(style);
+        if (isTouchDevice) document.documentElement.classList.add("touch-device");
+    })();
+
     function readStorage(key) {
         try { return localStorage.getItem(key); } catch (e) { return null; }
     }
@@ -46,7 +77,10 @@
         const collapsed = width < SIDEBAR.collapseBelow;
         const finalWidth = collapsed ? SIDEBAR.collapsedWidth : width;
 
-        sidebar.style.width = finalWidth + "px";
+        // !important so no stylesheet rule can override the width
+        sidebar.style.setProperty("width", finalWidth + "px", "important");
+        sidebar.style.setProperty("min-width", finalWidth + "px", "important");
+        sidebar.style.setProperty("max-width", finalWidth + "px", "important");
         sidebar.classList.toggle("collapsed", collapsed);
 
         if (persist) {
@@ -56,41 +90,71 @@
     }
 
     if (sidebar) {
-        const savedCollapsed = readStorage(SIDEBAR.collapsedKey) === "1";
-        const savedWidth = parseInt(readStorage(SIDEBAR.widthKey), 10);
+        if (isTouchDevice) {
+            // Phones and tablets: icons only on load, whatever was saved before
+            applySidebarWidth(SIDEBAR.collapsedWidth, false);
+        } else {
+            const savedCollapsed = readStorage(SIDEBAR.collapsedKey);
+            const savedWidth = parseInt(readStorage(SIDEBAR.widthKey), 10);
 
-        if (savedCollapsed) applySidebarWidth(SIDEBAR.collapsedWidth, false);
-        else if (!isNaN(savedWidth)) applySidebarWidth(Math.min(SIDEBAR.maxWidth, Math.max(SIDEBAR.minWidth, savedWidth)), false);
-        else applySidebarWidth(SIDEBAR.defaultWidth, false);
+            if (savedCollapsed === "1") applySidebarWidth(SIDEBAR.collapsedWidth, false);
+            else if (!isNaN(savedWidth)) applySidebarWidth(Math.min(SIDEBAR.maxWidth, Math.max(SIDEBAR.minWidth, savedWidth)), false);
+            else applySidebarWidth(SIDEBAR.defaultWidth, false);
+        }
     }
 
     if (sidebar && resizer) {
         let dragging = false;
+        let activePointer = null;
+        let startX = 0;
+        let moved = false;
 
-        resizer.addEventListener("mousedown", (e) => {
+        function toggleCollapsed() {
+            const isCollapsed = sidebar.classList.contains("collapsed");
+            applySidebarWidth(isCollapsed ? SIDEBAR.defaultWidth : SIDEBAR.collapsedWidth, !isTouchDevice);
+        }
+
+        resizer.addEventListener("pointerdown", (e) => {
+            if (e.pointerType === "mouse" && e.button !== 0) return;
             e.preventDefault();
             dragging = true;
+            moved = false;
+            startX = e.clientX;
+            activePointer = e.pointerId;
+            try { resizer.setPointerCapture(e.pointerId); } catch (err) { /* ignore */ }
             document.body.classList.add("is-resizing");
         });
 
-        document.addEventListener("mousemove", (e) => {
-            if (!dragging) return;
+        resizer.addEventListener("pointermove", (e) => {
+            if (!dragging || e.pointerId !== activePointer) return;
+            e.preventDefault();
+            if (Math.abs(e.clientX - startX) > 6) moved = true;
+            if (!moved) return;
             const width = Math.min(SIDEBAR.maxWidth, Math.max(SIDEBAR.minWidth, e.clientX));
             applySidebarWidth(width, false);
         });
 
-        document.addEventListener("mouseup", () => {
-            if (!dragging) return;
+        function endDrag(e) {
+            if (!dragging || (e && e.pointerId !== activePointer)) return;
             dragging = false;
+            activePointer = null;
+            try { if (e) resizer.releasePointerCapture(e.pointerId); } catch (err) { /* ignore */ }
             document.body.classList.remove("is-resizing");
-            applySidebarWidth(parseInt(sidebar.style.width, 10), true);
-        });
 
-        // Double-click the resizer to toggle collapsed / expanded.
-        resizer.addEventListener("dblclick", () => {
-            const isCollapsed = sidebar.classList.contains("collapsed");
-            applySidebarWidth(isCollapsed ? SIDEBAR.defaultWidth : SIDEBAR.collapsedWidth, true);
-        });
+            if (moved) {
+                // Dragged: keep the new width (saved on desktop only)
+                applySidebarWidth(parseInt(sidebar.style.width, 10), !isTouchDevice);
+            } else if (e && e.pointerType !== "mouse" && e.type === "pointerup") {
+                // Plain tap on touch screens: toggle icons-only / full width
+                toggleCollapsed();
+            }
+        }
+
+        resizer.addEventListener("pointerup", endDrag);
+        resizer.addEventListener("pointercancel", endDrag);
+
+        // Double-click with a mouse toggles collapsed / expanded.
+        resizer.addEventListener("dblclick", toggleCollapsed);
     }
 
     /* ---------------------------------------------------------
@@ -165,4 +229,36 @@
 
     if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", initHeader);
     else initHeader();
+})();
+
+/* ---------------------------------------------------------
+   5. Mobile layer
+   Loads styles/mobile.css and scripts/mobile.js next to this
+   file, so no page needs extra <link> or <script> tags.
+   The stylesheet is added to the end of <head>, so it comes
+   after dash.css and the page's own stylesheet.
+--------------------------------------------------------- */
+(function () {
+    "use strict";
+
+    var me = document.currentScript;
+    if (!me || !me.src) return;
+
+    // CSS: skip if the page already links it
+    if (!document.querySelector('link[href*="mobile.css"]')) {
+        var link = document.createElement("link");
+        link.rel = "stylesheet";
+        link.href = me.src.replace(/scripts\/main\.js.*$/, "styles/mobile.css");
+        document.head.appendChild(link);
+    }
+
+    // JS: needs the sidebar and header to exist, so wait for the page
+    function loadMobileScript() {
+        var s = document.createElement("script");
+        s.src = me.src.replace(/main\.js.*$/, "mobile.js");
+        document.body.appendChild(s);
+    }
+
+    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", loadMobileScript);
+    else loadMobileScript();
 })();
