@@ -1,194 +1,188 @@
-ai-home-planner/
-├── frontend/                          # Client-side application
-│   ├── pages/                         # Main HTML pages
-│   │   ├── index.html                 # Landing page
-│   │   ├── planner.html               # Home planning interface
-│   │   ├── dashboard.html             # User dashboard
-│   │   ├── quotations.html            # Cost quotations page
-│   │   └── suppliers.html             # Supplier listings page
-│   │
-│   ├── components/                    # Reusable UI blocks
-│   │   ├── navbar/                    # Navigation bar component
-│   │   ├── sidebar/                   # Sidebar menu component
-│   │   ├── modals/                    # Popup modals
-│   │   ├── forms/                     # Form components
-│   │   ├── cards/                     # Reusable cards
-│   │   ├── loaders/                   # Loading animations
-│   │   └── notifications/             # Alerts and toasts
-│   │
-│   ├── styles/                        # Styling system
-│   │   ├── global.css                 # Global styles
-│   │   ├── tailwind.css               # Tailwind utility styles
-│   │   ├── variables.css              # CSS variables
-│   │   └── animations.css             # UI animations
-│   │
-│   ├── scripts/                       # Frontend logic
-│   │   ├── main.js                    # Main entry script
-│   │   ├── planner.js                 # Planner logic
-│   │   ├── floorplan-viewer.js        # :contentReference[oaicite:0]{index=0} rendering engine
-│   │   ├── socket-client.js           # :contentReference[oaicite:1]{index=1} live updates
-│   │   ├── auth.js                    # Authentication logic
-│   │   └── api.js                     # API communication logic
-│   │
-│   ├── assets/                        # Static assets
-│   │   ├── images/                    # General images
-│   │   ├── icons/                     # Icons
-│   │   ├── floor-plans/               # Generated floor plans
-│   │   └── materials/                 # Material textures/previews
-│   │
-│   └── utils/                         # Helper functions
-│       ├── validators.js              # Input validation
-│       ├── formatters.js              # Data formatting
-│       └── calculations.js            # Cost and area calculations
-│
-├── backend/                           # Server-side logic
-│   ├── routes/                        # API endpoints
-│   │   ├── auth.routes.js             # Authentication routes
-│   │   ├── plans.routes.js            # Floor plan routes
-│   │   ├── ai.routes.js               # AI API routes
-│   │   ├── quotations.routes.js       # Cost quotation routes
-│   │   ├── materials.routes.js        # Material routes
-│   │   └── suppliers.routes.js        # Supplier routes
-│   │
-│   ├── controllers/                   # Business logic handlers
-│   │   ├── auth.controller.js         # Auth controller
-│   │   ├── plans.controller.js        # Plan generation controller
-│   │   ├── ai.controller.js           # AI orchestration controller
-│   │   ├── quotation.controller.js    # Cost calculation controller
-│   │   ├── materials.controller.js    # Material extraction controller
-│   │   └── suppliers.controller.js    # Supplier management controller
-│   │
-│   ├── models/                        # Database models
-│   │   ├── mongo/                     # MongoDB models
-│   │   │   ├── User.js                # User schema
-│   │   │   ├── Project.js             # Project schema
-│   │   │   ├── FloorPlan.js           # Floor plan schema
-│   │   │   └── Job.js                 # Queue jobs schema
-│   │   │
-│   │   └── sql/                       # SQL table definitions
-│   │       ├── Material.sql           # Material table
-│   │       ├── Supplier.sql           # Supplier table
-│   │       └── Pricing.sql            # Pricing table
-│   │
-│   ├── middleware/                    # Express middleware
-│   │   ├── auth.middleware.js         # JWT auth protection
-│   │   ├── error.middleware.js        # Error handling
-│   │   ├── upload.middleware.js       # File upload handling
-│   │   └── validation.middleware.js   # Request validation
-│   │
-│   ├── services/                      # Core service logic
-│   │   ├── ai/                        # AI integrations
-│   │   │   ├── openai.service.js      # :contentReference[oaicite:2]{index=2} API integration
-│   │   │   ├── plan-generator.service.js # AI floor plan generation
-│   │   │   └── material-extractor.service.js # AI material extraction
-│   │   │
-│   │   ├── quotation/                 # Pricing logic
-│   │   │   ├── estimator.service.js   # Cost estimator
-│   │   │   └── pricing.service.js     # Supplier pricing engine
-│   │   │
-│   │   └── suppliers/                 # Supplier integrations
-│   │       └── supplier.service.js    # Supplier API communication
-│   │
-│   ├── sockets/                       # Real-time communication
-│   │   ├── ai-status.socket.js        # AI progress updates
-│   │   └── quotation.socket.js        # Live quotation updates
-│   │
-│   ├── jobs/                          # Async task processing
-│   │   ├── generate-plan.job.js       # Floor plan generation jobs
-│   │   ├── extract-materials.job.js   # Material extraction jobs
-│   │   └── calculate-cost.job.js      # Cost calculation jobs
-│   │
-│   ├── config/                        # Configuration files
-│   │   ├── db.js                      # Database connections
-│   │   ├── env.js                     # Environment variables
-│   │   ├── socket.js                  # Socket.IO config
-│   │   └── ai-config.js               # AI API configs
-│   │
-│   └── utils/                         # Backend helper functions
-│       ├── logger.js                  # Logging system
-│       ├── parser.js                  # AI response parser
-│       └── helpers.js                 # Utility helpers
-│
-├── database/                          # Database management
-│   ├── mongodb/                       # MongoDB configs
-│   │   ├── schemas/                   # Mongo schemas
-│   │   └── seeders/                   # Mongo seed data
-│   │
-│   └── sql/                           # SQL configs
-│       ├── migrations/                # Table migrations
-│       ├── seeders/                   # SQL seed data
-│       └── procedures/                # SQL stored procedures
-│
-├── storage/                           # File storage
-│   ├── floor-plans/                   # Generated floor plans
-│   ├── quotations/                    # Saved quotations
-│   ├── generated-images/              # AI-generated visuals
-│   └── temp/                          # Temporary uploads
-│
-├── tests/                             # Testing suite
-│   ├── unit/                          # Unit tests
-│   ├── api/                           # API endpoint tests
-│   └── e2e/                           # End-to-end tests
-│
-├── deployment/                        # Deployment configs
-│   ├── docker/                        # :contentReference[oaicite:3]{index=3} setup
-│   ├── kubernetes/                    # Kubernetes scaling configs
-│   ├── nginx/                         # :contentReference[oaicite:4]{index=4} reverse proxy setup
-│   └── github-actions/                # :contentReference[oaicite:5]{index=5} CI/CD workflows
-│
-├── docs/                              # Documentation
-│   ├── api-docs/                      # API documentation
-│   ├── architecture/                  # System architecture docs
-│   ├── database/                      # Database design docs
-│   └── deployment/                    # Deployment docs
-│
-├── .env                               # Environment variables
-├── .gitignore                         # Git ignore rules
-├── package.json                       # Project dependencies
-├── server.js                          # Backend entry point
-└── README.md                          # Project overview
-
-
 # KagoBuild
-An application that uses AI to generate custom house plans from user inputs, then integrates with building material suppliers to calculate real-time material costs and generate accurate project budgets.
 
+**Design and budget your home with AI.**
 
-You are an expert product requirements strategist and technical architect. Your task is to develop a comprehensive product specification and technical implementation roadmap for an AI-powered home building material cost estimation platform.
+KagoBuild helps anyone planning to build or extend a home describe what they want in plain language and get, within about a minute, a floor plan, a complete material list and a priced budget they can trust, before paying an architect or quantity surveyor.
 
-The core concept: An application that uses AI to generate custom house plans from user inputs, then integrates with building material suppliers to calculate real-time material costs and generate accurate project budgets.
+Built for South Africa at launch: prices in ZAR, metric units, and layouts checked against SANS 10400.
 
-**Define the product scope clearly:**
+> **Status:** early development. The frontend UI is built with demo data. The backend is scaffolded and the API is being implemented. See [Project status](#project-status).
 
-- User input requirements (home size, style, number of rooms, complexity level, budget constraints, location)
-- AI capabilities needed (architectural plan generation, material list extraction, design variations)
-- Supplier integration approach (API connections, pricing databases, inventory management)
-- Output deliverables (visual floor plans, detailed material lists, cost breakdowns by category, total project estimates)
+---
 
-**Map the core user journey:**  
-Start with what triggers the user to enter the app, then walk through each step: initial design parameters → AI plan generation → material extraction → price lookup → final estimate presentation and export options.
+## The problem
 
-**Define the technical architecture:**
+- Plans can cost R15,000 to R60,000 before an owner knows whether the dream is affordable.
+- Quantity take-offs are manual and slow.
+- Material prices move weekly and vary by region.
+- Budgets overrun because wastage, labour and VAT get forgotten.
 
-- Frontend: How users input design parameters and view generated plans
-- AI engine: What model or service generates architectural plans; how plans are interpreted into material lists
-- Backend integration: How the app connects to building material suppliers; how pricing is updated; data storage
-- Database structure: What information is stored, how often it refreshes
+## What KagoBuild does
 
-**Specify the business model and supplier relationships:**
+1. **Describe your home.** A guided 3-step wizard captures plot size, floor area, bedrooms, style, finish level, location and budget.
+2. **Get 3 floor-plan options.** The AI proposes layouts as structured geometry (rooms, walls, openings), not just a picture.
+3. **Refine by chatting.** Ask for changes like "move the kitchen next to the dining area" or "make the garage fit 3 cars".
+4. **See every material needed.** A deterministic take-off engine calculates quantities from the plan. The AI never does the arithmetic.
+5. **See real prices by region.** Each line shows supplier, unit price and a "prices as of" time.
+6. **Know if you are on budget.** Totals with a realistic range, contingency, 15% VAT, a budget-health gauge and risk level.
+7. **Export and share.** PDF and CSV for everyone, Excel BOQ on paid plans.
 
-- Which suppliers or material databases will be integrated (big-box retailers, specialty suppliers, regional contractors)
-- How pricing is sourced (real-time APIs, batch updates, manual uploads)
-- Revenue model (commission on purchases, subscription, freemium, markup on estimates)
-- How to handle regional pricing variations
+### Core principle
 
-**Identify critical features for MVP vs. future phases:**  
-What must launch (basic plan generation, simple cost calculation), what can wait (advanced customization, 3D rendering, AR visualization).
+**The AI proposes; deterministic code verifies.** The language model suggests a layout. Code then solves the geometry, checks building rules, draws the plan and counts the materials. This keeps plans valid, quantities reproducible and estimates auditable.
 
-**Address key challenges upfront:**
+## Who it is for
 
-- How the AI handles design constraints (building codes, structural requirements, material availability)
-- Accuracy validation (how estimates are tested against real projects)
-- User experience for non-architects (simplifying complex design decisions)
-- Scalability (supporting different home styles, regions, material types)
+| User | Need |
+|------|------|
+| First-time homeowners | Plain language and a number they can show the bank |
+| Small builders | Fast quotes, editable quantities, supplier comparison |
+| Architects and draughtspeople | Quick concept options with rule checks |
+| Platform admins | Control over prices, rules, AI jobs and suppliers |
 
-Organize this into a clear product specification document that a development team could use to build the MVP, including user stories, technical requirements, success metrics, and implementation priorities.
+## Tech stack
+
+| Layer | Technology |
+|-------|------------|
+| Frontend | Static multi-page HTML, CSS and JavaScript |
+| API | Node.js with Express |
+| Documents database | MongoDB (users, projects, floor plans, jobs) |
+| Relational database | PostgreSQL (materials, suppliers, prices, estimates) |
+| Cache and queues | Redis, BullMQ |
+| Realtime | Socket.io |
+| AI | Provider-agnostic LLM wrapper with structured output |
+| Storage | S3-compatible object storage and CDN |
+
+## Project structure
+
+```
+ai-home-planner/
+├── frontend/
+│   ├── pages/        # HTML pages (landing, dashboard, planner, estimator, admin...)
+│   ├── components/   # Reusable UI blocks
+│   ├── styles/       # Global styles, CSS variables, animations
+│   ├── scripts/      # Client logic (planner, floorplan viewer, sockets, auth, api)
+│   ├── assets/       # Images, icons, floor plans, material previews
+│   └── utils/        # validators, formatters, calculations
+├── backend/
+│   ├── routes/       # API endpoints
+│   ├── controllers/  # Request handlers
+│   ├── services/     # AI, pricing, estimator, supplier logic
+│   ├── middleware/   # Auth, validation, errors, uploads
+│   ├── sockets/      # Realtime job progress
+│   ├── models/
+│   │   └── sql/      # Material.sql, Supplier.sql, Pricing.sql
+│   └── config/       # Environment, database, socket setup
+└── docs/             # Full documentation set
+```
+
+## Documentation
+
+| # | Document | Purpose |
+|---|----------|---------|
+| 01 | [Product Requirements](docs/01-product-requirements.md) | What we build, for whom, MVP scope, success metrics |
+| 02 | [Technical Requirements](docs/02-technical-requirements.md) | Stack, APIs, AI contracts, take-off engine |
+| 03 | [App Flow](docs/03-app-flow.md) | User journeys, screen map, system flows |
+| 04 | [Design Brief](docs/04-design-brief.md) | Principles, design tokens, components, UX |
+| 05 | [Database Schema](docs/05-database-schema.md) | MongoDB and PostgreSQL data model |
+| 06 | [System Design](docs/06-system-design.md) | Architecture, data flow, failure modes, security |
+| 07 | [Implementation Plan](docs/07-implementation-plan.md) | Phases, sprints, team, risks |
+| 08 | [Scalability](docs/08-scalability-1m-users.md) | Capacity planning for 1,000,000 users |
+
+## Getting started
+
+### Prerequisites
+
+- Node.js 18 or newer
+- PostgreSQL 14 or newer
+- MongoDB 6 or newer
+- Redis 7 or newer
+
+### Install
+
+```bash
+git clone https://github.com/tapel03/ai-home-planner.git
+cd ai-home-planner
+```
+
+### Set up the SQL database
+
+Run the files in this order:
+
+```bash
+psql -d kagobuild -f backend/models/sql/Material.sql
+psql -d kagobuild -f backend/models/sql/Supplier.sql
+psql -d kagobuild -f backend/models/sql/Pricing.sql
+```
+
+### Configure environment variables
+
+Create a `.env` file in the project root. **Never commit it.** It must be listed in `.gitignore`.
+
+```env
+PORT=5000
+NODE_ENV=development
+
+MONGO_URI=mongodb://localhost:27017/kagobuild
+DATABASE_URL=postgresql://user:password@localhost:5432/kagobuild
+REDIS_URL=redis://localhost:6379
+
+JWT_SECRET=change-me
+JWT_REFRESH_SECRET=change-me-too
+
+AI_PROVIDER_API_KEY=your-key-here
+```
+
+### Run the frontend
+
+The frontend is static. Open `frontend/pages/index.html` in a browser, or serve it locally:
+
+```bash
+npx serve frontend
+```
+
+### Run the backend
+
+```bash
+cd backend
+npm install
+npm run dev
+```
+
+## Project status
+
+| Area | Status |
+|------|--------|
+| Frontend pages | Built with demo data (landing, auth, dashboard, projects, AI design, materials, estimator, reports, suppliers, teams, settings, admin) |
+| Frontend scripts | UI shell done; API, auth and planner wiring in progress |
+| Backend | Scaffolded; endpoints in progress |
+| SQL schema | Complete |
+| Documentation | Complete |
+| AI integration | Planned |
+
+See the [Implementation Plan](docs/07-implementation-plan.md) for the full roadmap.
+
+## Roadmap
+
+- **MVP:** auth, design wizard, 3 AI layouts with rule validation, chat refinement, material take-off, regional prices from 3 or more suppliers, cost breakdown, budget gauge, PDF and CSV export.
+- **Next:** supplier comparison, estimate history, teams, notifications, Excel BOQ.
+- **Later:** site-photo upload, quote requests, price alerts, 3D view, more regions and countries.
+
+## Important disclaimer
+
+KagoBuild produces **concept designs and planning estimates only**. They are not engineer-certified drawings, quotations or contracts. Always verify dimensions and consult registered professionals before building.
+
+## Contributing
+
+1. Fork the repo and create a feature branch.
+2. Keep to the design tokens in `frontend/styles/variables.css`. Do not add new hex colours.
+3. Escape all dynamic HTML and never store secrets in `localStorage`.
+4. Open a pull request with a clear description.
+
+## License
+
+Add your license here (for example MIT), or state that the project is proprietary.
+
+## Contact
+
+Maintained by [@tapel03](https://github.com/tapel03).
