@@ -53,6 +53,17 @@ Built for South Africa at launch: prices in ZAR, metric units, and layouts check
 | AI | Provider-agnostic LLM wrapper with structured output |
 | Storage | S3-compatible object storage and CDN |
 
+## Documentation
+
+- [01 Product Requirements](docs/01-product-requirements.md)
+- [02 Technical Requirements](docs/02-technical-requirements.md)
+- [03 App Flow](docs/03-app-flow.md)
+- [04 Design Brief](docs/04-design-brief.md)
+- [05 Database Schema](docs/05-database-schema.md)
+- [06 System Design](docs/06-system-design.md)
+- [07 Implementation Plan](docs/07-implementation-plan.md)
+- [08 Scalability for 1M Users](docs/08-scalability-1m-users.md)
+
 ## Project structure
 
 ```
