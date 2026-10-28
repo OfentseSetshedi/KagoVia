@@ -1,10 +1,11 @@
  /* =========================================================
-   KagoBuild dashboard shell  (kb-main v4)
+   KagoBuild dashboard shell  (kb-main v5)
    -----------------------------------------------------------
    Shared by every dashboard page. Handles:
-     1. Sidebar resize + collapse (mouse AND touch). Touch
-        devices always start icons-only; tap or drag the line
-        to change it.
+     1. Sidebar resize + collapse (mouse AND touch). The width
+        now follows the screen size: icons-only on phones and
+        small tablets, and on tight laptop widths unless the
+        user chose otherwise. Rotating / resizing re-applies it.
      2. Notification dropdown in the header
      3. Profile menu in the header
      4. Showing the saved profile name/photo from Settings
@@ -20,8 +21,8 @@
 (function () {
     "use strict";
 
-    document.documentElement.dataset.kbMain = "v4";
-    if (window.console) console.log("kb-main v4 loaded");
+    document.documentElement.dataset.kbMain = "v5";
+    if (window.console) console.log("kb-main v5 loaded");
 
     /* ---------------------------------------------------------
        1. Sidebar resize + collapse
@@ -30,7 +31,6 @@
         minWidth: 70,
         maxWidth: 240,
         defaultWidth: 200,
-        collapsedWidth: 72,
         collapseBelow: 110,
         widthKey: "kb-sidebar-width",
         collapsedKey: "kb-sidebar-collapsed"
@@ -46,6 +46,23 @@
         "ontouchstart" in window ||
         (navigator.maxTouchPoints || 0) > 0 ||
         Math.min(window.screen.width, window.screen.height) <= 820;
+
+    /* Width of the icons-only rail, by screen size (mirrors mobile.css) */
+    function collapsedWidth() {
+        const w = window.innerWidth;
+        if (w <= 480) return 52;
+        if (w <= 900) return 60;
+        return 72;
+    }
+
+    /* Which size class we are in, so resize only re-applies on a change */
+    function layoutKey() {
+        const w = window.innerWidth;
+        if (w <= 480) return "xs";
+        if (w <= 900) return "sm";
+        if (w <= 1100) return "md";
+        return "lg";
+    }
 
     /* Touch-friendly handle: wider, visible grip, no page scroll
        while dragging, no width animation lagging behind the finger. */
@@ -75,7 +92,7 @@
     function applySidebarWidth(width, persist) {
         if (!sidebar) return;
         const collapsed = width < SIDEBAR.collapseBelow;
-        const finalWidth = collapsed ? SIDEBAR.collapsedWidth : width;
+        const finalWidth = collapsed ? collapsedWidth() : width;
 
         // !important so no stylesheet rule can override the width
         sidebar.style.setProperty("width", finalWidth + "px", "important");
@@ -89,18 +106,38 @@
         }
     }
 
-    if (sidebar) {
-        if (isTouchDevice) {
-            // Phones and tablets: icons only on load, whatever was saved before
-            applySidebarWidth(SIDEBAR.collapsedWidth, false);
-        } else {
-            const savedCollapsed = readStorage(SIDEBAR.collapsedKey);
-            const savedWidth = parseInt(readStorage(SIDEBAR.widthKey), 10);
+    /* What width the sidebar should have right now */
+    function initialWidth() {
+        const w = window.innerWidth;
 
-            if (savedCollapsed === "1") applySidebarWidth(SIDEBAR.collapsedWidth, false);
-            else if (!isNaN(savedWidth)) applySidebarWidth(Math.min(SIDEBAR.maxWidth, Math.max(SIDEBAR.minWidth, savedWidth)), false);
-            else applySidebarWidth(SIDEBAR.defaultWidth, false);
-        }
+        // Tablet portrait and phones: always the icon rail
+        if (w <= 900) return collapsedWidth();
+
+        // Touch tablets in landscape on a tight screen: icon rail too
+        if (isTouchDevice && w <= 1100) return collapsedWidth();
+
+        const savedCollapsed = readStorage(SIDEBAR.collapsedKey);
+        const savedWidth = parseInt(readStorage(SIDEBAR.widthKey), 10);
+
+        if (savedCollapsed === "1") return collapsedWidth();
+        if (!isNaN(savedWidth)) return Math.min(SIDEBAR.maxWidth, Math.max(SIDEBAR.minWidth, savedWidth));
+
+        // No saved choice: tight screens start icons-only
+        if (w <= 1100) return collapsedWidth();
+        return SIDEBAR.defaultWidth;
+    }
+
+    if (sidebar) {
+        applySidebarWidth(initialWidth(), false);
+
+        // Rotating the device / resizing the window across a breakpoint
+        let lastKey = layoutKey();
+        window.addEventListener("resize", () => {
+            const key = layoutKey();
+            if (key === lastKey) return;
+            lastKey = key;
+            applySidebarWidth(initialWidth(), false);
+        });
     }
 
     if (sidebar && resizer) {
@@ -111,7 +148,7 @@
 
         function toggleCollapsed() {
             const isCollapsed = sidebar.classList.contains("collapsed");
-            applySidebarWidth(isCollapsed ? SIDEBAR.defaultWidth : SIDEBAR.collapsedWidth, !isTouchDevice);
+            applySidebarWidth(isCollapsed ? SIDEBAR.defaultWidth : collapsedWidth(), !isTouchDevice);
         }
 
         resizer.addEventListener("pointerdown", (e) => {

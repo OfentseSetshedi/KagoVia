@@ -1,39 +1,143 @@
 /* =========================================================
-   Mobile + tablet layer for every dashboard page
+   Responsive layer for every dashboard page
    -----------------------------------------------------------
-   Link it LAST, after dash.css and the page's own stylesheet:
+   Loaded automatically by scripts/main.js, AFTER dash.css and
+   the page's own stylesheet.
 
-     <link rel="stylesheet" href="../styles/mobile.css">
+   Breakpoints
+     >= 1700   ultra-wide: content is centred and capped
+     <= 1200   small laptop / tablet landscape
+     <= 1100   tablets: wide tables scroll inside their cards
+     <= 900    tablet portrait + phones: sidebar becomes an icon rail
+     <= 600    phones: single column layouts
+     <= 480    small phones
+     <= 360    very small phones
+     short landscape phones get their own tightening
 
-   Everything is inside media queries, so the desktop layout
-   is untouched. On small screens the sidebar becomes a slim
-   icon-only rail (no labels, no drawer).
+   The icon-rail width is set by scripts/main.js (inline style),
+   the values here only document / mirror it.
 ========================================================= */
 
-/* Hidden everywhere: the icon rail replaces the hamburger drawer */
+/* ---------- Base (all sizes) ---------- */
+
+html{ -webkit-text-size-adjust:100%; text-size-adjust:100%; }
+
+/* The hamburger is not used: the icon rail replaces it */
 .mobile-menu-btn,
 .mobile-backdrop{ display:none !important; }
 
+/* dvh follows the visible area on phones (address bar moving) */
+.dashboard,
+.dashboard-overview{
+    height:100vh;
+    height:100dvh;
+}
+
+/* Content area scrolls vertically only, never sideways */
+.main-card{
+    overflow-y:auto;
+    overflow-x:hidden;
+}
+
+.ai-main-card{ overflow:hidden; }
+
+/* Dashboard cards used width:100% + margin/padding, which overflowed */
+.Ongoing-Projects,
+.Design-Overview,
+.Projects-Cost,
+.Ongoing-Projects-cards{ box-sizing:border-box; }
+
+.Ongoing-Projects-cards,
+.Projects-Cost{ width:calc(100% - 24px); }
+
+/* ---------- Ultra-wide screens ---------- */
+
+@media (min-width:1700px){
+
+    .estimator-page,
+    .materials-page,
+    .supplier-page,
+    .help-page,
+    .premium-page,
+    .team-page,
+    .notif-page,
+    .settings-page,
+    .projects-page,
+    .admin-page{
+        max-width:1680px;
+        margin-left:auto;
+        margin-right:auto;
+    }
+
+    /* This one is itself the scroll container, so pad it instead */
+    .main-card-for-reports{
+        padding-left:max(20px, calc((100% - 1640px) / 2));
+        padding-right:max(20px, calc((100% - 1640px) / 2));
+    }
+}
+
+/* ---------- Small laptop / tablet landscape ---------- */
+
+@media (max-width:1200px){
+
+    /* Cost Estimator: left column on top, the other two share a row */
+    .estimator-grid{ flex-wrap:wrap; }
+    .estimator-col-left{ flex:1 1 100%; }
+    .estimator-col-mid{ flex:1.3 1 340px; }
+    .estimator-col-right{ flex:1 1 280px; }
+
+    /* Dashboard: design preview and progress stack */
+    .Design-Overview{
+        flex-direction:column;
+        height:auto;
+        gap:12px;
+    }
+    .Design-Overview .Project-2d-3d{ width:100%; height:400px; }
+    .Design-Overview .Proj-progress{ width:100%; flex:none; }
+
+    .design-checklist-row .Project-2d-3d{ height:auto; }
+}
+
+/* ---------- Tablets: wide tables scroll inside their card ---------- */
+
+@media (max-width:1100px){
+
+    .materials-stats{ grid-template-columns:repeat(3, minmax(0, 1fr)); }
+
+    .materials-toolbar{ flex-wrap:wrap; row-gap:10px; }
+    .materials-tabs{ overflow-x:auto; scrollbar-width:none; max-width:100%; }
+    .materials-tabs::-webkit-scrollbar{ display:none; }
+    .mat-tab{ flex-shrink:0; }
+
+    .materials-table-wrap{ overflow-x:auto; -webkit-overflow-scrolling:touch; }
+    .materials-table{ min-width:880px; }
+
+    .Projects-current-list{ overflow-x:auto; -webkit-overflow-scrolling:touch; }
+    .project-table{ min-width:760px; }
+
+    .team-members-card{ overflow-x:auto; -webkit-overflow-scrolling:touch; }
+    .team-table{ min-width:700px; }
+
+    .premium-includes-grid{ grid-template-columns:repeat(3, minmax(0, 1fr)); }
+
+    .supplier-tabs{ overflow-x:auto; scrollbar-width:none; }
+    .supplier-tabs::-webkit-scrollbar{ display:none; }
+    .supp-tab{ flex-shrink:0; }
+
+    .admin-card{ overflow-x:auto; }
+}
+
 /* =========================================================
-   Tablet and phone: sidebar becomes an icon-only rail
+   Tablet portrait and phones: sidebar becomes an icon rail
 ========================================================= */
 
 @media (max-width:900px){
 
     html, body{ height:100%; }
 
-    .dashboard{
-        height:100vh;
-        height:100dvh;
-        grid-template-columns:auto minmax(0, 1fr);
-    }
+    .dashboard{ grid-template-columns:auto minmax(0, 1fr); }
 
     .sidebar-resizer{ display:none; }
-
-    .dashboard-overview{
-        height:100vh;
-        height:100dvh;
-    }
 
     /* ---------- Icon rail ---------- */
 
@@ -42,9 +146,6 @@
         position:relative;
         transform:none;
         height:100%;
-        width:60px !important;        /* beats the inline width set by main.js */
-        min-width:60px;
-        max-width:60px;
         padding:12px 6px calc(12px + env(safe-area-inset-bottom, 0px));
         overflow-x:hidden;
         overflow-y:auto;
@@ -54,11 +155,8 @@
 
     .dashboard-navbar::-webkit-scrollbar{ display:none; }
 
-    /* Hide every text label, keep the icons */
     .dashboard-navbar .logo-text,
-    .dashboard-navbar .nav-label{
-        display:none !important;
-    }
+    .dashboard-navbar .nav-label{ display:none !important; }
 
     .dashboard-navbar #logo,
     .dashboard-navbar .nav-link{
@@ -68,40 +166,18 @@
         padding-right:0;
     }
 
-    .dashboard-navbar #logo{
-        padding:0 0 12px;
-        margin-bottom:8px;
-    }
+    .dashboard-navbar #logo{ padding:0 0 12px; margin-bottom:8px; }
 
-    .nav-link{
-        height:44px;
-        border-radius:10px;
-    }
+    .nav-link{ height:44px; border-radius:10px; }
+    .nav-link .ico{ width:20px; height:20px; }
 
-    .nav-link .ico{
-        width:20px;
-        height:20px;
-    }
-
-    .lower-sidebar{
-        margin-top:12px;
-        padding-top:12px;
-    }
+    .lower-sidebar{ margin-top:12px; padding-top:12px; }
 
     /* ---------- Header ---------- */
 
-    .dashboard-header{
-        height:60px;
-        padding:0 12px;
-        gap:10px;
-    }
+    .dashboard-header{ height:60px; padding:0 12px; gap:10px; }
 
-    .header-left{
-        flex:1;
-        gap:10px;
-        min-width:0;
-    }
-
+    .header-left{ flex:1; gap:10px; min-width:0; }
     .header-titles{ min-width:0; }
 
     .header-left h2{
@@ -119,29 +195,25 @@
     .help-header-search{ display:none !important; }
 
     .header-right{ gap:8px; }
-
     .profile-section{ padding:3px; }
 
-    /* Notification list spans the content area instead of overflowing it */
     .notif-dropdown{
         position:fixed;
         top:66px;
-        left:72px;
+        left:68px;
         right:12px;
         width:auto;
+        max-height:calc(100dvh - 80px);
+        overflow-y:auto;
     }
 
-    /* The header tabs on the Projects page scroll instead of overflowing */
-    .header-tabs{
-        gap:18px;
-        overflow-x:auto;
-        scrollbar-width:none;
-    }
+    .dropdown{ max-width:calc(100vw - 80px); }
+
+    .header-tabs{ gap:18px; overflow-x:auto; scrollbar-width:none; }
     .header-tabs::-webkit-scrollbar{ display:none; }
     .tab-link{ font-size:14px; }
 
-    /* ---------- Inputs: 16px stops iOS zooming in on focus ---------- */
-
+    /* 16px stops iOS zooming in when a field is focused */
     input, select, textarea{ font-size:16px !important; }
 
     /* ---------- Overlays ---------- */
@@ -154,6 +226,8 @@
     .checklist-modal-box{
         width:100% !important;
         max-width:calc(100vw - 24px);
+        max-height:calc(100dvh - 24px);
+        overflow-y:auto;
         padding:18px;
     }
 
@@ -161,66 +235,37 @@
     .em-overlay,
     .rm-overlay{ padding:12px; }
 
-    .toast{ max-width:calc(100vw - 24px); }
-
+    .toast,
+    .est-toast,
+    .rm-toast{ max-width:calc(100vw - 24px); }
     .popover{ max-width:calc(100vw - 24px); }
 
     /* =====================================================
-       Dashboard page
+       Dashboard
     ===================================================== */
 
-    .main-card{
-        overflow-y:auto;
-        overflow-x:hidden;
-        -webkit-overflow-scrolling:touch;
-    }
+    .main-card{ -webkit-overflow-scrolling:touch; }
 
     .Ongoing-Projects{ padding:14px 12px 4px; }
 
-    .Ongoing-Proj-card{
-        flex:0 0 78%;
-        min-width:240px;
-    }
-
-    .Ongoing-Projects-cards{
-        margin-left:12px;
-        margin-right:12px;
-        padding-bottom:4px;
-    }
-
+    .Ongoing-Proj-card{ flex:0 0 78%; min-width:240px; }
+    .Ongoing-Projects-cards{ margin-left:12px; margin-right:12px; padding-bottom:4px; }
     .scroll-arrow{ display:none; }
 
-    .Projects-cost,
-    .Projects-Cost{
-        min-height:0;
-        margin-left:12px;
-        margin-right:12px;
-    }
+    .Projects-Cost{ min-height:0; margin-left:12px; margin-right:12px; }
 
-    .price{ font-size:34px; }
-
+    .price{ font-size:clamp(26px, 8vw, 40px); }
+    .budget-info{ flex-wrap:wrap; }
     .graph{ width:120px; height:120px; }
 
-    .Design-Overview{
-        flex-direction:column;
-        height:auto;
-        gap:12px;
-        padding:12px;
-    }
-
-    .Project-2d-3d{
-        width:100%;
-        height:400px;
-    }
-
-    .Proj-progress{ width:100%; flex:none; }
+    .Design-Overview{ padding:12px; }
+    .Design-Overview .Project-2d-3d{ height:380px; }
 
     #p2d-3d-nav{ padding:0 10px; }
     .preview-tabs{ gap:12px; }
     .floors{ width:72px; }
     .design-footer{ height:auto; min-height:45px; padding:6px 10px; gap:8px; flex-wrap:wrap; }
     .switch-view{ min-width:0; }
-
     .main-view.is-fullscreen{ inset:8px; }
 
     /* =====================================================
@@ -229,10 +274,7 @@
 
     .estimator-page{ padding:14px 12px; }
 
-    .estimator-toolbar{
-        flex-wrap:wrap;
-        row-gap:10px;
-    }
+    .estimator-toolbar{ flex-wrap:wrap; row-gap:10px; }
 
     .estimator-tabs{
         width:100%;
@@ -241,19 +283,12 @@
         scrollbar-width:none;
     }
     .estimator-tabs::-webkit-scrollbar{ display:none; }
-
     .est-tab{ font-size:13.5px; flex-shrink:0; }
 
     .estimator-actions{ flex-wrap:wrap; width:100%; }
 
-    .estimator-grid{ flex-direction:column; }
-
-    .estimator-col-left,
-    .estimator-col-mid,
-    .estimator-col-right{
-        flex:none;
-        width:100%;
-    }
+    .estimator-col-mid{ flex:1.3 1 300px; }
+    .estimator-col-right{ flex:1 1 240px; }
 
     .est-cost-row{ flex-wrap:wrap; }
     .est-total-cost{ font-size:28px; }
@@ -273,86 +308,50 @@
 
     .est-two{ flex-direction:column; }
     .est-grow, .est-grow2{ flex:1 1 auto; width:100%; }
-    .em-row2{ grid-template-columns:1fr; }
 
     /* =====================================================
        Materials
     ===================================================== */
 
-    .materials-heading{
-        flex-wrap:wrap;
-        padding:14px 12px 0;
-    }
+    .materials-heading{ flex-wrap:wrap; padding:14px 12px 0; }
     .materials-heading h1{ font-size:20px; white-space:normal; }
     .materials-heading p{ white-space:normal; }
 
-    .materials-stats{
-        grid-template-columns:repeat(2, minmax(0, 1fr));
-        padding:14px 12px 0;
-    }
+    .materials-stats{ padding:14px 12px 0; }
     .stat-card h4{ font-size:11px; }
     .stat-card h2{ font-size:18px; }
     .stat-card p{ font-size:10.5px; }
 
-    .materials-toolbar{
-        flex-direction:column;
-        align-items:stretch;
-        padding:14px 12px 0;
-    }
-
-    .materials-tabs{ overflow-x:auto; scrollbar-width:none; }
-    .materials-tabs::-webkit-scrollbar{ display:none; }
-    .mat-tab{ font-size:13px; flex-shrink:0; }
-
+    .materials-toolbar{ flex-direction:column; align-items:stretch; padding:14px 12px 0; }
+    .mat-tab{ font-size:13px; }
     .materials-actions{ flex-wrap:wrap; }
 
-    .materials-table-wrap{
-        margin:14px 12px;
-        overflow-x:auto;
-        -webkit-overflow-scrolling:touch;
-    }
-    .materials-table{ min-width:820px; }
+    .materials-table-wrap{ margin:14px 12px; }
     .materials-table th{ font-size:11px; }
 
-    .materials-footer{
-        flex-wrap:wrap;
-        padding:0 12px 16px;
-        white-space:normal;
-    }
-
-    .modal-field-row{ grid-template-columns:1fr; }
+    .materials-footer{ flex-wrap:wrap; padding:0 12px 16px; white-space:normal; }
 
     /* =====================================================
        Reports
     ===================================================== */
 
     .main-card-for-reports{ padding:14px 12px; }
-
     .reports-toolbar{ flex-direction:column; align-items:stretch; }
     .reports-toolbar-right{ justify-content:space-between; }
-
-    .reports-grid{ grid-template-columns:1fr; }
 
     /* =====================================================
        Suppliers
     ===================================================== */
 
     .supplier-page{ padding:14px 12px; }
-
     .supplier-filter-bar{ flex-wrap:wrap; row-gap:10px; }
-
-    .supplier-tabs{
-        width:100%;
-        overflow-x:auto;
-        scrollbar-width:none;
-    }
-    .supplier-tabs::-webkit-scrollbar{ display:none; }
-    .supp-tab{ flex-shrink:0; font-size:13px; padding:0 14px; }
+    .supplier-tabs{ width:100%; }
+    .supp-tab{ font-size:13px; padding:0 14px; }
 
     .supplier-filter-panel{
         position:fixed;
         top:auto;
-        left:72px;
+        left:68px;
         right:12px;
         bottom:12px;
         width:auto;
@@ -373,11 +372,7 @@
     .supp-detail-sub{ white-space:normal; font-size:12.5px; }
     .supp-detail-desc{ font-size:12.5px; }
 
-    .supp-detail-tabs{
-        gap:18px;
-        overflow-x:auto;
-        scrollbar-width:none;
-    }
+    .supp-detail-tabs{ gap:18px; overflow-x:auto; scrollbar-width:none; }
     .supp-detail-tabs::-webkit-scrollbar{ display:none; }
     .supp-detail-tab{ font-size:13px; flex-shrink:0; }
 
@@ -395,10 +390,6 @@
         border-right:none;
         border-bottom:1px solid var(--color-border);
     }
-
-    .supp-promo-grid,
-    .supp-delivery-layout,
-    .supp-contact-grid{ grid-template-columns:minmax(0, 1fr); }
 
     .supp-inventory-row{
         grid-template-columns:minmax(80px, 1fr) minmax(0, 1fr) 36px;
@@ -428,7 +419,7 @@
     .premium-banner{ flex-wrap:wrap; }
     .premium-banner > span{ white-space:normal; }
     .premium-main-grid{ grid-template-columns:minmax(0, 1fr); }
-    .pricing-cards-grid{ grid-template-columns:minmax(0, 1fr); gap:20px; }
+    .pricing-cards-grid{ grid-template-columns:repeat(2, minmax(0, 1fr)); gap:20px; }
     .pricing-card{ padding:22px 18px; }
     .pricing-card h3{ font-size:18px; }
     .pricing-amount .amount{ font-size:34px; }
@@ -445,12 +436,6 @@
     .Projects-filters{ width:100%; }
     .New-Project-btn{ justify-content:center; }
 
-    .Projects-current-list{
-        overflow-x:auto;
-        -webkit-overflow-scrolling:touch;
-    }
-    .project-table{ min-width:760px; }
-
     .filter-menu{ max-width:calc(100vw - 24px); }
 
     .Projects-details-header{ flex-wrap:wrap; padding:16px 14px 12px; }
@@ -460,7 +445,7 @@
     .project-nav{ padding:0 14px; gap:20px; }
     #project-contents{ padding:16px 14px 22px; }
 
-    .overview-grid{ grid-template-columns:minmax(0, 1fr); }
+    .overview-grid{ grid-template-columns:repeat(2, minmax(0, 1fr)); }
     .design-checklist-row{ flex-direction:column; }
     .Project-checklist{ width:100%; }
     .preview-panes{ flex-direction:column; height:auto; }
@@ -477,7 +462,6 @@
     ===================================================== */
 
     .settings-page{ padding:14px 12px 24px; }
-    .settings-fields-grid{ grid-template-columns:minmax(0, 1fr); }
     .settings-card{ padding:16px; }
     .settings-tabs{ scrollbar-width:none; }
     .settings-tabs::-webkit-scrollbar{ display:none; }
@@ -501,10 +485,7 @@
     .team-stat-card h2{ font-size:22px; }
     .team-stat-icon{ width:40px; height:40px; }
     .team-lower-grid{ grid-template-columns:minmax(0, 1fr); gap:16px; }
-    .team-members-card{ overflow-x:auto; }
-    .team-table{ min-width:700px; }
     .invite-member-btn{ justify-content:center; }
-    .modal-box{ padding:20px; }
 
     /* =====================================================
        Notifications
@@ -533,6 +514,48 @@
     .ai-chat-messages{ padding:14px; }
     .ai-composer{ padding:10px 12px calc(12px + env(safe-area-inset-bottom, 0px)); }
     .design-tab{ height:38px; }
+
+    /* =====================================================
+       Admin dashboard (uses this same shell)
+    ===================================================== */
+
+    .admin-page{ padding:14px 12px 24px; }
+    .admin-kpis{ grid-template-columns:repeat(2, minmax(0, 1fr)); }
+    .admin-row,
+    .admin-row--wide{ grid-template-columns:minmax(0, 1fr); }
+    .bar-chart{ height:180px; }
+}
+
+/* =========================================================
+   Phones: single column
+========================================================= */
+
+@media (max-width:600px){
+
+    .estimator-grid{ flex-direction:column; flex-wrap:nowrap; }
+    .estimator-col-left,
+    .estimator-col-mid,
+    .estimator-col-right{ flex:none; width:100%; }
+    .em-row2{ grid-template-columns:1fr; }
+
+    .materials-stats{ grid-template-columns:repeat(2, minmax(0, 1fr)); }
+    .modal-field-row{ grid-template-columns:1fr; }
+
+    .reports-grid{ grid-template-columns:1fr; }
+
+    .supp-promo-grid,
+    .supp-delivery-layout,
+    .supp-contact-grid{ grid-template-columns:minmax(0, 1fr); }
+
+    .pricing-cards-grid{ grid-template-columns:minmax(0, 1fr); }
+
+    .overview-grid{ grid-template-columns:minmax(0, 1fr); }
+    .settings-fields-grid{ grid-template-columns:minmax(0, 1fr); }
+
+    .team-members-card{ overflow-x:auto; }
+
+    .admin-kpis{ grid-template-columns:minmax(0, 1fr); }
+    .admin-table{ min-width:460px; }
 }
 
 /* =========================================================
@@ -545,14 +568,12 @@
 
     .dashboard-navbar,
     .dashboard-navbar.collapsed{
-        width:52px !important;
-        min-width:52px;
-        max-width:52px;
         padding-left:4px;
         padding-right:4px;
     }
 
-    .notif-dropdown{ left:64px; }
+    .notif-dropdown{ left:60px; }
+    .supplier-filter-panel{ left:60px; }
 
     .notification-btn{ width:36px; height:36px; }
     .profile-avatar{ width:30px; height:30px; }
@@ -563,17 +584,13 @@
     .Break-of-material,
     .Overall-Forecast{ padding:14px; }
 
-    .price{ font-size:30px; }
-
     .material-item{ grid-template-columns:12px 1fr auto; }
     .material-item small{ display:none; }
 
-    .materials-stats{ gap:8px; }
     .stat-card{ padding:10px; gap:8px; }
     .stat-icon{ width:30px; height:30px; font-size:15px; }
 
     .team-stats{ grid-template-columns:minmax(0, 1fr); }
-
     .supp-featured-grid{ grid-template-columns:minmax(0, 1fr); }
 
     .help-topics-grid,
@@ -581,4 +598,50 @@
     .premium-includes-grid{ grid-template-columns:minmax(0, 1fr); }
 
     .settings-tab{ padding:0 10px; }
+
+    .est-total-cost{ font-size:24px; }
+    .est-qty-stepper span{ min-width:44px; }
+}
+
+/* =========================================================
+   Very small phones
+========================================================= */
+
+@media (max-width:360px){
+
+    .header-left h2{ font-size:15px; }
+    .materials-stats{ grid-template-columns:minmax(0, 1fr); }
+    .notification-count{ min-width:16px; height:16px; font-size:9px; }
+    .Ongoing-Proj-card{ min-width:210px; }
+    .pricing-amount .amount{ font-size:30px; }
+}
+
+/* =========================================================
+   Short landscape phones: save vertical space
+========================================================= */
+
+@media (max-height:520px) and (orientation:landscape) and (max-width:950px){
+
+    .dashboard-header{ height:52px; }
+    .nav-link{ height:36px; }
+    .lower-sidebar{ margin-top:8px; padding-top:8px; }
+    .dashboard-navbar #logo{ padding-bottom:8px; margin-bottom:6px; }
+    .modal-box,
+    .em-box,
+    .rm-box{ max-height:calc(100dvh - 16px); }
+    .ai-chat{ min-height:360px; }
+    .floorplan-canvas{ min-height:260px; }
+}
+
+/* =========================================================
+   Touch screens: comfortable tap targets for menu items
+========================================================= */
+
+@media (pointer:coarse){
+
+    .row-menu button,
+    .pop-item,
+    .filter-menu button,
+    .dropdown a,
+    .notif-dd-item{ min-height:40px; }
 }

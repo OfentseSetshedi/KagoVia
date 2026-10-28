@@ -1,0 +1,25 @@
+:root{--ink:#1f1a17;--muted:#6b625a;--bg:#fbf8f3;--card:#f1ebe2;--accent:#b5482f;--serif:'Instrument Serif','Times New Roman',Georgia,serif;--sans:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{font-family:var(--sans);color:var(--ink);background:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+.lg-top{max-width:1000px;margin:0 auto;padding:22px 24px;display:flex;justify-content:space-between;align-items:center;gap:16px}
+.lg-logo{display:inline-flex;align-items:center;gap:8px;font:400 24px var(--serif);color:var(--ink);text-decoration:none}
+.lg-logo img{width:34px;height:34px;object-fit:contain;display:block}
+.lg-back{font-size:13px;color:var(--muted);text-decoration:none}
+.lg-back:hover{color:var(--accent)}
+.lg-wrap{max-width:1000px;margin:0 auto;padding:24px 24px 80px;display:grid;grid-template-columns:220px 1fr;gap:48px}
+.lg-toc{position:sticky;top:24px;align-self:start;font-size:13px}
+.lg-toc h4{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:12px}
+.lg-toc a{display:block;color:var(--muted);text-decoration:none;padding:5px 0}
+.lg-toc a:hover{color:var(--accent)}
+.lg-doc h1{font:400 clamp(40px,6vw,60px)/1.05 var(--serif);letter-spacing:-.02em;margin-bottom:8px}
+.lg-meta{font-size:13px;color:var(--muted);margin-bottom:28px}
+.lg-note{background:var(--card);border-left:3px solid var(--accent);border-radius:10px;padding:14px 18px;font-size:13.5px;margin-bottom:32px}
+.lg-doc h2{font:400 28px var(--serif);margin:36px 0 10px;scroll-margin-top:20px}
+.lg-doc p,.lg-doc li{font-size:15px;color:#3b342f;margin-bottom:10px}
+.lg-doc ul{padding-left:22px;margin-bottom:10px}
+.lg-foot{max-width:1000px;margin:0 auto;padding:28px 24px 48px;border-top:1px solid #e6dccd;font-size:12.5px;color:var(--muted);display:flex;gap:22px;flex-wrap:wrap;justify-content:space-between}
+.lg-foot nav a{color:var(--muted);text-decoration:none;margin-right:18px}
+.lg-foot nav a:hover{color:var(--accent)}
+@media(max-width:760px){.lg-wrap{grid-template-columns:1fr;gap:20px}.lg-toc{position:static}}

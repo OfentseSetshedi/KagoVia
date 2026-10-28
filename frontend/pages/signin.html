@@ -1,302 +1,218 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up / Sign In | KagoBuild</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../styles/auth.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign in or create an account | KagoBuild</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Instrument+Serif&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles/auth.css">
 </head>
 <body>
-    <main id="auth-page">
-        <div class="auth-shell">
 
-            <!-- ============================================
-                 LEFT SIDE: gradient brand panel (never changes)
-            ============================================= -->
-            <aside class="auth-visual">
-                <a href="index.html" class="auth-brand">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <path d="M3 11 12 4l9 7M6 10v10h12V10"/>
-                    </svg>
-                    KagoBuild
-                </a>
+<main id="auth-page">
+  <div class="auth-shell">
 
-                <div class="auth-visual-copy">
-                    <span>You can easily</span>
-                    <h2>Design your home and price every material in one place.</h2>
-                </div>
-            </aside>
+    <!-- Brand panel (desktop only) -->
+    <aside class="auth-visual">
+      <a href="index.html" class="auth-brand" aria-label="KagoBuild home"><i><img src="../assets/Company-badge.png" alt=""></i>KagoBuild</a>
+      <div class="auth-visual-copy">
+        <h2>Design your home and price every material in one place.</h2>
+        <p>AI floor plans with live supplier costs, so you know your budget before you hire anyone.</p>
+      </div>
+    </aside>
 
-            <!-- ============================================
-                 RIGHT SIDE: one card stage, five cards inside,
-                 only one visible at a time, JS swaps + animates
-            ============================================= -->
-            <section class="auth-panel">
-                <div class="card-stage" id="card-stage">
+    <!-- Form panel: one card visible at a time -->
+    <section class="auth-panel">
+      <a href="index.html" class="auth-mobile-brand" aria-label="KagoBuild home"><i><img src="../assets/Company-badge.png" alt=""></i>KagoBuild</a>
 
-                    <!-- SIGN UP -->
-                    <div class="auth-card is-active" data-card="signup">
-                        <form onsubmit="return false;">
-                            <svg class="auth-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" aria-hidden="true">
-                                <path d="M12 2v20M3.3 7l17.4 10M3.3 17 20.7 7"/>
-                            </svg>
+      <!-- SIGN UP -->
+      <div class="auth-card is-active" data-card="signup">
+        <form novalidate>
+          <h1>Create an account</h1>
+          <p class="auth-sub">Plan your build, generate floor plans and get live material costs.</p>
+          <div class="form-error" role="alert"></div>
+          <div class="form-group"><label for="su-name">Full name</label><input id="su-name" type="text" placeholder="Your full name" autocomplete="name"></div>
+          <div class="form-group"><label for="su-email">Email</label><input id="su-email" type="email" placeholder="you@example.com" autocomplete="email"></div>
+          <div class="form-group"><label for="su-pass">Password</label><div class="input-wrap"><input id="su-pass" type="password" placeholder="Create a password" autocomplete="new-password"><button type="button" class="eye-btn" aria-label="Show password"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg></button></div></div>
+          <div class="form-group"><label for="su-confirm">Confirm password</label><div class="input-wrap"><input id="su-confirm" type="password" placeholder="Repeat your password" autocomplete="new-password"><button type="button" class="eye-btn" aria-label="Show password"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg></button></div></div>
+          <p class="hint consent">By creating an account you agree to the <a href="terms.html" target="_blank" rel="noopener" style="text-decoration:underline">Terms</a> and <a href="privacy.html" target="_blank" rel="noopener" style="text-decoration:underline">Privacy Policy</a>.</p>
+          <button type="submit" class="primary-btn">Create account</button>
+          <div class="divider"><span>or</span></div>
+          <button type="button" class="social-btn" data-social="google"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>Continue with Google</button>
+          <p class="bottom-link">Already have an account? <button type="button" data-go="login">Log in</button></p>
+        </form>
+      </div>
 
-                            <h1>Create an account</h1>
-                            <p class="auth-sub">Plan your build, generate floor plans and get live material costs, all in one place.</p>
+      <!-- LOG IN -->
+      <div class="auth-card" data-card="login">
+        <form novalidate>
+          <h1>Welcome back</h1>
+          <p class="auth-sub">Log in to continue with your plans and budget.</p>
+          <div class="form-error" role="alert"></div>
+          <div class="form-group"><label for="li-email">Email</label><input id="li-email" type="email" placeholder="you@example.com" autocomplete="email"></div>
+          <div class="form-group"><label for="li-pass">Password</label><div class="input-wrap"><input id="li-pass" type="password" placeholder="Enter your password" autocomplete="current-password"><button type="button" class="eye-btn" aria-label="Show password"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg></button></div></div>
+          <div class="row-between">
+            <label class="check"><input type="checkbox" id="li-remember"> Remember me</label>
+            <button type="button" class="text-link" data-go="forgot">Forgot password?</button>
+          </div>
+          <button type="submit" class="primary-btn">Log in</button>
+          <div class="divider"><span>or</span></div>
+          <button type="button" class="social-btn" data-social="google"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>Continue with Google</button>
+          <p class="bottom-link">Don't have an account? <button type="button" data-go="signup">Sign up</button></p>
+        </form>
+      </div>
 
-                            <div class="form-group">
-                                <label for="su-name">Full name</label>
-                                <input id="su-name" type="text" placeholder="Your full name">
-                            </div>
-                            <div class="form-group">
-                                <label for="su-email">Your email</label>
-                                <input id="su-email" type="email" placeholder="you@example.com">
-                            </div>
-                            <div class="form-group">
-                                <label for="su-pass">Create password</label>
-                                <div class="input-wrap">
-                                    <input id="su-pass" type="password" placeholder="Create a password">
-                                    <button type="button" class="eye-btn" aria-label="Show password"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg></button>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="su-confirm">Confirm password</label>
-                                <div class="input-wrap">
-                                    <input id="su-confirm" type="password" placeholder="Confirm your password">
-                                    <button type="button" class="eye-btn" aria-label="Show password"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg></button>
-                                </div>
-                            </div>
+      <!-- FORGOT PASSWORD -->
+      <div class="auth-card" data-card="forgot">
+        <form novalidate>
+          <h1>Forgot password</h1>
+          <p class="auth-sub">Enter the email linked to your account and we'll send you a verification code.</p>
+          <div class="form-error" role="alert"></div>
+          <div class="form-group"><label for="fp-email">Email</label><input id="fp-email" type="email" placeholder="you@example.com" autocomplete="email"></div>
+          <button type="submit" class="primary-btn">Send code</button>
+          <p class="bottom-link"><button type="button" data-go="login">Back to log in</button></p>
+        </form>
+      </div>
 
-                            <button type="button" class="primary-btn" data-go="login">Create account</button>
+      <!-- VERIFICATION CODE -->
+      <div class="auth-card" data-card="verify">
+        <form novalidate>
+          <h1>Enter verification code</h1>
+          <p class="auth-sub">We sent a 5-digit code to <strong id="vf-email">your email</strong>.</p>
+          <div class="form-error" role="alert"></div>
+          <div class="form-group">
+            <span class="field-label" id="code-label">Verification code</span>
+            <div class="code" role="group" aria-labelledby="code-label">
+              <input type="text" maxlength="1" inputmode="numeric" autocomplete="one-time-code" aria-label="Digit 1">
+              <input type="text" maxlength="1" inputmode="numeric" aria-label="Digit 2">
+              <input type="text" maxlength="1" inputmode="numeric" aria-label="Digit 3">
+              <input type="text" maxlength="1" inputmode="numeric" aria-label="Digit 4">
+              <input type="text" maxlength="1" inputmode="numeric" aria-label="Digit 5">
+            </div>
+          </div>
+          <button type="submit" class="primary-btn">Continue</button>
+          <p class="bottom-link" id="resend">Resend code in <strong id="resend-sec">40</strong> seconds</p>
+        </form>
+      </div>
 
-                            <div class="divider"><span>or continue with</span></div>
+      <!-- SET PASSWORD -->
+      <div class="auth-card" data-card="setpassword">
+        <form novalidate>
+          <h1>Set new password</h1>
+          <p class="auth-sub">Choose a password you haven't used before.</p>
+          <div class="form-error" role="alert"></div>
+          <div class="form-group"><label for="sp-pass">New password</label><div class="input-wrap"><input id="sp-pass" type="password" placeholder="Enter a new password" autocomplete="new-password"><button type="button" class="eye-btn" aria-label="Show password"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg></button></div></div>
+          <div class="form-group"><label for="sp-confirm">Confirm password</label><div class="input-wrap"><input id="sp-confirm" type="password" placeholder="Repeat your password" autocomplete="new-password"><button type="button" class="eye-btn" aria-label="Show password"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg></button></div></div>
+          <button type="submit" class="primary-btn">Save password</button>
+        </form>
+      </div>
 
-                            <div class="social-row">
-                                <button type="button" class="social-btn" aria-label="Continue with Google">
-                                    <svg viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
-                                </button>
-                                <button type="button" class="social-btn" aria-label="Continue with GitHub">
-                                    <svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
-                                </button>
-                                <button type="button" class="social-btn" aria-label="Continue with Apple">
-                                    <svg viewBox="0 0 24 24"><path fill="currentColor" d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
-                                </button>
-                            </div>
+      <p class="auth-legal"><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="index.html#contact">Contact</a></p>
+    </section>
+  </div>
+</main>
 
-                            <div class="bottom-link">
-                                Already have an account?
-                                <span data-go="login">Log in</span>
-                            </div>
-                        </form>
-                    </div>
+<script>
+(function () {
+  var order = ['signup','login','forgot','verify','setpassword'];
+  var cards = Array.prototype.slice.call(document.querySelectorAll('.auth-card'));
+  var timer = null;
 
-                    <!-- LOGIN -->
-                    <div class="auth-card" data-card="login">
-                        <form onsubmit="return false;">
-                            <svg class="auth-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" aria-hidden="true">
-                                <path d="M12 2v20M3.3 7l17.4 10M3.3 17 20.7 7"/>
-                            </svg>
+  function $(s, r) { return (r || document).querySelector(s); }
+  function card(name) { return cards.filter(function (c) { return c.dataset.card === name; })[0]; }
 
-                            <h1>Welcome back!</h1>
-                            <p class="auth-sub">Log in to start creating stunning house plans and keep your budget on track.</p>
+  function goTo(name) {
+    var t = card(name); if (!t) return;
+    cards.forEach(function (c) { c.classList.remove('is-active'); });
+    clearErrors(t);
+    t.classList.add('is-active');
+    if (history.replaceState) history.replaceState(null, '', '#' + name);
+    if (name === 'verify') startResend();
+    var first = t.querySelector('input:not([type=checkbox])'); if (first) first.focus({ preventScroll: true });
+  }
 
-                            <div class="form-group">
-                                <label for="li-email">Your email</label>
-                                <input id="li-email" type="email" placeholder="you@example.com">
-                            </div>
-                            <div class="form-group">
-                                <label for="li-pass">Password</label>
-                                <div class="input-wrap">
-                                    <input id="li-pass" type="password" placeholder="Enter your password">
-                                    <button type="button" class="eye-btn" aria-label="Show password"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg></button>
-                                </div>
-                            </div>
+  function showError(c, msg, ok) {
+    var box = $('.form-error', c); if (!box) return;
+    box.textContent = msg; box.classList.add('show');
+    box.style.background = ok ? '#eaf4ec' : ''; box.style.color = ok ? 'var(--ok)' : '';
+  }
+  function clearErrors(c) {
+    var box = $('.form-error', c); if (box) { box.classList.remove('show'); box.textContent = ''; }
+    Array.prototype.forEach.call(c.querySelectorAll('.has-error'), function (g) { g.classList.remove('has-error'); });
+  }
+  function flag(input) { var g = input.closest('.form-group'); if (g) g.classList.add('has-error'); input.focus(); }
 
-                            <div class="remember-row">
-                                <label>
-                                    <input type="checkbox">
-                                    Remember me
-                                </label>
-                                <a href="#" data-go="forgot">Forgot password?</a>
-                            </div>
+  function validEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+  function passChecks(v) { return { len: v.length >= 8, upper: /[A-Z]/.test(v), num: /[0-9]/.test(v), sym: /[^A-Za-z0-9]/.test(v) }; }
+  function passOk(v) { var r = passChecks(v); return r.len && r.upper && r.num && r.sym; }
 
-                            <button type="button" class="primary-btn" onclick="window.location.href='dashboard.html'">Log in</button>
+  // Navigation links
+  document.addEventListener('click', function (e) {
+    var el = e.target.closest('[data-go]'); if (!el) return;
+    e.preventDefault(); goTo(el.dataset.go);
+  });
+  var hash = location.hash.replace('#', '');
+  if (hash && card(hash)) { cards.forEach(function (c) { c.classList.remove('is-active'); }); card(hash).classList.add('is-active'); }
 
-                            <div class="divider"><span>or continue with</span></div>
+  // Show / hide password
+  document.addEventListener('click', function (e) {
+    var btn = e.target.closest('.eye-btn'); if (!btn) return;
+    var input = btn.parentElement.querySelector('input'); var show = input.type === 'password';
+    input.type = show ? 'text' : 'password'; btn.classList.toggle('is-on', show);
+    btn.setAttribute('aria-label', show ? 'Hide password' : 'Show password');
+  });
 
-                            <div class="social-row">
-                                <button type="button" class="social-btn" aria-label="Continue with Google">
-                                    <svg viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
-                                </button>
-                                <button type="button" class="social-btn" aria-label="Continue with GitHub">
-                                    <svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
-                                </button>
-                                <button type="button" class="social-btn" aria-label="Continue with Apple">
-                                    <svg viewBox="0 0 24 24"><path fill="currentColor" d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
-                                </button>
-                            </div>
+  // Verification code boxes
+  var boxes = Array.prototype.slice.call(document.querySelectorAll('.code input'));
+  boxes.forEach(function (b, i) {
+    b.addEventListener('input', function () { b.value = b.value.replace(/\D/g, ''); if (b.value && boxes[i + 1]) boxes[i + 1].focus(); });
+    b.addEventListener('keydown', function (e) { if (e.key === 'Backspace' && !b.value && boxes[i - 1]) boxes[i - 1].focus(); });
+    b.addEventListener('paste', function (e) {
+      var d = (e.clipboardData.getData('text') || '').replace(/\D/g, '').slice(0, boxes.length); if (!d) return;
+      e.preventDefault(); d.split('').forEach(function (ch, k) { boxes[k].value = ch; }); boxes[Math.min(d.length, boxes.length - 1)].focus();
+    });
+  });
 
-                            <div class="bottom-link">
-                                Don't have an account?
-                                <span data-go="signup">Sign up</span>
-                            </div>
-                        </form>
-                    </div>
+  function startResend() {
+    clearInterval(timer);
+    var s = 40, box = $('#resend');
+    box.innerHTML = 'Resend code in <strong id="resend-sec">40</strong> seconds';
+    timer = setInterval(function () {
+      s--; var n = $('#resend-sec');
+      if (s <= 0) { clearInterval(timer); box.innerHTML = '<button type="button" id="resend-btn">Resend code</button>'; }
+      else if (n) n.textContent = s;
+    }, 1000);
+  }
+  document.addEventListener('click', function (e) { if (e.target.id === 'resend-btn') startResend(); /* TODO: call API to resend */ });
 
-                    <!-- FORGOT PASSWORD -->
-                    <div class="auth-card" data-card="forgot">
-                        <form onsubmit="return false;">
-                            <svg class="auth-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" aria-hidden="true">
-                                <path d="M12 2v20M3.3 7l17.4 10M3.3 17 20.7 7"/>
-                            </svg>
+  function maskEmail(v) {
+    var p = v.split('@'); if (p.length !== 2) return v;
+    var n = p[0]; return (n.length <= 2 ? n[0] + '*' : n[0] + '*****' + n[n.length - 1]) + '@' + p[1];
+  }
 
-                            <h1>Forgot password</h1>
-                            <p class="auth-sub">Enter the email address associated with your account and we'll send you a verification code.</p>
+  // Form handlers. No validation for now: each button just moves to the next step.
+  // Add validation / API calls here later.
+  function handler(name, fn) {
+    var c = card(name);
+    $('form', c).addEventListener('submit', function (e) { e.preventDefault(); fn(c); });
+  }
 
-                            <div class="form-group">
-                                <label for="fp-email">Your email</label>
-                                <input id="fp-email" type="email" placeholder="you@example.com">
-                            </div>
+  handler('signup', function () { goTo('login'); });
+  handler('login', function () { window.location.href = 'dashboard.html'; });
+  handler('forgot', function () {
+    var v = $('#fp-email').value.trim();
+    if (v) $('#vf-email').textContent = maskEmail(v);
+    goTo('verify');
+  });
+  handler('verify', function () { goTo('setpassword'); });
+  handler('setpassword', function () { goTo('login'); });
 
-                            <button type="button" class="primary-btn" data-go="verify">Continue</button>
-
-                            <div class="bottom-link">
-                                <span data-go="login">Back to login</span>
-                            </div>
-                        </form>
-                    </div>
-
-                    <!-- VERIFICATION CODE -->
-                    <div class="auth-card" data-card="verify">
-                        <form onsubmit="return false;">
-                            <svg class="auth-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" aria-hidden="true">
-                                <path d="M12 2v20M3.3 7l17.4 10M3.3 17 20.7 7"/>
-                            </svg>
-
-                            <h1>Enter verification code</h1>
-                            <p class="auth-sub">The verification code has been sent to <strong>j*****k@gmail.com</strong></p>
-
-                            <div class="form-group">
-                                <div class="code">
-                                    <input type="text" maxlength="1" inputmode="numeric">
-                                    <input type="text" maxlength="1" inputmode="numeric">
-                                    <input type="text" maxlength="1" inputmode="numeric">
-                                    <input type="text" maxlength="1" inputmode="numeric">
-                                    <input type="text" maxlength="1" inputmode="numeric">
-                                </div>
-                            </div>
-
-                            <button type="button" class="primary-btn" data-go="setpassword">Continue</button>
-
-                            <div class="bottom-link">
-                                Resend after <strong>40</strong> seconds
-                            </div>
-                        </form>
-                    </div>
-
-                    <!-- SET PASSWORD -->
-                    <div class="auth-card" data-card="setpassword">
-                        <form onsubmit="return false;">
-                            <svg class="auth-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" aria-hidden="true">
-                                <path d="M12 2v20M3.3 7l17.4 10M3.3 17 20.7 7"/>
-                            </svg>
-
-                            <h1>Set password</h1>
-                            <p class="auth-sub">Password requires a minimum of 8 characters and contains uppercase letters, numbers, and symbols.</p>
-
-                            <div class="form-group">
-                                <label for="sp-pass">Password</label>
-                                <div class="input-wrap">
-                                    <input id="sp-pass" type="password" placeholder="Enter your password">
-                                    <button type="button" class="eye-btn" aria-label="Show password"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg></button>
-                                </div>
-                            </div>
-
-                            <button type="button" class="primary-btn" data-go="login">Continue</button>
-                        </form>
-                    </div>
-
-                </div>
-            </section>
-
-        </div>
-    </main>
-
-    <script>
-        (function () {
-            const cards = Array.from(document.querySelectorAll('.auth-card'));
-            const order = ['signup', 'login', 'forgot', 'verify', 'setpassword'];
-
-            function getCard(name) {
-                return cards.find(c => c.dataset.card === name);
-            }
-
-            function goTo(targetName) {
-                const current = cards.find(c => c.classList.contains('is-active'));
-                const target = getCard(targetName);
-                if (!target || target === current) return;
-
-                // Moving "forward" through the flow slides the new card in
-                // from the right; moving "backward" slides it in from the left.
-                const goingBackward =
-                    current &&
-                    order.indexOf(targetName) < order.indexOf(current.dataset.card);
-
-                if (current) {
-                    current.classList.remove('is-active');
-                    current.classList.toggle('is-leaving-left', !goingBackward);
-                    current.classList.toggle('from-left', false);
-
-                    current.addEventListener('transitionend', function handler() {
-                        current.classList.remove('is-leaving-left');
-                        current.removeEventListener('transitionend', handler);
-                    });
-                }
-
-                target.classList.toggle('from-left', goingBackward);
-                void target.offsetWidth; // force reflow so the start position applies
-                target.classList.add('is-active');
-            }
-
-            document.querySelectorAll('[data-go]').forEach(el => {
-                el.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    goTo(el.dataset.go);
-                });
-            });
-
-            // Open the right card straight away from a link like signin.html#login
-            const hash = location.hash.replace('#', '');
-            if (hash && getCard(hash)) {
-                cards.forEach(c => c.classList.remove('is-active'));
-                getCard(hash).classList.add('is-active');
-            }
-
-            // Show / hide password
-            document.querySelectorAll('.eye-btn').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const input = btn.parentElement.querySelector('input');
-                    const show = input.type === 'password';
-                    input.type = show ? 'text' : 'password';
-                    btn.classList.toggle('is-on', show);
-                    btn.setAttribute('aria-label', show ? 'Hide password' : 'Show password');
-                });
-            });
-
-            // Verification code: jump to next box as you type, back on backspace
-            const codeInputs = Array.from(document.querySelectorAll('.code input'));
-            codeInputs.forEach((input, i) => {
-                input.addEventListener('input', () => {
-                    if (input.value && codeInputs[i + 1]) codeInputs[i + 1].focus();
-                });
-                input.addEventListener('keydown', (e) => {
-                    if (e.key === 'Backspace' && !input.value && codeInputs[i - 1]) {
-                        codeInputs[i - 1].focus();
-                    }
-                });
-            });
-        })();
-    </script>
+  // Social sign-in placeholder
+  Array.prototype.forEach.call(document.querySelectorAll('[data-social]'), function (b) {
+    b.addEventListener('click', function () { /* TODO: start Google sign-in */ });
+  });
+})();
+</script>
 </body>
 </html>
