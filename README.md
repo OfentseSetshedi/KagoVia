@@ -1,4 +1,4 @@
-# KagoBuild
+# KagoVia
 
 **Design and budget your home with AI.**
 
