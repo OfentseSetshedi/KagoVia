@@ -1,0 +1,139 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>KagoBuild platform simulator</title>
+<style>
+:root{--bg:#0b2038;--p:#10294a;--b:#2b4d78;--t:#dbe9f7;--m:#8aa6c4;--ok:#5fd38d;--w:#ffb02e;--e:#ff6b5b;--a:#6ec1ff;color-scheme:dark}
+@media(prefers-color-scheme:light){:root{--bg:#e9f0f7;--p:#fff;--b:#b9cadd;--t:#10243a;--m:#52687f;--ok:#1b8a4b;--w:#a86400;--e:#c93a2b;--a:#0a69b8;color-scheme:light}}
+*{box-sizing:border-box}body{margin:0;padding:12px;color:var(--t);font:13px/1.45 "Avenir Next","Segoe UI",system-ui,sans-serif;background:var(--bg) linear-gradient(var(--b)1px,transparent 1px) 0 0/100% 28px;background-blend-mode:soft-light}
+h1{font:600 20px Georgia,serif;margin:0}h2{font-size:13px;margin:0 0 6px;color:var(--a)}p.s{margin:2px 0 8px;color:var(--m)}
+.r{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:5px 0}
+button,select{background:var(--p);color:var(--t);border:1px solid var(--b);border-radius:5px;padding:4px 9px;font:inherit;cursor:pointer}
+button:hover,select:focus-visible,button:focus-visible{border-color:var(--a);outline:1px solid var(--a)}button.on{background:var(--e);border-color:var(--e);color:#fff}button.go{border-color:var(--ok)}
+.c{background:var(--p);border:1px solid var(--b);border-radius:4px;padding:10px}
+.gr{display:grid;gap:8px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));margin-top:8px}
+.kp{display:grid;gap:6px;grid-template-columns:repeat(auto-fit,minmax(112px,1fr));margin:8px 0}.kp b{display:block;font-size:19px}.kp span{color:var(--m);font-size:11px}
+svg text{fill:var(--t);font-size:11px}svg .sb{fill:var(--m);font-size:9.5px}.n{fill:var(--p);stroke-width:2}
+.fl{stroke:var(--a);stroke-width:1.6;fill:none;stroke-dasharray:5 6;animation:d 1s linear infinite}@keyframes d{to{stroke-dashoffset:-11}}
+@media(prefers-reduced-motion:reduce){.fl{animation:none}}
+table{width:100%;border-collapse:collapse}td,th{padding:2px 4px;text-align:left;border-bottom:1px solid var(--b);font-size:12px}th{color:var(--m);font-weight:500}
+.pl{display:inline-block;padding:1px 8px;border-radius:9px;border:1px solid var(--b);margin:1px;font-size:11px}.pl.a{background:var(--a);color:#06203a;border-color:var(--a)}
+.ok{color:var(--ok)}.w{color:var(--w)}.e{color:var(--e)}#lg{height:170px;overflow:auto;font-size:11.5px}input[type=range]{width:150px}
+</style></head><body>
+<h1>KagoBuild platform simulator</h1>
+<p class="s">A live model of the v4 architecture: CDN/WAF, load balancer, Fastify pods, Redis, PostgreSQL, AI queue and workers, payments, supplier sync, outbox and ETL. Parameters come from the docs (200 req/s per pod, 40 s AI jobs, 45 s cache TTL, 12 DB connections per pod). They are planning hypotheses, not measurements.</p>
+<div class="c"><div class="r">
+<button id="bp" class="go" onclick="S.run^=1">Pause</button>
+<select onchange="S.spd=+this.value"><option value="1">1× speed</option><option value="2">2×</option><option value="4">4×</option></select>
+<label>Users <input id="u" type="range" min="100" max="10000" step="100" value="1000" oninput="S.U=+this.value"> <b id="uv"></b></label>
+<label>AI load <select onchange="S.ai=+this.value"><option value="1">1×</option><option value="3">3×</option><option value="6">6×</option></select></label>
+<label>Balancing <select onchange="S.algo=this.value"><option value="lc">Least connections</option><option value="rr">Round robin</option></select></label>
+<button id="t_auto" onclick="tg('auto')">Autoscale</button><button id="t_rl" onclick="tg('rl')">Rate limit</button><button id="t_cdn" onclick="tg('cdn')">CDN</button><button id="t_kill" onclick="tg('kill')">AI kill switch</button></div>
+<div class="r"><span class="w">Inject faults:</span>
+<button id="f_redis" onclick="ft('redis')">Redis down</button><button id="f_llm" onclick="ft('llm')">LLM outage</button><button id="f_pg" onclick="ft('pg')">Postgres failover</button><button id="f_sup" onclick="ft('sup')">Supplier outage</button><button id="f_bot" onclick="ft('bot')">Bot attack</button><button onclick="kill()">Crash a pod</button><button id="t_chaos" onclick="tg('chaos')">Chaos mode</button>
+<span class="w">Load test:</span><button onclick="lt(100)">100</button><button onclick="lt(1000)">1,000</button><button onclick="lt(10000)">10,000</button><button onclick="S.U=4000;S.ai=3;$('u').value=4000;log('Evening peak: 4,000 users, AI 3×','w')">Evening peak</button></div></div>
+<div class="kp" id="kp"></div>
+<div class="c"><svg id="sv" viewBox="0 0 1000 470" width="100%" role="img" aria-label="Architecture diagram"></svg></div>
+<div class="gr">
+<div class="c"><h2>AI generation queue and workers</h2><div id="ai"></div></div>
+<div class="c"><h2>Payment reliability lab</h2><div class="r"><button onclick="pay()">Pay R299</button><button onclick="PL.on^=1;plog(PL.on?'Wi-Fi restored':'Wi-Fi dropped');if(PL.on&&PL.key)chk()">Wi-Fi on/off</button><button onclick="rep()">Replay webhook ×3</button><button onclick="bad()">Forged webhook</button><button id="t_dl" onclick="PL.dl^=1">Delay webhook</button><button onclick="chk()">Check status</button><button onclick="rec()">Reconcile</button><button onclick="rf()">Refund</button><button onclick="rst()">Reset</button></div><div id="py"></div></div>
+<div class="c"><h2>Supplier price sync (compressed: 20 s = 1 hour)</h2><div id="su"></div></div>
+<div class="c"><h2>Outbox and warehouse ETL</h2><div class="r"><button onclick="etl()">Run ETL now</button><label><input type="checkbox" id="cr"> Crash mid-load</label><button id="t_ob" class="go" onclick="tg('ob')">Outbox worker</button></div><div id="et"></div></div>
+<div class="c"><h2>Load test results (pass: p95 ≤ 300 ms, errors &lt; 0.1%)</h2><div id="lr"></div><h2 style="margin-top:10px">Trends (last 2 minutes)</h2><div id="sp"></div></div>
+<div class="c"><h2>Alerts and event log</h2><div id="al" class="r"></div><div id="lg"></div></div>
+</div>
+<script>
+const $=i=>document.getElementById(i),R=Math.random,cl=(v,a,b)=>Math.max(a,Math.min(b,v)),f0=n=>Math.round(n).toLocaleString('en-ZA'),tm=()=>{const s=Math.floor(S.t);return String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0')};
+const S={t:0,run:1,spd:1,U:1000,ai:1,algo:'lc',auto:1,rl:1,cdn:1,kill:0,chaos:0,ob:1,F:{redis:0,llm:0,pg:0,sup:0,bot:0},pods:[],pid:0,hit:.95,lat:40,p95:70,err:0,rps:0,pgq:0,connU:0,hiT:0,loT:0,scT:0,qp:0,qf:0,ru:0,wk:20,wkP:0,cb:'closed',cbN:0,done:0,fb:0,dlq:0,rej:0,rty:0,wait:0,obq:0,obD:0,obDup:0,rows:0,wh:0,dd:0,lg:[],H:{r:[],p:[],e:[],q:[]},A:{},stale:0,review:0,runs:0};
+const SUP=['Builders Warehouse','Cashbuild','BUCO','Mica Hardware','Build It','Pro Build','Chamberlains','CTM'].map(n=>({n,cb:'closed',er:0,age:0,rd:0,up:0,rj:0,fl:0,ot:0}));
+const ET={st:-1,wm:0,ld:0,rj:0,sk:0,runs:0,b:0,last:0,fails:0},STG=['Extract','Stage','Validate','Load','Quality'];
+let PL={on:1,key:null,st:'none',psp:'idle',ent:0,led:0,ev:[],seen:new Set(),dl:0,n:0,id:null,ui:'none',m:[]},LT={on:0,res:[]};
+function log(m,c){S.lg.unshift(`<div class="${c||''}">[${tm()}] ${m}</div>`);S.lg.length=Math.min(S.lg.length,60)}
+function tg(k){S[k]^=1}function ft(k){S.F[k]=k=='pg'?30:(S.F[k]?0:1e9);log(S.F[k]?'Fault injected: '+k:'Fault cleared: '+k,S.F[k]?'e':'ok')}
+function addPod(){S.pods.push({id:++S.pid,st:'start',c:8,u:0,k:.8+R()*.4,l:0})}
+function kill(){const u=S.pods.filter(p=>p.st=='up');if(u.length){const p=u[Math.floor(R()*u.length)];p.st='dead';p.c=3;log('Pod #'+p.id+' crashed; the balancer keeps routing to it until the health check fails','e')}}
+for(let i=0;i<3;i++){addPod();S.pods[i].st='up'}
+function lt(n){S.U=n;$('u').value=n;LT.cur={n,t0:S.t,mp:0,me:0,pk:0};LT.on=1;log('Load test started: '+f0(n)+' users for 50 s','w')}
+function tick(){const dt=.25,F=S.F;S.t+=dt;
+for(const k in F)if(F[k]>0&&F[k]<1e8&&(F[k]-=dt)<=0){F[k]=0;log('Fault cleared: '+k,'ok')}
+if(S.chaos&&S.t%12<dt){const k=['redis','llm','pg','sup','bot'][Math.floor(R()*5)];F[k]=k=='pg'?30:15;log('Chaos: injected '+k,'e');if(R()<.4)kill()}
+S.pods.forEach(p=>{if(p.st=='start'&&(p.c-=dt)<=0)p.st='up';if(p.st=='dead'&&(p.c-=dt)<=0){p.st='gone';log('Health check removed pod #'+p.id+'; replacement started','w');addPod()}});S.pods=S.pods.filter(p=>p.st!='gone');
+// edge: CDN/WAF/rate limit
+const bot=F.bot>0?4000:0,waf=bot*.9,rlb=S.rl?(bot-waf)*.9:0;
+const rps=S.U*.4*(1+.08*Math.sin(S.t/3)),toApi=Math.max(0,rps+bot-waf-rlb+(S.cdn?0:S.U*.6));S.rps=toApi;
+// load balancer
+const rt=S.pods.filter(p=>p.st=='up'||p.st=='dead'),ws=rt.map(p=>S.algo=='rr'?1:Math.max(.05,p.k*(1-p.u*.9))),tot=ws.reduce((a,b)=>a+b,0);
+let sv=0,lost=toApi,us=0,nu=0;if(tot>0){lost=0;rt.forEach((p,i)=>{const l=toApi*ws[i]/tot;if(p.st=='dead'){lost+=l;p.u=0;return}p.u=l/(200*p.k);const s=Math.min(l,200*p.k*1.15);sv+=s;lost+=l-s;us+=p.u;nu++})}
+const au=nu?us/nu:1,up=S.pods.filter(p=>p.st=='up').length;
+// cache + DB
+S.hit=F.redis>0?0:Math.min(.95,S.hit+.03*dt);const h=S.hit;
+S.pgq=sv*(.55*(1-h)+.25);const pgC=F.pg>0?2500:4000,dbU=S.pgq/pgC,dl=6/(1-cl(dbU,0,.97));S.connU=S.pgq*dl/1000/Math.max(1,Math.min(200,up*12));
+let er=lost+(F.pg>0?sv*.25*.7:0);const ov=Math.max(dbU,S.connU);if(ov>1)er+=sv*(1-1/ov);
+S.err+=((toApi>0?cl(er/toApi,0,1):0)-S.err)*.3;S.lat+=(30/(1-cl(au,0,.96))+(1-h)*.55*dl+dl*.3-S.lat)*.3;S.p95=S.lat*2.2;
+// autoscale
+au>.65?S.hiT+=dt:S.hiT=0;au<.3?S.loT+=dt:S.loT=0;const pend=S.pods.filter(p=>p.st=='start').length;
+if(S.auto&&S.hiT>5&&S.pods.length<24){const a=cl(Math.ceil(up*au/.55)-up-pend,1,4);for(let i=0;i<a;i++)addPod();S.hiT=0;log('Autoscale: +'+a+' API pods (CPU > 65%)','w')}
+if(S.auto&&S.loT>30&&up>2){const p=S.pods.filter(p=>p.st=='up').pop();p.st='gone';S.pods=S.pods.filter(x=>x.st!='gone');S.loT=0;log('Autoscale: removed a pod (CPU < 30%)')}
+if(up+pend<2)addPod();
+// AI
+const aiIn=S.U*.0025*S.ai*dt,pd=aiIn*.3,fr=aiIn*.7;
+if(S.kill||F.redis>0){S.rej+=aiIn}else{const fq=S.wait>120?0:fr*.35;S.qp+=pd;S.qf+=fq;S.rej+=fr-fq}
+if(F.llm>0&&S.cb=='closed'){S.cbN+=dt;if(S.cbN>3){S.cb='open';log('LLM circuit breaker open: template layouts take over','w')}}
+if(!(F.llm>0)&&S.cb=='open'){S.cbN+=dt;if(S.cbN>8){S.cb='closed';S.cbN=0;log('LLM circuit breaker closed','ok')}}
+const cap=S.wk*10,d=S.cb=='open'?3:40,st=Math.min(S.qp+S.qf,Math.max(0,cap-S.ru)),sp=Math.min(S.qp,st);S.qp-=sp;S.qf-=st-sp;S.ru+=st;const dn=S.ru*dt/d;S.ru-=dn;
+if(F.llm>0&&S.cb=='closed'){S.rty+=dn*.6;S.qf+=dn*.6;S.dlq+=dn*.4}else{S.done+=dn;if(S.cb=='open')S.fb+=dn}
+S.wait=(S.qp+S.qf)/Math.max(1,cap/d);
+if(S.wkP>0){if((S.wkP-=dt)<=0){S.wk=Math.min(40,S.wk+4);log('AI workers scaled to '+S.wk,'w')}}else if(S.wait>30&&S.wk<40)S.wkP=8;else if(S.wait<2&&S.wk>20&&S.t%5<dt)S.wk--;
+// payments (background), outbox, ETL rows
+const ch=S.U*.0002*dt,es=sv*.1*dt*.02;S.wh+=ch*1.08;S.dd+=ch*.08;const ev=dn+ch+es;S.obq+=ev;S.rows+=ev;
+if(S.ob){const c=Math.min(S.obq,200*dt);S.obq-=c;S.obD+=c;S.obDup+=c*.01}
+if(S.t%20<dt)sync();if(S.t%15<dt)etl();
+// alerts
+const A={'5xx above 2%':S.err>.02,'p95 above 300 ms':S.p95>300,'AI queue wait above 2 min':S.wait>120,'DB pool above 85%':S.connU>.85,'Redis down':F.redis>0,'LLM breaker open':S.cb=='open','Outbox backlog above 500':S.obq>500,'Stale prices (6 h+)':S.stale>0,'ETL watermark stuck':S.t-ET.last>60,'Pending payment above 8 s':PL.st=='pending'&&S.t-(PL.t0||S.t)>8};
+for(const k in A){if(A[k]&&!S.A[k])log('ALERT: '+k,'e');if(!A[k]&&S.A[k])log('Resolved: '+k,'ok')}S.A=A;
+if(S.t%1<dt){S.H.r.push(S.rps);S.H.p.push(S.p95);S.H.e.push(S.err*100);S.H.q.push(S.qp+S.qf);for(const k in S.H)if(S.H[k].length>120)S.H[k].shift()}
+if(LT.on){const c=LT.cur;if(S.t-c.t0>10){c.mp=Math.max(c.mp,S.p95);c.me=Math.max(c.me,S.err)}c.pk=Math.max(c.pk,S.pods.length);if(S.t-c.t0>50){LT.on=0;LT.res.unshift({n:c.n,p:c.mp,e:c.me,k:c.pk,ok:c.mp<=300&&c.me<.001});log('Load test '+f0(c.n)+' users: '+(LT.res[0].ok?'pass':'fail'),LT.res[0].ok?'ok':'e')}}}
+function sync(){SUP.forEach((s,i)=>{const bad=S.F.sup>0&&(i==1||i==2);s.age++;if(s.cb=='open'&&--s.ot>0)return;
+if(bad){s.er++;if(s.er>=3&&s.cb!='open'){s.cb='open';s.ot=2;log(s.n+' feed failed 3×: circuit open; keeping last prices','e')}else if(s.cb=='open')s.ot=2;return}
+if(s.cb=='open')log(s.n+' feed recovered','ok');s.cb='closed';s.er=0;s.age=0;s.rd=1800+Math.floor(R()*400);s.rj=Math.round(s.rd*.002);s.fl=Math.round(s.rd*.015);s.up=s.rd-s.rj-s.fl;S.review+=s.fl});
+S.stale=SUP.filter(s=>s.age>=6).length;S.runs++}
+function etl(){if(ET.st>=0)return;ET.st=0;ET.b=Math.floor(S.rows);ET.t=setInterval(()=>{if(!S.run)return;ET.st++;
+if(ET.st==2){ET.rjb=Math.round(ET.b*.02);ET.skb=Math.round(ET.b*.1)}
+if(ET.st==4&&$('cr').checked){$('cr').checked=false;ET.fails++;log('ETL crashed mid-load: transaction rolled back, watermark not advanced','e');clearInterval(ET.t);ET.st=-1;return}
+if(ET.st>=5){ET.ld+=ET.b-ET.rjb-ET.skb;ET.rj+=ET.rjb;ET.sk+=ET.skb;ET.wm+=ET.b;S.rows-=ET.b;ET.runs++;ET.last=S.t;log('ETL batch '+ET.runs+': '+f0(ET.b)+' rows read, '+ET.rjb+' quarantined, '+ET.skb+' unchanged by hash; watermark advanced after commit','ok');clearInterval(ET.t);ET.st=-1}},700/S.spd)}
+// payment lab
+function plog(m){PL.m.unshift(m);PL.m.length=5}function ae(i,v,r){PL.ev.unshift([i,v,r]);PL.ev.length=5}
+function pay(){if(PL.key){plog('Same Idempotency-Key: existing intent returned, no second charge');return}PL.key='k'+(++PL.n);PL.st='pending';PL.psp='charging';PL.id='evt_'+PL.n;PL.ui=PL.on?'pending':'unknown (offline)';PL.t0=S.t;plog('Intent stored, hosted checkout started');
+setTimeout(()=>{PL.psp='captured';plog('Provider captured R299 (browser may be offline)');setTimeout(()=>wh(PL.id,29900,1),PL.dl?9000:900)},1800)}
+function wh(id,a,v){if(!v){ae(id,'bad HMAC','401 rejected');return}if(PL.seen.has(id)){ae(id,'valid','duplicate: deduped');S.dd++;return}PL.seen.add(id);if(PL.st=='pending'){PL.st='succeeded';PL.ent=1;PL.led+=a;S.obq++;ae(id,'valid','applied, 1 entitlement, outbox row')}else ae(id,'valid','no-op, state is '+PL.st)}
+function rep(){if(!PL.id){plog('Nothing to replay yet');return}for(let i=0;i<3;i++)wh(PL.id,29900,1)}function bad(){wh('evt_x'+(++PL.n),29900,0)}
+function chk(){if(!PL.key){plog('No payment yet');return}if(!PL.on){plog('Offline: status unknown, do not pay again');return}PL.ui=PL.st;plog('GET status: '+PL.st+(PL.st=='pending'?' (reconcile, never re-charge)':''))}
+function rec(){if(PL.psp!='captured'){plog('Provider shows no capture yet: stay pending');return}if(PL.st=='pending'){PL.st='succeeded';PL.ent=1;PL.led+=29900;ae('verify','by reference','applied via reconcile')}else plog('Already settled: idempotent no-op');if(PL.on)PL.ui=PL.st}
+function rf(){if(PL.st!='succeeded'){plog('Nothing to refund');return}PL.st='refunded';PL.psp='refunded';PL.led-=29900;ae('evt_r'+PL.n,'refund','-R299 as a separate event; entitlement rule is open (B-05)')}
+function rst(){PL={on:1,key:null,st:'none',psp:'idle',ent:0,led:0,ev:[],seen:new Set(),dl:0,n:PL.n,id:null,ui:'none',m:[]}}
+// drawing
+const ND={B:['Browsers / PWA',10,200],C:['CDN + WAF',135,200],L:['Load balancer',260,200],Q:['API pods (Fastify)',385,125,170,200],R:['Redis',620,20],G:['PostgreSQL',620,110],O:['Outbox + queue',620,200],W:['AI workers',770,200],M:['LLM provider',885,200,105],Y:['Supplier sync',770,20],P:['8 suppliers',885,20,105],E:['ETL',770,110],H:['Warehouse',885,110,105],A:['Supabase Auth',260,380],X:['Paystack',400,380]};
+const ED=[['B','C','U'],['C','L','V'],['L','Q','V'],['Q','R','V'],['Q','G','V'],['Q','O','E'],['O','W','A'],['W','M','A'],['P','Y','S'],['Y','G','S'],['G','E','T'],['E','H','T'],['X','Q','W'],['Q','A','V']];
+const cx=k=>{const n=ND[k];return[n[1]+(n[3]||105)/2,n[2]+(n[4]||50)/2]};
+$('sv').innerHTML=ED.map((e,i)=>{const a=cx(e[0]),b=cx(e[1]);return`<path id="e${i}" class="fl" d="M${a} L${b}"/>`}).join('')+Object.keys(ND).map(k=>{const n=ND[k],w=n[3]||105,h=n[4]||50;return`<rect class="n" id="r${k}" x="${n[1]}" y="${n[2]}" width="${w}" height="${h}" rx="5" stroke="var(--b)"/><text x="${n[1]+7}" y="${n[2]+18}">${n[0]}</text><text class="sb" id="s${k}" x="${n[1]+7}" y="${n[2]+33}"></text>`}).join('')+'<g id="pg"></g>';
+const col=u=>u<0?'var(--e)':u>.9?'var(--e)':u>.65?'var(--w)':'var(--ok)',kp=(l,v,c)=>`<div class="c kp1"><b class="${c||''}">${v}</b><span>${l}</span></div>`,rw=(a,b)=>`<tr><td>${a}</td><td>${b}</td></tr>`;
+function sp(a,c,m){m=m||Math.max(1,...a);return`<polyline fill="none" stroke="${c}" stroke-width="1.5" points="${a.map((v,i)=>i*2+','+(30-30*cl(v/m,0,1))).join(' ')}"/>`}
+function draw(){const F=S.F,up=S.pods.filter(p=>p.st=='up').length,nu=S.pods.filter(p=>p.st=='up'),au=nu.length?nu.reduce((a,p)=>a+p.u,0)/nu.length:1;
+$('bp').textContent=S.run?'Pause':'Resume';$('uv').textContent=f0(S.U);
+['auto','rl','cdn','ob'].forEach(k=>$('t_'+k).className=S[k]?'go':'on');['kill','chaos'].forEach(k=>$('t_'+k).className=S[k]?'on':'');$('t_dl').className=PL.dl?'on':'';
+for(const k in F)$('f_'+k).className=F[k]>0?'on':'';
+$('kp').innerHTML=kp('Sim time',tm())+kp('API requests/s',f0(S.rps))+kp('Read p95 (SLO 300 ms)',f0(S.p95)+' ms',S.p95>300?'e':S.p95>150?'w':'ok')+kp('Errors',(S.err*100).toFixed(2)+'%',S.err>.02?'e':S.err>.001?'w':'ok')+kp('Cache hit ratio',(S.hit*100).toFixed(0)+'%',F.redis>0?'e':'')+kp('API pods up / total',up+' / '+S.pods.length)+kp('AI queue wait',f0(S.wait)+' s',S.wait>120?'e':S.wait>30?'w':'ok')+kp('DB pool used',(S.connU*100).toFixed(0)+'%',S.connU>.85?'e':'');
+const set=(k,u,t)=>{$('r'+k).style.stroke=col(u);$('s'+k).textContent=t};
+set('B',0,f0(S.U)+' users');set('C',S.F.bot>0?.7:0,S.cdn?f0(S.U*2)+' static/s absorbed':'CDN off: origin takes static');set('L',au,S.algo=='rr'?'round robin':'least connections');set('Q',au,f0(S.rps)+' req/s, '+(au*100).toFixed(0)+'% CPU');
+set('R',F.redis>0?-1:0,F.redis>0?'DOWN: reads hit Postgres':'hit '+(S.hit*100).toFixed(0)+'%, TTL 45 s');set('G',F.pg>0?1:S.connU,F.pg>0?'failover: writes paused':f0(S.pgq)+' q/s');set('O',S.obq>500?1:0,'queue '+f0(S.qp+S.qf)+', outbox '+f0(S.obq));
+set('W',S.wait/120,S.wk+' workers, '+f0(S.ru)+' running');set('M',F.llm>0?-1:S.cb=='open'?1:0,S.cb=='open'?'breaker open: templates':'breaker closed');set('Y',0,'sync #'+S.runs);set('P',S.stale?.8:0,S.stale+' stale feeds');set('E',0,ET.st>=0?STG[Math.min(4,ET.st)]:'idle, wm '+f0(ET.wm));set('H',0,f0(ET.ld)+' rows loaded');set('A',0,'JWKS verify');set('X',PL.psp=='idle'?0:.3,'psp '+PL.psp);
+const fr=[S.U/2e3,S.U/2e3,S.rps/800,S.rps/800,S.rps*.55/800,S.rps*.25/800,S.rps*.01,S.ru/200,S.ru/200,.3,.3,.3,ET.st>=0?1:.1,.2,PL.psp=='captured'?1:.1,.3];
+ED.forEach((e,i)=>{const p=$('e'+i),r=cl(fr[i]||0,0,1.5);p.style.opacity=r<.02?.12:.9;p.style.animationDuration=(2.4/(.15+r))+'s'});
+$('pg').innerHTML=S.pods.map((p,i)=>`<rect x="${397+(i%7)*22}" y="${168+Math.floor(i/7)*24}" width="18" height="18" rx="3" fill="${p.st=='dead'?'var(--e)':p.st=='start'?'var(--m)':col(p.u)}" opacity=".85"><title>pod #${p.id} ${p.st} ${(p.u*100).toFixed(0)}%</title></rect>`).join('')+'<text class="sb" x="397" y="300">grey = starting, red = crashed or overloaded</text>';
+const pillsAI=['Brief','LLM PlanSpec','Solver','Rules (repair ≤2)','SVG','Take-off','Explainer'].map(x=>`<span class="pl ${S.cb=='open'&&x=='LLM PlanSpec'?'a':''}">${x}</span>`).join('');
+$('ai').innerHTML=`<div>${pillsAI}</div><table>`+rw('Queued (paid / free)',f0(S.qp)+' / '+f0(S.qf))+rw('Running / capacity',f0(S.ru)+' / '+S.wk*10+(S.wkP>0?' <span class="w">(scaling up)</span>':''))+rw('Completed',f0(S.done)+' ('+f0(S.fb)+' template fallback)')+rw('Retried / dead-letter',f0(S.rty)+' / '+f0(S.dlq))+rw('Rejected (quota, back-pressure, kill, limiter)',f0(S.rej))+rw('SSE progress streams',f0(S.ru))+rw('Policy','Paid jobs start first; free users get back-pressure above 2 min wait; Redis loss fails the AI limiter closed')+'</table>';
+$('py').innerHTML=`<table>`+rw('Browser shows',PL.ui+(PL.ui!=PL.st&&PL.key?' <span class="w">(stale)</span>':''))+rw('Wi-Fi / provider',(PL.on?'online':'<span class="e">offline</span>')+' / '+PL.psp)+rw('Database payment',PL.st)+rw('Entitlements granted',PL.ent+' (unique per payment)')+rw('Net cash events',(PL.led/100).toFixed(2)+' ZAR')+'</table><table><tr><th>Webhook</th><th>Check</th><th>Result</th></tr>'+PL.ev.map(e=>`<tr><td>${e[0]}</td><td>${e[1]}</td><td>${e[2]}</td></tr>`).join('')+`</table><div class="s" style="color:var(--m);font-size:11.5px">${PL.m.join('<br>')||'Try: Pay, drop Wi-Fi, replay the webhook, then reconnect.'}</div><div style="color:var(--m);font-size:11.5px">Background: ${f0(S.wh)} webhooks received, ${f0(S.dd)} duplicates deduped by unique (provider, event id).</div>`;
+$('su').innerHTML='<table><tr><th>Supplier</th><th>Circuit</th><th>Price age</th><th>Read / ok / rejected / flagged</th></tr>'+SUP.map(s=>`<tr><td>${s.n}</td><td class="${s.cb=='open'?'e':'ok'}">${s.cb}</td><td class="${s.age>=6?'w':''}">${s.age} h</td><td>${s.rd} / ${s.up} / ${s.rj} / ${s.fl}</td></tr>`).join('')+`</table><div style="color:var(--m);font-size:11.5px">Gates: price ≤ 0 rejected, change over ±10% to review queue (${f0(S.review)} waiting). ${SUP.filter(s=>s.age>=6).map(s=>'Prices from '+s.n+' are '+s.age+' h old.').join(' ')}</div>`;
+$('et').innerHTML=`<div>${STG.map((x,i)=>`<span class="pl ${ET.st==i?'a':''}">${x}</span>`).join('')}</div><table>`+rw('Source rows since watermark',f0(S.rows))+rw('Loaded / quarantined / unchanged',f0(ET.ld)+' / '+f0(ET.rj)+' / '+f0(ET.sk))+rw('Batches / crashes rolled back',ET.runs+' / '+ET.fails)+rw('Outbox backlog / delivered',f0(S.obq)+' / '+f0(S.obD)+' ('+f0(S.obDup)+' duplicates absorbed by idempotent consumers)')+'</table><div style="color:var(--m);font-size:11.5px">Docs note: the outbox table exists but no worker ships yet. Switch the worker off to watch the backlog grow.</div>';
+$('lr').innerHTML=LT.res.length||LT.on?'<table><tr><th>Users</th><th>Peak p95</th><th>Peak errors</th><th>Pods</th><th></th></tr>'+(LT.on?`<tr><td>${f0(LT.cur.n)}</td><td colspan=4>running, ${Math.max(0,50-Math.floor(S.t-LT.cur.t0))} s left</td></tr>`:'')+LT.res.map(r=>`<tr><td>${f0(r.n)}</td><td>${f0(r.p)} ms</td><td>${(r.e*100).toFixed(2)}%</td><td>${r.k}</td><td class="${r.ok?'ok':'e'}">${r.ok?'pass':'fail'}</td></tr>`).join('')+'</table>':'<span style="color:var(--m)">Run a load test at 100, 1,000 or 10,000 users. Each run ignores the first 10 s of ramp.</span>';
+$('sp').innerHTML=[['Requests/s','r','var(--a)'],['p95 ms','p','var(--w)'],['Errors %','e','var(--e)'],['AI queue','q','var(--ok)']].map(x=>`<div style="color:var(--m);font-size:11px">${x[0]}</div><svg viewBox="0 0 240 32" width="100%" height="32" preserveAspectRatio="none">${sp(S.H[x[1]],x[2])}</svg>`).join('');
+const al=Object.keys(S.A).filter(k=>S.A[k]);$('al').innerHTML=al.length?al.map(k=>`<span class="pl e">${k}</span>`).join(''):'<span class="ok">No active alerts</span>';$('lg').innerHTML=S.lg.join('')}
+setInterval(()=>{if(S.run)for(let i=0;i<S.spd;i++)tick();draw()},250);log('Simulation started: 1,000 users, 3 API pods, 20 AI workers');
+</script></body></html>
