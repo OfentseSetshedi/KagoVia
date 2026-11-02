@@ -6,6 +6,8 @@
     <title>Premium plans | KagoBuild</title>
     <link rel="stylesheet" href="../styles/variables.css">
     <link rel="stylesheet" href="../styles/dash.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../styles/premium.css">
 </head>
 <body>
@@ -140,98 +142,50 @@
                     <div class="premium-banner">
                         <span><svg class='ico-inline' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M11.562 3.266a.5.5 0 0 1 .876 0L15.39 8.87a1 1 0 0 0 1.516.294L21.183 5.5a.5.5 0 0 1 .798.519l-2.834 10.246a1 1 0 0 1-.956.734H5.81a1 1 0 0 1-.957-.734L2.02 6.02a.5.5 0 0 1 .798-.519l4.276 3.664a1 1 0 0 0 1.516-.294z'/><path d='M5 21h14'/></svg> Unlock advanced features, more projects and better insights with KagoBuild Premium.</span>
 
-                        <div class="billing-toggle" id="billingToggle">
-                            <span class="toggle-label active" data-mode="monthly">Monthly</span>
-                            <button class="toggle-switch" id="toggleSwitch"><span class="toggle-knob"></span></button>
-                            <span class="toggle-label" data-mode="yearly">Yearly</span>
-                            <span class="toggle-save-pill">Save 20%</span>
-                        </div>
                     </div>
 
                     <div class="premium-main-grid">
 
-                        <div class="pricing-cards-grid" id="pricingCardsGrid">
+                        <div class="plans-grid" id="pricingCardsGrid">
 
-                            <div class="pricing-card">
-                                <h3>Free</h3>
-                                <p class="pricing-plan-sub">Get started with basic features.</p>
-                                <div class="pricing-amount"><span class="currency">R</span><span class="amount">0</span><span class="period">/month</span></div>
-
-                                <ul class="pricing-feature-list">
-                                    <li>✓ 3 Projects</li>
-                                    <li>✓ 5 AI Design Generations / month</li>
-                                    <li>✓ Basic Material Database</li>
-                                    <li>✓ Standard Cost Estimates</li>
-                                    <li>✓ Export (PDF)</li>
-                                    <li>✓ Community Support</li>
+                            <article class="plan-card is-current">
+                                <div class="plan-head"><span class="plan-star" aria-hidden="true">★</span><span class="plan-name">Free</span><span class="plan-current-pill">Your plan</span></div>
+                                <div class="plan-price">R0 <small>ZAR / month</small></div>
+                                <h4>Features:</h4>
+                                <ul class="plan-features">
+                                    <li>2 AI floor plans per month</li>
+                                    <li>Basic material list</li>
+                                    <li>Estimate with average prices</li>
+                                    <li>Email support</li>
                                 </ul>
+                                <button type="button" class="plan-btn plan-btn--current" disabled>Current plan</button>
+                            </article>
 
-                                <button class="pricing-cta current">Current Plan</button>
-                            </div>
-
-                            <div class="pricing-card popular">
-                                <span class="pricing-badge">Popular</span>
-                                <h3>Starter</h3>
-                                <p class="pricing-plan-sub">Perfect for small projects.</p>
-                                <div class="pricing-amount">
-                                    <span class="currency monthly-price">R</span><span class="amount monthly-price">299</span><span class="period monthly-price">/month</span>
-                                    <span class="currency yearly-price is-hidden">R</span><span class="amount yearly-price is-hidden">2,990</span><span class="period yearly-price is-hidden">/year</span>
-                                </div>
-                                <span class="pricing-save-note yearly-price is-hidden">save 20%</span>
-
-                                <ul class="pricing-feature-list">
-                                    <li>✓ 10 Projects</li>
-                                    <li>✓ 20 AI Design Generations / month</li>
-                                    <li>✓ Access to 50+ Suppliers</li>
-                                    <li>✓ Real-time Pricing Updates</li>
-                                    <li>✓ Export (PDF, Excel)</li>
-                                    <li>✓ Email Support</li>
+                            <article class="plan-card">
+                                <div class="plan-head"><span class="plan-star" aria-hidden="true">★</span><span class="plan-name">Pro</span></div>
+                                <div class="plan-price">R399 <small>ZAR / month</small></div>
+                                <h4>Features:</h4>
+                                <ul class="plan-features">
+                                    <li>Unlimited plans and variations</li>
+                                    <li>Live supplier pricing</li>
+                                    <li>Regional price adjustment</li>
+                                    <li>PDF and Excel export</li>
                                 </ul>
+                                <button type="button" class="plan-btn">Upgrade to Pro</button>
+                            </article>
 
-                                <button class="pricing-cta primary">Upgrade to Starter</button>
-                            </div>
-
-                            <div class="pricing-card featured">
-                                <h3>Professional</h3>
-                                <p class="pricing-plan-sub">For professionals & growing teams.</p>
-                                <div class="pricing-amount">
-                                    <span class="currency monthly-price">R</span><span class="amount monthly-price">699</span><span class="period monthly-price">/month</span>
-                                    <span class="currency yearly-price is-hidden">R</span><span class="amount yearly-price is-hidden">6,990</span><span class="period yearly-price is-hidden">/year</span>
-                                </div>
-                                <span class="pricing-save-note yearly-price is-hidden">save 20%</span>
-
-                                <ul class="pricing-feature-list">
-                                    <li>✓ Unlimited Projects</li>
-                                    <li>✓ Unlimited AI Generations</li>
-                                    <li>✓ Access to 200+ Suppliers</li>
-                                    <li>✓ Advanced Cost Analytics</li>
-                                    <li>✓ Export (PDF, Excel, CSV, BOQ)</li>
-                                    <li>✓ Priority Support</li>
+                            <article class="plan-card">
+                                <div class="plan-head"><span class="plan-star" aria-hidden="true">★</span><span class="plan-name">Business</span></div>
+                                <div class="plan-price">R999 <small>ZAR / month</small></div>
+                                <h4>Features:</h4>
+                                <ul class="plan-features">
+                                    <li>Everything in Pro</li>
+                                    <li>Up to 10 team members</li>
+                                    <li>Supplier quote requests</li>
+                                    <li>Priority chat support</li>
                                 </ul>
-
-                                <button class="pricing-cta primary-dark">Upgrade to Professional</button>
-                            </div>
-
-                            <div class="pricing-card enterprise">
-                                <h3>Enterprise</h3>
-                                <p class="pricing-plan-sub">For large teams & companies.</p>
-                                <div class="pricing-amount">
-                                    <span class="currency monthly-price">R</span><span class="amount monthly-price">1,499</span><span class="period monthly-price">/month</span>
-                                    <span class="currency yearly-price is-hidden">R</span><span class="amount yearly-price is-hidden">14,990</span><span class="period yearly-price is-hidden">/year</span>
-                                </div>
-                                <span class="pricing-save-note yearly-price is-hidden">save 20%</span>
-
-                                <ul class="pricing-feature-list">
-                                    <li>✓ Everything in Professional</li>
-                                    <li>✓ Multi-user Team Access</li>
-                                    <li>✓ Custom Supplier Integrations</li>
-                                    <li>✓ Advanced Reporting</li>
-                                    <li>✓ Dedicated Account Manager</li>
-                                    <li>✓ 24/7 Priority Support</li>
-                                </ul>
-
-                                <button class="pricing-cta orange">Contact Sales</button>
-                            </div>
+                                <a class="plan-btn" href="help-support.html">Contact Sales</a>
+                            </article>
 
                         </div>
 
@@ -288,22 +242,13 @@
     </section>
 
     <script>
-
-        // Monthly / Yearly billing toggle
-        const toggleSwitch = document.getElementById("toggleSwitch");
-        const toggleLabels = document.querySelectorAll(".toggle-label");
-        let yearly = false;
-
-        function applyBillingMode(){
-            toggleSwitch.classList.toggle("is-yearly", yearly);
-            toggleLabels.forEach(l => l.classList.toggle("active", l.dataset.mode === (yearly ? "yearly" : "monthly")));
-            document.querySelectorAll(".monthly-price").forEach(el => el.classList.toggle("is-hidden", yearly));
-            document.querySelectorAll(".yearly-price").forEach(el => el.classList.toggle("is-hidden", !yearly));
-        }
-
-        toggleSwitch.addEventListener("click", () => { yearly = !yearly; applyBillingMode(); });
-        toggleLabels.forEach(label => {
-            label.addEventListener("click", () => { yearly = label.dataset.mode === "yearly"; applyBillingMode(); });
+        // Soft spotlight that follows the pointer (same as the landing page)
+        document.querySelectorAll(".plan-card").forEach(function (el) {
+            el.addEventListener("pointermove", function (e) {
+                var r = el.getBoundingClientRect();
+                el.style.setProperty("--mx", (e.clientX - r.left) + "px");
+                el.style.setProperty("--my", (e.clientY - r.top) + "px");
+            });
         });
     </script>
 </body>

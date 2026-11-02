@@ -7,124 +7,10 @@
     <link rel="stylesheet" href="../../styles/variables.css">
     <link rel="stylesheet" href="../../styles/dash.css">
     <link rel="stylesheet" href="../../styles/admin.css">
+    <link rel="stylesheet" href="../../styles/admin-extra.css">
 </head>
-<body>
-    <section class="dashboard">
-
-        <aside class="dashboard-navbar" aria-label="Admin navigation">
-
-            <div class="upper-sidebar">
-                <a href="dashboard.html" id="logo" aria-label="KagoBuild admin dashboard">
-                    <span class="logo-mark"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 20V10l4-3 4 3v10M12 20V6l4-3 4 3v14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-                    <span class="logo-text">KagoBuild <em class="admin-tag">Admin</em></span>
-                </a>
-
-                <nav class="nav-list">
-                <a href="dashboard.html" class="nav-link active" title="Dashboard" aria-current="page">
-                    <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>
-                    <span class="nav-label">Dashboard</span>
-                </a>
-                <a href="users.html" class="nav-link" title="Users">
-                    <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><path d="M16 3.128a4 4 0 0 1 0 7.744"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><circle cx="9" cy="7" r="4"/></svg>
-                    <span class="nav-label">Users</span>
-                </a>
-                <a href="projects.html" class="nav-link" title="Projects">
-                    <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/><path d="M8 10v4"/><path d="M12 10v2"/><path d="M16 10v6"/></svg>
-                    <span class="nav-label">Projects</span>
-                </a>
-                <a href="materials.html" class="nav-link" title="Materials">
-                    <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z"/><path d="M12 22V12"/><polyline points="3.29 7 12 12 20.71 7"/><path d="m7.5 4.27 9 5.15"/></svg>
-                    <span class="nav-label">Materials</span>
-                </a>
-                <a href="suppliers.html" class="nav-link" title="Suppliers">
-                    <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></svg>
-                    <span class="nav-label">Suppliers</span>
-                </a>
-                <a href="ai-jobs.html" class="nav-link" title="AI Jobs">
-                    <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M15 2v2M15 20v2M2 15h2M2 9h2M20 15h2M20 9h2M9 2v2M9 20v2"/></svg>
-                    <span class="nav-label">AI Jobs</span>
-                </a>
-                <a href="analytics.html" class="nav-link" title="Analytics">
-                    <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg>
-                    <span class="nav-label">Analytics</span>
-                </a>
-                <a href="settings.html" class="nav-link" title="Settings">
-                    <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915"/><circle cx="12" cy="12" r="3"/></svg>
-                    <span class="nav-label">Settings</span>
-                </a>
-                </nav>
-            </div>
-
-            <div class="lower-sidebar">
-                <a href="../dashboard.html" class="nav-link nav-link--soft" title="Back to app">
-                    <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
-                    <span class="nav-label">Back to app</span>
-                </a>
-            </div>
-
-        </aside>
-
-        <div class="sidebar-resizer" id="sidebarResizer" title="Drag to resize, double-click to collapse"></div>
-        <script src="../../scripts/main.js"></script>
-
-        <main class="dashboard-overview">
-
-            <header class="dashboard-header">
-
-                <div class="header-left">
-                    <div class="header-titles">
-                        <h2>Admin Dashboard</h2>
-                        <p class="header-subtitle">Platform health, users and supplier data at a glance.</p>
-                    </div>
-                </div>
-
-                <div class="header-right">
-                    <div class="search-container"><span class="search-icon"><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg></span><input aria-label="Search users, projects, suppliers" type="search" placeholder="Search users, projects, suppliers..."></div>
-                    <div class="notif-menu">
-                        <button type="button" class="notification-btn" id="bellBtn" aria-label="Notifications" aria-haspopup="true" aria-expanded="false" aria-controls="notifDropdown">
-                            <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.268 21a2 2 0 0 0 3.464 0"/><path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"/></svg>
-                            <span class="notification-count" id="bellCount">3</span>
-                        </button>
-                        <div class="notif-dropdown" id="notifDropdown">
-                            <div class="notif-dropdown-header">
-                                <span>Alerts</span>
-                                <button type="button" class="link-btn" id="markAllRead">Mark all as read</button>
-                            </div>
-                            <a class="notif-dd-item" href="suppliers.html"><span class="notif-dd-dot" aria-hidden="true"></span><span class="notif-dd-text"><strong>Cashbuild price sync failed</strong><small>3 retries exhausted, 12m ago</small></span></a>
-                            <a class="notif-dd-item" href="ai-jobs.html"><span class="notif-dd-dot" aria-hidden="true"></span><span class="notif-dd-text"><strong>AI queue above 40 jobs</strong><small>Average wait 2m 10s, 25m ago</small></span></a>
-                            <a class="notif-dd-item" href="users.html"><span class="notif-dd-dot" aria-hidden="true"></span><span class="notif-dd-text"><strong>2 accounts flagged for review</strong><small>Unusual plan generation volume, 1h ago</small></span></a>
-                            <a class="notif-dropdown-footer" href="analytics.html">View all activity</a>
-                        </div>
-                    </div>
-
-                    <span class="header-divider" aria-hidden="true"></span>
-
-                    <div class="profile-menu">
-                        <button type="button" class="profile-section" id="profileBtn" aria-haspopup="true" aria-expanded="false" aria-controls="profileDropdown">
-                            <span class="profile-avatar">
-                                <span class="profile-initials" id="hdrInitials">M</span>
-                                <img id="hdrAvatar" alt="">
-                            </span>
-                            <span class="user-details">
-                                <span class="user-name" id="hdrName">Moses</span>
-                                <span class="user-role">Admin</span>
-                            </span>
-                            <svg class="ico dropdown-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
-                        </button>
-                        <div class="dropdown" id="profileDropdown">
-                            <a href="../settings.html#account"><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>My profile</a>
-                            <a href="settings.html"><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915"/><circle cx="12" cy="12" r="3"/></svg>Admin settings</a>
-                            <a href="../dashboard.html"><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>Back to app</a>
-                            <a href="../index.html" class="dropdown-logout"><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/></svg>Log out</a>
-                        </div>
-                    </div>
-
-                </div>
-
-            </header>
-
-            <div class="main-card">
-                <div class="admin-page">
+<body data-title="Admin Dashboard" data-subtitle="Platform health, users and supplier data at a glance.">
+    <main class="admin-page" id="app">
 
                     <!-- KPI cards -->
                     <div class="admin-kpis">
@@ -236,12 +122,9 @@
 
                     </div>
 
-                </div>
-            </div>
+    </main>
 
-        </main>
-    </section>
-
+    <script src="../../scripts/admin-shell.js"></script>
     <script>
     (function () {
         // Demo data. Replace with calls to the backend admin endpoints.

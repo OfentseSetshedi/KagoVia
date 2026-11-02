@@ -91,6 +91,16 @@
 
     function applySidebarWidth(width, persist) {
         if (!sidebar) return;
+
+        // Phones / tablet portrait: the sidebar is a slide-out drawer
+        // (mobile.css + mobile.js), so drop the inline desktop width.
+        if (window.innerWidth <= 900) {
+            sidebar.style.removeProperty("width");
+            sidebar.style.removeProperty("min-width");
+            sidebar.style.removeProperty("max-width");
+            sidebar.classList.remove("collapsed");
+            return;
+        }
         const collapsed = width < SIDEBAR.collapseBelow;
         const finalWidth = collapsed ? collapsedWidth() : width;
 
@@ -110,8 +120,8 @@
     function initialWidth() {
         const w = window.innerWidth;
 
-        // Tablet portrait and phones: always the icon rail
-        if (w <= 900) return collapsedWidth();
+        // Tablet portrait and phones: drawer (width handled in CSS)
+        if (w <= 900) return SIDEBAR.defaultWidth;
 
         // Touch tablets in landscape on a tight screen: icon rail too
         if (isTouchDevice && w <= 1100) return collapsedWidth();
@@ -264,8 +274,68 @@
         if (saved["profile.photo"] && avatarImg) avatarImg.src = saved["profile.photo"];
     }
 
-    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", initHeader);
-    else initHeader();
+    /* ---------------------------------------------------------
+       6. Admin preview ("View as user" from the admin area)
+       Shows a banner and the previewed user in the header.
+    --------------------------------------------------------- */
+    function initPreview() {
+        if (document.querySelector(".dashboard-navbar[aria-label='Admin navigation']")) return;
+
+        let ctx = null;
+        const m = location.hash.match(/viewas=([^&]+)/);
+        if (m) {
+            try { ctx = JSON.parse(decodeURIComponent(m[1])); } catch (e) { ctx = null; }
+            try { if (ctx) sessionStorage.setItem("kb-view-as", JSON.stringify(ctx)); } catch (e) { /* ignore */ }
+            try { history.replaceState(null, "", location.pathname + location.search); } catch (e) { /* ignore */ }
+        }
+        if (!ctx) {
+            try { ctx = JSON.parse(sessionStorage.getItem("kb-view-as") || "null"); } catch (e) { ctx = null; }
+        }
+        if (!ctx || !ctx.name) return;
+
+        const esc = (v) => String(v).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+        const back = ctx.returnTo || "admin/dashboard.html";
+
+        document.body.classList.add("kb-previewing");
+
+        const bar = document.createElement("div");
+        bar.className = "preview-banner";
+        bar.setAttribute("role", "status");
+        bar.innerHTML =
+            '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+                '<path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></svg>' +
+            '<span class="preview-text">' + (ctx.generic
+                ? '<strong>Admin preview</strong> You are seeing the app the way a user on the free plan sees it.'
+                : '<strong>Viewing as ' + esc(ctx.name) + '</strong> ' + esc(ctx.role) + (ctx.email ? ' · ' + esc(ctx.email) : '')) +
+            '</span>' +
+            '<a class="preview-exit" href="' + esc(back) + '">Exit preview</a>';
+
+        const main = document.querySelector(".dashboard-overview");
+        if (main) main.insertBefore(bar, main.firstChild);
+        else document.body.insertBefore(bar, document.body.firstChild);
+
+        bar.querySelector(".preview-exit").addEventListener("click", () => {
+            try { sessionStorage.removeItem("kb-view-as"); } catch (e) { /* ignore */ }
+        });
+
+        // Header shows the previewed user, not the admin
+        const nameEl = document.getElementById("hdrName");
+        const initialsEl = document.getElementById("hdrInitials");
+        const avatarImg = document.getElementById("hdrAvatar");
+        const roleEl = document.querySelector(".profile-section .user-role");
+        if (nameEl) nameEl.textContent = ctx.name;
+        if (roleEl) roleEl.textContent = ctx.role || "";
+        if (initialsEl) {
+            const p = ctx.name.trim().split(/\s+/);
+            initialsEl.textContent = (((p[0] || "")[0] || "") + ((p[1] || "")[0] || "")).toUpperCase();
+        }
+        if (avatarImg) avatarImg.removeAttribute("src");
+    }
+
+    function initAll() { initHeader(); initPreview(); }
+
+    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", initAll);
+    else initAll();
 })();
 
 /* ---------------------------------------------------------

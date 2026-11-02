@@ -480,3 +480,85 @@
     background:var(--color-primary-soft);
     color:var(--color-primary);
 }
+
+/* =========================================================
+   Left column fit (no cut-off text)
+   - Popular topics: two per row, labels may wrap
+   - Contact support: full-width rows (icon | text | hours)
+========================================================= */
+
+.help-topics-grid{
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+}
+
+.help-topic{
+    align-items:flex-start;
+    gap:10px;
+    padding:11px 12px;
+}
+
+.help-topic strong,
+.help-topic small{
+    white-space:normal;
+    overflow:visible;
+    text-overflow:clip;
+    line-height:1.3;
+}
+
+.help-topic strong{ font-size:12.5px; }
+.help-topic small{ font-size:11px; }
+
+.help-contact-grid{
+    grid-template-columns:minmax(0, 1fr) !important;
+    gap:8px;
+}
+
+.help-contact-card{
+    display:grid;
+    grid-template-columns:36px minmax(0, 1fr) auto;
+    grid-template-rows:auto auto;
+    column-gap:12px;
+    row-gap:2px;
+    align-items:center;
+    padding:12px 14px;
+    text-align:left;
+}
+
+.help-contact-icon{
+    grid-row:1 / span 2;
+    width:36px;
+    height:36px;
+    margin:0;
+    border-radius:9px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:var(--color-primary-soft);
+    color:var(--color-primary);
+}
+
+.help-contact-icon .ico-inline{ width:17px; height:17px; }
+
+.help-contact-card strong,
+.help-contact-card > span{
+    white-space:normal;
+    overflow:visible;
+    text-overflow:clip;
+}
+
+.help-contact-card strong{ grid-column:2; grid-row:1; font-size:13px; }
+.help-contact-card > span:not(.help-contact-icon):not(.help-contact-note){ grid-column:2; grid-row:2; overflow-wrap:anywhere; }
+
+.help-contact-note{
+    grid-column:3;
+    grid-row:1 / span 2;
+    justify-self:end;
+    text-align:right;
+    white-space:nowrap !important;
+}
+
+@media (max-width:480px){
+    .help-topics-grid{ grid-template-columns:minmax(0, 1fr); }
+    .help-contact-card{ grid-template-columns:36px minmax(0, 1fr); grid-template-rows:auto auto auto; }
+    .help-contact-note{ grid-column:2; grid-row:3; justify-self:start; text-align:left; }
+}

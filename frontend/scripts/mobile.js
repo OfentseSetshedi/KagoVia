@@ -41,11 +41,36 @@
     backdrop.setAttribute("aria-hidden", "true");
     document.body.appendChild(backdrop);
 
+    /* ---- Close (X) button inside the drawer ---- */
+    var closeBtn = document.createElement("button");
+    closeBtn.type = "button";
+    closeBtn.className = "drawer-close";
+    closeBtn.setAttribute("aria-label", "Close menu");
+    closeBtn.innerHTML =
+        '<svg viewBox="0 0 24 24" aria-hidden="true">' +
+        '<path d="M18 6 6 18M6 6l12 12"/></svg>';
+    sidebar.appendChild(closeBtn);
+
+    if (!sidebar.id) sidebar.id = "mainSidebar";
+    btn.setAttribute("aria-controls", sidebar.id);
+
     function setOpen(open) {
+        var wasOpen = document.body.classList.contains("nav-open");
         document.body.classList.toggle("nav-open", open);
         btn.setAttribute("aria-expanded", open ? "true" : "false");
         btn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+
+        // Move focus into the drawer when it opens, back to the
+        // hamburger when it closes (keyboard + screen readers).
+        if (open && !wasOpen) {
+            var current = sidebar.querySelector(".nav-link.active") || closeBtn;
+            setTimeout(function () { current.focus({ preventScroll: true }); }, 50);
+        } else if (!open && wasOpen && sidebar.contains(document.activeElement)) {
+            btn.focus({ preventScroll: true });
+        }
     }
+
+    closeBtn.addEventListener("click", function () { setOpen(false); });
 
     btn.addEventListener("click", function (e) {
         e.stopPropagation();
@@ -60,7 +85,7 @@
     });
 
     document.addEventListener("keydown", function (e) {
-        if (e.key === "Escape") setOpen(false);
+        if (e.key === "Escape" && document.body.classList.contains("nav-open")) setOpen(false);
     });
 
     /* Rotating the phone or widening the window back to desktop */

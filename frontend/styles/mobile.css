@@ -8,23 +8,25 @@
      >= 1700   ultra-wide: content is centred and capped
      <= 1200   small laptop / tablet landscape
      <= 1100   tablets: wide tables scroll inside their cards
-     <= 900    tablet portrait + phones: sidebar becomes an icon rail
+     <= 900    tablet portrait + phones: sidebar becomes a hamburger drawer
      <= 600    phones: single column layouts
      <= 480    small phones
      <= 360    very small phones
      short landscape phones get their own tightening
 
-   The icon-rail width is set by scripts/main.js (inline style),
-   the values here only document / mirror it.
+   Above 900px the sidebar width is set by scripts/main.js
+   (inline style). At 900px and below the sidebar is a drawer
+   opened by the hamburger that scripts/mobile.js adds.
 ========================================================= */
 
 /* ---------- Base (all sizes) ---------- */
 
 html{ -webkit-text-size-adjust:100%; text-size-adjust:100%; }
 
-/* The hamburger is not used: the icon rail replaces it */
+/* Hamburger + drawer parts only show on phones / tablet portrait */
 .mobile-menu-btn,
-.mobile-backdrop{ display:none !important; }
+.mobile-backdrop,
+.drawer-close{ display:none; }
 
 /* dvh follows the visible area on phones (address bar moving) */
 .dashboard,
@@ -128,7 +130,7 @@ html{ -webkit-text-size-adjust:100%; text-size-adjust:100%; }
 }
 
 /* =========================================================
-   Tablet portrait and phones: sidebar becomes an icon rail
+   Tablet portrait and phones: hamburger + slide-out drawer
 ========================================================= */
 
 @media (max-width:900px){
@@ -139,39 +141,134 @@ html{ -webkit-text-size-adjust:100%; text-size-adjust:100%; }
 
     .sidebar-resizer{ display:none; }
 
-    /* ---------- Icon rail ---------- */
+    /* ---------- Drawer ---------- */
+
+    .dashboard{ grid-template-columns:minmax(0, 1fr); }
 
     .dashboard-navbar,
     .dashboard-navbar.collapsed{
-        position:relative;
-        transform:none;
+        position:fixed;
+        top:0;
+        bottom:0;
+        left:0;
+        z-index:3100;
+        width:min(280px, 84vw) !important;
+        min-width:0 !important;
+        max-width:none !important;
         height:100%;
-        padding:12px 6px calc(12px + env(safe-area-inset-bottom, 0px));
+        height:100dvh;
+        padding:16px 12px calc(16px + env(safe-area-inset-bottom, 0px));
         overflow-x:hidden;
         overflow-y:auto;
         scrollbar-width:none;
+        transform:translateX(-100%);
+        visibility:hidden;
         box-shadow:none;
+        transition:transform .25s ease, visibility 0s linear .25s;
     }
 
     .dashboard-navbar::-webkit-scrollbar{ display:none; }
 
+    body.nav-open .dashboard-navbar{
+        transform:none;
+        visibility:visible;
+        box-shadow:0 0 40px rgba(0,0,0,.35);
+        transition:transform .25s ease, visibility 0s;
+    }
+
+    /* Full labels inside the drawer */
     .dashboard-navbar .logo-text,
-    .dashboard-navbar .nav-label{ display:none !important; }
+    .dashboard-navbar .nav-label,
+    .dashboard-navbar .admin-tag{ display:inline !important; }
 
     .dashboard-navbar #logo,
     .dashboard-navbar .nav-link{
-        justify-content:center;
-        gap:0;
-        padding-left:0;
-        padding-right:0;
+        justify-content:flex-start;
+        gap:10px;
+        padding-left:10px;
+        padding-right:10px;
     }
 
-    .dashboard-navbar #logo{ padding:0 0 12px; margin-bottom:8px; }
+    .dashboard-navbar #logo{ padding:0 44px 14px 4px; margin-bottom:10px; }
+
+    .dashboard-navbar .nav-section{
+        height:auto;
+        margin:0;
+        padding:12px 10px 4px;
+        background:none;
+        opacity:.55;
+    }
+    .dashboard-navbar .nav-section span{ display:inline; }
+    .dashboard-navbar .nav-list > .nav-section:first-child{ display:block; padding-top:0; }
 
     .nav-link{ height:44px; border-radius:10px; }
     .nav-link .ico{ width:20px; height:20px; }
 
     .lower-sidebar{ margin-top:12px; padding-top:12px; }
+
+    /* Close (X) inside the drawer */
+    .drawer-close{
+        position:absolute;
+        top:14px;
+        right:10px;
+        width:36px;
+        height:36px;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        border:none;
+        border-radius:9px;
+        background:var(--color-sidebar-hover);
+        color:var(--color-sidebar-text);
+        cursor:pointer;
+    }
+    .drawer-close svg,
+    .mobile-menu-btn svg{
+        width:20px;
+        height:20px;
+        fill:none;
+        stroke:currentColor;
+        stroke-width:2;
+        stroke-linecap:round;
+    }
+
+    /* Hamburger in the header */
+    .mobile-menu-btn{
+        flex-shrink:0;
+        width:38px;
+        height:38px;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        padding:0;
+        border:1px solid var(--color-border);
+        border-radius:10px;
+        background:var(--color-card);
+        color:var(--color-text-primary);
+        cursor:pointer;
+        -webkit-tap-highlight-color:transparent;
+    }
+    .mobile-menu-btn:focus-visible,
+    .drawer-close:focus-visible{
+        outline:2px solid var(--color-primary);
+        outline-offset:2px;
+    }
+
+    /* Dimmed page behind the open drawer */
+    .mobile-backdrop{
+        display:block;
+        position:fixed;
+        inset:0;
+        z-index:3050;
+        background:rgba(0,0,0,.45);
+        opacity:0;
+        pointer-events:none;
+        transition:opacity .25s ease;
+    }
+    body.nav-open .mobile-backdrop{
+        opacity:1;
+        pointer-events:auto;
+    }
 
     /* ---------- Header ---------- */
 
@@ -200,7 +297,7 @@ html{ -webkit-text-size-adjust:100%; text-size-adjust:100%; }
     .notif-dropdown{
         position:fixed;
         top:66px;
-        left:68px;
+        left:12px;
         right:12px;
         width:auto;
         max-height:calc(100dvh - 80px);
@@ -351,7 +448,7 @@ html{ -webkit-text-size-adjust:100%; text-size-adjust:100%; }
     .supplier-filter-panel{
         position:fixed;
         top:auto;
-        left:68px;
+        left:12px;
         right:12px;
         bottom:12px;
         width:auto;
@@ -566,14 +663,8 @@ html{ -webkit-text-size-adjust:100%; text-size-adjust:100%; }
 
     .dashboard-header{ padding:0 10px; }
 
-    .dashboard-navbar,
-    .dashboard-navbar.collapsed{
-        padding-left:4px;
-        padding-right:4px;
-    }
-
-    .notif-dropdown{ left:60px; }
-    .supplier-filter-panel{ left:60px; }
+    .notif-dropdown{ left:10px; right:10px; }
+    .supplier-filter-panel{ left:10px; }
 
     .notification-btn{ width:36px; height:36px; }
     .profile-avatar{ width:30px; height:30px; }
@@ -625,7 +716,6 @@ html{ -webkit-text-size-adjust:100%; text-size-adjust:100%; }
     .dashboard-header{ height:52px; }
     .nav-link{ height:36px; }
     .lower-sidebar{ margin-top:8px; padding-top:8px; }
-    .dashboard-navbar #logo{ padding-bottom:8px; margin-bottom:6px; }
     .modal-box,
     .em-box,
     .rm-box{ max-height:calc(100dvh - 16px); }
@@ -644,4 +734,13 @@ html{ -webkit-text-size-adjust:100%; text-size-adjust:100%; }
     .filter-menu button,
     .dropdown a,
     .notif-dd-item{ min-height:40px; }
+}
+/* =========================================================
+   Reduced motion: drawer opens without sliding
+========================================================= */
+
+@media (prefers-reduced-motion: reduce){
+    .dashboard-navbar,
+    body.nav-open .dashboard-navbar,
+    .mobile-backdrop{ transition:none !important; }
 }

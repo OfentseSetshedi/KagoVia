@@ -14,59 +14,106 @@
 
     <script src="../../scripts/admin-shell.js"></script>
     <script src="../../scripts/admin-ui.js"></script>
+    <script src="../../scripts/photo-crop.js"></script>
     <script>
         var app = document.getElementById('app');
         var saved = AdminShell.getSettings();
         var E = AdminUI.esc;
 
         app.innerHTML =
-            '<div class="settings-stack">' +
+            '<div class="settings-page kb-settings">' +
+                '<nav class="settings-tabs" role="tablist" aria-label="Settings sections">' +
+                    '<button type="button" class="settings-tab active" role="tab" data-tab="profile" aria-selected="true" aria-controls="panel-profile"><svg class="kb-tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Profile</button>' +
+                    '<button type="button" class="settings-tab" role="tab" data-tab="security" aria-selected="false" aria-controls="panel-security"><svg class="kb-tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg>Security</button>' +
+                    '<button type="button" class="settings-tab" role="tab" data-tab="preferences" aria-selected="false" aria-controls="panel-preferences"><svg class="kb-tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 7h-9"/><path d="M14 17H5"/><circle cx="17" cy="17" r="3"/><circle cx="7" cy="7" r="3"/></svg>Preferences</button>' +
+                    '<button type="button" class="settings-tab" role="tab" data-tab="sessions" aria-selected="false" aria-controls="panel-sessions"><svg class="kb-tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="14" x="2" y="3" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>Sessions</button>' +
+                '</nav>' +
 
-            /* ---------- Profile ---------- */
-            '<section class="admin-card" id="profile"><div class="admin-card-head"><h5>My profile</h5><span class="pill info">' + E(AdminShell.role) + '</span></div>' +
-                '<div class="profile-photo-block">' +
-                    '<div class="photo-preview"><span id="pInitials"></span><img id="pImg" alt="Profile photo"></div>' +
-                    '<div class="photo-actions">' +
-                        '<button class="btn" id="pChange" type="button">Change photo</button>' +
-                        '<button class="btn danger" id="pRemove" type="button">Remove</button>' +
-                        '<input type="file" id="pFile" accept="image/*" hidden>' +
+                /* ---------- Profile ---------- */
+                '<div class="settings-panel" id="panel-profile" role="tabpanel"><div class="settings-cards-row">' +
+                    '<div class="settings-card">' +
+                        '<h5>Profile Information</h5>' +
+                        '<p class="settings-card-sub">Update your personal information and profile details.</p>' +
+                        '<div class="profile-photo-block">' +
+                            '<span class="kb-avatar-lg"><span id="pInitials"></span><img id="pImg" alt="Profile photo"></span>' +
+                            '<div class="photo-actions">' +
+                                '<button type="button" class="change-photo-btn" id="pChange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg>Change Photo</button>' +
+                                '<button type="button" class="link-btn" id="pRemove">Remove</button>' +
+                                '<input type="file" id="pFile" accept="image/*" hidden>' +
+                            '</div>' +
+                        '</div>' +
+                        '<div class="settings-fields-grid">' +
+                            '<div class="settings-field"><label for="pName">Full Name</label><input id="pName" type="text" value="' + E(saved['profile.name'] || 'Moses') + '"></div>' +
+                            '<div class="settings-field"><label for="pEmail">Email Address</label><input id="pEmail" type="email" value="' + E(saved['profile.email'] || 'admin@kagobuild.com') + '"></div>' +
+                            '<div class="settings-field"><label for="pPhone">Phone Number</label><input id="pPhone" type="text" value="' + E(saved['profile.phone'] || '') + '" placeholder="+27 ..."></div>' +
+                            '<div class="settings-field"><label for="pRole">Role</label><input id="pRole" type="text" value="' + E(AdminShell.role) + '" disabled></div>' +
+                        '</div>' +
+                        '<p class="field-error" id="pErr" role="alert"></p>' +
+                        '<div class="settings-card-actions"><button type="button" class="settings-save-btn" id="pSave">Save Changes</button></div>' +
                     '</div>' +
-                '</div>' +
-                '<div class="form-grid">' +
-                    '<label class="field"><span>Full name</span><input class="admin-input" id="pName" value="' + E(saved['profile.name'] || 'Moses') + '"></label>' +
-                    '<label class="field"><span>Role</span><input class="admin-input" value="' + E(AdminShell.role) + '" disabled></label>' +
-                    '<label class="field"><span>Email</span><input class="admin-input" id="pEmail" type="email" value="' + E(saved['profile.email'] || 'admin@kagobuild.com') + '"></label>' +
-                    '<label class="field"><span>Phone</span><input class="admin-input" id="pPhone" value="' + E(saved['profile.phone'] || '') + '" placeholder="+27 ..."></label>' +
-                '</div>' +
-                '<div class="field-error-msg" id="pErr" style="margin-top:10px"></div>' +
-                '<div class="admin-toolbar" style="margin:10px 0 0"><span class="spacer"></span><button class="btn primary" id="pSave" type="button">Save profile</button></div>' +
-            '</section>' +
+                '</div></div>' +
 
-            /* ---------- Security ---------- */
-            '<section class="admin-card" id="security"><div class="admin-card-head"><h5>Security</h5></div>' +
-                '<div class="setting-row"><div><strong>Two-factor authentication</strong><small>Ask for a code from your authenticator app at sign-in.</small></div>' +
-                    '<label class="switch"><input type="checkbox" id="tfa" ' + (saved['security.tfa'] === false ? '' : 'checked') + '><span></span></label></div>' +
-                '<div class="form-grid" style="margin-top:16px">' +
-                    '<label class="field full"><span>Current password</span><input class="admin-input" id="pwOld" type="password" autocomplete="current-password"></label>' +
-                    '<label class="field"><span>New password</span><input class="admin-input" id="pwNew" type="password" autocomplete="new-password"></label>' +
-                    '<label class="field"><span>Confirm new password</span><input class="admin-input" id="pwConf" type="password" autocomplete="new-password"></label>' +
-                '</div>' +
-                '<div class="field-error-msg" id="pwErr" style="margin-top:10px"></div>' +
-                '<div class="admin-toolbar" style="margin:10px 0 0"><span class="spacer"></span><button class="btn primary" id="pwSave" type="button">Update password</button></div>' +
-            '</section>' +
+                /* ---------- Security ---------- */
+                '<div class="settings-panel is-hidden" id="panel-security" role="tabpanel"><div class="settings-cards-row">' +
+                    '<div class="settings-card">' +
+                        '<h5>Two-Factor Authentication</h5>' +
+                        '<p class="settings-card-sub">Add an extra step when you sign in to the admin area.</p>' +
+                        '<div class="toggle-row"><div><strong>Authenticator app</strong><span>Ask for a code from your authenticator app at sign-in.</span></div>' +
+                            '<label class="switch"><input type="checkbox" id="tfa" ' + (saved['security.tfa'] === false ? '' : 'checked') + '><span></span></label></div>' +
+                    '</div>' +
+                    '<div class="settings-card">' +
+                        '<h5>Change Password</h5>' +
+                        '<p class="settings-card-sub">Update your password regularly to keep your account secure.</p>' +
+                        '<div class="settings-field"><label for="pwOld">Current Password</label><input id="pwOld" type="password" placeholder="Enter current password" autocomplete="current-password"></div>' +
+                        '<div class="settings-field"><label for="pwNew">New Password</label><input id="pwNew" type="password" placeholder="Enter new password" autocomplete="new-password"><small class="field-hint">At least 8 characters.</small></div>' +
+                        '<div class="settings-field"><label for="pwConf">Confirm New Password</label><input id="pwConf" type="password" placeholder="Confirm new password" autocomplete="new-password"></div>' +
+                        '<p class="field-error" id="pwErr" role="alert"></p>' +
+                        '<div class="settings-card-actions"><button type="button" class="settings-save-btn" id="pwSave">Update Password</button></div>' +
+                    '</div>' +
+                '</div></div>' +
 
-            /* ---------- Preferences ---------- */
-            '<section class="admin-card" id="preferences"><div class="admin-card-head"><h5>Preferences</h5></div>' +
-                '<div class="form-grid">' +
-                    '<label class="field"><span>Theme</span><select class="admin-select" id="prefTheme"><option value="light">Light</option><option value="dark">Dark</option></select></label>' +
-                    '<label class="field"><span>Time zone</span><select class="admin-select" id="prefTz"><option>Africa/Johannesburg (SAST)</option><option>UTC</option><option>Europe/London</option></select></label>' +
-                '</div>' +
-                '<div class="setting-row"><div><strong>Email alerts</strong><small>Supplier sync failures and AI queue backlogs.</small></div><label class="switch"><input type="checkbox" data-pref="pref.emailAlerts" ' + (saved['pref.emailAlerts'] === false ? '' : 'checked') + '><span></span></label></div>' +
-                '<div class="setting-row"><div><strong>Security notices</strong><small>New sign-ins and permission changes.</small></div><label class="switch"><input type="checkbox" data-pref="pref.securityNotices" ' + (saved['pref.securityNotices'] === false ? '' : 'checked') + '><span></span></label></div>' +
-            '</section>' +
+                /* ---------- Preferences ---------- */
+                '<div class="settings-panel is-hidden" id="panel-preferences" role="tabpanel"><div class="settings-cards-row">' +
+                    '<div class="settings-card">' +
+                        '<h5>Application Preferences</h5>' +
+                        '<p class="settings-card-sub">Customize how the admin area works for you.</p>' +
+                        '<div class="settings-fields-grid">' +
+                            '<div class="settings-field"><label for="prefTheme">Theme</label><select id="prefTheme"><option value="light">Light</option><option value="dark">Dark</option></select></div>' +
+                            '<div class="settings-field"><label for="prefTz">Time zone</label><select id="prefTz"><option>Africa/Johannesburg (SAST)</option><option>UTC</option><option>Europe/London</option></select></div>' +
+                        '</div>' +
+                    '</div>' +
+                    '<div class="settings-card">' +
+                        '<h5>Alerts</h5>' +
+                        '<p class="settings-card-sub">Choose what the admin area emails you about.</p>' +
+                        '<div class="toggle-row"><div><strong>Email alerts</strong><span>Supplier sync failures and AI queue backlogs.</span></div><label class="switch"><input type="checkbox" data-pref="pref.emailAlerts" ' + (saved['pref.emailAlerts'] === false ? '' : 'checked') + '><span></span></label></div>' +
+                        '<div class="toggle-row"><div><strong>Security notices</strong><span>New sign-ins and permission changes.</span></div><label class="switch"><input type="checkbox" data-pref="pref.securityNotices" ' + (saved['pref.securityNotices'] === false ? '' : 'checked') + '><span></span></label></div>' +
+                    '</div>' +
+                '</div></div>' +
 
-            '<div id="sessions"></div>' +
+                /* ---------- Sessions ---------- */
+                '<div class="settings-panel is-hidden" id="panel-sessions" role="tabpanel"><div class="settings-cards-row"><div id="sessions"></div></div></div>' +
             '</div>';
+
+        /* ---------- Tabs (same behaviour as the user Settings page) ---------- */
+        var tabs = app.querySelectorAll('.settings-tab');
+        function showTab(name) {
+            if (!document.getElementById('panel-' + name)) return;
+            tabs.forEach(function (t) {
+                var on = t.getAttribute('data-tab') === name;
+                t.classList.toggle('active', on);
+                t.setAttribute('aria-selected', on ? 'true' : 'false');
+            });
+            app.querySelectorAll('.settings-panel').forEach(function (p) {
+                p.classList.toggle('is-hidden', p.id !== 'panel-' + name);
+            });
+        }
+        tabs.forEach(function (t) {
+            t.onclick = function () {
+                var name = t.getAttribute('data-tab');
+                showTab(name);
+                try { history.replaceState(null, '', '#' + name); } catch (e) {}
+            };
+        });
 
         /* ---------- Profile ---------- */
         var pName = document.getElementById('pName');
@@ -82,6 +129,9 @@
             pInitials.textContent = initials(pName.value || 'M');
             var photo = AdminShell.getSettings()['profile.photo'];
             if (photo) pImg.src = photo; else pImg.removeAttribute('src');
+            pImg.hidden = !photo;
+            pInitials.hidden = !!photo;
+            document.getElementById('pRemove').hidden = !photo;
         }
         paintPreview();
         pName.oninput = function () { pInitials.textContent = initials(pName.value || 'M'); };
@@ -90,25 +140,16 @@
 
         document.getElementById('pFile').onchange = function (e) {
             var file = e.target.files && e.target.files[0];
+            e.target.value = '';
             if (!file) return;
             if (file.type.indexOf('image/') !== 0) { AdminUI.toast('Please choose an image file'); return; }
-            var reader = new FileReader();
-            reader.onload = function () {
-                var img = new Image();
-                img.onload = function () {
-                    /* Shrink to 256px so it fits comfortably in localStorage */
-                    var size = 256, c = document.createElement('canvas');
-                    var s = Math.min(img.width, img.height);
-                    c.width = c.height = size;
-                    c.getContext('2d').drawImage(img, (img.width - s) / 2, (img.height - s) / 2, s, s, 0, 0, size, size);
-                    AdminShell.saveSettings({ 'profile.photo': c.toDataURL('image/jpeg', 0.85) });
-                    paintPreview();
-                    AdminUI.toast('Photo updated');
-                };
-                img.src = reader.result;
-            };
-            reader.readAsDataURL(file);
-            e.target.value = '';
+            if (file.size > 8 * 1024 * 1024) { AdminUI.toast('Image is too large (max 8MB)'); return; }
+            // Frame the face in a circle, then save a 256px copy
+            KBPhotoCrop.open(file, function (dataUrl) {
+                AdminShell.saveSettings({ 'profile.photo': dataUrl });
+                paintPreview();
+                AdminUI.toast('Photo updated');
+            });
         };
 
         document.getElementById('pRemove').onclick = function () {
@@ -197,11 +238,8 @@
             ]
         });
 
-        /* Scroll to a section when opened with #profile / #security / #preferences */
-        if (location.hash) {
-            var target = document.querySelector(location.hash);
-            if (target) target.scrollIntoView();
-        }
+        /* Open a tab from the link, e.g. settings.html#security */
+        if (location.hash) showTab(location.hash.slice(1));
     </script>
 </body>
 </html>

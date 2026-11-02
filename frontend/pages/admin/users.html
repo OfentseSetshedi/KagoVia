@@ -43,6 +43,9 @@
                 { name: 'Pieter van Wyk', email: 'pieter@example.com', type: 'Builder', projects: '1', last: '3 days ago', status: 'Unverified' }
             ],
             actions: [
+                { label: 'View as user', run: function (r) {
+                      AdminShell.viewAs({ name: r.name, role: r.type, email: r.email });
+                  } },
                 { label: function (r) { return r.status === 'Suspended' ? 'Activate' : 'Suspend'; },
                   run: function (r, api) {
                       r.status = r.status === 'Suspended' ? 'Active' : 'Suspended';
